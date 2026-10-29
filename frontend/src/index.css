@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 217 55% 5%;
+        --foreground: 210 30% 96%;
+        --card: 221 62% 17%;
+        --card-foreground: 210 30% 96%;
+        --popover: 221 62% 12%;
+        --popover-foreground: 210 30% 96%;
+        --primary: 347 95% 46%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 224 65% 48%;
+        --secondary-foreground: 0 0% 100%;
+        --muted: 221 40% 22%;
+        --muted-foreground: 218 18% 68%;
+        --accent: 221 40% 22%;
+        --accent-foreground: 0 0% 100%;
+        --destructive: 347 95% 46%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 216 20% 40%;
+        --input: 216 20% 30%;
+        --ring: 347 95% 46%;
+        --radius: 0.75rem;
+    }
+    html {
+        scroll-behavior: auto;
+    }
+    body {
+        @apply bg-adfr-night text-slate-100 font-sans antialiased;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    section[id] {
+        scroll-margin-top: 88px;
+    }
+    ::selection {
+        background: #e30613;
+        color: #fff;
+    }
+}
+
+/* Film grain overlay — kills digital flatness, ties into the chrome/metal direction */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+/* Chrome / metallic text — brand direction (logo chrome) */
+.text-chrome {
+    background: linear-gradient(180deg, #f6f8fa 0%, #c9cdd4 42%, #8b93a4 58%, #e8ecf2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Slow editorial marquee */
+@keyframes marqueeX {
+    to {
+        transform: translateX(-50%);
+    }
+}
+.animate-marquee {
+    animation: marqueeX 38s linear infinite;
+}
+.marquee:hover .animate-marquee {
+    animation-play-state: paused;
+}
+
+/* Phone icon wiggle on emergency CTAs */
+@keyframes ringWiggle {
+    0%, 100% { transform: rotate(0deg); }
+    8% { transform: rotate(-14deg); }
+    16% { transform: rotate(12deg); }
+    24% { transform: rotate(-10deg); }
+    32% { transform: rotate(0deg); }
+}
+.animate-ring {
+    animation: ringWiggle 2.8s ease-in-out infinite;
+    transform-origin: 50% 60%;
+}
+
+/* IDF map hexes */
+.zone-hex {
+    cursor: pointer;
+    transition: transform 0.25s ease;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+.zone-hex:hover {
+    transform: scale(1.06);
+}
+.zone-hex polygon {
+    transition: fill 0.25s ease;
+}
+.zone-hex:hover polygon.dep-fill {
+    fill: #1e4fd6;
+}
+.zone-hex:hover polygon.paris-fill {
+    fill: #e30613;
+}
+
+input,
+select,
+textarea {
+    color-scheme: dark;
+}

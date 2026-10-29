@@ -1,0 +1,94 @@
+{
+  "project_name": "ADFR - Auto Dépann France Remorquage",
+  "app_type": "landing_page",
+  "theme": "dark",
+  "typography": {
+    "headings": "Montserrat",
+    "body": "Inter",
+    "hierarchy": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl font-black tracking-tighter uppercase text-white",
+      "h2": "text-3xl sm:text-4xl font-bold tracking-tight text-white",
+      "h3": "text-xl sm:text-2xl font-bold text-white",
+      "body": "text-base leading-relaxed text-slate-300"
+    }
+  },
+  "colors": {
+    "primary": "#0A1E4C",
+    "primary_electric": "#1E4FD6",
+    "danger": "#E30613",
+    "chrome": "#C9CDD4",
+    "white": "#FFFFFF",
+    "background": "#050B14",
+    "surface": "#0A1E4C",
+    "whatsapp": "#25D366"
+  },
+  "visual_enhancers": {
+    "chrome_effect": "Avoid cheap gradients. Use 1px borders of #C9CDD4 with 20% opacity. Use subtle inner shadows to simulate metallic reflections. Glassmorphism for floating elements (bg-[#0A1E4C]/80 backdrop-blur-xl border border-white/10).",
+    "depth": "Layered shadows, ambient glow behind emergency CTAs. Add subtle noise/grain texture overlay to background to kill digital flatness.",
+    "buttons": {
+      "call_primary": "Massive, highly tactile. bg-[#E30613] text-white font-black uppercase tracking-wider shadow-[0_0_20px_rgba(227,6,19,0.4)] hover:bg-red-700 transition-colors active:scale-95",
+      "whatsapp": "bg-[#25D366] text-white font-bold shadow-lg hover:bg-green-600 flex items-center gap-2 transition-colors active:scale-95"
+    }
+  },
+  "layout_and_structure": {
+    "mobile_first": "CRITICAL. 90% of traffic is mobile. Components must be chunky, easily tappable. Font sizes must be readable on small screens. High density but generous padding (p-4 or p-6) within cards.",
+    "sticky_call_bar": "Fixed bottom-0 left-0 right-0 w-full z-50 bg-[#E30613] text-white p-4 flex justify-center items-center font-black text-lg sm:text-xl md:hidden. Tapping it triggers `tel:+33185800061`. Add an animating phone icon.",
+    "floating_whatsapp": "Fixed bottom-20 md:bottom-8 right-4 z-40 bg-[#25D366] p-4 rounded-full shadow-2xl animate-bounce",
+    "hero": {
+      "1440px": "Grid 2 cols. Left: Massive H1, Trust badges, Double CTA. Right: Dramatic image of a tow truck. Background: Deep blue to black radial gradient with grain.",
+      "390px": "Stack. Image as dark background overlay. Text centered. Massive CTAs taking full width. Trust badges stacked or scrollable row."
+    },
+    "trust_bar": "A horizontal marquee or dense flex row of badges (24/7, 20 min, Tous assureurs, etc.). Use metallic/chrome icons.",
+    "services_grid": "Bento-style grid. 7 services. Hover states lift the card and border glows electric blue (#1E4FD6).",
+    "map_section": "Clickable zones for IDF. Visual representation of departments (75, 77, 78, etc.).",
+    "process": "3 steps. Vertical line connecting them on mobile, horizontal on desktop. Use chrome numbering.",
+    "callback_form": "Simple, high contrast. 4 fields (Name, Phone, Location, Issue). Submit button is Electric Blue.",
+    "seo_pages": "Templated local pages with dynamic H1s and schema.org markup."
+  },
+  "motion": {
+    "micro_animations": "Buttons should have a satisfying 'press' effect (scale down slightly). Pulse animation on the emergency call button to draw the eye. Fade-up entrance for services grid.",
+    "scrolling": "Smooth scroll (lenis) recommended if feasible, otherwise standard with intersection observers."
+  },
+  "accessibility": {
+    "contrast": "Ensure #E30613 is readable with white text. Use text-shadow on hero text to separate from background image.",
+    "aria": "Add aria-labels to all icon-only buttons (like WhatsApp)."
+  },
+  "media": {
+    "image_urls": [
+      {
+        "url": "https://images.unsplash.com/photo-1642531406277-33bc9531e33e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjV8MHwxfHNlYXJjaHw0fHx0b3dpbmclMjB0cnVja3xlbnwwfHx8fDE3OTMzMTYwNzB8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Tow truck in harsh weather, implies rescue and reliability. Use for Hero background with heavy dark overlay (bg-black/60).",
+        "category": "hero_background"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1788370538342-b28c755cf61b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzh8MHwxfHNlYXJjaHwyfHxjYXIlMjBicmVha2Rvd24lMjBuaWdodCUyMGhpZ2h3YXl8ZW58MHx8fHwxNzkzMzE2MDU5fDA&ixlib=rb-4.1.0&q=85",
+        "description": "Highway at night. Use for callback form background or map section background.",
+        "category": "section_background"
+      }
+    ]
+  },
+  "component_instructions": {
+    "Hero": "Must contain double CTA: 'APPELER LE 01 85 80 00 61' (Red) and 'WHATSAPP' (Green).",
+    "StickyMobileBar": "Must be visible only on mobile screens (md:hidden). Red background, white text, fixed to bottom. Content: 'URGENCE - APPELER MAINTENANT'",
+    "FloatingWhatsApp": "Visible on all screens. Fixed position right bottom. Make sure it doesn't overlap the sticky mobile bar on mobile.",
+    "TrustBar": "Flex container with items separated by a chrome dot (•). Use text-sm or text-xs font-bold text-slate-300.",
+    "ServicesGrid": "Map out the 7 services. Use icons for each. bg-[#0A1E4C]/50 border border-[#C9CDD4]/20 rounded-xl p-6.",
+    "Reviews": "6 realistic placeholders. Star rating in yellow/gold, text in white/slate. User name in bold.",
+    "FAQ": "Use shadcn accordion. Dark theme styled.",
+    "Footer": "Links to all 8 departments and 40 cities. Organized in grid."
+  },
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "You tend to converge toward generic, 'on distribution' outputs. Avoid this.",
+    "DO NOT use dark colors as gradients. Use solid #0A1E4C.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use glass-morphism effects with backdrop filters (12-24px blur) where appropriate.",
+    "You MUST NOT apply universal transition (e.g. `transition: all`). Always add transitions for specific interactive elements.",
+    "You MUST NOT center align the app container. Do not add `.App { text-align: center; }`.",
+    "Always use modern button styles like pill-shaped, or sharp button with interaction animations.",
+    "Every interaction needs micro-animations - hover states, transitions, entrance animations.",
+    "Subtle grain textures, noise overlays, custom cursors: separates good from extraordinary.",
+    "All interactive and key informational elements MUST include a `data-testid` attribute.",
+    "CRITICAL: DO NOT use complete `transparent` background in header, overlays, any surface that has content under it."
+  ],
+  "testing": "All interactive elements MUST have `data-testid` attribute. E.g., `data-testid='call-button-hero'`."
+}
