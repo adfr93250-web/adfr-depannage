@@ -1,5 +1,5 @@
 const ITEMS = [
-    "24/7 — 7j/7",
+    "24h/24 du dimanche au vendredi",
     "Intervention en 20 min",
     "Tous assureurs",
     "Paiement sur place",

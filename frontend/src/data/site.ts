@@ -106,7 +106,7 @@ export const REVIEWS: Review[] = [
         name: "Nadia K.",
         city: "Nanterre",
         stars: 5,
-        text: "Service 24/7 vérifié : appel à 3h du matin après une panne sur l'A14, dépanneur là à 3h20. On n'est jamais mieux servi qu'en pleine nuit.",
+        text: "Vrai service de nuit vérifié : appel à 3h du matin après une panne sur l'A14, dépanneur là à 3h20. On n'est jamais mieux servi qu'en pleine nuit.",
     },
 ];
 
@@ -130,7 +130,11 @@ export const FAQ_HOME: FaqItem[] = [
     },
     {
         q: "Quelles zones couvrez-vous ?",
-        a: "Toute l'Île-de-France : Paris, Seine-et-Marne, Yvelines, Essonne, Hauts-de-Seine, Seine-Saint-Denis, Val-de-Marne et Val-d'Oise. Jour et nuit, week-ends et jours fériés.",
+        a: "Toute l'Île-de-France : Paris, Seine-et-Marne, Yvelines, Essonne, Hauts-de-Seine, Seine-Saint-Denis, Val-de-Marne et Val-d'Oise. Jour et nuit, du dimanche au vendredi. Fermé le samedi.",
+    },
+    {
+        q: "Travaillez-vous le samedi ?",
+        a: "Non, nous n'intervenons pas le samedi. Nous intervenons 24h/24 du dimanche au vendredi, de jour comme de nuit, partout en Île-de-France.",
     },
     {
         q: "Comment se passe le paiement ?",
@@ -146,7 +150,7 @@ export function faqZone(name: string): FaqItem[] {
     return [
         {
             q: `Intervenez-vous vraiment 24h/24 à ${name} ?`,
-            a: `Oui. À ${name} comme partout en Île-de-France, un dépanneur ADFR peut partir vous rejoindre de jour comme de nuit, le week-end et les jours fériés.`,
+            a: `Oui. À ${name} comme partout en Île-de-France, un dépanneur ADFR peut partir vous rejoindre de jour comme de nuit, du dimanche au vendredi. Nous n'intervenons pas le samedi.`,
         },
         {
             q: `En combien de temps un dépanneur arrive-t-il à ${name} ?`,

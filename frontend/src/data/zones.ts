@@ -18,7 +18,7 @@ export const DEPARTMENTS: Zone[] = [
     {
         slug: "75", type: "dept", name: "Paris", cp: "75001 – 75020", dept: "75", deptName: "Paris", deptIn: "à Paris",
         lat: 48.8566, lng: 2.3522,
-        intro: "De la Bastille au Trocadéro, du boulevard périphérique aux bois de Vincennes et de Boulogne : ADFR couvre tout Paris et ses 20 arrondissements, 24h/24 et 7j/7, avec une intervention moyenne en 20 minutes.",
+        intro: "De la Bastille au Trocadéro, du boulevard périphérique aux bois de Vincennes et de Boulogne : ADFR couvre tout Paris et ses 20 arrondissements, 24h/24 du dimanche au vendredi, avec une intervention moyenne en 20 minutes.",
         spots: ["Le Louvre", "Le Périphérique", "Les Bois de Vincennes et de Boulogne"],
         axes: "le boulevard périphérique et les autoroutes d'entrée d'agglomération (A1, A3, A6, A13)",
         neighbors: ["92", "93", "94", "77", "78", "95"],
@@ -26,7 +26,7 @@ export const DEPARTMENTS: Zone[] = [
     {
         slug: "77", type: "dept", name: "Seine-et-Marne", cp: "", dept: "77", deptName: "Seine-et-Marne", deptIn: "en Seine-et-Marne",
         lat: 48.5406, lng: 2.6594,
-        intro: "De Marne-la-Vallée à Melun, le long de l'A4 et de la Francilienne : ADFR couvre la Seine-et-Marne 24h/24 et 7j/7, avec une intervention moyenne en 20 minutes.",
+        intro: "De Marne-la-Vallée à Melun, le long de l'A4 et de la Francilienne : ADFR couvre la Seine-et-Marne 24h/24 du dimanche au vendredi, avec une intervention moyenne en 20 minutes.",
         spots: ["Melun", "Meaux", "Chelles"],
         axes: "l'A4, l'A5 et la Francilienne N104",
         neighbors: ["94", "91", "78", "75"],
@@ -34,7 +34,7 @@ export const DEPARTMENTS: Zone[] = [
     {
         slug: "78", type: "dept", name: "Yvelines", cp: "", dept: "78", deptName: "Yvelines", deptIn: "dans les Yvelines",
         lat: 48.8014, lng: 2.1301,
-        intro: "De Versailles à Saint-Quentin-en-Yvelines, le long de l'A13 et de la N12 : ADFR couvre les Yvelines 24h/24 et 7j/7, avec une intervention moyenne en 20 minutes.",
+        intro: "De Versailles à Saint-Quentin-en-Yvelines, le long de l'A13 et de la N12 : ADFR couvre les Yvelines 24h/24 du dimanche au vendredi, avec une intervention moyenne en 20 minutes.",
         spots: ["Versailles", "Saint-Quentin-en-Yvelines", "Poissy"],
         axes: "l'A13, l'A14 et la N12",
         neighbors: ["92", "91", "75"],
@@ -42,7 +42,7 @@ export const DEPARTMENTS: Zone[] = [
     {
         slug: "91", type: "dept", name: "Essonne", cp: "", dept: "91", deptName: "Essonne", deptIn: "en Essonne",
         lat: 48.6333, lng: 2.4442,
-        intro: "De Massy à Évry-Courcouronnes, le long de l'A6 et de l'A10 : ADFR couvre l'Essonne 24h/24 et 7j/7, avec une intervention moyenne en 20 minutes.",
+        intro: "De Massy à Évry-Courcouronnes, le long de l'A6 et de l'A10 : ADFR couvre l'Essonne 24h/24 du dimanche au vendredi, avec une intervention moyenne en 20 minutes.",
         spots: ["Évry-Courcouronnes", "Massy", "Palaiseau"],
         axes: "l'A6, l'A10 et la Francilienne N104",
         neighbors: ["94", "77", "78", "92"],
@@ -50,7 +50,7 @@ export const DEPARTMENTS: Zone[] = [
     {
         slug: "92", type: "dept", name: "Hauts-de-Seine", cp: "", dept: "92", deptName: "Hauts-de-Seine", deptIn: "dans les Hauts-de-Seine",
         lat: 48.8919, lng: 2.2045,
-        intro: "De La Défense à Boulogne-Billancourt, le long de l'A14 et de l'A86 : ADFR couvre les Hauts-de-Seine 24h/24 et 7j/7, avec une intervention moyenne en 20 minutes.",
+        intro: "De La Défense à Boulogne-Billancourt, le long de l'A14 et de l'A86 : ADFR couvre les Hauts-de-Seine 24h/24 du dimanche au vendredi, avec une intervention moyenne en 20 minutes.",
         spots: ["La Défense", "Nanterre", "Boulogne-Billancourt"],
         axes: "l'A14, l'A86 et les quais de Seine",
         neighbors: ["75", "78", "95"],
@@ -58,7 +58,7 @@ export const DEPARTMENTS: Zone[] = [
     {
         slug: "93", type: "dept", name: "Seine-Saint-Denis", cp: "", dept: "93", deptName: "Seine-Saint-Denis", deptIn: "en Seine-Saint-Denis",
         lat: 48.9142, lng: 2.4386,
-        intro: "De Saint-Denis à Montreuil, le long de l'A1, de l'A3 et de l'A86 : ADFR couvre la Seine-Saint-Denis 24h/24 et 7j/7, avec une intervention moyenne en 20 minutes.",
+        intro: "De Saint-Denis à Montreuil, le long de l'A1, de l'A3 et de l'A86 : ADFR couvre la Seine-Saint-Denis 24h/24 du dimanche au vendredi, avec une intervention moyenne en 20 minutes.",
         spots: ["Saint-Denis", "Bobigny", "Montreuil"],
         axes: "l'A1, l'A3 et l'A86",
         neighbors: ["75", "95", "77", "94"],
@@ -66,7 +66,7 @@ export const DEPARTMENTS: Zone[] = [
     {
         slug: "94", type: "dept", name: "Val-de-Marne", cp: "", dept: "94", deptName: "Val-de-Marne", deptIn: "dans le Val-de-Marne",
         lat: 48.7769, lng: 2.4525,
-        intro: "De Créteil à Vitry-sur-Seine, le long de l'A86 et de l'A4 : ADFR couvre le Val-de-Marne 24h/24 et 7j/7, avec une intervention moyenne en 20 minutes.",
+        intro: "De Créteil à Vitry-sur-Seine, le long de l'A86 et de l'A4 : ADFR couvre le Val-de-Marne 24h/24 du dimanche au vendredi, avec une intervention moyenne en 20 minutes.",
         spots: ["Créteil", "Vitry-sur-Seine", "Saint-Maur-des-Fossés"],
         axes: "l'A86 et l'A4",
         neighbors: ["75", "93", "77", "91"],
@@ -74,7 +74,7 @@ export const DEPARTMENTS: Zone[] = [
     {
         slug: "95", type: "dept", name: "Val-d'Oise", cp: "", dept: "95", deptName: "Val-d'Oise", deptIn: "dans le Val-d'Oise",
         lat: 49.0369, lng: 2.0618,
-        intro: "De Cergy à Sarcelles, le long de l'A15 et de la Francilienne : ADFR couvre le Val-d'Oise 24h/24 et 7j/7, avec une intervention moyenne en 20 minutes.",
+        intro: "De Cergy à Sarcelles, le long de l'A15 et de la Francilienne : ADFR couvre le Val-d'Oise 24h/24 du dimanche au vendredi, avec une intervention moyenne en 20 minutes.",
         spots: ["Cergy", "Argenteuil", "Sarcelles"],
         axes: "l'A15 et la Francilienne N104",
         neighbors: ["93", "92", "78"],
@@ -85,7 +85,7 @@ export const CITIES: Zone[] = [
     {
         slug: "boulogne-billancourt", type: "city", name: "Boulogne-Billancourt", cp: "92100", dept: "92", deptName: "Hauts-de-Seine", deptIn: "dans les Hauts-de-Seine",
         lat: 48.8352, lng: 2.2409,
-        intro: "En panne à Boulogne-Billancourt, près de la Route de la Reine ou des quais de Seine ? Les dépanneurs ADFR arrivent en moyenne en 20 minutes, 24h/24 et 7j/7, dans toute la ville.",
+        intro: "En panne à Boulogne-Billancourt, près de la Route de la Reine ou des quais de Seine ? Les dépanneurs ADFR arrivent en moyenne en 20 minutes, 24h/24 du dimanche au vendredi, dans toute la ville.",
         spots: ["La Route de la Reine", "Les quais de Seine", "Le Bois de Boulogne"],
         axes: "la N118 et les quais de Seine",
         neighbors: ["issy-les-moulineaux", "rueil-malmaison", "92", "paris-16"],
@@ -93,7 +93,7 @@ export const CITIES: Zone[] = [
     {
         slug: "saint-denis", type: "city", name: "Saint-Denis", cp: "93200", dept: "93", deptName: "Seine-Saint-Denis", deptIn: "en Seine-Saint-Denis",
         lat: 48.9362, lng: 2.3574,
-        intro: "Que vous soyez du côté du Stade de France ou de la Basilique, ADFR intervient à Saint-Denis jour et nuit, en moyenne en 20 minutes, 24h/24 et 7j/7.",
+        intro: "Que vous soyez du côté du Stade de France ou de la Basilique, ADFR intervient à Saint-Denis jour et nuit, en moyenne en 20 minutes, 24h/24 du dimanche au vendredi.",
         spots: ["Le Stade de France", "La Basilique de Saint-Denis", "Les quais du canal Saint-Denis"],
         axes: "l'A1 et l'A86",
         neighbors: ["93", "montreuil", "drancy", "95"],
@@ -101,7 +101,7 @@ export const CITIES: Zone[] = [
     {
         slug: "argenteuil", type: "city", name: "Argenteuil", cp: "95100", dept: "95", deptName: "Val-d'Oise", deptIn: "dans le Val-d'Oise",
         lat: 48.9478, lng: 2.2476,
-        intro: "Batterie morte ou crevaison à Argenteuil, vers le Val d'Argenteuil ou les quais ? ADFR arrive en moyenne en 20 minutes, 24h/24 et 7j/7.",
+        intro: "Batterie morte ou crevaison à Argenteuil, vers le Val d'Argenteuil ou les quais ? ADFR arrive en moyenne en 20 minutes, 24h/24 du dimanche au vendredi.",
         spots: ["Le centre-ville", "Le Val d'Argenteuil", "Les quais de Seine"],
         axes: "l'A15",
         neighbors: ["95", "colombes", "92"],
@@ -109,7 +109,7 @@ export const CITIES: Zone[] = [
     {
         slug: "montreuil", type: "city", name: "Montreuil", cp: "93100", dept: "93", deptName: "Seine-Saint-Denis", deptIn: "en Seine-Saint-Denis",
         lat: 48.8638, lng: 2.4432,
-        intro: "De la Croix-de-Chavaux aux Murs à Pêches, nos dépanneurs sillonnent Montreuil jour et nuit, avec une intervention moyenne en 20 minutes, 24h/24 et 7j/7.",
+        intro: "De la Croix-de-Chavaux aux Murs à Pêches, nos dépanneurs sillonnent Montreuil jour et nuit, avec une intervention moyenne en 20 minutes, 24h/24 du dimanche au vendredi.",
         spots: ["La Croix-de-Chavaux", "Les Murs à Pêches", "La route de Vincennes"],
         axes: "l'A3 et les grands axes vers Paris",
         neighbors: ["93", "94", "paris-20", "paris-12"],
@@ -117,7 +117,7 @@ export const CITIES: Zone[] = [
     {
         slug: "nanterre", type: "city", name: "Nanterre", cp: "92000", dept: "92", deptName: "Hauts-de-Seine", deptIn: "dans les Hauts-de-Seine",
         lat: 48.8919, lng: 2.2045,
-        intro: "À Nanterre, autour de La Défense ou du parc André Malraux, ADFR intervient 24h/24 et 7j/7, en moyenne en 20 minutes.",
+        intro: "À Nanterre, autour de La Défense ou du parc André Malraux, ADFR intervient 24h/24 du dimanche au vendredi, en moyenne en 20 minutes.",
         spots: ["La Défense", "L'hôtel de ville", "Le parc André Malraux"],
         axes: "l'A14 et l'A86",
         neighbors: ["92", "courbevoie", "rueil-malmaison", "78"],
@@ -125,7 +125,7 @@ export const CITIES: Zone[] = [
     {
         slug: "vitry-sur-seine", type: "city", name: "Vitry-sur-Seine", cp: "94400", dept: "94", deptName: "Val-de-Marne", deptIn: "dans le Val-de-Marne",
         lat: 48.7875, lng: 2.3928,
-        intro: "En panne à Vitry-sur-Seine, sur les quais ou au centre-ville ? Un dépanneur ADFR arrive en moyenne en 20 minutes, jour et nuit, week-ends et jours fériés.",
+        intro: "En panne à Vitry-sur-Seine, sur les quais ou au centre-ville ? Un dépanneur ADFR arrive en moyenne en 20 minutes, jour et nuit, du dimanche au vendredi.",
         spots: ["Le centre-ville", "Les quais de Seine", "L'hôtel de ville"],
         axes: "l'A86",
         neighbors: ["94", "91", "creteil", "75"],
@@ -133,7 +133,7 @@ export const CITIES: Zone[] = [
     {
         slug: "creteil", type: "city", name: "Créteil", cp: "94000", dept: "94", deptName: "Val-de-Marne", deptIn: "dans le Val-de-Marne",
         lat: 48.7769, lng: 2.4525,
-        intro: "Autour du lac de Créteil ou de Créteil-Soleil, ADFR assure le dépannage et le remorquage 24h/24 et 7j/7, avec une intervention moyenne en 20 minutes.",
+        intro: "Autour du lac de Créteil ou de Créteil-Soleil, ADFR assure le dépannage et le remorquage 24h/24 du dimanche au vendredi, avec une intervention moyenne en 20 minutes.",
         spots: ["Le lac de Créteil", "Créteil-Soleil", "La préfecture du Val-de-Marne"],
         axes: "l'A86 et la jonction de l'A4",
         neighbors: ["94", "vitry-sur-seine", "77", "93"],
@@ -141,7 +141,7 @@ export const CITIES: Zone[] = [
     {
         slug: "asnieres-sur-seine", type: "city", name: "Asnières-sur-Seine", cp: "92600", dept: "92", deptName: "Hauts-de-Seine", deptIn: "dans les Hauts-de-Seine",
         lat: 48.9117, lng: 2.2878,
-        intro: "Du pont d'Asnières aux quais de Seine, nos dépanneurs interviennent à Asnières-sur-Seine 24h/24 et 7j/7, en moyenne en 20 minutes.",
+        intro: "Du pont d'Asnières aux quais de Seine, nos dépanneurs interviennent à Asnières-sur-Seine 24h/24 du dimanche au vendredi, en moyenne en 20 minutes.",
         spots: ["Le pont d'Asnières", "Les quais de Seine", "Le centre-ville"],
         axes: "les quais de Seine et l'A86 voisine",
         neighbors: ["92", "colombes", "courbevoie", "75"],
@@ -149,7 +149,7 @@ export const CITIES: Zone[] = [
     {
         slug: "versailles", type: "city", name: "Versailles", cp: "78000", dept: "78", deptName: "Yvelines", deptIn: "dans les Yvelines",
         lat: 48.8014, lng: 2.1301,
-        intro: "À Versailles, du château à la gare des Chantiers, ADFR intervient jour et nuit, en moyenne en 20 minutes, 24h/24 et 7j/7.",
+        intro: "À Versailles, du château à la gare des Chantiers, ADFR intervient jour et nuit, en moyenne en 20 minutes, 24h/24 du dimanche au vendredi.",
         spots: ["Le château de Versailles", "La gare Versailles-Chantiers", "Le centre-ville"],
         axes: "l'A86 et la N12",
         neighbors: ["78", "92", "91"],
@@ -157,7 +157,7 @@ export const CITIES: Zone[] = [
     {
         slug: "courbevoie", type: "city", name: "Courbevoie", cp: "92400", dept: "92", deptName: "Hauts-de-Seine", deptIn: "dans les Hauts-de-Seine",
         lat: 48.8975, lng: 2.2439,
-        intro: "À Courbevoie, de La Défense au pont de Courbevoie, un dépanneur ADFR arrive en moyenne en 20 minutes, 24h/24 et 7j/7.",
+        intro: "À Courbevoie, de La Défense au pont de Courbevoie, un dépanneur ADFR arrive en moyenne en 20 minutes, 24h/24 du dimanche au vendredi.",
         spots: ["La Défense", "Le pont de Courbevoie", "L'hôtel de ville"],
         axes: "l'A14 et l'A86",
         neighbors: ["92", "nanterre", "asnieres-sur-seine", "75"],
@@ -165,7 +165,7 @@ export const CITIES: Zone[] = [
     {
         slug: "colombes", type: "city", name: "Colombes", cp: "92700", dept: "92", deptName: "Hauts-de-Seine", deptIn: "dans les Hauts-de-Seine",
         lat: 48.9244, lng: 2.2539,
-        intro: "En panne à Colombes, près du stade Yves-du-Manoir ou au centre-ville ? ADFR intervient 24h/24 et 7j/7, en moyenne en 20 minutes.",
+        intro: "En panne à Colombes, près du stade Yves-du-Manoir ou au centre-ville ? ADFR intervient 24h/24 du dimanche au vendredi, en moyenne en 20 minutes.",
         spots: ["Le stade Yves-du-Manoir", "Le centre-ville", "L'hôtel de ville"],
         axes: "l'A86",
         neighbors: ["92", "asnieres-sur-seine", "argenteuil", "95"],
@@ -173,7 +173,7 @@ export const CITIES: Zone[] = [
     {
         slug: "rueil-malmaison", type: "city", name: "Rueil-Malmaison", cp: "92500", dept: "92", deptName: "Hauts-de-Seine", deptIn: "dans les Hauts-de-Seine",
         lat: 48.8762, lng: 2.2136,
-        intro: "Du château de Malmaison aux quais de Seine, ADFR dépanne Rueil-Malmaison jour et nuit, en moyenne en 20 minutes, 24h/24 et 7j/7.",
+        intro: "Du château de Malmaison aux quais de Seine, ADFR dépanne Rueil-Malmaison jour et nuit, en moyenne en 20 minutes, 24h/24 du dimanche au vendredi.",
         spots: ["Le château de Malmaison", "Les quais de Seine", "Le centre-ville"],
         axes: "l'A86 et les quais",
         neighbors: ["92", "nanterre", "boulogne-billancourt", "78"],
@@ -181,7 +181,7 @@ export const CITIES: Zone[] = [
     {
         slug: "aulnay-sous-bois", type: "city", name: "Aulnay-sous-Bois", cp: "93600", dept: "93", deptName: "Seine-Saint-Denis", deptIn: "en Seine-Saint-Denis",
         lat: 48.9331, lng: 2.5008,
-        intro: "À Aulnay-sous-Bois, près de la gare ou du parc du Sausset, un dépanneur ADFR arrive en moyenne en 20 minutes, 24h/24 et 7j/7.",
+        intro: "À Aulnay-sous-Bois, près de la gare ou du parc du Sausset, un dépanneur ADFR arrive en moyenne en 20 minutes, 24h/24 du dimanche au vendredi.",
         spots: ["La gare d'Aulnay-sous-Bois", "Le parc du Sausset", "Le centre-ville"],
         axes: "l'A1 et l'A3 tout proches",
         neighbors: ["93", "drancy", "77", "95"],
@@ -189,7 +189,7 @@ export const CITIES: Zone[] = [
     {
         slug: "champigny-sur-marne", type: "city", name: "Champigny-sur-Marne", cp: "94500", dept: "94", deptName: "Val-de-Marne", deptIn: "dans le Val-de-Marne",
         lat: 48.8172, lng: 2.4922,
-        intro: "Sur les bords de Marne ou au centre-ville de Champigny, ADFR intervient 24h/24 et 7j/7, en moyenne en 20 minutes.",
+        intro: "Sur les bords de Marne ou au centre-ville de Champigny, ADFR intervient 24h/24 du dimanche au vendredi, en moyenne en 20 minutes.",
         spots: ["Les bords de Marne", "Le centre-ville", "Le pont de Champigny"],
         axes: "les quais de Marne et les grands axes vers Paris",
         neighbors: ["94", "saint-maur-des-fosses", "77", "93"],
@@ -197,7 +197,7 @@ export const CITIES: Zone[] = [
     {
         slug: "saint-maur-des-fosses", type: "city", name: "Saint-Maur-des-Fossés", cp: "94100", dept: "94", deptName: "Val-de-Marne", deptIn: "dans le Val-de-Marne",
         lat: 48.8386, lng: 2.4994,
-        intro: "À Saint-Maur-des-Fossés, d'Adamville aux bords de Marne, nos dépanneurs arrivent en moyenne en 20 minutes, jour et nuit, 24h/24 et 7j/7.",
+        intro: "À Saint-Maur-des-Fossés, d'Adamville aux bords de Marne, nos dépanneurs arrivent en moyenne en 20 minutes, jour et nuit, 24h/24 du dimanche au vendredi.",
         spots: ["Les bords de Marne", "Le quartier d'Adamville", "Le centre-ville"],
         axes: "les grands axes de la boucle de Marne",
         neighbors: ["94", "champigny-sur-marne", "creteil", "77"],
@@ -205,7 +205,7 @@ export const CITIES: Zone[] = [
     {
         slug: "drancy", type: "city", name: "Drancy", cp: "93700", dept: "93", deptName: "Seine-Saint-Denis", deptIn: "en Seine-Saint-Denis",
         lat: 48.9152, lng: 2.4489,
-        intro: "En panne à Drancy, vers la gare ou la Muette ? ADFR intervient 24h/24 et 7j/7, en moyenne en 20 minutes.",
+        intro: "En panne à Drancy, vers la gare ou la Muette ? ADFR intervient 24h/24 du dimanche au vendredi, en moyenne en 20 minutes.",
         spots: ["La gare de Drancy", "Le quartier de la Muette", "L'hôtel de ville"],
         axes: "les grands axes vers l'A3 et l'A86",
         neighbors: ["93", "aulnay-sous-bois", "saint-denis"],
@@ -213,7 +213,7 @@ export const CITIES: Zone[] = [
     {
         slug: "issy-les-moulineaux", type: "city", name: "Issy-les-Moulineaux", cp: "92130", dept: "92", deptName: "Hauts-de-Seine", deptIn: "dans les Hauts-de-Seine",
         lat: 48.8242, lng: 2.2688,
-        intro: "À Issy-les-Moulineaux, sur les quais ou vers la porte de Versailles, un dépanneur ADFR arrive en moyenne en 20 minutes, 24h/24 et 7j/7.",
+        intro: "À Issy-les-Moulineaux, sur les quais ou vers la porte de Versailles, un dépanneur ADFR arrive en moyenne en 20 minutes, 24h/24 du dimanche au vendredi.",
         spots: ["Les quais de Seine", "Le Val de Seine", "L'hôtel de ville"],
         axes: "les quais de Seine et le périphérique voisin",
         neighbors: ["92", "boulogne-billancourt", "paris-15", "75"],
@@ -221,7 +221,7 @@ export const CITIES: Zone[] = [
     {
         slug: "levallois-perret", type: "city", name: "Levallois-Perret", cp: "92300", dept: "92", deptName: "Hauts-de-Seine", deptIn: "dans les Hauts-de-Seine",
         lat: 48.8942, lng: 2.2880,
-        intro: "À Levallois-Perret, de la place de la Libération à l'île de la Jatte, ADFR intervient jour et nuit, en moyenne en 20 minutes, 24h/24 et 7j/7.",
+        intro: "À Levallois-Perret, de la place de la Libération à l'île de la Jatte, ADFR intervient jour et nuit, en moyenne en 20 minutes, 24h/24 du dimanche au vendredi.",
         spots: ["La place de la Libération", "Le métro Anatole France", "L'île de la Jatte"],
         axes: "le périphérique et les quais",
         neighbors: ["92", "courbevoie", "paris-17", "75"],
@@ -229,7 +229,7 @@ export const CITIES: Zone[] = [
     {
         slug: "noisy-le-grand", type: "city", name: "Noisy-le-Grand", cp: "93160", dept: "93", deptName: "Seine-Saint-Denis", deptIn: "en Seine-Saint-Denis",
         lat: 48.8397, lng: 2.5556,
-        intro: "À Noisy-le-Grand, du Mont d'Est aux Arènes, nos dépanneurs arrivent en moyenne en 20 minutes, 24h/24 et 7j/7.",
+        intro: "À Noisy-le-Grand, du Mont d'Est aux Arènes, nos dépanneurs arrivent en moyenne en 20 minutes, 24h/24 du dimanche au vendredi.",
         spots: ["Le quartier du Mont d'Est", "La gare RER A", "Les Arènes"],
         axes: "l'A4",
         neighbors: ["93", "77", "94"],
@@ -237,7 +237,7 @@ export const CITIES: Zone[] = [
     {
         slug: "cergy", type: "city", name: "Cergy", cp: "95000", dept: "95", deptName: "Val-d'Oise", deptIn: "dans le Val-d'Oise",
         lat: 49.0369, lng: 2.0618,
-        intro: "À Cergy, du port à Cergy-Préfecture, ADFR assure dépannage et remorquage 24h/24 et 7j/7, en moyenne en 20 minutes.",
+        intro: "À Cergy, du port à Cergy-Préfecture, ADFR assure dépannage et remorquage 24h/24 du dimanche au vendredi, en moyenne en 20 minutes.",
         spots: ["Le port de Cergy", "Cergy-Préfecture", "La base régionale de loisirs"],
         axes: "l'A15",
         neighbors: ["95", "78", "argenteuil"],
@@ -287,7 +287,7 @@ export const PARIS_ARR: Zone[] = PARIS_SPOTS.map((spots, i) => {
         deptIn: "à Paris",
         lat: 48.8566,
         lng: 2.3522,
-        intro: `Panne, batterie morte ou crevaison dans le ${ORDINAL(n)} arrondissement, autour de ${spots[0]} ? Les dépanneurs ADFR arrivent en moyenne en 20 minutes, 24h/24 et 7j/7.`,
+        intro: `Panne, batterie morte ou crevaison dans le ${ORDINAL(n)} arrondissement, autour de ${spots[0]} ? Les dépanneurs ADFR arrivent en moyenne en 20 minutes, 24h/24 du dimanche au vendredi.`,
         spots,
         axes: "le boulevard périphérique et les grands axes",
         neighbors,

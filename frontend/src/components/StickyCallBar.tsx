@@ -15,7 +15,7 @@ export default function StickyCallBar() {
             <div className="flex items-center justify-center gap-3 py-3.5 px-4">
                 <PhoneCall className="size-6 animate-ring shrink-0 text-white" />
                 <span className="flex flex-col leading-tight text-white">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] opacity-90">Urgence dépannage — 24/7</span>
+                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] opacity-90">Urgence dépannage — 24h/24</span>
                     <span className="font-display font-black text-xl tracking-wide">{SITE.phoneDisplay}</span>
                 </span>
             </div>
