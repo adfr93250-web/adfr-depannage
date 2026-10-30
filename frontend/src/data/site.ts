@@ -7,7 +7,7 @@ export const SITE = {
     phoneHref: "tel:+33185800061",
     phoneIntl: "+33185800061",
     whatsappNumber: "33652664749",
-    whatsappBase: "Bonjour ADFR, j'ai besoin d'un dépannage.",
+    whatsappBase: "Bonjour 👋, j'ai besoin d'un dépannage et je souhaiterais obtenir une intervention.\n\nPouvez vous me contacter pour que je vous explique le problème ?",
     domain: "https://adfr-depann.fr",
     area: "Île-de-France",
     truck: "/img/depanneuse.webp",
