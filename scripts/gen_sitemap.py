@@ -15,18 +15,16 @@ CITIES = [
 ]
 PARIS = [f"paris-{i}" for i in range(1, 21)]
 
-urls = [(f"{DOMAIN}/", "1.0", "daily")]
-urls += [(f"{DOMAIN}/depannage-{d}", "0.9", "weekly") for d in DEPTS]
-urls += [(f"{DOMAIN}/depannage-{s}", "0.8", "weekly") for s in CITIES + PARIS]
+urls = [f"{DOMAIN}/"]
+urls += [f"{DOMAIN}/depannage-{d}" for d in DEPTS]
+urls += [f"{DOMAIN}/depannage-{s}" for s in CITIES + PARIS]
 
 lines = ['<?xml version="1.0" encoding="UTF-8"?>',
          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-for loc, prio, freq in urls:
+for loc in urls:
     lines.append("  <url>")
     lines.append(f"    <loc>{loc}</loc>")
     lines.append(f"    <lastmod>{TODAY}</lastmod>")
-    lines.append(f"    <changefreq>{freq}</changefreq>")
-    lines.append(f"    <priority>{prio}</priority>")
     lines.append("  </url>")
 lines.append("</urlset>")
 

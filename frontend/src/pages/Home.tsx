@@ -13,7 +13,7 @@ export default function Home() {
     return (
         <>
             <Seo
-                title={`ADFR — Dépannage & Remorquage Île-de-France 24/7 | Intervention en 20 min`}
+                title="Dépannage & Remorquage Île-de-France 24/7 — ADFR"
                 description={`Dépannage et remorquage 24h/24, 7j/7, partout en Île-de-France. Intervention en 20 minutes. Appelez le ${SITE.phoneDisplay} — tous assureurs, paiement sur place.`}
                 path="/"
                 jsonLd={[localBusinessLd(), websiteLd(), faqPageLd(FAQ_HOME)]}
