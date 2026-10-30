@@ -4,6 +4,7 @@ import TrustMarquee from "@/components/TrustMarquee";
 import Services from "@/components/Services";
 import ZonesMap from "@/components/ZonesMap";
 import Process from "@/components/Process";
+import Gallery from "@/components/Gallery";
 import Reviews from "@/components/Reviews";
 import Faq from "@/components/Faq";
 import CallbackForm from "@/components/CallbackForm";
@@ -23,6 +24,7 @@ export default function Home() {
             <Services />
             <ZonesMap />
             <Process />
+            <Gallery />
             <Reviews />
             <Faq items={FAQ_HOME} />
             <CallbackForm />
