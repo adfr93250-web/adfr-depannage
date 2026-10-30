@@ -8,7 +8,7 @@ Service de dépannage et de remorquage automobile 24h/24 du dimanche au vendredi
 - Batterie (booster, test et remplacement)
 - Crevaison (roue de secours ou remorquage)
 - Panne de carburant (livraison d'essence ou diesel)
-- Véhicule accidenté (enlèvement, documents assurance)
+- Véhicule accidenté (enlèvement et remorquage)
 - Sortie de fourrière
 
 ## Pages

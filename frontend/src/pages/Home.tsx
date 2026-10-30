@@ -14,7 +14,7 @@ export default function Home() {
         <>
             <Seo
                 title="Dépannage & Remorquage Île-de-France 24/7 — ADFR"
-                description={`Dépannage et remorquage 24h/24 du dimanche au vendredi, partout en Île-de-France. Intervention en 20 minutes. Appelez le ${SITE.phoneDisplay} — tous assureurs, paiement sur place.`}
+                description={`Dépannage et remorquage 24h/24 du dimanche au vendredi, partout en Île-de-France. Intervention en 20 minutes. Appelez le ${SITE.phoneDisplay} — devis gratuit, paiement sur place.`}
                 path="/"
                 jsonLd={[localBusinessLd(), websiteLd(), faqPageLd(FAQ_HOME)]}
             />

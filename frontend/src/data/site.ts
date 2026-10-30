@@ -55,7 +55,7 @@ export const SERVICES: ServiceItem[] = [
     {
         icon: Siren,
         title: "Véhicule accidenté",
-        desc: "Enlèvement et remorquage de votre véhicule accidenté, avec les documents pour votre dossier assurance.",
+        desc: "Enlèvement et remorquage de votre véhicule accidenté vers le garage de votre choix, dans la journée ou la nuit qui suit l'appel.",
     },
     {
         icon: KeyRound,
@@ -126,7 +126,7 @@ export const FAQ_HOME: FaqItem[] = [
     },
     {
         q: "Travaillez-vous avec les assurances ?",
-        a: "Oui. Nous travaillons avec tous les assureurs et nous vous remettons l'attestation d'intervention nécessaire à votre dossier de remboursement.",
+        a: "Nous ne travaillons pas avec tous les assureurs, et nous privilégions le paiement direct sur place. Appelez-nous avant l'intervention : on vous dit immédiatement si votre assurance est partenaire.",
     },
     {
         q: "Quelles zones couvrez-vous ?",
@@ -142,7 +142,7 @@ export const FAQ_HOME: FaqItem[] = [
     },
     {
         q: "Que faire en cas d'accident ?",
-        a: "Mettez-vous en sécurité (gilet, triangle) puis appelez-nous. Nous prenons en charge le véhicule accidenté, son remorquage vers le garage de votre choix et les documents pour votre assurance.",
+        a: "Mettez-vous en sécurité (gilet, triangle) puis appelez-nous. Nous prenons en charge le véhicule accidenté et son remorquage vers le garage de votre choix. Appelez-nous d'abord : on vous explique ce qui peut être fait.",
     },
 ];
 
@@ -161,8 +161,8 @@ export function faqZone(name: string): FaqItem[] {
             a: `Oui. Le paiement se fait après l'intervention, sur place, par carte bancaire ou en espèces. Le prix vous est annoncé avant le départ du dépanneur.`,
         },
         {
-            q: `Mon assurance prend-elle en charge le remorquage à ${name} ?`,
-            a: `Nous travaillons avec tous les assureurs. À ${name}, l'attestation d'intervention vous est remise après le dépannage pour monter votre dossier de remboursement.`,
+            q: `Pouvez-vous passer par mon assurance à ${name} ?`,
+            a: `Nous ne travaillons qu'avec certains assureurs, et nous privilégions le paiement direct sur place. Appelez-nous avant l'intervention à ${name} : on vous dit tout de suite ce qui est possible.`,
         },
     ];
 }

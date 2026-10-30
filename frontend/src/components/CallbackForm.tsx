@@ -53,7 +53,7 @@ export default function CallbackForm({ defaultLieu = "" }: CallbackFormProps) {
                     </p>
                     <ul className="mt-6 space-y-3 text-sm text-slate-300">
                         <li className="flex items-center gap-2.5"><CheckCircle2 className="size-4 text-adfr-wa shrink-0" /> Prix annoncé au téléphone avant l'intervention</li>
-                        <li className="flex items-center gap-2.5"><CheckCircle2 className="size-4 text-adfr-wa shrink-0" /> Tous assureurs — attestation fournie</li>
+                        <li className="flex items-center gap-2.5"><CheckCircle2 className="size-4 text-adfr-wa shrink-0" /> Prix annoncé avant le départ du dépanneur</li>
                         <li className="flex items-center gap-2.5"><CheckCircle2 className="size-4 text-adfr-wa shrink-0" /> Paiement sur place, CB ou espèces</li>
                     </ul>
                     <a
