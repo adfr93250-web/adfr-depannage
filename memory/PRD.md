@@ -22,6 +22,10 @@ Numéro 01 85 80 00 61 cliquable partout ; WhatsApp +33 6 52 66 47 49 pré-rempl
 ## Implémenté (29/10/2026)
 Structure complète + header/footer, sticky bar + WhatsApp flottant, hero, marquee confiance, 7 services, carte IDF cliquable, processus, avis (6 placeholders), FAQ, formulaire + tracking FastAPI/MongoDB, 48 pages SEO locales, sitemap/robots/JSON-LD/OG, logo détourné + favicon 24/7, guide d'hébergement (GUIDE-HEBERGEMENT.md).
 
+## Implémenté (30/10/2026)
+- SEO complet (skill farm-seo-setup) : canonical + og:url/adfr-depann.fr, robots.txt avec groupe crawlers IA + Disallow /api/, llms.txt, sitemap 49 URLs simplifié, noscript riche, titres 50-60 chars uniques par route, og:image 1200x630 réelle.
+- Espace interne /admin (auth JWT bcrypt selon playbook, seed unique, brute force 5/15min) : suivi des demandes de rappel du jour, compteur "en retard (+30 min)", bouton Traité/Réouvrir, callback records avec champ handled.
+
 ## Vérifié
 - curl : /api/health, /api/track, /api/callback (OK + validation rejetée correctement), sitemap/robots 200.
 - Screenshots : accueil desktop 1440 + mobile 390, page Boulogne-Billancourt (formulaire rempli → succès), page département 93. Pas d'overflow horizontal.

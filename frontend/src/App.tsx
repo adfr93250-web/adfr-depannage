@@ -7,6 +7,7 @@ import StickyCallBar from "@/components/StickyCallBar";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import Home from "@/pages/Home";
 import ZonePage from "@/pages/ZonePage";
+import AdminPage from "@/pages/AdminPage";
 import NotFound from "@/pages/NotFound";
 
 class ErrorBoundary extends Component<{ children: ReactNode }, { error: boolean }> {
@@ -63,6 +64,7 @@ export default function App() {
                 <main className="pt-16 md:pt-20">
                     <Routes>
                         <Route path="/" element={<Home />} />
+                        <Route path="/admin" element={<AdminPage />} />
                         <Route path="/:slug" element={<ZonePage />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
