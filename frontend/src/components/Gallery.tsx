@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 // PHOTOS D'EXEMPLE (Unsplash) — à remplacer par les photos réelles de la flotte ADFR dès réception
 const PHOTOS = [
     {
-        src: "https://images.unsplash.com/photo-1742069029207-0aacf8fa4401?q=80&w=1200&auto=format&fit=crop",
-        alt: "Dépanneuse plateau prête à partir en intervention",
+        src: "/img/flotte-plateau.webp",
+        alt: "La dépanneuse plateau ADFR prête à partir en intervention dans une rue d'Île-de-France",
         caption: "Plateau prêt à partir",
         span: "md:col-span-6",
     },
