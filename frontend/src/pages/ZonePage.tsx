@@ -91,7 +91,7 @@ function LocalContent({ zone }: { zone: Zone }) {
                         Batterie, crevaison, carburant, accident ou remorquage : dans la grande majorité des cas, tout se règle sur place et vous repartez.
                     </p>
                     <p className="mt-3 text-slate-400 leading-relaxed text-sm">
-                        Le tarif vous est annoncé au téléphone avant le départ du dépanneur. Le paiement se fait sur place, après l'intervention, par carte bancaire ou en espèces. Pour un sinistre, appelez-nous d'abord : on vous dit ce qui peut être pris en charge.
+                        Le tarif vous est annoncé au téléphone avant le départ du dépanneur. Le paiement se fait sur place, après l'intervention, par carte bancaire ou en espèces. En cas de sinistre, appelez-nous : on vous explique ce qui peut être fait et comment avancer.
                     </p>
                 </motion.div>
 

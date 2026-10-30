@@ -126,7 +126,7 @@ export const FAQ_HOME: FaqItem[] = [
     },
     {
         q: "Travaillez-vous avec les assurances ?",
-        a: "Nous ne travaillons pas avec tous les assureurs, et nous privilégions le paiement direct sur place. Appelez-nous avant l'intervention : on vous dit immédiatement si votre assurance est partenaire.",
+        a: "Appelez-nous et on vous dit tout de suite ce qui est possible pour votre situation, assurance ou pas. Le paiement direct sur place reste toujours une option simple.",
     },
     {
         q: "Quelles zones couvrez-vous ?",
@@ -162,7 +162,7 @@ export function faqZone(name: string): FaqItem[] {
         },
         {
             q: `Pouvez-vous passer par mon assurance à ${name} ?`,
-            a: `Nous ne travaillons qu'avec certains assureurs, et nous privilégions le paiement direct sur place. Appelez-nous avant l'intervention à ${name} : on vous dit tout de suite ce qui est possible.`,
+            a: `Appelez-nous avant l'intervention à ${name} : on vous dit tout de suite ce qui est possible pour votre situation, assurance ou pas. Le paiement direct sur place reste toujours une option simple.`,
         },
     ];
 }

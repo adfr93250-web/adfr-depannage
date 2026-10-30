@@ -84,7 +84,7 @@ export default function Footer() {
                             <Clock3 className="mt-0.5 size-4 text-adfr-red shrink-0" />
                             24h/24 du dimanche au vendredi — fermé le samedi
                         </li>
-                        <li>Assurances partenaires uniquement — appelez-nous pour vérifier la vôtre</li>
+                        <li>Devis gratuit par téléphone, prix annoncé avant le départ</li>
                         <li>Paiement sur place, carte bancaire ou espèces</li>
                         <li>Intervention en moyenne en 20 minutes en IDF</li>
                         <li className="text-xs text-slate-500 pt-2">Mentions légales : SIRET et coordonnées complètes à compléter (documents en cours).</li>
