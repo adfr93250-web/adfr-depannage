@@ -6,25 +6,13 @@ const PHOTOS = [
         src: "https://images.unsplash.com/photo-1742069029207-0aacf8fa4401?q=80&w=1200&auto=format&fit=crop",
         alt: "Dépanneuse plateau prête à partir en intervention",
         caption: "Plateau prêt à partir",
-        span: "md:col-span-7",
-    },
-    {
-        src: "https://images.unsplash.com/photo-1764200458388-65c4b0c19a95?q=80&w=1200&auto=format&fit=crop",
-        alt: "Véhicule chargé sur le plateau d'une dépanneuse",
-        caption: "Chargement soigné",
-        span: "md:col-span-5",
-    },
-    {
-        src: "https://images.unsplash.com/photo-1698998882426-39a6609ab10a?q=80&w=1200&auto=format&fit=crop",
-        alt: "Remorquage d'un véhicule sur un axe rapide au couchant",
-        caption: "Jour et nuit",
-        span: "md:col-span-5",
+        span: "md:col-span-6",
     },
     {
         src: "https://images.unsplash.com/photo-1693718641851-fd3ac0b7af4e?q=80&w=1200&auto=format&fit=crop",
         alt: "Démarrage d'une voiture avec câbles de batterie",
         caption: "Batterie & démarrage",
-        span: "md:col-span-7",
+        span: "md:col-span-6",
     },
 ];
 
