@@ -126,7 +126,7 @@ export const FAQ_HOME: FaqItem[] = [
     },
     {
         q: "Travaillez-vous avec les assurances ?",
-        a: "Oui. Nous travaillons avec tous les assureurs et nous vous remettons l'attestation d'intervention nécessaire à votre dossier de remboursement.",
+        a: "Oui, on travaille avec toutes les assurances. On voit ça sur place, au moment du dépannage.",
     },
     {
         q: "Quelles zones couvrez-vous ?",
@@ -158,7 +158,7 @@ export function faqZone(name: string): FaqItem[] {
         },
         {
             q: `Pouvez-vous passer par mon assurance à ${name} ?`,
-            a: `Nous travaillons avec tous les assureurs. À ${name}, l'attestation d'intervention vous est remise après le dépannage pour monter votre dossier de remboursement.`,
+            a: `Oui, on travaille avec toutes les assurances. À ${name}, on voit ça sur place, au moment du dépannage.`,
         },
     ];
 }
