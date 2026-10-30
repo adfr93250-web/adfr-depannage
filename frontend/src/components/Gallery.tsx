@@ -9,10 +9,16 @@ const PHOTOS = [
         span: "md:col-span-6",
     },
     {
+        src: "/img/flotte-van.webp",
+        alt: "Un combi Volkswagen chargé et arrimé sur le plateau de la dépanneuse ADFR",
+        caption: "Arrimage sécurisé",
+        span: "md:col-span-6",
+    },
+    {
         src: "https://images.unsplash.com/photo-1693718641851-fd3ac0b7af4e?q=80&w=1200&auto=format&fit=crop",
         alt: "Démarrage d'une voiture avec câbles de batterie",
         caption: "Batterie & démarrage",
-        span: "md:col-span-6",
+        span: "md:col-span-12",
     },
 ];
 
