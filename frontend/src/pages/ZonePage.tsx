@@ -39,7 +39,7 @@ function LocalHero({ zone }: { zone: Zone }) {
                         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-adfr-red opacity-75" />
                         <span className="relative inline-flex size-2 rounded-full bg-adfr-red" />
                     </span>
-                    Dépannage 24h/24 — {zone.deptName}
+                    Dépannage 24/7 — {zone.deptName}
                     {zone.cp ? ` · ${zone.cp}` : ""}
                 </motion.div>
 
@@ -48,7 +48,7 @@ function LocalHero({ zone }: { zone: Zone }) {
                 </h1>
 
                 <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE, delay: 0.25 }} className="mt-6 max-w-2xl text-base md:text-lg leading-relaxed text-slate-300">
-                    {zone.intro} Prix annoncé par téléphone, paiement sur place.
+                    {zone.intro} Tous assureurs, prix annoncé par téléphone, paiement sur place.
                 </motion.p>
 
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE, delay: 0.4 }} className="mt-8 flex flex-col sm:flex-row gap-3">
@@ -86,12 +86,12 @@ function LocalContent({ zone }: { zone: Zone }) {
                     </h2>
                     <p className="mt-4 text-slate-300 leading-relaxed">
                         {isDept
-                            ? `En ${zone.deptName.replace(/^(les|le|la) /i, "")} comme partout en Île-de-France, nos équipes roulent du dimanche au vendredi sur ${zone.axes}.`
+                            ? `En ${zone.deptName.replace(/^(les|le|la) /i, "")} comme partout en Île-de-France, nos équipes roulent chaque jour sur ${zone.axes}.`
                             : `Nos équipes roulent chaque jour sur ${zone.axes}, au plus près de ${zone.spots[0].toLowerCase()} et des quartiers voisins.`}{" "}
                         Batterie, crevaison, carburant, accident ou remorquage : dans la grande majorité des cas, tout se règle sur place et vous repartez.
                     </p>
                     <p className="mt-3 text-slate-400 leading-relaxed text-sm">
-                        Le tarif vous est annoncé au téléphone avant le départ du dépanneur. Le paiement se fait sur place, après l'intervention, par carte bancaire ou en espèces. En cas de sinistre, appelez-nous : pour la question de l'assurance, on voit ça sur place, au moment du dépannage.
+                        Le tarif vous est annoncé au téléphone avant le départ du dépanneur. Le paiement se fait sur place, après l'intervention, par carte bancaire ou en espèces. L'attestation d'intervention vous est remise pour votre assureur.
                     </p>
                 </motion.div>
 
@@ -174,7 +174,7 @@ export default function ZonePage() {
     const title = isDept
         ? `Dépannage ${zone.deptIn} 24/7 — ADFR Remorquage`
         : `Dépannage à ${zone.name} 24/7 — ADFR Remorquage`;
-    const description = `Panne ${isDept ? zone.deptIn : `à ${zone.name}`} ? ADFR intervient 24h/24 du dimanche au vendredi, en moyenne en 20 minutes. ${zone.cp ? `${zone.cp} — ` : ""}Appelez le 01 85 80 00 61 : devis gratuit par téléphone, paiement sur place.`;
+    const description = `Panne ${isDept ? zone.deptIn : `à ${zone.name}`} ? ADFR intervient 24h/24, 7j/7, en moyenne en 20 minutes. ${zone.cp ? `${zone.cp} — ` : ""}Appelez le 01 85 80 00 61 : tous assureurs, paiement sur place.`;
 
     return (
         <>

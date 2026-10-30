@@ -1,7 +1,7 @@
 const ITEMS = [
-    "24h/24 du dimanche au vendredi",
+    "24/7 — 7j/7",
     "Intervention en 20 min",
-    "Prix annoncé avant intervention",
+    "Tous assureurs",
     "Paiement sur place",
     "Toute l'Île-de-France",
     "Devis gratuit par téléphone",

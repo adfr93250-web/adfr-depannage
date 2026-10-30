@@ -12,7 +12,7 @@ export default function Footer() {
                 <div>
                     <img src={SITE.logo} alt="ADFR — Auto Dépann France Remorquage" loading="lazy" className="h-14 w-auto rounded-lg bg-white px-2.5 py-1.5" />
                     <p className="mt-5 text-sm leading-relaxed text-slate-400 max-w-xs">
-                        Dépannage et remorquage toutes marques, 24h/24 du dimanche au vendredi (fermé le samedi), partout en Île-de-France. Devis gratuit par téléphone, paiement sur place.
+                        Dépannage et remorquage toutes marques, 24h/24 et 7j/7, partout en Île-de-France. Devis gratuit par téléphone, paiement sur place.
                     </p>
                     <div className="mt-6 flex flex-col gap-3">
                         <a
@@ -82,9 +82,9 @@ export default function Footer() {
                     <ul className="space-y-3 text-sm text-slate-300">
                         <li className="flex items-start gap-2.5">
                             <Clock3 className="mt-0.5 size-4 text-adfr-red shrink-0" />
-                            24h/24 du dimanche au vendredi — fermé le samedi
+                            24h/24 — 7j/7, week-ends et jours fériés
                         </li>
-                        <li>Devis gratuit par téléphone, prix annoncé avant le départ</li>
+                        <li>Tous assureurs — attestation d'intervention fournie</li>
                         <li>Paiement sur place, carte bancaire ou espèces</li>
                         <li>Intervention en moyenne en 20 minutes en IDF</li>
                         <li className="text-xs text-slate-500 pt-2">Mentions légales : SIRET et coordonnées complètes à compléter (documents en cours).</li>

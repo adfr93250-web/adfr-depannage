@@ -47,7 +47,7 @@ export default function Hero() {
                             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-adfr-red opacity-75" />
                             <span className="relative inline-flex size-2 rounded-full bg-adfr-red" />
                         </span>
-                        Dépannage 24h/24 — Île-de-France
+                        Dépannage 24/7 — Île-de-France
                     </motion.div>
 
                     <h1 className="mt-6 font-display text-5xl sm:text-6xl lg:text-7xl font-black uppercase leading-[0.95] tracking-tight text-white">
@@ -71,7 +71,7 @@ export default function Hero() {
                         transition={{ duration: 0.7, ease: EASE, delay: 0.55 }}
                         className="mt-6 max-w-xl text-base md:text-lg leading-relaxed text-slate-300"
                     >
-                        Intervention en 20 minutes partout en Île-de-France. Dépannage sur place ou remorquage toutes marques, de jour comme de nuit, du dimanche au vendredi.
+                        Intervention en 20 minutes partout en Île-de-France. Dépannage sur place ou remorquage toutes marques, de jour comme de nuit, week-ends et jours fériés.
                     </motion.p>
 
                     <motion.div
@@ -94,7 +94,7 @@ export default function Hero() {
                             <Clock3 className="size-4 text-adfr-red" /> En moyenne en 20 min
                         </li>
                         <li className="flex items-center gap-2">
-                            <ShieldCheck className="size-4 text-adfr-red" /> Devis gratuit au téléphone
+                            <ShieldCheck className="size-4 text-adfr-red" /> Tous assureurs
                         </li>
                         <li className="flex items-center gap-2">
                             <BadgeCheck className="size-4 text-adfr-red" /> Paiement sur place
@@ -122,7 +122,7 @@ export default function Hero() {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-adfr-night/85 via-transparent to-adfr-night/20" />
                         <div className="absolute top-4 left-4 rounded-full bg-adfr-red px-4 py-2 font-display text-xs font-black uppercase tracking-widest text-white shadow-lg" data-testid="hero-badge-247">
-                            24h/24
+                            24/7 — 7j/7
                         </div>
                         <div className="absolute bottom-4 right-4 rounded-2xl border border-adfr-chrome/30 bg-adfr-night/70 px-4 py-3 text-right backdrop-blur-md" data-testid="hero-badge-delay">
                             <p className="font-display text-2xl font-black text-chrome leading-none">≈ 20 min</p>
