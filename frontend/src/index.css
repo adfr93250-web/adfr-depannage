@@ -121,3 +121,21 @@ select,
 textarea {
     color-scheme: dark;
 }
+
+/* Mobile experience */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+a,
+button {
+    touch-action: manipulation;
+}
+html {
+    -webkit-text-size-adjust: 100%;
+}
+@media (prefers-reduced-motion: reduce) {
+    .animate-marquee,
+    .animate-ring {
+        animation: none;
+    }
+}

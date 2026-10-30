@@ -155,7 +155,7 @@ function RelatedZones({ zone }: { zone: Zone }) {
                             <p className="mt-1 text-sm font-semibold text-slate-200 group-hover:text-white transition-colors">
                                 {z.type === "dept" ? z.name : `Dépannage à ${z.name}`}
                             </p>
-                            <p className="mt-0.5 text-xs text-slate-500">{z.cp || z.deptName}</p>
+                            <p className="mt-0.5 text-xs text-slate-500">{z.type === "dept" ? "Département" : z.cp || z.deptName}</p>
                         </Link>
                     ))}
                 </div>

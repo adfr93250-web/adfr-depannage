@@ -112,7 +112,14 @@ export default function Hero() {
                         data-testid="hero-photo-frame"
                         className="relative overflow-hidden rounded-[2rem] border border-adfr-chrome/25 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.8)]"
                     >
-                        <img src={SITE.truck} alt="La dépanneuse ADFR en intervention dans les rues d'Île-de-France" className="h-[420px] md:h-[540px] w-full object-cover" fetchPriority="high" />
+                        <img
+                            src={SITE.truck}
+                            srcSet="/img/depanneuse-800.webp 800w, /img/depanneuse.webp 1600w"
+                            sizes="(max-width: 1024px) 100vw, 45vw"
+                            alt="La dépanneuse ADFR en intervention dans les rues d'Île-de-France"
+                            className="h-[420px] md:h-[540px] w-full object-cover"
+                            fetchPriority="high"
+                        />
                         <div className="absolute inset-0 bg-gradient-to-t from-adfr-night/85 via-transparent to-adfr-night/20" />
                         <div className="absolute top-4 left-4 rounded-full bg-adfr-red px-4 py-2 font-display text-xs font-black uppercase tracking-widest text-white shadow-lg" data-testid="hero-badge-247">
                             24/7 — 7j/7

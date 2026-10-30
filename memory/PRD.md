@@ -25,6 +25,8 @@ Structure complète + header/footer, sticky bar + WhatsApp flottant, hero, marqu
 ## Implémenté (30/10/2026)
 - SEO complet (skill farm-seo-setup) : canonical + og:url/adfr-depann.fr, robots.txt avec groupe crawlers IA + Disallow /api/, llms.txt, sitemap 49 URLs simplifié, noscript riche, titres 50-60 chars uniques par route, og:image 1200x630 réelle.
 - Espace interne /admin (auth JWT bcrypt selon playbook, seed unique, brute force 5/15min) : suivi des demandes de rappel du jour, compteur "en retard (+30 min)", bouton Traité/Réouvrir, callback records avec champ handled.
+- Optimisations mobile : image hero srcSet (800w 227KB sur mobile vs 1MB), safe-area iPhone (barre rouge + WhatsApp), viewport-fit=cover, suppression délai tap 300ms, prefers-reduced-motion, preloads conditionnels.
+- Site déployé : https://depann-24h.emergent.host (première publication 30/10/2026, vérifiée : formulaire, /admin 401, sitemap, prerender Googlebot actif).
 
 ## Vérifié
 - curl : /api/health, /api/track, /api/callback (OK + validation rejetée correctement), sitemap/robots 200.
