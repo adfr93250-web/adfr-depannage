@@ -126,7 +126,7 @@ export const FAQ_HOME: FaqItem[] = [
     },
     {
         q: "Travaillez-vous avec les assurances ?",
-        a: "Appelez-nous et on vous dit tout de suite ce qui est possible pour votre situation, assurance ou pas. Le paiement direct sur place reste toujours une option simple.",
+        a: "Appelez-nous d'abord pour l'intervention. Pour la question de l'assurance, on voit ça sur place, au moment du dépannage.",
     },
     {
         q: "Quelles zones couvrez-vous ?",
@@ -162,7 +162,7 @@ export function faqZone(name: string): FaqItem[] {
         },
         {
             q: `Pouvez-vous passer par mon assurance à ${name} ?`,
-            a: `Appelez-nous avant l'intervention à ${name} : on vous dit tout de suite ce qui est possible pour votre situation, assurance ou pas. Le paiement direct sur place reste toujours une option simple.`,
+            a: `Appelez-nous d'abord pour l'intervention à ${name}. Pour la question de l'assurance, on voit ça sur place, au moment du dépannage.`,
         },
     ];
 }
