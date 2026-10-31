@@ -8,6 +8,7 @@ import Gallery from "@/components/Gallery";
 import Reviews from "@/components/Reviews";
 import Faq from "@/components/Faq";
 import CallbackForm from "@/components/CallbackForm";
+import PositionSection from "@/components/PositionSection";
 import { FAQ_HOME, SITE } from "@/data/site";
 
 export default function Home() {
@@ -28,6 +29,7 @@ export default function Home() {
             <Reviews />
             <Faq items={FAQ_HOME} />
             <CallbackForm />
+            <PositionSection />
         </>
     );
 }

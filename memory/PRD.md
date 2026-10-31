@@ -63,3 +63,11 @@ Structure complète + header/footer, sticky bar + WhatsApp flottant, hero, marqu
 - site.ts: FAQ accueil 7 questions (FAQ batterie restauree a l'identique + FAQ panne de carburant ajoutees, FAQ assurances supprimee, reponse cout rewordee), faqZone 3 questions (assurance supprimee, prix retire), avis mockes rewordes (plus de mention assurance/prix).
 - Verifie: testing agent iteration_1 (1 regression Services trouvee puis corrigee), grep final propre, screenshots desktop+mobile sans overflow, form OK.
 - Deploiement lance.
+
+
+## Changement 2026-10-31 (4) - Section 'Envoyez votre position' avec envoi WhatsApp
+- Demande client (inspiree du site tpmdepannage.fr): section geolocalisation pour recevoir la position exacte du client sur WhatsApp. PAS de bouton SMS, garder 'Envoyer par WhatsApp' + 'Ou appeler maintenant'.
+- Fait: nouveau composant frontend/src/components/PositionSection.tsx monte dans Home.tsx apres le formulaire de rappel (section #position).
+- Flow: bouton 'Partager ma position' -> navigator.geolocation (high accuracy) -> encadre 'Position trouvee. Envoyez-la a ADFR :' + bouton vert wa.me avec message standard + lien maps.google.com/?q=lat,lng + bouton appel. Erreurs geo (refus/indispo/timeout) -> encadre rouge avec conseils + bouton appel. Clics tracks (track + gtagConversion whatsapp/call).
+- Verifie: desktop 1440x900 et mobile 390x844, succes (href wa.me/33652664749 + maps + coords), erreur (refus navigateur), pas d'overflow.
+- Deploiement lance. SMS Twilio reste en attente (client a skippe la carte des cles).
