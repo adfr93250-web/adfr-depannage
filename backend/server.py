@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi import FastAPI, APIRouter, BackgroundTasks, HTTPException
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -95,13 +95,14 @@ async def health():
 
 
 @api_router.post("/callback")
-async def create_callback(input: CallbackCreate):
+async def create_callback(input: CallbackCreate, background_tasks: BackgroundTasks):
     try:
         data = input.model_dump()
     except Exception:
         raise HTTPException(status_code=400, detail="Données invalides")
     doc = {**data, "handled": False, "handled_at": None, "created_at": now_iso()}
     result = await db.callbacks.insert_one(doc)
+    background_tasks.add_task(send_new_callback_email, doc)
     return {"ok": True, "id": str(result.inserted_id)}
 
 
@@ -320,7 +321,7 @@ import ipaddress
 from html import escape
 from html.parser import HTMLParser
 from urllib.parse import urlparse
-from fastapi import BackgroundTasks, Depends, Request, Response
+from fastapi import Depends, Request, Response
 
 # --- Email (Resend via integration gérée Emergent) ---
 EMAIL_BASE_URL = "https://integrations.emergentagent.com"
@@ -432,21 +433,26 @@ async def send_email(*, to: str, subject: str, html: str, reply_to: str | None =
         return None
 
 
-def _alert_email_html(docs: list[dict]) -> str:
-    rows = ""
-    for d in docs:
-        tel = "".join(ch for ch in d.get("telephone", "") if ch.isdigit() or ch == "+")
+def _callback_row(d: dict) -> str:
+    tel = "".join(ch for ch in d.get("telephone", "") if ch.isdigit() or ch == "+")
+    try:
+        received = datetime.fromisoformat(d.get("created_at", "")).astimezone(PARIS_TZ).strftime("%H:%M")
+    except ValueError:
         received = escape((d.get("created_at", "") or "")[11:16])
-        rows += (
-            "<tr>"
-            f"<td style='padding:10px 12px;border-bottom:1px solid #eee;color:#111;font-family:Arial,sans-serif'>{escape(d.get('nom', ''))}</td>"
-            f"<td style='padding:10px 12px;border-bottom:1px solid #eee;font-family:Arial,sans-serif'>"
-            f"<a href='tel:{escape(tel)}' style='color:#E30613;font-weight:bold'>{escape(d.get('telephone', ''))}</a></td>"
-            f"<td style='padding:10px 12px;border-bottom:1px solid #eee;color:#111;font-family:Arial,sans-serif'>{escape(d.get('lieu', ''))}</td>"
-            f"<td style='padding:10px 12px;border-bottom:1px solid #eee;color:#111;font-family:Arial,sans-serif'>{escape(d.get('type_panne', ''))}</td>"
-            f"<td style='padding:10px 12px;border-bottom:1px solid #eee;color:#666;font-family:Arial,sans-serif'>{received}</td>"
-            "</tr>"
-        )
+    return (
+        "<tr>"
+        f"<td style='padding:10px 12px;border-bottom:1px solid #eee;color:#111;font-family:Arial,sans-serif'>{escape(d.get('nom', ''))}</td>"
+        f"<td style='padding:10px 12px;border-bottom:1px solid #eee;font-family:Arial,sans-serif'>"
+        f"<a href='tel:{escape(tel)}' style='color:#E30613;font-weight:bold'>{escape(d.get('telephone', ''))}</a></td>"
+        f"<td style='padding:10px 12px;border-bottom:1px solid #eee;color:#111;font-family:Arial,sans-serif'>{escape(d.get('lieu', ''))}</td>"
+        f"<td style='padding:10px 12px;border-bottom:1px solid #eee;color:#111;font-family:Arial,sans-serif'>{escape(d.get('type_panne', ''))}</td>"
+        f"<td style='padding:10px 12px;border-bottom:1px solid #eee;color:#666;font-family:Arial,sans-serif'>{received}</td>"
+        "</tr>"
+    )
+
+
+def _alert_email_html(docs: list[dict]) -> str:
+    rows = "".join(_callback_row(d) for d in docs)
     return (
         f"<table role='presentation' width='100%' style='background:#f5f6f8;padding:24px'><tr><td>"
         f"<table role='presentation' width='100%' style='max-width:640px;margin:0 auto;background:#ffffff;border-radius:12px'>"
@@ -468,6 +474,41 @@ def _alert_email_html(docs: list[dict]) -> str:
         f"<p style='font-size:12px;color:#888;margin:16px 0 0'>Rappel : appelez le client directement, puis marquez la demande comme traitée dans le suivi. "
         f"Sent by {escape(EMAIL_FROM_NAME)}.</p>"
         f"</td></tr></table></td></tr></table>"
+    )
+
+
+def _new_callback_email_html(doc: dict) -> str:
+    return (
+        f"<table role='presentation' width='100%' style='background:#f5f6f8;padding:24px'><tr><td>"
+        f"<table role='presentation' width='100%' style='max-width:640px;margin:0 auto;background:#ffffff;border-radius:12px'>"
+        f"<tr><td style='padding:24px;background:#E30613;border-radius:12px 12px 0 0'>"
+        f"<h1 style='margin:0;color:#ffffff;font-family:Arial,sans-serif;font-size:20px'>ADFR — Nouvelle demande de rappel</h1>"
+        f"</td></tr>"
+        f"<tr><td style='padding:24px;font-family:Arial,sans-serif'>"
+        f"<p style='color:#111;margin:0 0 16px'>Un client vient de demander un rappel — appelez-le au plus vite :</p>"
+        f"<table role='presentation' width='100%' style='border-collapse:collapse'>"
+        f"<tr>"
+        f"<th style='text-align:left;padding:8px 12px;border-bottom:2px solid #0A1E4C;color:#0A1E4C;font-family:Arial,sans-serif'>Nom</th>"
+        f"<th style='text-align:left;padding:8px 12px;border-bottom:2px solid #0A1E4C;color:#0A1E4C;font-family:Arial,sans-serif'>Téléphone</th>"
+        f"<th style='text-align:left;padding:8px 12px;border-bottom:2px solid #0A1E4C;color:#0A1E4C;font-family:Arial,sans-serif'>Lieu</th>"
+        f"<th style='text-align:left;padding:8px 12px;border-bottom:2px solid #0A1E4C;color:#0A1E4C;font-family:Arial,sans-serif'>Panne</th>"
+        f"<th style='text-align:left;padding:8px 12px;border-bottom:2px solid #0A1E4C;color:#0A1E4C;font-family:Arial,sans-serif'>Reçue</th>"
+        f"</tr>{_callback_row(doc)}</table>"
+        f"<p style='margin:20px 0'>"
+        f"<a href='{SITE_PUBLIC_URL}/admin' style='background:#E30613;color:#ffffff;padding:12px 24px;border-radius:999px;text-decoration:none;font-weight:bold;font-family:Arial,sans-serif'>Ouvrir le suivi</a></p>"
+        f"<p style='font-size:12px;color:#888;margin:16px 0 0'>Rappel : appelez le client directement, puis marquez la demande comme traitée dans le suivi. "
+        f"Sent by {escape(EMAIL_FROM_NAME)}.</p>"
+        f"</td></tr></table></td></tr></table>"
+    )
+
+
+async def send_new_callback_email(doc: dict) -> None:
+    if not ALERT_EMAIL or not SITE_PUBLIC_URL:
+        return
+    await send_email(
+        to=ALERT_EMAIL,
+        subject=f"ADFR — Nouvelle demande de rappel : {doc.get('nom', '')}",
+        html=_new_callback_email_html(doc),
     )
 
 

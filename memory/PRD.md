@@ -40,3 +40,10 @@ Structure complète + header/footer, sticky bar + WhatsApp flottant, hero, marqu
 - P0 : remplacer SIRET/mentions légales (footer) quand fournis ; vrais avis Google.
 - P1 : photos réelles de flotte supplémentaires ; page « Mentions légales » complète ; intégration Google Business Profile.
 - P2 : admin léger pour lire les rappels ; A/B sur CTA ; statistiques de tracking visualisées.
+
+
+## Changement 2026-10-31 - Email instantane a chaque demande de rappel
+- Avant : aucun email a la soumission ; seulement une alerte si une demande reste sans reponse plus de 30 min (cron toutes les 15 min).
+- Apres : POST /api/callback envoie un email IMMEDIAT a ALERT_EMAIL (adfr93250@gmail.com) avec nom, telephone cliquable, lieu, panne (send_new_callback_email + _callback_row partage).
+- L alerte 30 min reste active comme filet de securite.
+- Verifie par curl : 202 Accepted du service email juste apres soumission.
