@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { PhoneCall } from "lucide-react";
 import { SITE } from "@/data/site";
-import { track } from "@/lib/api";
+import { track, gtagConversion } from "@/lib/api";
 
 // PHOTOS RÉELLES ADFR (plateau + combi arrimé) + 1 photo d'exemple batterie à remplacer
 const PHOTOS = [
@@ -80,7 +80,7 @@ export default function Gallery() {
                         <a
                             href={SITE.phoneHref}
                             data-testid="gallery-call-button"
-                            onClick={() => track("call", "/galerie")}
+                            onClick={() => { track("call", "/galerie"); gtagConversion("call"); }}
                             className="inline-flex w-fit items-center gap-2.5 bg-adfr-red hover:bg-[#c00511] text-white font-display font-extrabold uppercase tracking-wide rounded-full px-6 py-3.5 text-sm md:text-base shadow-[0_0_24px_rgba(227,6,19,0.35)] transition-colors active:scale-[0.97]"
                         >
                             <PhoneCall className="size-4 animate-ring" />

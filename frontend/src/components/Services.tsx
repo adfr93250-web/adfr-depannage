@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { SERVICES } from "@/data/site";
 import { SITE } from "@/data/site";
-import { track } from "@/lib/api";
+import { track, gtagConversion } from "@/lib/api";
 import { useLocation } from "react-router-dom";
 
 const SPANS = ["md:col-span-7", "md:col-span-5", "md:col-span-4", "md:col-span-4", "md:col-span-4", "md:col-span-6", "md:col-span-6"];
@@ -56,7 +56,7 @@ export default function Services({ eyebrow = "Nos services", title = "Du dépann
                             <a
                                 href={SITE.phoneHref}
                                 data-testid={`service-call-${s.title.toLowerCase().replace(/[^a-z]+/g, "-")}`}
-                                onClick={() => track("call", pathname)}
+                                onClick={() => { track("call", pathname); gtagConversion("call"); }}
                                 className="mt-2 inline-flex items-center gap-2 py-2 text-xs font-bold uppercase tracking-widest text-[#FF6B75] hover:text-white transition-colors"
                             >
                                 Appeler pour ce service <ArrowRight className="size-3.5" />

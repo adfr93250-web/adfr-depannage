@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Phone } from "lucide-react";
 import { SITE } from "@/data/site";
 import { scrollToId } from "@/lib/lenis";
-import { track } from "@/lib/api";
+import { track, gtagConversion } from "@/lib/api";
 
 const LINKS = [
     { id: "services", label: "Services" },
@@ -56,7 +56,7 @@ export default function Header() {
                 <a
                     href={SITE.phoneHref}
                     data-testid="header-call-button"
-                    onClick={() => track("call", location.pathname)}
+                    onClick={() => { track("call", location.pathname); gtagConversion("call"); }}
                     className="inline-flex items-center gap-2.5 bg-adfr-red hover:bg-[#c00511] text-white font-display font-extrabold uppercase tracking-wide rounded-full px-4 md:px-6 py-2.5 md:py-3 text-sm md:text-base shadow-[0_0_24px_rgba(227,6,19,0.35)] transition-colors active:scale-[0.97]"
                 >
                     <Phone className="size-4 md:size-5 animate-ring" />

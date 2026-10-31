@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, Send } from "lucide-react";
-import { submitCallback, track } from "@/lib/api";
+import { submitCallback, track, gtagConversion } from "@/lib/api";
 import { SITE } from "@/data/site";
 import { useLocation } from "react-router-dom";
 
@@ -31,6 +31,7 @@ export default function CallbackForm({ defaultLieu = "" }: CallbackFormProps) {
         try {
             await submitCallback({ nom, telephone, lieu, type_panne: typePanne, zone: defaultLieu || undefined });
             track("form", pathname);
+            gtagConversion("form");
             setStatus("done");
         } catch {
             setStatus("error");
@@ -59,7 +60,7 @@ export default function CallbackForm({ defaultLieu = "" }: CallbackFormProps) {
                     <a
                         href={SITE.phoneHref}
                         data-testid="form-section-call-button"
-                        onClick={() => track("call", pathname)}
+                        onClick={() => { track("call", pathname); gtagConversion("call"); }}
                         className="mt-8 inline-flex items-center gap-3 bg-adfr-red hover:bg-[#c00511] text-white font-display font-extrabold uppercase tracking-wide rounded-full px-7 py-4 shadow-[0_0_28px_rgba(227,6,19,0.35)] transition-colors active:scale-[0.97]"
                     >
                         Appeler le {SITE.phoneDisplay}
@@ -81,7 +82,7 @@ export default function CallbackForm({ defaultLieu = "" }: CallbackFormProps) {
                             <p className="mt-3 text-sm text-slate-300 leading-relaxed max-w-sm mx-auto">
                                 Un dépanneur vous rappelle dans quelques minutes. Si c'est vraiment urgent, l'appel direct reste le plus rapide.
                             </p>
-                            <a href={SITE.phoneHref} data-testid="success-call-button" onClick={() => track("call", pathname)} className="mt-6 inline-flex items-center gap-3 bg-adfr-red text-white font-display font-extrabold uppercase tracking-wide rounded-full px-6 py-3.5 transition-colors hover:bg-[#c00511]">
+                            <a href={SITE.phoneHref} data-testid="success-call-button" onClick={() => { track("call", pathname); gtagConversion("call"); }} className="mt-6 inline-flex items-center gap-3 bg-adfr-red text-white font-display font-extrabold uppercase tracking-wide rounded-full px-6 py-3.5 transition-colors hover:bg-[#c00511]">
                                 {SITE.phoneDisplay}
                             </a>
                         </div>

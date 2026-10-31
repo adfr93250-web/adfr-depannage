@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { PhoneCall, MessageCircle, Clock3 } from "lucide-react";
 import { SITE, whatsappUrl } from "@/data/site";
 import { DEPARTMENTS, CITIES, PARIS_ARR, zoneUrl } from "@/data/zones";
-import { track } from "@/lib/api";
+import { track, gtagConversion } from "@/lib/api";
 
 export default function Footer() {
     const year = new Date().getFullYear();
@@ -18,7 +18,7 @@ export default function Footer() {
                         <a
                             href={SITE.phoneHref}
                             data-testid="footer-call-button"
-                            onClick={() => track("call", "/footer")}
+                            onClick={() => { track("call", "/footer"); gtagConversion("call"); }}
                             className="inline-flex w-fit items-center gap-3 bg-adfr-red text-white font-display font-extrabold uppercase tracking-wide rounded-full px-6 py-3 shadow-[0_0_24px_rgba(227,6,19,0.3)] transition-colors hover:bg-[#c00511]"
                         >
                             <PhoneCall className="size-4 animate-ring" />
@@ -29,7 +29,7 @@ export default function Footer() {
                             target="_blank"
                             rel="noopener noreferrer"
                             data-testid="footer-whatsapp-button"
-                            onClick={() => track("whatsapp", "/footer")}
+                            onClick={() => { track("whatsapp", "/footer"); gtagConversion("whatsapp"); }}
                             className="inline-flex w-fit items-center gap-3 text-sm font-bold text-adfr-wa hover:text-white transition-colors"
                         >
                             <MessageCircle className="size-4" /> WhatsApp : +33 6 52 66 47 49

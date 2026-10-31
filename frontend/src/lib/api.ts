@@ -32,3 +32,22 @@ export async function submitCallback(data: CallbackData): Promise<void> {
         throw new Error(body?.detail || "Erreur d'envoi, appelez-nous directement.");
     }
 }
+
+declare global {
+    interface Window {
+        gtag?: (...args: unknown[]) => void;
+        dataLayer?: unknown[];
+    }
+}
+
+export function gtagConversion(kind: "call" | "whatsapp" | "form") {
+    try {
+        const raw = process.env.REACT_APP_GOOGLE_ADS_CONVERSION;
+        if (!raw) return;
+        const sendTo = raw.includes("/") ? raw : `AW-18543287149/${raw}`;
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: "conversion", send_to: sendTo, event_category: "contact", event_label: kind, value: 1, currency: "EUR" });
+    } catch {
+        // le suivi ne doit jamais bloquer un appel
+    }
+}

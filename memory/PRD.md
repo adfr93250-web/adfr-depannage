@@ -27,7 +27,8 @@ Structure complète + header/footer, sticky bar + WhatsApp flottant, hero, marqu
 - Espace interne /admin (auth JWT bcrypt selon playbook, seed unique, brute force 5/15min) : suivi des demandes de rappel du jour, compteur "en retard (+30 min)", bouton Traité/Réouvrir, callback records avec champ handled.
 - Optimisations mobile : image hero srcSet (800w 227KB sur mobile vs 1MB), safe-area iPhone (barre rouge + WhatsApp), viewport-fit=cover, suppression délai tap 300ms, prefers-reduced-motion, preloads conditionnels.
 - Décision client (30/10/2026) : les textes restent ceux de la version initiale (24/7 — 7j/7, tous assureurs, week-ends et jours fériés). Les expérimentations « fermeture samedi » et « assurances sélectives » ont été annulées. /admin, optimisations mobile et SEO conservés.
-- Galerie photos « Sur le terrain » ajoutée sur l'accueil (4 photos d'exemple Unsplash, à remplacer par les vraies photos de flotte dès réception).
+- Galerie photos « Sur le terrain » ajoutée sur l'accueil (photos réelles du plateau + combi arrimé, 1 photo d'exemple batterie à remplacer).
+- Google Ads : balise gtag AW-18543287149 sur toutes les pages + suivi de conversion branché sur les clics Appel / WhatsApp / envoi formulaire (étiquette en REACT_APP_GOOGLE_ADS_CONVERSION, préfixe AW-18543287149 reconstitué côté code).
 - Site déployé : https://depann-24h.emergent.host (première publication 30/10/2026, vérifiée : formulaire, /admin 401, sitemap, prerender Googlebot actif).
 
 ## Vérifié

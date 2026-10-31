@@ -1,6 +1,6 @@
 import { PhoneCall } from "lucide-react";
 import { SITE } from "@/data/site";
-import { track } from "@/lib/api";
+import { track, gtagConversion } from "@/lib/api";
 import { useLocation } from "react-router-dom";
 
 export default function StickyCallBar() {
@@ -9,7 +9,7 @@ export default function StickyCallBar() {
         <a
             href={SITE.phoneHref}
             data-testid="sticky-call-bar"
-            onClick={() => track("call", pathname)}
+            onClick={() => { track("call", pathname); gtagConversion("call"); }}
             className="fixed bottom-0 inset-x-0 z-50 md:hidden bg-adfr-red pb-[env(safe-area-inset-bottom)] shadow-[0_-8px_30px_rgba(227,6,19,0.45)]"
         >
             <div className="flex items-center justify-center gap-3 py-3.5 px-4">
