@@ -184,7 +184,7 @@ export default function ZonePage() {
             <Services
                 eyebrow="Nos services"
                 title={isDept ? `Tous nos services de dépannage ${zone.deptIn}` : `Tous nos services de dépannage à ${zone.name}`}
-                sub="Un seul appel : on vous dit ce qu'on peut faire et combien ça coûte, avant même que le dépanneur ne parte."
+                sub="Un seul appel : on vous dit tout de suite ce qu'on peut faire et quand un dépanneur peut partir."
             />
             <RelatedZones zone={zone} />
             <Faq items={faqZone(zone.name)} title={`Questions fréquentes à ${zone.name}`} />

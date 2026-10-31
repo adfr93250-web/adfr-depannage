@@ -1,0 +1,26 @@
+{
+  "summary": "Frontend-only regression test for ADFR site after client-driven copy changes (remove false price-announcement/insurance promises, add battery+fuel FAQs). Tested: home page copy & meta & JSON-LD, zone page (/depannage-nanterre) copy & meta & JSON-LD, FAQ counts/content on both, callback form submission, mobile+desktop overflow. Overall very clean: all 'assurance/Tous assureurs/Devis gratuit/attestation/prix annoncé' references have been removed from both visible text and HTML source. Home FAQ has the required 7 questions (incl. battery with 'booster professionnel' and carburant with 'essence/gazole/remorquage'). FAQPage JSON-LD mirrors the 7 Q&A on home and 3 Q&A on zone (no 'assur'). Callback form (POST /api/callback) submits successfully and shows 'C'est reçu !'. No horizontal overflow at 1440x900 nor 390x844. ONE regression remains: the Services section subtitle still contains the price-announcement promise 'combien ça coûte, avant même de partir' — visible on home page AND zone page.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "Services (default prop) & ZonePage (override)", "issue": "Services section subtitle still announces price: 'Un appel suffit : on vous dit au téléphone ce qu'on peut faire et combien ça coûte, avant même de partir.' (Home — Services.tsx line 17) and 'Un seul appel : on vous dit ce qu'on peut faire et combien ça coûte, avant même que le dépanneur ne parte.' (ZonePage.tsx line 187). Contradicts the client's rule 'ne pas annoncer les prix avant intervention'. Phrase 'combien ça coûte' is present in both visible text and HTML source on home AND /depannage-nanterre.", "selector": "section#services p (sub)", "priority": "HIGH"}
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Fix /app/frontend/src/components/Services.tsx line 17 (default `sub` prop) to remove the 'combien ça coûte, avant même de partir' promise — e.g. replace with 'Un appel suffit : on vous dit tout de suite ce qu'on peut faire et quand un dépanneur peut partir.'",
+    "Fix /app/frontend/src/pages/ZonePage.tsx line 187 (sub prop passed to <Services />) with the same cleaned wording."
+  ],
+  "critical_code_review_comments": [
+    "The 'promesse prix' content is duplicated in two places (Services default + ZonePage override). Consider making the subtitle a single constant in /app/frontend/src/data/site.ts to prevent future divergence.",
+    "/app/frontend/src/data/site.ts REVIEWS[5] (Nadia K.) uses the phrase 'Service 24/7 vérifié' — mock reviews, fine for now, no action."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a", "frontend": "~92% (1 copy regression remaining on 2 locations)"},
+  "seed_data_creation": "None. One test callback submission ('TEST Jean Dupont', '0612345678', 'Nanterre - test automated', 'Remorquage') was POSTed to /api/callback for the UI-flow check.",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "If main agent fixes Services.tsx + ZonePage.tsx line 187, retest only: (a) home visible text + JSON-LD does not contain 'combien ça coûte' / 'coûte' near 'avant', (b) /depannage-nanterre same, (c) callback form still submits. Everything else (FAQ list, meta descriptions, overflow, no-insurance copy) is already clean."
+}

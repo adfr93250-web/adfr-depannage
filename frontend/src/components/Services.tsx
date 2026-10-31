@@ -14,7 +14,7 @@ interface ServicesProps {
     sub?: string;
 }
 
-export default function Services({ eyebrow = "Nos services", title = "Du dépannage express au remorquage complet", sub = "Un appel suffit : on vous dit au téléphone ce qu'on peut faire et combien ça coûte, avant même de partir." }: ServicesProps) {
+export default function Services({ eyebrow = "Nos services", title = "Du dépannage express au remorquage complet", sub = "Un appel suffit : on vous dit tout de suite ce qu'on peut faire et quand un dépanneur peut partir." }: ServicesProps) {
     const { pathname } = useLocation();
     return (
         <section id="services" className="relative py-20 md:py-28">

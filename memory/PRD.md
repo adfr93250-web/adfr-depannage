@@ -55,3 +55,11 @@ Structure complète + header/footer, sticky bar + WhatsApp flottant, hero, marqu
 - Verifie: curl POST /api/callback -> 202 Accepted (email immediat OK); endpoint cron -> 404 (bien supprime).
 - Redeploy lance pour retirer le cron sur le site en ligne (les schedules se synchronisent au deploy).
 - Note: integration SMS Twilio proposee mais ignoree par l utilisateur (skipped) - ne pas relancer sans demande.
+
+
+## Changement 2026-10-31 (3) - FAQ ajoutees + promesses fausses supprimees du site
+- Client: il n'annonce PAS les prix avant l'intervention et ne travaille PAS avec les assurances.
+- Fait site-wide: CallbackForm (2 puces -> intervention rapide 24h/24, depannage sur place ou remorquage), Hero (badge -> 7j/7 weekends et feries), Process (etape 1 sans prix), TrustMarquee, Footer (devis + assureurs retires), Home.tsx meta, ZonePage.tsx (intro, bloc paiement, meta), Services.tsx + ZonePage sub (-> 'on vous dit tout de suite ce qu'on peut faire et quand un depanneur peut partir').
+- site.ts: FAQ accueil 7 questions (FAQ batterie restauree a l'identique + FAQ panne de carburant ajoutees, FAQ assurances supprimee, reponse cout rewordee), faqZone 3 questions (assurance supprimee, prix retire), avis mockes rewordes (plus de mention assurance/prix).
+- Verifie: testing agent iteration_1 (1 regression Services trouvee puis corrigee), grep final propre, screenshots desktop+mobile sans overflow, form OK.
+- Deploiement lance.
