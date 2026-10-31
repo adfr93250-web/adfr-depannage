@@ -29,6 +29,7 @@ Structure complète + header/footer, sticky bar + WhatsApp flottant, hero, marqu
 - Décision client (30/10/2026) : les textes restent ceux de la version initiale (24/7 — 7j/7, tous assureurs, week-ends et jours fériés). Les expérimentations « fermeture samedi » et « assurances sélectives » ont été annulées. /admin, optimisations mobile et SEO conservés.
 - Galerie photos « Sur le terrain » ajoutée sur l'accueil (photos réelles du plateau + combi arrimé, 1 photo d'exemple batterie à remplacer).
 - Google Ads : balise gtag AW-18543287149 sur toutes les pages + suivi de conversion branché sur les clics Appel / WhatsApp / envoi formulaire (étiquette en REACT_APP_GOOGLE_ADS_CONVERSION, préfixe AW-18543287149 reconstitué côté code).
+- Alerte email (31/10/2026) : cron plateforme toutes les 15 min → POST /api/cron/unhandled-alerts (Bearer WEBHOOK_CRON_SECRET) ; demande du jour non traitée depuis 30 min → email Resend géré à ALERT_EMAIL (adfr93250@gmail.com), marquée alerted_at (1 alerte par demande). Vérifié : 401 sans token, 200 + envoi 202 Accepted + alerted_at posé.
 - Site déployé : https://depann-24h.emergent.host (première publication 30/10/2026, vérifiée : formulaire, /admin 401, sitemap, prerender Googlebot actif).
 
 ## Vérifié

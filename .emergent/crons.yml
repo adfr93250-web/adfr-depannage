@@ -1,0 +1,8 @@
+crons:
+  # Cron endpoints must ack 2xx immediately; enqueue/background the actual work.
+  - name: unhandled-alerts
+    description: "Alerte email si des demandes de rappel attendent plus de 30 minutes sans réponse"
+    cron: "*/15 * * * *"
+    endpoint: "{{BASE_URL}}/api/cron/unhandled-alerts"
+    method: POST
+    enabled: true

@@ -314,6 +314,207 @@ async def startup():
     await seed_admin()
 
 
+import httpx
+import secrets
+import ipaddress
+from html import escape
+from html.parser import HTMLParser
+from urllib.parse import urlparse
+from fastapi import BackgroundTasks, Depends, Request, Response
+
+# --- Email (Resend via integration gérée Emergent) ---
+EMAIL_BASE_URL = "https://integrations.emergentagent.com"
+EMAIL_KEY = os.environ["EMERGENT_EMAIL_KEY"]
+EMAIL_FROM_NAME = os.environ["EMAIL_FROM_NAME"]
+EMAIL_REPLY_TO = os.environ.get("EMAIL_REPLY_TO")
+ALERT_EMAIL = os.environ.get("ALERT_EMAIL", "")
+SITE_PUBLIC_URL = os.environ.get("SITE_PUBLIC_URL", "").rstrip("/")
+
+_SHORTENERS = ("bit.ly", "tinyurl.com", "t.co", "is.gd", "cutt.ly", "goo.gl", "rebrand.ly")
+_CRED_ASK = ("reply with your password", "reply with the code", "send your password", "cvv",
+             "send us your password", "enter your password below", "confirm your card number",
+             "your full card number", "seed phrase", "recovery phrase", "verify your card",
+             "social security number", "confirm your bank details")
+_HOSTISH = re.compile(r"\b(?:https?://)?((?:[a-z0-9-]+\.)+[a-z]{2,})", re.I)
+
+
+def _host_ok(host: str) -> bool:
+    if not host or "xn--" in host:
+        return False
+    try:
+        ipaddress.ip_address(host)
+        return False
+    except ValueError:
+        pass
+    return not any(host == s or host.endswith("." + s) for s in _SHORTENERS)
+
+
+def _same_site(shown: str, real: str) -> bool:
+    return shown == real or real.endswith("." + shown) or shown.endswith("." + real)
+
+
+class _EmailScan(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.tags, self.urls, self.anchors = set(), [], []
+        self._href, self._text = None, []
+
+    def handle_starttag(self, tag, attrs):
+        self.tags.add(tag.lower())
+        self.urls += [v for k, v in attrs if k.lower() in ("href", "src") and v]
+        if tag.lower() == "a":
+            self._href = dict((k.lower(), v) for k, v in attrs).get("href")
+            self._text = []
+
+    def handle_data(self, data):
+        if self._href is not None:
+            self._text.append(data)
+
+    def handle_endtag(self, tag):
+        if tag.lower() == "a" and self._href is not None:
+            self.anchors.append((self._href, "".join(self._text)))
+            self._href, self._text = None, []
+
+
+def _assert_safe_email(subject: str, html: str) -> None:
+    scan = _EmailScan()
+    scan.feed(html)
+    if scan.tags & {"form", "input", "textarea", "select"}:
+        raise ValueError("No forms or input fields in email (G2)")
+    body = f"{subject}\n{html}".lower()
+    for p in _CRED_ASK:
+        if p in body:
+            raise ValueError(f"Email asks the recipient for credentials: {p!r} (G2)")
+    for url in scan.urls:
+        low = url.strip().lower()
+        if low.startswith(("mailto:", "tel:", "cid:", "#")):
+            continue
+        if not low.startswith("https://"):
+            raise ValueError(f"Email links/assets must be absolute https: {url!r} (G3)")
+        host = urlparse(low).hostname or ""
+        if not _host_ok(host) or urlparse(low).username is not None:
+            raise ValueError(f"Shortened, numeric-host or credential-bearing URL: {url!r} (G3)")
+    for href, text in scan.anchors:
+        real = urlparse(href.strip().lower()).hostname or ""
+        if not real:
+            continue
+        for m in _HOSTISH.finditer(text):
+            if not _same_site(m.group(1).lower(), real):
+                raise ValueError(f"Anchor text {m.group(1)!r} ≠ real link host {real!r} (G3)")
+
+
+async def send_email(*, to: str, subject: str, html: str, reply_to: str | None = None) -> str | None:
+    _assert_safe_email(subject, html)
+    payload = {"to": [to], "subject": subject, "html": html, "from_name": EMAIL_FROM_NAME}
+    if reply_to or EMAIL_REPLY_TO:
+        payload["contact_email"] = reply_to or EMAIL_REPLY_TO
+    try:
+        async with httpx.AsyncClient(timeout=30) as client:
+            resp = await client.post(
+                f"{EMAIL_BASE_URL}/api/v1/email/send",
+                headers={"X-Email-Key": EMAIL_KEY},
+                json=payload,
+            )
+        resp.raise_for_status()
+        return resp.json().get("id")
+    except httpx.HTTPStatusError as e:
+        try:
+            code = e.response.json().get("code", "")
+        except ValueError:
+            code = ""
+        if code in ("insufficient_credits", "integration_disabled", "daily_limit_reached"):
+            logger.warning(f"Email paused: {code} ({e.response.status_code}): {e.response.json().get('message', '')}")
+            return None
+        logger.error(f"Email send failed: {e.response.status_code} {e.response.text}")
+        return None
+    except Exception as e:
+        logger.error(f"Email send error: {str(e)}")
+        return None
+
+
+def _alert_email_html(docs: list[dict]) -> str:
+    rows = ""
+    for d in docs:
+        tel = "".join(ch for ch in d.get("telephone", "") if ch.isdigit() or ch == "+")
+        received = escape((d.get("created_at", "") or "")[11:16])
+        rows += (
+            "<tr>"
+            f"<td style='padding:10px 12px;border-bottom:1px solid #eee;color:#111;font-family:Arial,sans-serif'>{escape(d.get('nom', ''))}</td>"
+            f"<td style='padding:10px 12px;border-bottom:1px solid #eee;font-family:Arial,sans-serif'>"
+            f"<a href='tel:{escape(tel)}' style='color:#E30613;font-weight:bold'>{escape(d.get('telephone', ''))}</a></td>"
+            f"<td style='padding:10px 12px;border-bottom:1px solid #eee;color:#111;font-family:Arial,sans-serif'>{escape(d.get('lieu', ''))}</td>"
+            f"<td style='padding:10px 12px;border-bottom:1px solid #eee;color:#111;font-family:Arial,sans-serif'>{escape(d.get('type_panne', ''))}</td>"
+            f"<td style='padding:10px 12px;border-bottom:1px solid #eee;color:#666;font-family:Arial,sans-serif'>{received}</td>"
+            "</tr>"
+        )
+    return (
+        f"<table role='presentation' width='100%' style='background:#f5f6f8;padding:24px'><tr><td>"
+        f"<table role='presentation' width='100%' style='max-width:640px;margin:0 auto;background:#ffffff;border-radius:12px'>"
+        f"<tr><td style='padding:24px;background:#0A1E4C;border-radius:12px 12px 0 0'>"
+        f"<h1 style='margin:0;color:#ffffff;font-family:Arial,sans-serif;font-size:20px'>ADFR — {len(docs)} demande{'s' if len(docs) > 1 else ''} de rappel sans réponse</h1>"
+        f"</td></tr>"
+        f"<tr><td style='padding:24px;font-family:Arial,sans-serif'>"
+        f"<p style='color:#111;margin:0 0 16px'>Ces demandes attendent depuis plus de 30 minutes :</p>"
+        f"<table role='presentation' width='100%' style='border-collapse:collapse'>"
+        f"<tr>"
+        f"<th style='text-align:left;padding:8px 12px;border-bottom:2px solid #0A1E4C;color:#0A1E4C;font-family:Arial,sans-serif'>Nom</th>"
+        f"<th style='text-align:left;padding:8px 12px;border-bottom:2px solid #0A1E4C;color:#0A1E4C;font-family:Arial,sans-serif'>Téléphone</th>"
+        f"<th style='text-align:left;padding:8px 12px;border-bottom:2px solid #0A1E4C;color:#0A1E4C;font-family:Arial,sans-serif'>Lieu</th>"
+        f"<th style='text-align:left;padding:8px 12px;border-bottom:2px solid #0A1E4C;color:#0A1E4C;font-family:Arial,sans-serif'>Panne</th>"
+        f"<th style='text-align:left;padding:8px 12px;border-bottom:2px solid #0A1E4C;color:#0A1E4C;font-family:Arial,sans-serif'>Reçue</th>"
+        f"</tr>{rows}</table>"
+        f"<p style='margin:20px 0'>"
+        f"<a href='{SITE_PUBLIC_URL}/admin' style='background:#E30613;color:#ffffff;padding:12px 24px;border-radius:999px;text-decoration:none;font-weight:bold;font-family:Arial,sans-serif'>Ouvrir le suivi</a></p>"
+        f"<p style='font-size:12px;color:#888;margin:16px 0 0'>Rappel : appelez le client directement, puis marquez la demande comme traitée dans le suivi. "
+        f"Sent by {escape(EMAIL_FROM_NAME)}.</p>"
+        f"</td></tr></table></td></tr></table>"
+    )
+
+
+async def alert_unhandled_callbacks():
+    if not ALERT_EMAIL or not SITE_PUBLIC_URL:
+        return
+    now = datetime.now(timezone.utc)
+    cutoff = (now - timedelta(minutes=30)).isoformat()
+    day_start = datetime.now(PARIS_TZ).replace(hour=0, minute=0, second=0, microsecond=0).astimezone(timezone.utc).isoformat()
+    docs = await db.callbacks.find({
+        "created_at": {"$gte": day_start, "$lte": cutoff},
+        "alerted_at": {"$exists": False},
+    }).to_list(50)
+    docs = [d for d in docs if not d.get("handled")]
+    if not docs:
+        return
+    try:
+        sent = await send_email(
+            to=ALERT_EMAIL,
+            subject=f"ADFR — {len(docs)} demande{'s' if len(docs) > 1 else ''} de rappel sans réponse",
+            html=_alert_email_html(docs),
+        )
+    except ValueError as e:
+        logger.warning(f"Alerte email bloquée par la gate: {e}")
+        return
+    if sent:
+        await db.callbacks.update_many(
+            {"_id": {"$in": [d["_id"] for d in docs]}},
+            {"$set": {"alerted_at": now.isoformat()}},
+        )
+
+
+# Cron endpoints must ack 2xx immediately; enqueue/background the actual work.
+@api_router.post("/cron/unhandled-alerts")
+async def cron_unhandled_alerts(request: Request, background_tasks: BackgroundTasks):
+    auth = request.headers.get("authorization", "")
+    token = auth[7:] if auth.startswith("Bearer ") else ""
+    if not token or not secrets.compare_digest(token, os.environ.get("WEBHOOK_CRON_SECRET", "")):
+        raise HTTPException(status_code=401, detail="Non autorisé")
+    try:
+        await request.json()
+    except Exception:
+        raise HTTPException(status_code=400, detail="Corps invalide")
+    background_tasks.add_task(alert_unhandled_callbacks)
+    return {"ok": True, "queued": True}
+
+
 app.include_router(api_router)
 
 app.add_middleware(
