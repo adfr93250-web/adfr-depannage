@@ -47,3 +47,11 @@ Structure complète + header/footer, sticky bar + WhatsApp flottant, hero, marqu
 - Apres : POST /api/callback envoie un email IMMEDIAT a ALERT_EMAIL (adfr93250@gmail.com) avec nom, telephone cliquable, lieu, panne (send_new_callback_email + _callback_row partage).
 - L alerte 30 min reste active comme filet de securite.
 - Verifie par curl : 202 Accepted du service email juste apres soumission.
+
+
+## Changement 2026-10-31 (2) - Suppression de l'alerte 30 minutes
+- Utilisateur demande: garder UNIQUEMENT l email instantane a chaque demande de rappel, supprimer l alerte des demandes sans reponse apres 30 min (trop d emails sur Gmail).
+- Fait: crons.yml -> "crons: []" (tache planifiee unhandled-alerts supprimee); server.py: suppression de alert_unhandled_callbacks, _alert_email_html et de l endpoint /api/cron/unhandled-alerts. Email instantane conserve.
+- Verifie: curl POST /api/callback -> 202 Accepted (email immediat OK); endpoint cron -> 404 (bien supprime).
+- Redeploy lance pour retirer le cron sur le site en ligne (les schedules se synchronisent au deploy).
+- Note: integration SMS Twilio proposee mais ignoree par l utilisateur (skipped) - ne pas relancer sans demande.

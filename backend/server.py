@@ -451,32 +451,6 @@ def _callback_row(d: dict) -> str:
     )
 
 
-def _alert_email_html(docs: list[dict]) -> str:
-    rows = "".join(_callback_row(d) for d in docs)
-    return (
-        f"<table role='presentation' width='100%' style='background:#f5f6f8;padding:24px'><tr><td>"
-        f"<table role='presentation' width='100%' style='max-width:640px;margin:0 auto;background:#ffffff;border-radius:12px'>"
-        f"<tr><td style='padding:24px;background:#0A1E4C;border-radius:12px 12px 0 0'>"
-        f"<h1 style='margin:0;color:#ffffff;font-family:Arial,sans-serif;font-size:20px'>ADFR — {len(docs)} demande{'s' if len(docs) > 1 else ''} de rappel sans réponse</h1>"
-        f"</td></tr>"
-        f"<tr><td style='padding:24px;font-family:Arial,sans-serif'>"
-        f"<p style='color:#111;margin:0 0 16px'>Ces demandes attendent depuis plus de 30 minutes :</p>"
-        f"<table role='presentation' width='100%' style='border-collapse:collapse'>"
-        f"<tr>"
-        f"<th style='text-align:left;padding:8px 12px;border-bottom:2px solid #0A1E4C;color:#0A1E4C;font-family:Arial,sans-serif'>Nom</th>"
-        f"<th style='text-align:left;padding:8px 12px;border-bottom:2px solid #0A1E4C;color:#0A1E4C;font-family:Arial,sans-serif'>Téléphone</th>"
-        f"<th style='text-align:left;padding:8px 12px;border-bottom:2px solid #0A1E4C;color:#0A1E4C;font-family:Arial,sans-serif'>Lieu</th>"
-        f"<th style='text-align:left;padding:8px 12px;border-bottom:2px solid #0A1E4C;color:#0A1E4C;font-family:Arial,sans-serif'>Panne</th>"
-        f"<th style='text-align:left;padding:8px 12px;border-bottom:2px solid #0A1E4C;color:#0A1E4C;font-family:Arial,sans-serif'>Reçue</th>"
-        f"</tr>{rows}</table>"
-        f"<p style='margin:20px 0'>"
-        f"<a href='{SITE_PUBLIC_URL}/admin' style='background:#E30613;color:#ffffff;padding:12px 24px;border-radius:999px;text-decoration:none;font-weight:bold;font-family:Arial,sans-serif'>Ouvrir le suivi</a></p>"
-        f"<p style='font-size:12px;color:#888;margin:16px 0 0'>Rappel : appelez le client directement, puis marquez la demande comme traitée dans le suivi. "
-        f"Sent by {escape(EMAIL_FROM_NAME)}.</p>"
-        f"</td></tr></table></td></tr></table>"
-    )
-
-
 def _new_callback_email_html(doc: dict) -> str:
     return (
         f"<table role='presentation' width='100%' style='background:#f5f6f8;padding:24px'><tr><td>"
@@ -510,50 +484,6 @@ async def send_new_callback_email(doc: dict) -> None:
         subject=f"ADFR — Nouvelle demande de rappel : {doc.get('nom', '')}",
         html=_new_callback_email_html(doc),
     )
-
-
-async def alert_unhandled_callbacks():
-    if not ALERT_EMAIL or not SITE_PUBLIC_URL:
-        return
-    now = datetime.now(timezone.utc)
-    cutoff = (now - timedelta(minutes=30)).isoformat()
-    day_start = datetime.now(PARIS_TZ).replace(hour=0, minute=0, second=0, microsecond=0).astimezone(timezone.utc).isoformat()
-    docs = await db.callbacks.find({
-        "created_at": {"$gte": day_start, "$lte": cutoff},
-        "alerted_at": {"$exists": False},
-    }).to_list(50)
-    docs = [d for d in docs if not d.get("handled")]
-    if not docs:
-        return
-    try:
-        sent = await send_email(
-            to=ALERT_EMAIL,
-            subject=f"ADFR — {len(docs)} demande{'s' if len(docs) > 1 else ''} de rappel sans réponse",
-            html=_alert_email_html(docs),
-        )
-    except ValueError as e:
-        logger.warning(f"Alerte email bloquée par la gate: {e}")
-        return
-    if sent:
-        await db.callbacks.update_many(
-            {"_id": {"$in": [d["_id"] for d in docs]}},
-            {"$set": {"alerted_at": now.isoformat()}},
-        )
-
-
-# Cron endpoints must ack 2xx immediately; enqueue/background the actual work.
-@api_router.post("/cron/unhandled-alerts")
-async def cron_unhandled_alerts(request: Request, background_tasks: BackgroundTasks):
-    auth = request.headers.get("authorization", "")
-    token = auth[7:] if auth.startswith("Bearer ") else ""
-    if not token or not secrets.compare_digest(token, os.environ.get("WEBHOOK_CRON_SECRET", "")):
-        raise HTTPException(status_code=401, detail="Non autorisé")
-    try:
-        await request.json()
-    except Exception:
-        raise HTTPException(status_code=400, detail="Corps invalide")
-    background_tasks.add_task(alert_unhandled_callbacks)
-    return {"ok": True, "queued": True}
 
 
 app.include_router(api_router)
