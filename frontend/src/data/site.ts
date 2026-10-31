@@ -55,7 +55,7 @@ export const SERVICES: ServiceItem[] = [
     {
         icon: Siren,
         title: "Véhicule accidenté",
-        desc: "Enlèvement et remorquage de votre véhicule accidenté, avec les documents pour votre dossier assurance.",
+        desc: "Enlèvement et remorquage de votre véhicule accidenté, vers le garage de votre choix.",
     },
     {
         icon: KeyRound,
@@ -76,7 +76,7 @@ export const REVIEWS: Review[] = [
         name: "Karim B.",
         city: "Vitry-sur-Seine",
         stars: 5,
-        text: "Crevaison sur l'A86 à 23h. Dépanneur arrivé en 20 minutes, remorquage jusqu'à mon garage. Le prix annoncé au téléphone, respecté à l'euro près.",
+        text: "Crevaison sur l'A86 à 23h. Dépanneur arrivé en 20 minutes, remorquage jusqu'à mon garage. Rapide et efficace.",
     },
     {
         name: "Sophie M.",
@@ -88,7 +88,7 @@ export const REVIEWS: Review[] = [
         name: "Jean-Luc D.",
         city: "Paris 12e",
         stars: 5,
-        text: "Panne sur le périphérique en pleine heure de pointe. Prise en charge impeccable, voiture remorquée jusqu'au garage et dossier transmis à mon assurance.",
+        text: "Panne sur le périphérique en pleine heure de pointe. Prise en charge impeccable, voiture remorquée jusqu'au garage du début à la fin.",
     },
     {
         name: "Amina T.",
@@ -100,7 +100,7 @@ export const REVIEWS: Review[] = [
         name: "Marc P.",
         city: "Saint-Denis",
         stars: 5,
-        text: "Accident près du Stade de France, voiture non roulante. Remorquage le soir même, tout expliqué simplement, attestation fournie pour l'assurance.",
+        text: "Accident près du Stade de France, voiture non roulante. Remorquage le soir même, tout expliqué simplement.",
     },
     {
         name: "Nadia K.",
@@ -118,15 +118,19 @@ export interface FaqItem {
 export const FAQ_HOME: FaqItem[] = [
     {
         q: "Combien coûte un dépannage ou un remorquage ?",
-        a: "Chaque intervention est différente : le prix dépend du type de panne et de la distance. On vous annonce un tarif précis et gratuit au téléphone avant tout départ, sans surprise. Vous ne payez qu'à la fin de l'intervention, sur place.",
+        a: "Chaque intervention est différente : le prix dépend du type de panne et de la distance. Vous ne payez qu'à la fin de l'intervention, sur place, par carte bancaire ou en espèces.",
+    },
+    {
+        q: "Ma batterie est à plat : pouvez-vous redémarrer ma voiture sur place ?",
+        a: "Oui. Nous intervenons avec un booster professionnel pour redémarrer votre véhicule sur place. Si la batterie est morte, nous pouvons la remplacer directement.",
+    },
+    {
+        q: "Je suis en panne de carburant : pouvez-vous dépanner sur place ?",
+        a: "Oui. Nous vous apportons le carburant qu'il faut (essence ou gazole) pour rejoindre la station la plus proche. Si le véhicule ne redémarre pas, nous prenons en charge son remorquage.",
     },
     {
         q: "En combien de temps arrivez-vous ?",
         a: "En moyenne, nos dépanneurs arrivent en 20 à 30 minutes partout en Île-de-France. Le délai exact vous est confirmé au téléphone selon votre position et le trafic.",
-    },
-    {
-        q: "Travaillez-vous avec les assurances ?",
-        a: "Oui, on travaille avec toutes les assurances. On voit ça sur place, au moment du dépannage.",
     },
     {
         q: "Quelles zones couvrez-vous ?",
@@ -154,11 +158,7 @@ export function faqZone(name: string): FaqItem[] {
         },
         {
             q: `Puis-je payer sur place à ${name} ?`,
-            a: `Oui. Le paiement se fait après l'intervention, sur place, par carte bancaire ou en espèces. Le prix vous est annoncé avant le départ du dépanneur.`,
-        },
-        {
-            q: `Pouvez-vous passer par mon assurance à ${name} ?`,
-            a: `Oui, on travaille avec toutes les assurances. À ${name}, on voit ça sur place, au moment du dépannage.`,
+            a: `Oui. Le paiement se fait après l'intervention, sur place, par carte bancaire ou en espèces.`,
         },
     ];
 }

@@ -53,8 +53,8 @@ export default function CallbackForm({ defaultLieu = "" }: CallbackFormProps) {
                         Remplissez ces quatre champs et un dépanneur vous rappelle dans quelques minutes. Mais le plus rapide reste l'appel direct :
                     </p>
                     <ul className="mt-6 space-y-3 text-sm text-slate-300">
-                        <li className="flex items-center gap-2.5"><CheckCircle2 className="size-4 text-adfr-wa shrink-0" /> Prix annoncé au téléphone avant l'intervention</li>
-                        <li className="flex items-center gap-2.5"><CheckCircle2 className="size-4 text-adfr-wa shrink-0" /> Prix annoncé avant le départ du dépanneur</li>
+                        <li className="flex items-center gap-2.5"><CheckCircle2 className="size-4 text-adfr-wa shrink-0" /> Intervention rapide 24h/24 – 7j/7</li>
+                        <li className="flex items-center gap-2.5"><CheckCircle2 className="size-4 text-adfr-wa shrink-0" /> Dépannage sur place ou remorquage</li>
                         <li className="flex items-center gap-2.5"><CheckCircle2 className="size-4 text-adfr-wa shrink-0" /> Paiement sur place, CB ou espèces</li>
                     </ul>
                     <a

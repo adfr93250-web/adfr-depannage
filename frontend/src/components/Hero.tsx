@@ -94,7 +94,7 @@ export default function Hero() {
                             <Clock3 className="size-4 text-adfr-red" /> En moyenne en 20 min
                         </li>
                         <li className="flex items-center gap-2">
-                            <ShieldCheck className="size-4 text-adfr-red" /> Tous assureurs
+                            <ShieldCheck className="size-4 text-adfr-red" /> 7j/7, week-ends et fériés
                         </li>
                         <li className="flex items-center gap-2">
                             <BadgeCheck className="size-4 text-adfr-red" /> Paiement sur place

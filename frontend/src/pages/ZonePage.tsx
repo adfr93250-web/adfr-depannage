@@ -48,7 +48,7 @@ function LocalHero({ zone }: { zone: Zone }) {
                 </h1>
 
                 <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE, delay: 0.25 }} className="mt-6 max-w-2xl text-base md:text-lg leading-relaxed text-slate-300">
-                    {zone.intro} Tous assureurs, prix annoncé par téléphone, paiement sur place.
+                    {zone.intro} Intervention rapide, paiement sur place.
                 </motion.p>
 
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE, delay: 0.4 }} className="mt-8 flex flex-col sm:flex-row gap-3">
@@ -91,7 +91,7 @@ function LocalContent({ zone }: { zone: Zone }) {
                         Batterie, crevaison, carburant, accident ou remorquage : dans la grande majorité des cas, tout se règle sur place et vous repartez.
                     </p>
                     <p className="mt-3 text-slate-400 leading-relaxed text-sm">
-                        Le tarif vous est annoncé au téléphone avant le départ du dépanneur. Le paiement se fait sur place, après l'intervention, par carte bancaire ou en espèces. L'attestation d'intervention vous est remise pour votre assureur.
+                        Le paiement se fait sur place, après l'intervention, par carte bancaire ou en espèces.
                     </p>
                 </motion.div>
 
@@ -174,7 +174,7 @@ export default function ZonePage() {
     const title = isDept
         ? `Dépannage ${zone.deptIn} 24/7 — ADFR Remorquage`
         : `Dépannage à ${zone.name} 24/7 — ADFR Remorquage`;
-    const description = `Panne ${isDept ? zone.deptIn : `à ${zone.name}`} ? ADFR intervient 24h/24, 7j/7, en moyenne en 20 minutes. ${zone.cp ? `${zone.cp} — ` : ""}Appelez le 01 85 80 00 61 : tous assureurs, paiement sur place.`;
+    const description = `Panne ${isDept ? zone.deptIn : `à ${zone.name}`} ? ADFR intervient 24h/24, 7j/7, en moyenne en 20 minutes. ${zone.cp ? `${zone.cp} — ` : ""}Appelez le 01 85 80 00 61 : intervention rapide, paiement sur place.`;
 
     return (
         <>

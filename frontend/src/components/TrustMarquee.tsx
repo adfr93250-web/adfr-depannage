@@ -1,10 +1,10 @@
 const ITEMS = [
     "24/7 — 7j/7",
     "Intervention en 20 min",
-    "Tous assureurs",
+    "Dépannage sur place ou remorquage",
     "Paiement sur place",
     "Toute l'Île-de-France",
-    "Devis gratuit par téléphone",
+    "Week-ends et jours fériés",
 ];
 
 function Track() {
