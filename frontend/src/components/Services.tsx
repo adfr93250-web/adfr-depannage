@@ -57,7 +57,7 @@ export default function Services({ eyebrow = "Nos services", title = "Du dépann
                                 href={SITE.phoneHref}
                                 data-testid={`service-call-${s.title.toLowerCase().replace(/[^a-z]+/g, "-")}`}
                                 onClick={() => track("call", pathname)}
-                                className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#FF6B75] hover:text-white transition-colors"
+                                className="mt-2 inline-flex items-center gap-2 py-2 text-xs font-bold uppercase tracking-widest text-[#FF6B75] hover:text-white transition-colors"
                             >
                                 Appeler pour ce service <ArrowRight className="size-3.5" />
                             </a>
