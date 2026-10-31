@@ -71,3 +71,11 @@ Structure complète + header/footer, sticky bar + WhatsApp flottant, hero, marqu
 - Flow: bouton 'Partager ma position' -> navigator.geolocation (high accuracy) -> encadre 'Position trouvee. Envoyez-la a ADFR :' + bouton vert wa.me avec message standard + lien maps.google.com/?q=lat,lng + bouton appel. Erreurs geo (refus/indispo/timeout) -> encadre rouge avec conseils + bouton appel. Clics tracks (track + gtagConversion whatsapp/call).
 - Verifie: desktop 1440x900 et mobile 390x844, succes (href wa.me/33652664749 + maps + coords), erreur (refus navigateur), pas d'overflow.
 - Deploiement lance. SMS Twilio reste en attente (client a skippe la carte des cles).
+
+
+## Changement 2026-10-31 (5) - Bouton Position dans la barre mobile + section sur pages villes
+- Client: 'y a pas le bouton' - il attendait le bouton Position dans la barre du bas (modele tpmdepannage.fr: Appeler | Position | Devis).
+- Fait: StickyCallBar.tsx -> 2 segments mobiles: appel rouge (2/3, conserve tracking) + bouton 'Position' (MapPin vert, scrollToId('position') via lenis). Pas de bouton Devis (pas de promesse prix).
+- PositionSection montee aussi sur ZonePage (48 pages villes/departements) pour que le bouton marche partout.
+- Verifie mobile 390x844: barre ok, scroll vers section ok (accueil + /depannage-92), succes geolocalisation ok.
+- Deploiement lance.

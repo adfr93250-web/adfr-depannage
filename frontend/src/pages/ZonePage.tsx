@@ -4,6 +4,7 @@ import { CheckCircle2, ChevronRight, MapPin } from "lucide-react";
 import Seo, { localBusinessLd, faqPageLd } from "@/components/Seo";
 import Services from "@/components/Services";
 import Faq from "@/components/Faq";
+import PositionSection from "@/components/PositionSection";
 import CallbackForm from "@/components/CallbackForm";
 import { CallButton, WhatsAppButton } from "@/components/CTAButtons";
 import NotFound from "@/pages/NotFound";
@@ -189,6 +190,7 @@ export default function ZonePage() {
             <RelatedZones zone={zone} />
             <Faq items={faqZone(zone.name)} title={`Questions fréquentes à ${zone.name}`} />
             <CallbackForm defaultLieu={zone.name} />
+            <PositionSection />
         </>
     );
 }
