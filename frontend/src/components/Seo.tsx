@@ -51,7 +51,7 @@ export default function Seo({ title, description, path, jsonLd }: SeoProps) {
     return null;
 }
 
-export function localBusinessLd(zone?: { name: string; lat: number; lng: number; cp: string }) {
+export function localBusinessLd(zone?: { name: string }) {
     return {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
@@ -60,7 +60,6 @@ export function localBusinessLd(zone?: { name: string; lat: number; lng: number;
         telephone: SITE.phoneIntl,
         url: SITE.domain,
         image: SITE.domain + SITE.ogImage,
-        priceRange: "€€",
         address: { "@type": "PostalAddress", addressRegion: "Île-de-France", addressCountry: "FR" },
         openingHoursSpecification: {
             "@type": "OpeningHoursSpecification",
@@ -68,12 +67,7 @@ export function localBusinessLd(zone?: { name: string; lat: number; lng: number;
             opens: "00:00",
             closes: "23:59",
         },
-        ...(zone
-            ? {
-                  areaServed: { "@type": "Place", name: zone.name },
-                  geo: { "@type": "GeoCoordinates", latitude: zone.lat, longitude: zone.lng },
-              }
-            : { areaServed: "Île-de-France" }),
+        ...(zone ? { areaServed: { "@type": "Place", name: zone.name } } : { areaServed: "Île-de-France" }),
     };
 }
 
