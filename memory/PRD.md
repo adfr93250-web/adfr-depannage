@@ -121,3 +121,9 @@ Structure complète + header/footer, sticky bar + WhatsApp flottant, hero, marqu
 ## Verifie 2026-11-01 - Sitemap conforme (message GSC adresse incorrecte = erreur de saisie client)
 - testing agent iteration_3: sitemap https://adfr-depannage.fr/sitemap.xml 100% conforme protocole sitemaps.org 0.9 (HTTP 200, content-type application/xml, pas de BOM, namespace officiel, 49 URL absolues https, 0 doublon, lastmod YYYY-MM-DD valides, robots.txt avec ligne Sitemap correcte). Aucune modif de fichier requise.
 - Cause du message GSC 'adresse sitemap incorrecte': saisie client dans le champ (probable URL complete collee alors que le champ prefixe deja https://adfr-depannage.fr/). Instruction: taper uniquement sitemap.xml (ou /sitemap.xml si refuse).
+
+
+## Verifie 2026-11-01 - GSC impossible de lire le sitemap = statut transitoire
+- testing agent iteration_4: 7/7 PASS. Sitemap lisible par Googlebot AUJOURDHUI: 5/5 fetchs HTTP 200 (0,35-0,5s), les deux IPs edge OK (contenu identique), aucun challenge/blocage Cloudflare, 0 redirection, XML valide 49 URLs, robots.txt conforme.
+- RCA: GSC a fetché pendant la fenetre DNS erronee (162.159.142.113 -> 1034). Statut GSC residuel, cycle de re-fetch asynchrone 24-72h.
+- Recommandation client: re-soumettre (bouton Soumettre a nouveau) + attendre 24-72h. Aucune action technique requise.
