@@ -9,6 +9,7 @@ import CallbackForm from "@/components/CallbackForm";
 import { CallButton, WhatsAppButton } from "@/components/CTAButtons";
 import NotFound from "@/pages/NotFound";
 import { getZone, zoneUrl, citiesOfDept, deptOf, type Zone } from "@/data/zones";
+import { LOCAL_CONTENT } from "@/data/zoneContent";
 import { faqZone, interventions } from "@/data/site";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -71,6 +72,7 @@ function LocalHero({ zone }: { zone: Zone }) {
 
 function LocalContent({ zone }: { zone: Zone }) {
     const isDept = zone.type === "dept";
+    const extra = LOCAL_CONTENT[zone.slug];
     return (
         <section className="relative py-16 md:py-20">
             <div className="mx-auto max-w-7xl px-4 md:px-8 grid lg:grid-cols-[1.2fr_0.8fr] gap-10">
@@ -91,6 +93,11 @@ function LocalContent({ zone }: { zone: Zone }) {
                             : `Nos équipes roulent chaque jour sur ${zone.axes}, au plus près de ${zone.spots[0].toLowerCase()} et des quartiers voisins.`}{" "}
                         Batterie, crevaison, carburant, accident ou remorquage : dans la grande majorité des cas, tout se règle sur place et vous repartez.
                     </p>
+                    {extra && (
+                        <p className="mt-3 text-slate-300 leading-relaxed" data-testid="zone-unique-text">
+                            {extra.texte}
+                        </p>
+                    )}
                     <p className="mt-3 text-slate-400 leading-relaxed text-sm">
                         Le paiement se fait sur place, après l'intervention, par carte bancaire ou en espèces.
                     </p>
@@ -172,6 +179,8 @@ export default function ZonePage() {
     if (!zone) return <NotFound />;
 
     const isDept = zone.type === "dept";
+    const extra = LOCAL_CONTENT[zone.slug];
+    const faqs = extra ? [...faqZone(zone.name), extra.faq4] : faqZone(zone.name);
     const title = isDept
         ? `Dépannage ${zone.deptIn} 24/7 — ADFR Remorquage`
         : `Dépannage à ${zone.name} 24/7 — ADFR Remorquage`;
@@ -179,7 +188,7 @@ export default function ZonePage() {
 
     return (
         <>
-            <Seo title={title} description={description} path={`/depannage-${zone.slug}`} jsonLd={[localBusinessLd(zone), faqPageLd(faqZone(zone.name))]} />
+            <Seo title={title} description={description} path={`/depannage-${zone.slug}`} jsonLd={[localBusinessLd(zone), faqPageLd(faqs)]} />
             <LocalHero zone={zone} />
             <LocalContent zone={zone} />
             <Services
@@ -188,7 +197,7 @@ export default function ZonePage() {
                 sub="Un seul appel : on vous dit tout de suite ce qu'on peut faire et quand un dépanneur peut partir."
             />
             <RelatedZones zone={zone} />
-            <Faq items={faqZone(zone.name)} title={`Questions fréquentes à ${zone.name}`} />
+            <Faq items={faqs} title={`Questions fréquentes à ${zone.name}`} />
             <CallbackForm defaultLieu={zone.name} />
             <PositionSection />
         </>
