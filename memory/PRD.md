@@ -102,3 +102,10 @@ Structure complète + header/footer, sticky bar + WhatsApp flottant, hero, marqu
 - Frontend redemarre, verifie par test de clic: evenement conversion au format officiel Google, send_to AW-18543287149/<nouvelle etiquette> -> action Contact.
 - Deploiement lance pour la prod. Google Ads validera laction Contact sous quelques heures (apres quelques clics/visites).
 - Etat final suivi Google Ads: gtag.js AW-18543287149 sur toutes les pages + conversions (call/whatsapp/form) vers laction Contact. Ne rien re-modifier sans demande.
+
+
+## Changement 2026-11-01 (9) - Action Annonce Appel Direct branchee - TERMINE
+- Client a colle le snippet gtag_report_conversion de sa nouvelle action Google Ads Annonce Appel Direct (label masque, enregistre via carte securisee REACT_APP_GOOGLE_ADS_CONVERSION_CALL - jamais affiche dans le chat).
+- Fait: lib/api.ts -> helper sendConversion + gtagConversion: sur clic dappel, DEUX conversions partent (Contact + Appel Direct, value 1.0 EUR). WhatsApp et formulaire: Contact uniquement. Pas devent_callback (liens tel: natifs, navigation non bloquee).
+- Verifie en preview: 1 clic appel -> 2 evenements conversion au format officiel (appel-direct 1 EUR + call). gtag.js AW-18543287149 deja en place, rien a ajouter.
+- Deploiement lance. Google Ads validera les deux actions sous quelques heures apres clics/visites.

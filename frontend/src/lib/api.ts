@@ -40,16 +40,28 @@ declare global {
     }
 }
 
+function sendConversion(sendTo: string, label: string, withValue: boolean) {
+    window.dataLayer = window.dataLayer || [];
+    const params: Record<string, unknown> = { send_to: sendTo, event_label: label };
+    if (withValue) {
+        params.value = 1.0;
+        params.currency = "EUR";
+    }
+    if (typeof window.gtag === "function") {
+        window.gtag("event", "conversion", params);
+    } else {
+        window.dataLayer.push({ event: "conversion", ...params });
+    }
+}
+
 export function gtagConversion(kind: "call" | "whatsapp" | "form") {
     try {
         const raw = process.env.REACT_APP_GOOGLE_ADS_CONVERSION;
         if (!raw) return;
-        const sendTo = raw.includes("/") ? raw : `AW-18543287149/${raw}`;
-        window.dataLayer = window.dataLayer || [];
-        if (typeof window.gtag === "function") {
-            window.gtag("event", "conversion", { send_to: sendTo, event_label: kind });
-        } else {
-            window.dataLayer.push({ event: "conversion", send_to: sendTo, event_label: kind });
+        sendConversion(raw.includes("/") ? raw : `AW-18543287149/${raw}`, kind, false);
+        if (kind === "call") {
+            const direct = process.env.REACT_APP_GOOGLE_ADS_CONVERSION_CALL;
+            if (direct) sendConversion(direct.includes("/") ? direct : `AW-18543287149/${direct}`, "appel-direct", true);
         }
     } catch {
         // le suivi ne doit jamais bloquer un appel
