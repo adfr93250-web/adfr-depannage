@@ -37,9 +37,9 @@ export default function Hero() {
             <div className="relative mx-auto max-w-7xl px-4 md:px-8 pt-10 md:pt-16 pb-16 md:pb-24 grid lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-center min-h-[calc(100svh-64px)] md:min-h-[calc(100svh-80px)]">
                 <div>
                     <motion.div
-                        initial={{ opacity: 0, y: 16 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, ease: EASE }}
+                        initial={{ opacity: 0, y: 12, filter: "blur(6px)" }}
+                        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                        transition={{ duration: 0.55, ease: EASE }}
                         data-testid="hero-eyebrow"
                         className="inline-flex items-center gap-2.5 rounded-full border border-adfr-chrome/25 bg-adfr-deep/60 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.22em] text-slate-300"
                     >
@@ -50,34 +50,61 @@ export default function Hero() {
                         Dépannage 24/7 — Île-de-France
                     </motion.div>
 
-                    <h1 className="mt-6 font-display text-5xl sm:text-6xl lg:text-7xl font-black uppercase leading-[0.95] tracking-tight text-white">
+                    <h1 className="relative mt-6 font-display text-5xl sm:text-6xl lg:text-7xl font-black uppercase leading-[0.95] tracking-tight text-white">
                         {LINES.map((line, i) => (
                             <span key={line} className="block overflow-hidden pb-1">
                                 <motion.span
                                     className={`block ${i === 2 ? "text-adfr-red" : ""}`}
-                                    initial={{ y: "112%" }}
-                                    animate={{ y: 0 }}
-                                    transition={{ duration: 0.9, ease: EASE, delay: 0.15 + i * 0.14 }}
+                                    initial={{ y: "112%", rotate: 3, scale: 0.96 }}
+                                    animate={{
+                                        y: 0,
+                                        rotate: 0,
+                                        scale: 1,
+                                        ...(i === 2
+                                            ? { textShadow: ["0 0 0px rgba(227,6,19,0)", "0 0 34px rgba(227,6,19,0.85)", "0 0 0px rgba(227,6,19,0)"] }
+                                            : {}),
+                                    }}
+                                    transition={{
+                                        duration: 1,
+                                        ease: [0.22, 1, 0.36, 1],
+                                        delay: 0.12 + i * 0.18,
+                                        ...(i === 2 ? { textShadow: { delay: 0.95, duration: 1.5 } } : {}),
+                                    }}
                                 >
                                     {line}
                                 </motion.span>
                             </span>
                         ))}
+                        <motion.span
+                            aria-hidden
+                            className="pointer-events-none absolute inset-y-0 -left-8 w-20 skew-x-[-14deg] bg-gradient-to-r from-transparent via-white/25 to-transparent"
+                            initial={{ x: 0, opacity: 0 }}
+                            animate={{ x: 860, opacity: [0, 1, 1, 0] }}
+                            transition={{ duration: 1.15, delay: 0.6, ease: "easeInOut" }}
+                        />
                     </h1>
+                    <motion.div
+                        aria-hidden
+                        className="relative -mt-1.5 h-1.5 w-40 rounded-full bg-adfr-red sm:w-56"
+                        style={{ transformOrigin: "left" }}
+                        initial={{ scaleX: 0 }}
+                        animate={{ scaleX: 1 }}
+                        transition={{ duration: 0.55, delay: 1.0, ease: EASE }}
+                    />
 
                     <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, ease: EASE, delay: 0.55 }}
+                        initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+                        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                        transition={{ duration: 0.7, ease: EASE, delay: 0.75 }}
                         className="mt-6 max-w-xl text-base md:text-lg leading-relaxed text-slate-300"
                     >
                         Intervention en 20 minutes partout en Île-de-France. Dépannage sur place ou remorquage toutes marques, de jour comme de nuit, week-ends et jours fériés.
                     </motion.p>
 
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, ease: EASE, delay: 0.7 }}
+                        initial={{ opacity: 0, y: 24, scale: 0.94 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        transition={{ type: "spring", stiffness: 210, damping: 20, delay: 0.95 }}
                         className="mt-8 flex flex-col sm:flex-row gap-3"
                     >
                         <CallButton testId="hero-call-button" className="w-full sm:w-auto" />
@@ -85,9 +112,9 @@ export default function Hero() {
                     </motion.div>
 
                     <motion.ul
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.7, ease: EASE, delay: 0.9 }}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, ease: EASE, delay: 1.1 }}
                         className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-xs font-semibold text-slate-400"
                     >
                         <li className="flex items-center gap-2">

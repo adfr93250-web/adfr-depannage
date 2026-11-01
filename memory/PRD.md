@@ -182,3 +182,10 @@ Brief client en 10 points, execute et verifie (testing agent iteration_6: 100%):
 - Verifie: aucune reference residuelle, accueil + pages zones HTTP 200.
 - Ne PAS reconstruire loption QR sans nouvelle demande explicite du client.
 - Options restantes non construites proposees a lequipe (a, b, c, d) : affectation employe dans le suivi, notes par demande, fiche reflexe depanneur, reponses rapides WhatsApp.
+
+
+## Feature 2026-11-01 (16) - Animation hero spectaculaire - TERMINE
+- Client: pas de video IA, rendre l entree du texte du hero plus spectaculaire.
+- Fait (Hero.tsx, framer-motion pur, texte toujours dans le DOM = SEO safe): badge en blur-in; lignes du titre glissent avec rotation 3deg + scale 0.96; rayon de lumiere (sweep) traverse le titre une fois (delay 0.6s); ligne rouge EN 20 MINUTES pulse dun halo rouge (textShadow keyframes delay 0.95s); barre rouge de 1.5px se dessine sous le titre (scaleX, delay 1.0s); sous-titre blur-in (0.75s); boutons ressort spring pop (0.95s); badges fade-up (1.1s). Total ~1.7s.
+- Verifie: desktop + mobile, etat final correct (titre visible, barre rouge presente, pas d overflow, pas de decalage).
+- Deploiement lance.
