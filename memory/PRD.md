@@ -95,3 +95,10 @@ Structure complète + header/footer, sticky bar + WhatsApp flottant, hero, marqu
 - Label: client a SKIPPE la carte secrets 2x -> env garde lancienne valeur. Si ses campagnes utilisent la nouvelle action Contact, refaire la carte secrets plus tard (ne jamais coller le label dans le code/chat).
 - Pas de pages AMP (site React) - section AMP ignoree.
 - Deploiement lance. Restant: stats admin (a) clics, (b) stats semaine, (c) export CSV, (d) notes - client na pas tranche.
+
+
+## Changement 2026-11-01 (8) - Etiquette de conversion Contact branchee - TERMINE
+- Client a enregistre la nouvelle etiquette via la carte securisee (REACT_APP_GOOGLE_ADS_CONVERSION mise a jour, ancienne valeur remplacee). Valeur jamais affichee dans le chat.
+- Frontend redemarre, verifie par test de clic: evenement conversion au format officiel Google, send_to AW-18543287149/<nouvelle etiquette> -> action Contact.
+- Deploiement lance pour la prod. Google Ads validera laction Contact sous quelques heures (apres quelques clics/visites).
+- Etat final suivi Google Ads: gtag.js AW-18543287149 sur toutes les pages + conversions (call/whatsapp/form) vers laction Contact. Ne rien re-modifier sans demande.
