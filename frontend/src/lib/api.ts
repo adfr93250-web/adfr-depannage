@@ -46,7 +46,11 @@ export function gtagConversion(kind: "call" | "whatsapp" | "form") {
         if (!raw) return;
         const sendTo = raw.includes("/") ? raw : `AW-18543287149/${raw}`;
         window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ event: "conversion", send_to: sendTo, event_category: "contact", event_label: kind, value: 1, currency: "EUR" });
+        if (typeof window.gtag === "function") {
+            window.gtag("event", "conversion", { send_to: sendTo, event_label: kind });
+        } else {
+            window.dataLayer.push({ event: "conversion", send_to: sendTo, event_label: kind });
+        }
     } catch {
         // le suivi ne doit jamais bloquer un appel
     }

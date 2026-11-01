@@ -87,3 +87,11 @@ Structure complète + header/footer, sticky bar + WhatsApp flottant, hero, marqu
 - Fait (SEO): correction du domaine partout ou il etait code en dur: site.ts SITE.domain, public/index.html (canonical, og:url, og:image, twitter:image, JSON-LD), robots.txt (ligne Sitemap), sitemap.xml (tous les <loc>), llms.txt. Verifie servi: canonical = https://adfr-depannage.fr/. Restart frontend requis (le dev server ne rechargait pas index.html).
 - SITE_PUBLIC_URL backend = ancienne URL technique depann-24h.emergent.host (bouton 'Ouvrir le suivi' des emails d'alerte) -> carte secrets proposee, CLIENT A SKIPPE. A re-proposer plus tard (valeur souhaitee: https://adfr-depannage.fr). Ne JAMAIS editer .env soi-meme.
 - Deploiement lance.
+
+
+## Changement 2026-11-01 (7) - Balise Google Ads format officiel
+- Client a colle les instructions gtag: ID AW-18543287149 (deja bon dans index.html) + action de conversion Contact (label masque dans son message).
+- Fait: lib/api.ts gtagConversion() -> format officiel Google: window.gtag(event,conversion,send_to,event_label) au lieu dun push dataLayer en objet plat (risque que les conversions ne soient pas comptees avant). Verifie en preview: clic appel -> evenement conversion correct vers AW-18543287149 avec label env actuel.
+- Label: client a SKIPPE la carte secrets 2x -> env garde lancienne valeur. Si ses campagnes utilisent la nouvelle action Contact, refaire la carte secrets plus tard (ne jamais coller le label dans le code/chat).
+- Pas de pages AMP (site React) - section AMP ignoree.
+- Deploiement lance. Restant: stats admin (a) clics, (b) stats semaine, (c) export CSV, (d) notes - client na pas tranche.
