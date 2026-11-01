@@ -167,3 +167,10 @@ Brief client en 10 points, execute et verifie (testing agent iteration_6: 100%):
 6. Sitemap: 53 URLs valides (namespace 0.9). 7. Maillage: accueil -> 52 liens zones + services; pages villes -> voisins + fil d Ariane. 8. Schema.org: LocalBusiness NETTOYE (suppression priceRange et geo = pas d etablissement/prix inventes; garde nom, tel, url, region IDF, 24/7, areaServed) + FAQPage. 9. Canoniques: 1 par page, sans conflit. 10. Regressions: aucune (formulaire, boutons, position, preview desktop+mobile OK).
 - Deploiement lance (le postbuild s executera au build de prod).
 - Taches restantes cote client: re-soumission sitemap GSC deja faite; indexation naturelle 2-6 semaines; fiche Google Business (client dit l avoir faite); vrais avis Google a collecter; SIRET/mentions legales a fournir.
+
+
+## Fix 2026-11-01 (14) - Favicon logo dans les resultats Google + page Creteil
+- Client: son resultat Google mobile (requete adfr depannage creteil) montrait un globe generique au lieu du logo, et la page /depannage-93 au lieu de /depannage-creteil.
+- Fait: favicon-247.png regenere avec PIL (512x512 carre, fond blanc, vrai logo ADFR centre, 87 Ko, meme nom de fichier -> balises icon/apple-touch-icon intactes dans index.html + 53 pre-rendus). Testing agent iteration_7: 100% (favicon valide visuellement + techniquement, page Creteil pre-rendue avec title/canonical/FAQPage/texte unique, maillage accueil+dept94+dept93 vers creteil OK, sitemap 53 URLs, aucune regression).
+- Classement Creteil: tous les signaux techniques en place; le classement reel depend de la re-indexation Google (2-6 semaines). Conseil client: Demander l indexation sur /depannage-creteil dans GSC.
+- Deploiement lance.
