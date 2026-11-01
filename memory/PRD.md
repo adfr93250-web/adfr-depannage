@@ -116,3 +116,8 @@ Structure complète + header/footer, sticky bar + WhatsApp flottant, hero, marqu
 - Correctif client (IONOS): @ et www -> [162.159.142.117 + 172.66.2.113]. Le site marchait avant uniquement via 162.159.142.117.
 - Verifie par testing agent (iteration_2): 5 requettes espacees toutes 200 servies alternativement par les DEUX IPs, aucun 1034; www 308 vers racine; /depannage-92 200; robots.txt + sitemap.xml 200 avec domaines corrects; TLS valide; home complete (titre, boutons, section position, formulaire, FAQ). 100% OK, aucun bug reste.
 - Etat final DNS IONOS: @ -> 162.159.142.117 + 172.66.2.113; www -> 162.159.142.117 + 172.66.2.113; enregistrements mail IONOS (MX/SPF/DKIM/dmarc) intacts.
+
+
+## Verifie 2026-11-01 - Sitemap conforme (message GSC adresse incorrecte = erreur de saisie client)
+- testing agent iteration_3: sitemap https://adfr-depannage.fr/sitemap.xml 100% conforme protocole sitemaps.org 0.9 (HTTP 200, content-type application/xml, pas de BOM, namespace officiel, 49 URL absolues https, 0 doublon, lastmod YYYY-MM-DD valides, robots.txt avec ligne Sitemap correcte). Aucune modif de fichier requise.
+- Cause du message GSC 'adresse sitemap incorrecte': saisie client dans le champ (probable URL complete collee alors que le champ prefixe deja https://adfr-depannage.fr/). Instruction: taper uniquement sitemap.xml (ou /sitemap.xml si refuse).
