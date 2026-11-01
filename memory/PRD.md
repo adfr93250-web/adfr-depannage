@@ -146,3 +146,12 @@ Structure complète + header/footer, sticky bar + WhatsApp flottant, hero, marqu
 - Demande client. Fait: zones.ts +3 entrees ville (saint-mande 94300 dept 94; villemomble 93250 dept 93; bagnolet 93160 dept 93, avec spots/axes/voisins reels), sitemap.xml 53 URLs, llms.txt 24 grandes villes.
 - Verifie preview: 3 pages HTTP 200, titres/H1 geolocalises, FAQ locales conformes (sans prix/assurance), liens voisins, pas d overflow (screenshot saint-mande OK).
 - Deploiement lance. Total site: 53 pages SEO (8 dept + 45 villes).
+
+
+## Feature 2026-11-01 (12) - Enrichissement anti-doorway des 52 pages zones - TERMINE
+- Choix client: TOUT enrichir (8 dept + 20 arrondissements + 24 villes) car contenu duplique = risque doorway pages.
+- Fait: nouveau fichier frontend/src/data/zoneContent.ts -> LOCAL_CONTENT (Record slug -> { texte unique, faq4: {q,a} }), 52 entrees redigees avec contenu local reel (quartiers, axes, evenements locaux: Stade de France, chateau de Versailles, bords de Marne, pentes de Montmartre...).
+- ZonePage.tsx: import LOCAL_CONTENT, paragraphe unique rendu (data-testid zone-unique-text) dans section Votre depanneur connait X, FAQ = faqZone + faq4 (4 questions), JSON-LD FAQPage mis a jour avec 4 Questions.
+- Fix par testing agent (iteration_5): cle saint-maur-des-fosses (slug ASCII sans accent) qui rendait la page sans contenu unique. Verifie 5 pages echantillon: 100% (textes distincts, 4 FAQ, JSON-LD, promesses vraies, formulaire OK).
+- Polish applique: titre FAQ des departements -> Questions frequentes + deptIn (ex: dans les Hauts-de-Seine).
+- Deploiement lance.

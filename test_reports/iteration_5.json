@@ -1,0 +1,22 @@
+{
+  "summary": "Tested enrichment of 52 zone pages (unique paragraph + 4th FAQ). All 5 sampled pages (vincennes, 92, paris-16, bagnolet, saint-maur-des-fosses) return HTTP 200, correct title, correct H1, no horizontal overflow desktop/mobile. Unique texts are distinct, non-empty, 230-320 chars each. 4 FAQ triggers rendered, JSON-LD FAQPage has 4 Questions, 4th matches the local unique one (e.g. Paris 16 'Vous intervenez dans le bois de Boulogne ?'). No forbidden promises ('prix annoncé', 'tous assureurs', 'devis gratuit') detected in sampled unique texts. Callback form regression PASSED ('C\\'est reçu !' displayed). Found and fixed a slug key typo: 'saint-maur-des-fossés' (with accent) in LOCAL_CONTENT didn't match actual zone slug 'saint-maur-des-fosses' (no accent) in zones.ts — that page was rendering with only 3 FAQs and no unique text. After fix: 4 FAQs + unique text confirmed via re-test. Full key diff: LOCAL_CONTENT keys == zones.ts slugs (52 each, perfect match post-fix).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "The slug mismatch (fixed) illustrates fragility: 52 string keys hand-maintained vs zones.ts. Suggest a dev-time assert in zoneContent.ts (or a unit test) that every ALL_ZONES slug has a LOCAL_CONTENT entry, to prevent silent missing content on future zone additions.",
+    "ZonePage.tsx renders FAQ title as 'Questions fréquentes à ${zone.name}' even for department pages where zone.name is 'Hauts-de-Seine' etc. → reads 'Questions fréquentes à Hauts-de-Seine' which is grammatically odd. Consider using zone.deptIn for dept type."
+  ],
+  "updated_files": ["/app/frontend/src/data/zoneContent.ts"],
+  "success_rate": {"backend": "N/A (not tested, no backend changes)", "frontend": "100% (5/5 pages after fix)"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Enrichment of 52 zone pages verified. Sampled 5 pages across types (dept/city/paris arr). Fixed slug key typo saint-maur-des-fossés → saint-maur-des-fosses in /app/frontend/src/data/zoneContent.ts. All 52 LOCAL_CONTENT keys now match zones.ts slugs. Callback form POST /api/callback still returns success. hero-call-button testid not present on zone pages (uses zone-call-hero instead) — this is by design, not a bug.",
+  "rca of the issue": "RCA for saint-maur bug: zones.ts uses the slug 'saint-maur-des-fosses' (ASCII, matching URL /depannage-saint-maur-des-fosses). zoneContent.ts had the key written with the French accent 'saint-maur-des-fossés'. Lookup LOCAL_CONTENT[zone.slug] returned undefined → the <p data-testid='zone-unique-text'> block and the 4th FAQ were not rendered, and FAQPage JSON-LD had only 3 Questions. Mitigation: renamed key to the accent-less ASCII slug. Prevention: add a build-time assertion or unit test comparing Object.keys(LOCAL_CONTENT) to ALL_ZONES.map(z=>z.slug)."
+}

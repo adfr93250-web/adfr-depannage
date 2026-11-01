@@ -197,7 +197,7 @@ export default function ZonePage() {
                 sub="Un seul appel : on vous dit tout de suite ce qu'on peut faire et quand un dépanneur peut partir."
             />
             <RelatedZones zone={zone} />
-            <Faq items={faqs} title={`Questions fréquentes à ${zone.name}`} />
+            <Faq items={faqs} title={isDept ? `Questions fréquentes ${zone.deptIn}` : `Questions fréquentes à ${zone.name}`} />
             <CallbackForm defaultLieu={zone.name} />
             <PositionSection />
         </>

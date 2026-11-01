@@ -188,7 +188,7 @@ export const LOCAL_CONTENT: Record<string, LocalInfo> = {
         texte: "À Rueil-Malmaison, le château attire les visiteurs et l'A86 passe au-dessus : batterie morte vers le centre ou panne côté Seine, nos dépanneurs connaissent les bouchons de la N13 et les ponts du secteur.",
         faq4: { q: "Vous intervenez près du château de Malmaison ?", a: "Oui, tout l'ouest de la ville et les routes vers la Seine sont couverts, jour et nuit." },
     },
-    "saint-maur-des-fossés": {
+    "saint-maur-des-fosses": {
         texte: "À Saint-Maur-des-Fossés, la Marne fait une boucle complète autour de la ville : les ponts se bouchent et les quais sont étroits. Batterie morte vers Adamville ou panne à La Varenne, on connaît les ponts et les raccourcis de la boucle.",
         faq4: { q: "Vous couvrez toute la boucle de Saint-Maur ?", a: "Oui, d'Adamville à La Varenne-Chennevières : les ponts et les quais ne nous font pas perdre de temps." },
     },
