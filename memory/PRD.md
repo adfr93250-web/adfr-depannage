@@ -140,3 +140,9 @@ Structure complète + header/footer, sticky bar + WhatsApp flottant, hero, marqu
 - Fait: zones.ts entree ville (slug vincennes, cp 94300, dept 94, spots: chateau/place de la Gare/bois de Vincennes, axes A4/D5, neighbors 94/creteil/montreuil/paris-12); sitemap.xml +1 URL (50 total); llms.txt 21 grandes villes.
 - Verifie preview: page 200, titre + H1 geolocalises, FAQ Vincennes 3 questions, liens voisins, pas d overflow.
 - Deploiement lance. Total site: 50 pages ville/dept (8 dept + 42 villes).
+
+
+## Feature 2026-11-01 (11) - 3 nouvelles pages villes: Saint-Mande, Villemomble, Bagnolet
+- Demande client. Fait: zones.ts +3 entrees ville (saint-mande 94300 dept 94; villemomble 93250 dept 93; bagnolet 93160 dept 93, avec spots/axes/voisins reels), sitemap.xml 53 URLs, llms.txt 24 grandes villes.
+- Verifie preview: 3 pages HTTP 200, titres/H1 geolocalises, FAQ locales conformes (sans prix/assurance), liens voisins, pas d overflow (screenshot saint-mande OK).
+- Deploiement lance. Total site: 53 pages SEO (8 dept + 45 villes).

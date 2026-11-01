@@ -14,7 +14,7 @@ Service de dépannage et de remorquage automobile 24h/24 et 7j/7, partout en Îl
 ## Pages
 - Accueil : https://adfr-depannage.fr/
 - Pages département : https://adfr-depannage.fr/depannage-75 (puis -77, -78, -91, -92, -93, -94, -95)
-- Pages villes : https://adfr-depannage.fr/depannage-{ville} — 21 grandes villes (ex. /depannage-boulogne-billancourt, /depannage-saint-denis, /depannage-vincennes) et Paris 1er au 20e arrondissement (/depannage-paris-1 … /depannage-paris-20)
+- Pages villes : https://adfr-depannage.fr/depannage-{ville} — 24 grandes villes (ex. /depannage-boulogne-billancourt, /depannage-saint-denis, /depannage-vincennes, /depannage-saint-mande, /depannage-villemomble, /depannage-bagnolet) et Paris 1er au 20e arrondissement (/depannage-paris-1 … /depannage-paris-20)
 
 ## Contact
 - Téléphone : 01 85 80 00 61 (24h/24, 7j/7)
