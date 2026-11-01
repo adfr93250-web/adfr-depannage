@@ -109,3 +109,10 @@ Structure complète + header/footer, sticky bar + WhatsApp flottant, hero, marqu
 - Fait: lib/api.ts -> helper sendConversion + gtagConversion: sur clic dappel, DEUX conversions partent (Contact + Appel Direct, value 1.0 EUR). WhatsApp et formulaire: Contact uniquement. Pas devent_callback (liens tel: natifs, navigation non bloquee).
 - Verifie en preview: 1 clic appel -> 2 evenements conversion au format officiel (appel-direct 1 EUR + call). gtag.js AW-18543287149 deja en place, rien a ajouter.
 - Deploiement lance. Google Ads validera les deux actions sous quelques heures apres clics/visites.
+
+
+## Bug resolu 2026-11-01 - Erreur 1034 sur adfr-depannage.fr
+- Cause racine (RCA test agent): le client avait saisi 162.159.142.113 (IP edge Cloudflare restreinte) au lieu de 172.66.2.113 sur les A de @ et www chez IONOS -> Cloudflare repondait 403 Error 1034 Edge IP Restricted sur ~50% des requetes.
+- Correctif client (IONOS): @ et www -> [162.159.142.117 + 172.66.2.113]. Le site marchait avant uniquement via 162.159.142.117.
+- Verifie par testing agent (iteration_2): 5 requettes espacees toutes 200 servies alternativement par les DEUX IPs, aucun 1034; www 308 vers racine; /depannage-92 200; robots.txt + sitemap.xml 200 avec domaines corrects; TLS valide; home complete (titre, boutons, section position, formulaire, FAQ). 100% OK, aucun bug reste.
+- Etat final DNS IONOS: @ -> 162.159.142.117 + 172.66.2.113; www -> 162.159.142.117 + 172.66.2.113; enregistrements mail IONOS (MX/SPF/DKIM/dmarc) intacts.
