@@ -127,3 +127,9 @@ Structure complète + header/footer, sticky bar + WhatsApp flottant, hero, marqu
 - testing agent iteration_4: 7/7 PASS. Sitemap lisible par Googlebot AUJOURDHUI: 5/5 fetchs HTTP 200 (0,35-0,5s), les deux IPs edge OK (contenu identique), aucun challenge/blocage Cloudflare, 0 redirection, XML valide 49 URLs, robots.txt conforme.
 - RCA: GSC a fetché pendant la fenetre DNS erronee (162.159.142.113 -> 1034). Statut GSC residuel, cycle de re-fetch asynchrone 24-72h.
 - Recommandation client: re-soumettre (bouton Soumettre a nouveau) + attendre 24-72h. Aucune action technique requise.
+
+
+## Etape SEO 2026-11-01 - Sitemap ACCEPTE dans Google Search Console
+- Client: sitemap.xml accepte dans GSC (propriete DOMAINE adfr-depannage.fr verifiee via TXT auto IONOS/Domain Connect).
+- Restant SEO: demander l indexation (accueil + 2-3 pages villes) via l outil d inspection d URL; indexation complete attendue sous 3-10 jours; a suivre dans GSC > Pages.
+- Prochaine grande etape proposee mais non confirmee par le client: fiche Google Business (Maps) - tres important pour un depanneur (recherches locales 'depannage pres de moi').
