@@ -174,3 +174,11 @@ Brief client en 10 points, execute et verifie (testing agent iteration_6: 100%):
 - Fait: favicon-247.png regenere avec PIL (512x512 carre, fond blanc, vrai logo ADFR centre, 87 Ko, meme nom de fichier -> balises icon/apple-touch-icon intactes dans index.html + 53 pre-rendus). Testing agent iteration_7: 100% (favicon valide visuellement + techniquement, page Creteil pre-rendue avec title/canonical/FAQPage/texte unique, maillage accueil+dept94+dept93 vers creteil OK, sitemap 53 URLs, aucune regression).
 - Classement Creteil: tous les signaux techniques en place; le classement reel depend de la re-indexation Google (2-6 semaines). Conseil client: Demander l indexation sur /depannage-creteil dans GSC.
 - Deploiement lance.
+
+
+## Annulation 2026-11-01 (15) - Option QR code annulee par le client
+- Le client avait demande loption E (QR codes par depanneuse + page /appeler) puis a ANNULE (execution pausee + Jannule cette option).
+- TOUT a ete retire proprement: CallPage.tsx supprime, route /appeler et GlobalCTAs retires de App.tsx (Footer/StickyCallBar/WhatsAppFloat retablis), section QR retiree de AdminPage, PNG qr-camion-*.png supprimes, prerender.mjs retabli (53 routes sans /appeler).
+- Verifie: aucune reference residuelle, accueil + pages zones HTTP 200.
+- Ne PAS reconstruire loption QR sans nouvelle demande explicite du client.
+- Options restantes non construites proposees a lequipe (a, b, c, d) : affectation employe dans le suivi, notes par demande, fiche reflexe depanneur, reponses rapides WhatsApp.
