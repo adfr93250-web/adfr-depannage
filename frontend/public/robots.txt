@@ -21,4 +21,4 @@ User-agent: CCBot
 Allow: /
 Disallow: /api/
 
-Sitemap: https://adfr-depann.fr/sitemap.xml
+Sitemap: https://adfr-depannage.fr/sitemap.xml

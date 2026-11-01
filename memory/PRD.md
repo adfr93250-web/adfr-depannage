@@ -79,3 +79,11 @@ Structure complète + header/footer, sticky bar + WhatsApp flottant, hero, marqu
 - PositionSection montee aussi sur ZonePage (48 pages villes/departements) pour que le bouton marche partout.
 - Verifie mobile 390x844: barre ok, scroll vers section ok (accueil + /depannage-92), succes geolocalisation ok.
 - Deploiement lance.
+
+
+## CORRECTION MAJEURE 2026-10-31 (6) - Le vrai domaine est adfr-depannage.fr
+- ATTENTION fork futur: le handoff precedent indiquait adfr-depann.fr -> ERRONE. Le vrai domaine du client est ADIFR... non ADFR: https://adfr-depannage.fr (avec 'age'). Ne plus verifier adfr-depann.fr (n'existe pas au registre AFNIC, 404 RDAP confirme).
+- Etat verifie: https://adfr-depannage.fr -> HTTP/2 200, TLS valide, contenu ADFR servi. www.adfr-depannage.fr -> 308 vers la racine. DNS: @ -> 162.159.142.117 OK; www -> 162.159.142.117 + 162.159.142.113 (2e IP probablement mal saisie, sans impact - la plateforme route les deux hotes). Redondance @ -> 172.66.2.113 optionnelle.
+- Fait (SEO): correction du domaine partout ou il etait code en dur: site.ts SITE.domain, public/index.html (canonical, og:url, og:image, twitter:image, JSON-LD), robots.txt (ligne Sitemap), sitemap.xml (tous les <loc>), llms.txt. Verifie servi: canonical = https://adfr-depannage.fr/. Restart frontend requis (le dev server ne rechargait pas index.html).
+- SITE_PUBLIC_URL backend = ancienne URL technique depann-24h.emergent.host (bouton 'Ouvrir le suivi' des emails d'alerte) -> carte secrets proposee, CLIENT A SKIPPE. A re-proposer plus tard (valeur souhaitee: https://adfr-depannage.fr). Ne JAMAIS editer .env soi-meme.
+- Deploiement lance.

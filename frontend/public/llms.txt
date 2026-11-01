@@ -12,9 +12,9 @@ Service de dépannage et de remorquage automobile 24h/24 et 7j/7, partout en Îl
 - Sortie de fourrière
 
 ## Pages
-- Accueil : https://adfr-depann.fr/
-- Pages département : https://adfr-depann.fr/depannage-75 (puis -77, -78, -91, -92, -93, -94, -95)
-- Pages villes : https://adfr-depann.fr/depannage-{ville} — 20 grandes villes (ex. /depannage-boulogne-billancourt, /depannage-saint-denis, /depannage-versailles) et Paris 1er au 20e arrondissement (/depannage-paris-1 … /depannage-paris-20)
+- Accueil : https://adfr-depannage.fr/
+- Pages département : https://adfr-depannage.fr/depannage-75 (puis -77, -78, -91, -92, -93, -94, -95)
+- Pages villes : https://adfr-depannage.fr/depannage-{ville} — 20 grandes villes (ex. /depannage-boulogne-billancourt, /depannage-saint-denis, /depannage-versailles) et Paris 1er au 20e arrondissement (/depannage-paris-1 … /depannage-paris-20)
 
 ## Contact
 - Téléphone : 01 85 80 00 61 (24h/24, 7j/7)
