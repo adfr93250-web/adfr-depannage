@@ -133,3 +133,10 @@ Structure complète + header/footer, sticky bar + WhatsApp flottant, hero, marqu
 - Client: sitemap.xml accepte dans GSC (propriete DOMAINE adfr-depannage.fr verifiee via TXT auto IONOS/Domain Connect).
 - Restant SEO: demander l indexation (accueil + 2-3 pages villes) via l outil d inspection d URL; indexation complete attendue sous 3-10 jours; a suivre dans GSC > Pages.
 - Prochaine grande etape proposee mais non confirmee par le client: fiche Google Business (Maps) - tres important pour un depanneur (recherches locales 'depannage pres de moi').
+
+
+## Feature 2026-11-01 (10) - Nouvelle page ville /depannage-vincennes
+- Demande client: page depannage Vincennes (Val-de-Marne).
+- Fait: zones.ts entree ville (slug vincennes, cp 94300, dept 94, spots: chateau/place de la Gare/bois de Vincennes, axes A4/D5, neighbors 94/creteil/montreuil/paris-12); sitemap.xml +1 URL (50 total); llms.txt 21 grandes villes.
+- Verifie preview: page 200, titre + H1 geolocalises, FAQ Vincennes 3 questions, liens voisins, pas d overflow.
+- Deploiement lance. Total site: 50 pages ville/dept (8 dept + 42 villes).

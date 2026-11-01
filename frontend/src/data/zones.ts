@@ -139,6 +139,14 @@ export const CITIES: Zone[] = [
         neighbors: ["94", "vitry-sur-seine", "77", "93"],
     },
     {
+        slug: "vincennes", type: "city", name: "Vincennes", cp: "94300", dept: "94", deptName: "Val-de-Marne", deptIn: "dans le Val-de-Marne",
+        lat: 48.8386, lng: 2.4932,
+        intro: "En panne à Vincennes, près du château ou de la place de la Gare ? Un dépanneur ADFR arrive en moyenne en 20 minutes, jour et nuit, week-ends et jours fériés.",
+        spots: ["Le château de Vincennes", "La place de la Gare", "Le bois de Vincennes"],
+        axes: "l'A4 voisine et la D5 (route de Vincennes)",
+        neighbors: ["94", "creteil", "montreuil", "paris-12"],
+    },
+    {
         slug: "asnieres-sur-seine", type: "city", name: "Asnières-sur-Seine", cp: "92600", dept: "92", deptName: "Hauts-de-Seine", deptIn: "dans les Hauts-de-Seine",
         lat: 48.9117, lng: 2.2878,
         intro: "Du pont d'Asnières aux quais de Seine, nos dépanneurs interviennent à Asnières-sur-Seine 24h/24 et 7j/7, en moyenne en 20 minutes.",
