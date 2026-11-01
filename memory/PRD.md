@@ -155,3 +155,15 @@ Structure complète + header/footer, sticky bar + WhatsApp flottant, hero, marqu
 - Fix par testing agent (iteration_5): cle saint-maur-des-fosses (slug ASCII sans accent) qui rendait la page sans contenu unique. Verifie 5 pages echantillon: 100% (textes distincts, 4 FAQ, JSON-LD, promesses vraies, formulaire OK).
 - Polish applique: titre FAQ des departements -> Questions frequentes + deptIn (ex: dans les Hauts-de-Seine).
 - Deploiement lance.
+
+
+## Mission SEO local complete 2026-11-01 (13) - Rapport des changements - TERMINE
+Brief client en 10 points, execute et verifie (testing agent iteration_6: 100%):
+1. Pages locales: 52 URLs uniques /depannage-slug (choix ASSUME: canonical SANS slash final, coherent sitemap+GSC).
+2. Balises: title + meta description uniques par zone (generes par zone, verifies distincts sur 4 pages).
+3. Contenu: H1 unique par page (fix: h1 statique du noscript index.html -> h2), H2 structures (Votre depanneur connait X / Services / Zones voisines / FAQ), contenu local unique (paragraphes + 4e FAQ, 52 entrees zoneContent.ts).
+4. Technique: robots.txt (Allow /, Disallow /api/, ligne Sitemap), codes HTTP 200.
+5. RENDU/PRERENDU: frontend/scripts/prerender.mjs (puppeteer-core + /usr/bin/google-chrome, PAS de download), lance en postbuild de yarn build: rend les 53 routes dans Chrome, scrolle pour declencher les animations framer-motion, sauve le HTML complet dans build/<route>/index.html. Verifie: 53/53 fichiers avec titre/meta/canonical/JSON-LD/textes uniques + 1 seul h1.
+6. Sitemap: 53 URLs valides (namespace 0.9). 7. Maillage: accueil -> 52 liens zones + services; pages villes -> voisins + fil d Ariane. 8. Schema.org: LocalBusiness NETTOYE (suppression priceRange et geo = pas d etablissement/prix inventes; garde nom, tel, url, region IDF, 24/7, areaServed) + FAQPage. 9. Canoniques: 1 par page, sans conflit. 10. Regressions: aucune (formulaire, boutons, position, preview desktop+mobile OK).
+- Deploiement lance (le postbuild s executera au build de prod).
+- Taches restantes cote client: re-soumission sitemap GSC deja faite; indexation naturelle 2-6 semaines; fiche Google Business (client dit l avoir faite); vrais avis Google a collecter; SIRET/mentions legales a fournir.

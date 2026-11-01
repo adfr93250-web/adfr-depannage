@@ -1,0 +1,18 @@
+{
+  "summary": "Final SEO verification (pré-rendu + localBusinessLd nettoyé). Vérifié 4 fichiers build/ pré-rendus (/, /depannage-vincennes, /depannage-paris-16, /depannage-92). Chacun contient : (a) <title> unique et spécifique à la zone, (b) meta description unique mentionnant la ville/département, (c) exactement 1 balise canonical pointant vers https://adfr-depannage.fr/<chemin> sans slash final, (d) un bloc JSON-LD FAQPage avec le bon nombre de Questions (7 accueil, 4 par zone), (e) textes locaux uniques présents (Trocadéro pour paris-16, château pour vincennes), (f) data-testid zone-h1 présent avec H1 zone (Dépannage & remorquage à Vincennes...). LocalBusiness JSON-LD propre : name, telephone, url, image, address{addressRegion:'Île-de-France', addressCountry:'FR'} — AUCUN streetAddress, postalCode, aggregateRating, review, ni priceRange inventés. Sitemap.xml validé XML (urlset namespace sitemaps.org/schemas/sitemap/0.9), 53 URLs toutes en https://adfr-depannage.fr. Robots.txt autorise /, bloque /api/, contient Sitemap. Preview dev server : les 4 pages renvoient HTTP 200, pas de régression visuelle (desktop 1440 + mobile 390 sans overflow horizontal). Depuis l'accueil : 52 liens zones uniques + 8 zone-list-* testids. Depuis une zone (vincennes) : breadcrumb + 4 zone-link-* voisins + boutons zone-call-hero + zone-whatsapp-hero + position-find-button présents, 4 faq-trigger-*. Callback form POST /api/callback (champs nom/telephone/lieu/type_panne) → HTTP 200 {ok:true, id:...}. Pré-rendu n'a pas cassé le dev server.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Chaque page de zone contient DEUX balises <h1> dans le HTML pré-rendu : (1) le H1 zone-spécifique (data-testid=zone-h1) ex. 'Dépannage & remorquage à Vincennes…', et (2) un second <h1> global 'ADFR — Auto Dépann France Remorquage : dépannage et remorquage 24h/24 en Île-de-France' (visible aussi dans index.html de la home — probablement un composant partagé type footer/section SEO caché). Deux H1 par page est sous-optimal pour le SEO et peut diluer le signal du H1 principal. Recommandation : passer le second H1 en H2 (ou le retirer des pages zones) pour qu'il n'y ait qu'un seul H1 par page. Non-régression, à corriger côté E1.",
+    "Le H1 global en double est présent même dans build/index.html (accueil) ET dans toutes les pages zones — doublon systématique sur 53 pages."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "100% (callback POST OK, sitemap/robots 200)", "frontend": "100% (4/4 pages pré-rendues conformes, 4/4 pages preview OK, callback form OK)"},
+  "seed_data_creation": "1 enregistrement callback de test POST (nom=TEST_user)",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Pré-rendu puppeteer-core en postbuild de 'yarn build' fonctionne : 53 fichiers build/<slug>/index.html contenant titles/meta/canonical/JSON-LD/texte local uniques. localBusinessLd nettoyé (plus de priceRange ni geo, address réduite à addressRegion+addressCountry). Seul point SEO restant : doublon de H1 sur toutes les pages pré-rendues (voir critical_code_review_comments). Preview dev server (REACT_APP_BACKEND_URL) sert le code source React (SPA), pas les fichiers build/ — c'est attendu, le pré-rendu est pour la prod uniquement.",
+  "rca of the issue": "N/A — pas de bug bloquant détecté dans cette itération."
+}
