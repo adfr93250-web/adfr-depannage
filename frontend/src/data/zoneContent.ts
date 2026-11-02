@@ -212,4 +212,36 @@ export const LOCAL_CONTENT: Record<string, LocalInfo> = {
         texte: "À Vitry-sur-Seine, les quais de Seine et l'A86 structurent la ville : batterie morte vers la porte de Choisy ou panne sur la D5, nos dépanneurs connaissent les accès du port et les rues internes des grands ensembles.",
         faq4: { q: "Vous couvrez les quais et le port de Vitry ?", a: "Oui, des Carrières aux quais : appelez, on vous retrouve où que vous soyez." },
     },
+    "fontenay-sous-bois": {
+        texte: "À Fontenay-sous-Bois, tout se joue autour de Val de Fontenay : les tours de bureaux, le RER A et E, et l'A86 qui passe juste dessous. Batterie morte au parking du centre commercial, panne à la sortie de l'A86 ou crevaison sur le Plateau, nos dépanneurs sont basés à quelques minutes, côté Saint-Mandé, et connaissent chaque bretelle.",
+        faq4: { q: "Vous arrivez vite à Val de Fontenay aux heures de pointe ?", a: "Oui. Notre base de Saint-Mandé est à moins de 10 minutes, et nos dépanneurs connaissent les accès par Vincennes et par Montreuil pour contourner les bouchons de l'A86." },
+    },
+    "rosny-sous-bois": {
+        texte: "Rosny-sous-Bois, c'est le grand nœud de l'Est parisien : l'A86 croise l'A3 et l'A103, et le parking de Rosny 2 se remplit dès le samedi matin. Panne sur l'échangeur, batterie à plat au niveau -2 du centre commercial ou crevaison sur le plateau d'Avron : on part de Villemomble, la ville d'à côté, et on arrive en quelques minutes.",
+        faq4: { q: "Vous pouvez intervenir dans le parking de Rosny 2 ?", a: "Oui, à tous les niveaux. Précisez votre zone et votre rangée au téléphone, notre dépanneur monte directement jusqu'à vous." },
+    },
+    "gagny": {
+        texte: "À Gagny, la ville s'étire du Chénay aux Abbesses, avec la gare au milieu et la D370 qui traverse tout. Batterie morte au parking de la gare un lundi matin, panne en côte vers le parc Courbet ou crevaison sur la D302 : nos dépanneurs viennent de Villemomble, juste à côté, et connaissent les rues en pente du coteau.",
+        faq4: { q: "Vous couvrez aussi les quartiers du Chénay et des Abbesses ?", a: "Oui, toute la commune de Gagny, du centre aux quartiers résidentiels en hauteur. Donnez-nous votre rue, on arrive en 20 minutes en moyenne." },
+    },
+    "bondy": {
+        texte: "Bondy, c'est l'échangeur A3/A86 et la N3 : des milliers de véhicules par heure et des pannes en pleine voie qui ne peuvent pas attendre. Batterie morte vers la gare, crevaison sur la N3 côté canal de l'Ourcq ou véhicule accidenté sur la bretelle : nos dépanneurs connaissent les accès de secours et les sorties pour vous mettre en sécurité vite.",
+        faq4: { q: "Je suis en panne sur l'A3 ou l'A86 à hauteur de Bondy, vous venez ?", a: "Oui. Mettez-vous en sécurité derrière la glissière, indiquez-nous le sens et la sortie la plus proche : on intervient sur les bretelles et les voies rapides du secteur." },
+    },
+    "noisy-le-sec": {
+        texte: "À Noisy-le-Sec, la gare, le canal de l'Ourcq et l'A3 délimitent la ville. Batterie morte au parking de la gare, panne vers le Londeau ou crevaison sur la N3 : nos dépanneurs connaissent les ponts du canal et les accès vers Romainville et Bondy, même la nuit quand les grands axes se vident.",
+        faq4: { q: "Vous intervenez du côté du Londeau et de la gare ?", a: "Oui, toute la commune est couverte, du centre aux quartiers près de Rosny. Appelez, on vous retrouve en 20 minutes en moyenne." },
+    },
+    "le-raincy": {
+        texte: "Le Raincy, c'est une ville de coteau : des allées en pente, des villas et une gare partagée avec Villemomble et Montfermeil. Batterie morte au rond-point Thiers, panne en côte vers l'église Notre-Dame ou crevaison sur l'allée du Raincy : notre base de Villemomble est littéralement à côté, on est chez vous en quelques minutes.",
+        faq4: { q: "Vous êtes vraiment à côté du Raincy ?", a: "Oui, nos dépanneurs partent de Villemomble, la commune voisine. C'est l'une de nos zones les plus rapides : souvent moins de 15 minutes." },
+    },
+    "nogent-sur-marne": {
+        texte: "Nogent-sur-Marne, c'est le pont de Nogent et l'A4 : l'un des points les plus chargés de l'Est francilien, où une panne bloque tout. Batterie morte au parking de la gare Nogent-Le Perreux, crevaison sur les bords de Marne ou panne sur la bretelle A4/A86 : nos dépanneurs connaissent les accès par Fontenay et par le Perreux pour éviter le pont saturé.",
+        faq4: { q: "Je suis en panne sur l'A4 au niveau du pont de Nogent, c'est possible ?", a: "Oui. Indiquez-nous le sens (Paris ou province) et la sortie la plus proche : nos dépanneuses interviennent sur l'A4, l'A86 et le pont de Nogent." },
+    },
+    "neuilly-sur-marne": {
+        texte: "À Neuilly-sur-Marne, l'avenue de Paris (N34) traverse toute la ville et relie Chelles à Paris : feux, bouchons et pannes en file. Batterie morte vers Maison-Blanche, crevaison sur les bords de Marne ou véhicule immobilisé près du pont vers Noisy-le-Grand : nos dépanneurs connaissent chaque contre-allée de la N34.",
+        faq4: { q: "Vous couvrez la N34 et les bords de Marne à Neuilly-sur-Marne ?", a: "Oui, toute la commune jusqu'à la limite de Gagny et de Noisy-le-Grand. Appelez, on arrive en 20 minutes en moyenne." },
+    },
 };
