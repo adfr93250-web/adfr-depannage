@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADFR Dépannage — Flyer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0A1E3C;
+    --navy-2:#0F2A52;
+    --red:#E63329;
+    --red-dark:#C22218;
+    --white:#FFFFFF;
+    --silver:#C7D3E4;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:#050d1d;}
+  body{display:flex;justify-content:center;align-items:flex-start;font-family:'Barlow Condensed',sans-serif;}
+  .flyer{
+    width:1080px;height:1080px;position:relative;overflow:hidden;
+    background:
+      radial-gradient(900px 500px at 85% -10%, rgba(230,51,41,.22), transparent 60%),
+      radial-gradient(700px 500px at -10% 110%, rgba(15,42,82,.9), transparent 60%),
+      linear-gradient(160deg,#0E2648 0%, var(--navy) 55%, #071429 100%);
+    display:flex;flex-direction:column;
+  }
+  .grain{position:absolute;inset:0;opacity:.05;background-image:radial-gradient(rgba(255,255,255,.9) .5px, transparent .5px);background-size:14px 14px;pointer-events:none;}
+  .speedlines{position:absolute;top:0;left:0;width:100%;height:6px;background:repeating-linear-gradient(90deg,var(--red) 0 120px, transparent 120px 160px);}
+  /* HEADER */
+  .head{display:flex;align-items:center;justify-content:space-between;padding:34px 56px 0 56px;}
+  .brand{display:flex;align-items:center;gap:20px;}
+  .brand img{width:88px;height:88px;border-radius:20px;object-fit:cover;box-shadow:0 8px 24px rgba(0,0,0,.45);}
+  .brand-name{font-family:'Archivo Black',sans-serif;color:var(--white);font-size:38px;letter-spacing:.5px;line-height:1;}
+  .brand-name span{color:var(--red);}
+  .brand-sub{color:var(--silver);font-size:22px;letter-spacing:3px;text-transform:uppercase;font-weight:600;margin-top:6px;}
+  .badge-247{background:var(--red);color:var(--white);font-family:'Archivo Black',sans-serif;font-size:26px;padding:14px 26px;border-radius:999px;letter-spacing:1px;box-shadow:0 10px 26px rgba(230,51,41,.45);white-space:nowrap;}
+  /* HERO */
+  .hero{padding:24px 56px 0 56px;text-align:left;}
+  .hero-kicker{display:inline-block;color:var(--white);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);padding:8px 20px;border-radius:999px;font-size:23px;letter-spacing:4px;text-transform:uppercase;font-weight:700;}
+  .hero h1{font-family:'Archivo Black',sans-serif;color:var(--white);font-size:86px;line-height:1;margin-top:18px;text-transform:uppercase;white-space:nowrap;}
+  .hero h1 .small{display:block;font-size:44px;color:var(--silver);letter-spacing:2px;margin-bottom:8px;}
+  .hero h1 .red{color:var(--red);}
+  .underline{width:440px;height:12px;background:linear-gradient(90deg,var(--red),var(--red-dark));border-radius:999px;margin-top:14px;box-shadow:0 8px 22px rgba(230,51,41,.5);}
+  /* SERVICES */
+  .services{display:flex;flex-wrap:wrap;gap:12px;padding:22px 56px 0 56px;}
+  .chip{color:var(--white);border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);padding:8px 20px;border-radius:999px;font-size:25px;font-weight:600;letter-spacing:.5px;}
+  .chip.hot{background:var(--red);border-color:var(--red);}
+  /* ZONES */
+  .zones{margin:24px 56px 0 56px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:24px;padding:20px 28px;display:flex;align-items:center;gap:22px;}
+  .zones svg{flex-shrink:0;}
+  .zones-txt{color:var(--white);}
+  .zones-txt .t{font-family:'Archivo Black',sans-serif;font-size:28px;letter-spacing:.5px;}
+  .zones-txt .t em{color:var(--red);font-style:normal;}
+  .zones-txt .d{color:var(--silver);font-size:23px;font-weight:600;margin-top:6px;line-height:1.25;}
+  /* STATS */
+  .stats{display:flex;gap:18px;padding:24px 56px 0 56px;}
+  .stat{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:22px 20px;text-align:center;}
+  .stat .v{font-family:'Archivo Black',sans-serif;color:var(--red);font-size:52px;line-height:1;}
+  .stat .v.white{color:var(--white);}
+  .stat .l{color:var(--silver);font-size:23px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-top:10px;}
+  /* CTA */
+  .cta{margin-top:auto;padding:0 56px 0 56px;display:flex;gap:22px;align-items:stretch;}
+  .call{
+    flex:1.35;background:var(--red);border-radius:26px;padding:22px 30px;display:flex;align-items:center;gap:22px;
+    box-shadow:0 16px 40px rgba(230,51,41,.45);
+  }
+  .wa{
+    flex:1;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.25);border-radius:26px;padding:22px 26px;display:flex;align-items:center;gap:18px;
+  }
+  .cta .num{font-family:'Archivo Black',sans-serif;color:var(--white);}
+  .cta .call .num{font-size:44px;line-height:1;white-space:nowrap;}
+  .cta .wa .num{font-size:33px;line-height:1.05;}
+  .cta .lbl{color:rgba(255,255,255,.85);font-size:20px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:6px;}
+  .foot{display:flex;align-items:center;justify-content:space-between;padding:20px 56px 18px 56px;}
+  .site{color:var(--silver);font-size:22px;letter-spacing:2px;font-weight:700;text-transform:uppercase;display:flex;align-items:center;gap:10px;}
+  .foot-note{color:rgba(199,211,228,.55);font-size:19px;letter-spacing:.5px;font-weight:600;}
+</style>
+</head>
+<body>
+  <div class="flyer">
+    <div class="grain"></div>
+    <div class="speedlines"></div>
+
+    <div class="head">
+      <div class="brand">
+        <img src="/img/logo-adfr.png" alt="ADFR">
+        <div>
+          <div class="brand-name">ADFR <span>DÉPANNAGE</span></div>
+          <div class="brand-sub">Île-de-France</div>
+        </div>
+      </div>
+      <div class="badge-247">24h/24 – 7j/7</div>
+    </div>
+
+    <div class="hero">
+      <span class="hero-kicker">En panne ? Voiture immobilisée ?</span>
+      <h1>
+        <span class="small">On arrive</span>
+        <span class="red">en 20 minutes</span>
+      </h1>
+      <div class="underline"></div>
+    </div>
+
+    <div class="services">
+      <span class="chip hot">Dépannage auto</span>
+      <span class="chip hot">Remorquage</span>
+      <span class="chip">Batterie morte</span>
+      <span class="chip">Crevaison</span>
+      <span class="chip">Carburant</span>
+      <span class="chip">Fourrière</span>
+    </div>
+
+    <div class="zones">
+      <svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#E63329" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+      <div class="zones-txt">
+        <div class="t">Paris <em>(tous arrondissements)</em> + toute l'Île-de-France</div>
+        <div class="d">Boulogne-Billancourt · Saint-Denis · Montreuil · Créteil · Nanterre · Vincennes · Versailles · Argenteuil · Cergy… <b>53 zones couvertes, 24h/24</b></div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="v">20 min</div><div class="l">Réponse moyenne</div></div>
+      <div class="stat"><div class="v white">24h/24</div><div class="l">Jour · Nuit · Fériés</div></div>
+      <div class="stat"><div class="v">53</div><div class="l">Zones en IDF</div></div>
+    </div>
+
+    <div class="cta">
+      <div class="call">
+        <svg width="58" height="58" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <div>
+          <div class="lbl">Appelez maintenant</div>
+          <div class="num">01 85 80 00 61</div>
+        </div>
+      </div>
+      <div class="wa">
+        <svg width="50" height="50" viewBox="0 0 24 24" fill="#25D366"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zM12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.82 9.82 0 0 1 9.88 9.89c0 5.45-4.44 9.88-9.89 9.88zm8.42-18.31A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.14 1.59 5.94L.07 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.9 0-3.18-1.24-6.16-3.48-8.42z"/></svg>
+        <div>
+          <div class="lbl">WhatsApp</div>
+          <div class="num">06 52 66 47 49</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot">
+      <div class="foot-note">Dépannage · Remorquage · Toutes marques · Paiement sur place</div>
+      <div class="site">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C7D3E4" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20z"/></svg>
+        adfr-depannage.fr
+      </div>
+    </div>
+  </div>
+</body>
+</html>

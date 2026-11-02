@@ -189,3 +189,11 @@ Brief client en 10 points, execute et verifie (testing agent iteration_6: 100%):
 - Fait (Hero.tsx, framer-motion pur, texte toujours dans le DOM = SEO safe): badge en blur-in; lignes du titre glissent avec rotation 3deg + scale 0.96; rayon de lumiere (sweep) traverse le titre une fois (delay 0.6s); ligne rouge EN 20 MINUTES pulse dun halo rouge (textShadow keyframes delay 0.95s); barre rouge de 1.5px se dessine sous le titre (scaleX, delay 1.0s); sous-titre blur-in (0.75s); boutons ressort spring pop (0.95s); badges fade-up (1.1s). Total ~1.7s.
 - Verifie: desktop + mobile, etat final correct (titre visible, barre rouge presente, pas d overflow, pas de decalage).
 - Deploiement lance.
+
+
+## Support 2026-11-02 (17) - Conseil Google Ads (session sans code) + Flyer digital
+- Session conseil Google Ads pour le client (non-technique, FR): structure campagne (campagne Recherche "adfr 2" 15->10 EUR/j; PMax "Dépannage Auto 24/24" mise en veille), 24 groupes d annonces par ville + groupe urgence, correspondance Expression, exclusions (prix/emploi/assurance/vente/bricolage...), ajustement enchères mobile +30%, extension appel 0185800061, liens annexes villes, modèle titres/descriptions fournis pour 53 zones.
+- Aide GSC: pas d indexation manuelle des 53 pages nécessaire (sitemap complet vérifié, 53 URLs); demande d indexation manuelle seulement accueil + villes prioritaires; vérification annonceur "en cours" n empêche pas la diffusion.
+- Corrections conseillées dans son compte Ads: supprimer "combien coute un remorquage de voiture", passer "dépannage auto" et "voiture en panne" en Expression, URL finale accueil correcte (chemin d affichage cosmétique seulement).
+- Créé: flyer digital 1080x1080 (WhatsApp/réseaux) — /app/frontend/public/flyer.html (source) + /app/frontend/public/flyer-adfr.png (image), couleurs bleu nuit/rouge, logo, promesse 20 min, services, 53 zones IDF, tel 01 85 80 00 61 + WhatsApp 06 52 66 47 49. Vérifié par capture (1080x1080, pas d overflow). Sera livré sur adfr-depannage.fr/flyer-adfr.png au prochain deploy.
+- Données Ads client au 1er nov: 336 impressions, 6 clics, CTR 1,79%, ~2,40 EUR/clic, 0 appel encore (apprentissage, échantillon faible). Prochain jalon: termes de recherche à filtrer ensemble.
