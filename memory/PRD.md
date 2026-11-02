@@ -208,3 +208,9 @@ Brief client en 10 points, execute et verifie (testing agent iteration_6: 100%):
 - Client base a Saint-Mande (94) et Villemomble (93). Liste villes Zone 1/Zone 2 fournie.
 - Fait: 8 nouvelles pages villes (slug -> /depannage-<slug>): fontenay-sous-bois (94120), rosny-sous-bois (93110), gagny (93220), bondy (93140), noisy-le-sec (93130), le-raincy (93340), nogent-sur-marne (94130), neuilly-sur-marne (93330). zones.ts (+8 entrees avec lat/lng, spots, axes, voisins) ; zoneContent.ts (+8 textes uniques + FAQ locale) ; voisins de saint-mande/vincennes/montreuil/villemomble mis a jour pour le maillage ; sitemap.xml 61 URLs. Prerender automatique (regex slug dans prerender.mjs) => 61 routes au prochain build/deploy.
 - Total site: 61 pages SEO (8 dept + 53 villes/arrondissements hors Paris... = 8 dept + 20 arr. Paris + 33 villes).
+
+## Feature 2026-11-02 (20) - Compteur clics Appel / WhatsApp / Formulaire par jour (admin)
+- Backend: GET /api/track/stats?days=7|14|30 (auth admin, cookie) -> rows par jour (fuseau Europe/Paris) {date, call, whatsapp, form, total} + totals. Agrege db.track_events (event in call/whatsapp/form).
+- Frontend: /app/frontend/src/components/ClicksStats.tsx (3 totaux + tableau par jour + barres), monte dans AdminPage sous les stats rappels, selecteur 7/14/30 j, rafraichi par le bouton refresh. data-testid: clicks-stats, clicks-range-7/14/30, clicks-total-call/whatsapp/form, clicks-table, clicks-row-<date>.
+- But client: comparer les clics factures Google Ads aux clics Appel/WhatsApp reels du site.
+- Teste: curl (401 sans auth, 200 avec cookie, buckets corrects) + capture admin. Deploiement lance ensuite (8 pages villes + compteur).

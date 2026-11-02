@@ -1,5 +1,6 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { CheckCircle2, Clock3, Lock, LogOut, PhoneCall, RefreshCw } from "lucide-react";
+import { ClicksStats } from "@/components/ClicksStats";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 const URGENT_MIN = 30;
@@ -46,6 +47,7 @@ export default function AdminPage() {
     const [rows, setRows] = useState<CallbackRow[]>([]);
     const [scope, setScope] = useState<"today" | "all">("today");
     const [loading, setLoading] = useState(false);
+    const [refreshKey, setRefreshKey] = useState(0);
 
     useEffect(() => {
         document.title = "Suivi des demandes — ADFR";
@@ -163,7 +165,7 @@ export default function AdminPage() {
                         <div className="flex flex-wrap items-center justify-between gap-3">
                             <h1 className="font-display text-2xl md:text-3xl font-extrabold text-white">Demandes de rappel</h1>
                             <div className="flex items-center gap-2">
-                                <button onClick={() => load(scope)} data-testid="admin-refresh" className="grid place-items-center size-10 rounded-full border border-adfr-chrome/25 text-slate-300 hover:text-white hover:border-white transition-colors" aria-label="Rafraîchir">
+                                <button onClick={() => { load(scope); setRefreshKey((k) => k + 1); }} data-testid="admin-refresh" className="grid place-items-center size-10 rounded-full border border-adfr-chrome/25 text-slate-300 hover:text-white hover:border-white transition-colors" aria-label="Rafraîchir">
                                     <RefreshCw className={`size-4 ${loading ? "animate-spin" : ""}`} />
                                 </button>
                                 <button onClick={logout} data-testid="admin-logout" className="inline-flex items-center gap-2 rounded-full border border-adfr-chrome/25 px-4 py-2 text-sm font-semibold text-slate-300 hover:text-white hover:border-white transition-colors">
@@ -186,6 +188,8 @@ export default function AdminPage() {
                                 <p className="text-xs text-slate-400 mt-1">En retard (+{URGENT_MIN} min)</p>
                             </div>
                         </div>
+
+                        <ClicksStats refreshKey={refreshKey} />
 
                         <div className="mt-6 flex gap-2" data-testid="admin-scope-toggle">
                             {(["today", "all"] as const).map((s) => (

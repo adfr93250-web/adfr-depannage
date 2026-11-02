@@ -287,6 +287,28 @@ async def list_callbacks(scope: str = "today", _: str = Depends(get_current_admi
     return {"count": len(docs), "callbacks": [callback_out(d) for d in docs]}
 
 
+@api_router.get("/track/stats")
+async def track_stats(days: int = 14, _: str = Depends(get_current_admin)):
+    days = max(1, min(days, 90))
+    today_paris = datetime.now(PARIS_TZ).date()
+    first_day = today_paris - timedelta(days=days - 1)
+    start_iso = datetime.combine(first_day, datetime.min.time(), tzinfo=PARIS_TZ).astimezone(timezone.utc).isoformat()
+    events = await db.track_events.find({"created_at": {"$gte": start_iso}}, {"_id": 0, "event": 1, "created_at": 1}).to_list(50000)
+
+    buckets = {(first_day + timedelta(days=i)).isoformat(): {"call": 0, "whatsapp": 0, "form": 0} for i in range(days)}
+    for e in events:
+        try:
+            day = datetime.fromisoformat(e["created_at"]).astimezone(PARIS_TZ).date().isoformat()
+        except (KeyError, ValueError):
+            continue
+        if day in buckets and e.get("event") in buckets[day]:
+            buckets[day][e["event"]] += 1
+
+    rows = [{"date": d, **c, "total": sum(c.values())} for d, c in sorted(buckets.items(), reverse=True)]
+    totals = {k: sum(r[k] for r in rows) for k in ("call", "whatsapp", "form", "total")}
+    return {"days": days, "rows": rows, "totals": totals}
+
+
 @api_router.patch("/callbacks/{callback_id}")
 async def update_callback(callback_id: str, body: CallbackUpdate, _: str = Depends(get_current_admin)):
     try:
