@@ -197,3 +197,8 @@ Brief client en 10 points, execute et verifie (testing agent iteration_6: 100%):
 - Corrections conseillées dans son compte Ads: supprimer "combien coute un remorquage de voiture", passer "dépannage auto" et "voiture en panne" en Expression, URL finale accueil correcte (chemin d affichage cosmétique seulement).
 - Créé: flyer digital 1080x1080 (WhatsApp/réseaux) — /app/frontend/public/flyer.html (source) + /app/frontend/public/flyer-adfr.png (image), couleurs bleu nuit/rouge, logo, promesse 20 min, services, 53 zones IDF, tel 01 85 80 00 61 + WhatsApp 06 52 66 47 49. Vérifié par capture (1080x1080, pas d overflow). Sera livré sur adfr-depannage.fr/flyer-adfr.png au prochain deploy.
 - Données Ads client au 1er nov: 336 impressions, 6 clics, CTR 1,79%, ~2,40 EUR/clic, 0 appel encore (apprentissage, échantillon faible). Prochain jalon: termes de recherche à filtrer ensemble.
+
+## Feature 2026-11-02 (18) - Flyer Story 1080x1920 + logo visible
+- Client: version verticale 1080x1920 du flyer pour statuts WhatsApp/stories Instagram + logo plus visible.
+- Cree: /app/frontend/public/flyer-story.html (source) + /app/frontend/public/flyer-story.png (image finale). Logo sur pastille blanche sur les 2 flyers (flyer.html + flyer-story.html). Verifie captures 1080x1920 et 1080x1080: pas d overflow, tout lisible.
+- Liens publics: /flyer-adfr.png (carre) et /flyer-story.png (story), HTTP 200. Livres sur adfr-depannage.fr au prochain deploy.
