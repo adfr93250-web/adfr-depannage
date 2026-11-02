@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { DEPARTMENTS, PARIS_ARR, CITIES, zoneUrl } from "@/data/zones";
+import { SITE } from "@/data/site";
 
 const HEX: Record<string, { x: number; y: number; r: number }> = {
     "95": { x: 310, y: 108, r: 66 },
@@ -36,7 +37,7 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export default function ZonesMap() {
     return (
-        <section id="zones" className="relative py-20 md:py-28 bg-[#070E1C] border-y border-adfr-chrome/10">
+        <section id="zones" className="relative py-20 md:py-28 bg-adfr-night2 border-y border-adfr-chrome/10">
             <div className="mx-auto max-w-7xl px-4 md:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.94 }}
@@ -45,7 +46,7 @@ export default function ZonesMap() {
                     transition={{ duration: 0.8, ease: EASE }}
                     data-testid="zones-map"
                 >
-                    <svg viewBox="0 0 640 560" className="w-full h-auto" role="img" aria-label="Carte des zones d'intervention ADFR en Île-de-France">
+                    <svg viewBox="0 0 640 560" className="w-full h-auto" role="img" aria-label={`Carte des zones d'intervention ${SITE.name} en Île-de-France`}>
                         <circle cx="378" cy="252" r="86" fill="none" stroke="rgba(201,205,212,0.3)" strokeWidth="1.5" strokeDasharray="5 7" />
                         {DEPARTMENTS.map((d) => {
                             const h = HEX[d.slug];
@@ -55,7 +56,7 @@ export default function ZonesMap() {
                                     <polygon
                                         points={hexPoints(h.x, h.y, h.r)}
                                         className={paris ? "paris-fill" : "dep-fill"}
-                                        fill={paris ? "#B50612" : "#0D2657"}
+                                        fill={paris ? "rgb(var(--c-red-dark))" : "rgb(var(--c-deep2))"}
                                         stroke="rgba(201,205,212,0.28)"
                                         strokeWidth="1.5"
                                     />
@@ -76,7 +77,7 @@ export default function ZonesMap() {
                     <p className="text-xs font-bold uppercase tracking-[0.24em] text-adfr-red mb-3">Zones d'intervention</p>
                     <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Toute l'Île-de-France. Un seul numéro.</h2>
                     <p className="mt-4 text-slate-400 leading-relaxed">
-                        Huit départements, des centaines de communes : où que votre panne tombe, un dépanneur ADFR part immédiatement. Cliquez sur votre département ou votre ville.
+                        Huit départements, des centaines de communes : où que votre panne tombe, un dépanneur {SITE.name} part immédiatement. Cliquez sur votre département ou votre ville.
                     </p>
                     <ul className="mt-8 grid sm:grid-cols-2 gap-3">
                         {DEPARTMENTS.map((d) => (
@@ -106,7 +107,7 @@ export default function ZonesMap() {
                                 {c.name}
                             </Link>
                         ))}
-                        <span className="rounded-full border border-adfr-red/40 bg-adfr-red/10 px-3.5 py-1.5 text-xs font-bold text-[#FF6B75]">
+                        <span className="rounded-full border border-adfr-red/40 bg-adfr-red/10 px-3.5 py-1.5 text-xs font-bold text-adfr-redLight">
                             + Paris {PARIS_ARR.length} arrondissements
                         </span>
                     </div>

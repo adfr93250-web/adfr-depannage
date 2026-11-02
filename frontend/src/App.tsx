@@ -9,6 +9,7 @@ import Home from "@/pages/Home";
 import ZonePage from "@/pages/ZonePage";
 import AdminPage from "@/pages/AdminPage";
 import NotFound from "@/pages/NotFound";
+import { SITE } from "@/data/site";
 
 class ErrorBoundary extends Component<{ children: ReactNode }, { error: boolean }> {
     state = { error: false };
@@ -21,13 +22,13 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { error: boolean 
                 <div className="min-h-screen grid place-items-center bg-adfr-night text-center px-6">
                     <div>
                         <p className="font-display text-3xl font-black text-white mb-3">Un souci d'affichage</p>
-                        <p className="text-slate-400 mb-8">Votre urgence n'attend pas : appelez directement le 01 85 80 00 61.</p>
+                        <p className="text-slate-400 mb-8">Votre urgence n'attend pas : appelez directement le {SITE.phoneDisplay}.</p>
                         <a
-                            href="tel:+33185800061"
+                            href={SITE.phoneHref}
                             data-testid="error-call-button"
                             className="inline-flex items-center gap-3 bg-adfr-red text-white font-display font-extrabold uppercase tracking-wide rounded-full px-8 py-4"
                         >
-                            Appeler le 01 85 80 00 61
+                            Appeler le {SITE.phoneDisplay}
                         </a>
                     </div>
                 </div>

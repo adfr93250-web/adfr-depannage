@@ -10,7 +10,8 @@ import { CallButton, WhatsAppButton } from "@/components/CTAButtons";
 import NotFound from "@/pages/NotFound";
 import { getZone, zoneUrl, citiesOfDept, deptOf, type Zone } from "@/data/zones";
 import { LOCAL_CONTENT } from "@/data/zoneContent";
-import { faqZone, interventions } from "@/data/site";
+import { brandText, BRAND } from "@/data/brand";
+import { faqZone, interventions, SITE } from "@/data/site";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -50,7 +51,7 @@ function LocalHero({ zone }: { zone: Zone }) {
                 </h1>
 
                 <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE, delay: 0.25 }} className="mt-6 max-w-2xl text-base md:text-lg leading-relaxed text-slate-300">
-                    {zone.intro} Intervention rapide, paiement sur place.
+                    {brandText(zone.intro)} Intervention rapide, paiement sur place.
                 </motion.p>
 
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE, delay: 0.4 }} className="mt-8 flex flex-col sm:flex-row gap-3">
@@ -134,7 +135,7 @@ function RelatedZones({ zone }: { zone: Zone }) {
     const dept = deptOf(zone.dept);
 
     return (
-        <section className="relative py-16 md:py-20 bg-[#070E1C] border-y border-adfr-chrome/10" data-testid="zone-related">
+        <section className="relative py-16 md:py-20 bg-adfr-night2 border-y border-adfr-chrome/10" data-testid="zone-related">
             <div className="mx-auto max-w-7xl px-4 md:px-8">
                 <p className="text-xs font-bold uppercase tracking-[0.24em] text-adfr-red mb-3">Zones voisines</p>
                 <h2 className="font-display text-2xl md:text-3xl font-extrabold tracking-tight text-white">
@@ -148,7 +149,7 @@ function RelatedZones({ zone }: { zone: Zone }) {
                             className="group rounded-2xl border border-adfr-red/40 bg-adfr-red/10 p-5 transition-colors hover:bg-adfr-red/20"
                         >
                             <span className="font-display text-3xl font-black text-white">{dept.slug}</span>
-                            <p className="mt-1 text-sm font-semibold text-[#FF6B75]">{dept.name}</p>
+                            <p className="mt-1 text-sm font-semibold text-adfr-redLight">{dept.name}</p>
                             <p className="mt-0.5 text-xs text-slate-500">Tout le département</p>
                         </Link>
                     )}
@@ -182,9 +183,9 @@ export default function ZonePage() {
     const extra = LOCAL_CONTENT[zone.slug];
     const faqs = extra ? [...faqZone(zone.name), extra.faq4] : faqZone(zone.name);
     const title = isDept
-        ? `Dépannage ${zone.deptIn} 24/7 — ADFR Remorquage`
-        : `Dépannage à ${zone.name} 24/7 — ADFR Remorquage`;
-    const description = `Panne ${isDept ? zone.deptIn : `à ${zone.name}`} ? ADFR intervient 24h/24, 7j/7, en moyenne en 20 minutes. ${zone.cp ? `${zone.cp} — ` : ""}Appelez le 01 85 80 00 61 : intervention rapide, paiement sur place.`;
+        ? `Dépannage ${zone.deptIn} 24/7 — ${SITE.name}`
+        : `Dépannage à ${zone.name} 24/7 — ${SITE.name}`;
+    const description = `Panne ${isDept ? zone.deptIn : `à ${zone.name}`} ? ${SITE.name} intervient 24h/24, 7j/7, en moyenne en 20 minutes. ${zone.cp ? `${zone.cp} — ` : ""}Appelez le ${SITE.phoneDisplay} : intervention rapide, paiement sur place.`;
 
     return (
         <>
@@ -198,7 +199,7 @@ export default function ZonePage() {
             />
             <RelatedZones zone={zone} />
             <Faq items={faqs} title={isDept ? `Questions fréquentes ${zone.deptIn}` : `Questions fréquentes à ${zone.name}`} />
-            <CallbackForm defaultLieu={zone.name} />
+            {BRAND.showCallbackForm && <CallbackForm defaultLieu={zone.name} />}
             <PositionSection />
         </>
     );

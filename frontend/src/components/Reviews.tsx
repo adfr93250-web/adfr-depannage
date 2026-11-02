@@ -6,7 +6,7 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export default function Reviews() {
     return (
-        <section id="avis" className="relative py-20 md:py-28 bg-[#070E1C] border-y border-adfr-chrome/10">
+        <section id="avis" className="relative py-20 md:py-28 bg-adfr-night2 border-y border-adfr-chrome/10">
             <div className="mx-auto max-w-7xl px-4 md:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 24 }}

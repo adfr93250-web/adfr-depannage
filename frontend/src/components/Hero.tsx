@@ -2,10 +2,11 @@ import { useRef, type MouseEvent } from "react";
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
 import { ShieldCheck, BadgeCheck, Clock3 } from "lucide-react";
 import { SITE } from "@/data/site";
+import { BRAND } from "@/data/brand";
 import { CallButton, WhatsAppButton } from "@/components/CTAButtons";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
-const LINES = ["Une panne ?", "On arrive", "en 20 minutes."];
+const LINES = BRAND.heroLines;
 
 export default function Hero() {
     const ref = useRef<HTMLElement>(null);
@@ -61,7 +62,7 @@ export default function Hero() {
                                         rotate: 0,
                                         scale: 1,
                                         ...(i === 2
-                                            ? { textShadow: ["0 0 0px rgba(227,6,19,0)", "0 0 34px rgba(227,6,19,0.85)", "0 0 0px rgba(227,6,19,0)"] }
+                                            ? { textShadow: ["0 0 0px rgba(var(--c-red-c),0)", "0 0 34px rgba(var(--c-red-c),0.85)", "0 0 0px rgba(var(--c-red-c),0)"] }
                                             : {}),
                                     }}
                                     transition={{
@@ -98,7 +99,7 @@ export default function Hero() {
                         transition={{ duration: 0.7, ease: EASE, delay: 0.75 }}
                         className="mt-6 max-w-xl text-base md:text-lg leading-relaxed text-slate-300"
                     >
-                        Intervention en 20 minutes partout en Île-de-France. Dépannage sur place ou remorquage toutes marques, de jour comme de nuit, week-ends et jours fériés.
+                        {BRAND.heroText}
                     </motion.p>
 
                     <motion.div
@@ -130,7 +131,7 @@ export default function Hero() {
                 </div>
 
                 <motion.div style={{ y: yImg }} initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.9, ease: EASE, delay: 0.3 }} className="relative">
-                    <div className="absolute -inset-8 bg-[radial-gradient(circle_at_60%_40%,rgba(30,79,214,0.25),transparent_65%)]" />
+                    <div className="absolute -inset-8 bg-[radial-gradient(circle_at_60%_40%,rgba(var(--c-electric-c),0.25),transparent_65%)]" />
                     <motion.div
                         ref={frameRef}
                         onMouseMove={onMove}
@@ -141,9 +142,9 @@ export default function Hero() {
                     >
                         <img
                             src={SITE.truck}
-                            srcSet="/img/depanneuse-800.webp 800w, /img/depanneuse.webp 1600w"
+                            srcSet={BRAND.truckSrcSet}
                             sizes="(max-width: 1024px) 100vw, 45vw"
-                            alt="La dépanneuse ADFR en intervention dans les rues d'Île-de-France"
+                            alt={`La dépanneuse ${SITE.name} en intervention dans les rues d'Île-de-France`}
                             className="h-[420px] md:h-[540px] w-full object-cover"
                             fetchPriority="high"
                         />

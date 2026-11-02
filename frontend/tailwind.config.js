@@ -12,12 +12,17 @@ module.exports = {
       },
       colors: {
         adfr: {
-          night: '#050B14',
-          deep: '#0A1E4C',
-          deep2: '#0D2657',
-          electric: '#1E4FD6',
-          red: '#E30613',
-          chrome: '#C9CDD4',
+          night: 'rgb(var(--c-night) / <alpha-value>)',
+          night2: 'rgb(var(--c-night2) / <alpha-value>)',
+          deep: 'rgb(var(--c-deep) / <alpha-value>)',
+          deep2: 'rgb(var(--c-deep2) / <alpha-value>)',
+          electric: 'rgb(var(--c-electric) / <alpha-value>)',
+          electricDark: 'rgb(var(--c-electric-dark) / <alpha-value>)',
+          electricLight: 'rgb(var(--c-electric-light) / <alpha-value>)',
+          red: 'rgb(var(--c-red) / <alpha-value>)',
+          redDark: 'rgb(var(--c-red-dark) / <alpha-value>)',
+          redLight: 'rgb(var(--c-red-light) / <alpha-value>)',
+          chrome: 'rgb(var(--c-chrome) / <alpha-value>)',
           wa: '#25D366'
         },
         background: 'hsl(var(--background))',
@@ -62,8 +67,8 @@ module.exports = {
         }
       },
       fontFamily: {
-        display: ['Montserrat', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
+        display: ['var(--font-display)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif']
       },
       keyframes: {
         'accordion-down': {

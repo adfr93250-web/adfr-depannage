@@ -27,6 +27,8 @@ export default function Seo({ title, description, path, jsonLd }: SeoProps) {
         upsertMeta("property", "og:description", description);
         upsertMeta("property", "og:url", SITE.domain + path);
         upsertMeta("property", "og:image", SITE.domain + SITE.ogImage);
+        upsertMeta("property", "og:site_name", SITE.fullName);
+        upsertMeta("property", "og:image:alt", `La dépanneuse ${SITE.name} en intervention en Île-de-France`);
         upsertMeta("name", "twitter:title", title);
         upsertMeta("name", "twitter:description", description);
         upsertMeta("name", "twitter:image", SITE.domain + SITE.ogImage);
@@ -55,8 +57,8 @@ export function localBusinessLd(zone?: { name: string }) {
     return {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
-        "@id": SITE.domain + "/#adfr",
-        name: "ADFR — Auto Dépann France Remorquage",
+        "@id": SITE.domain + "/#business",
+        name: SITE.fullName,
         telephone: SITE.phoneIntl,
         url: SITE.domain,
         image: SITE.domain + SITE.ogImage,
@@ -87,7 +89,7 @@ export function websiteLd() {
     return {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        name: "ADFR — Auto Dépann France Remorquage",
+        name: SITE.fullName,
         url: SITE.domain,
     };
 }

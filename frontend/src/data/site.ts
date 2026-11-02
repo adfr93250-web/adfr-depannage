@@ -1,18 +1,19 @@
 import { Truck, Wrench, BatteryCharging, CircleDot, Fuel, Siren, KeyRound, type LucideIcon } from "lucide-react";
+import { BRAND } from "@/data/brand";
 
 export const SITE = {
-    name: "ADFR",
-    fullName: "ADFR — Auto Dépann France Remorquage",
-    phoneDisplay: "01 85 80 00 61",
-    phoneHref: "tel:+33185800061",
-    phoneIntl: "+33185800061",
-    whatsappNumber: "33652664749",
+    name: BRAND.name,
+    fullName: BRAND.fullName,
+    phoneDisplay: BRAND.phoneDisplay,
+    phoneHref: BRAND.phoneHref,
+    phoneIntl: BRAND.phoneIntl,
+    whatsappNumber: BRAND.whatsappNumber,
     whatsappBase: "Bonjour 👋, j'ai besoin d'un dépannage et je souhaiterais obtenir une intervention.\n\nPouvez vous me contacter pour que je vous explique le problème ?",
-    domain: "https://adfr-depannage.fr",
+    domain: BRAND.domain,
     area: "Île-de-France",
-    truck: "/img/depanneuse.webp",
-    logo: "/img/logo-adfr.png",
-    ogImage: "/img/og-cover.jpg",
+    truck: BRAND.truck,
+    logo: BRAND.logo,
+    ogImage: BRAND.ogImage,
 };
 
 export function whatsappUrl(place?: string) {
@@ -71,7 +72,7 @@ export interface Review {
     text: string;
 }
 
-export const REVIEWS: Review[] = [
+const REVIEWS_ADFR: Review[] = [
     {
         name: "Karim B.",
         city: "Vitry-sur-Seine",
@@ -109,6 +110,47 @@ export const REVIEWS: Review[] = [
         text: "Service 24/7 vérifié : appel à 3h du matin après une panne sur l'A14, dépanneur là à 3h20. On n'est jamais mieux servi qu'en pleine nuit.",
     },
 ];
+
+const REVIEWS_SOS: Review[] = [
+    {
+        name: "Yacine R.",
+        city: "Rosny-sous-Bois",
+        stars: 5,
+        text: "Voiture morte sur le parking de Rosny 2 un samedi. J'ai appelé, la dépanneuse était là 18 minutes plus tard. Prix annoncé au téléphone, respecté sur place.",
+    },
+    {
+        name: "Claire V.",
+        city: "Vincennes",
+        stars: 5,
+        text: "Batterie à plat devant l'école à 8h30. Le dépanneur a redémarré la voiture en 10 minutes, j'ai pu déposer les enfants presque à l'heure. Merci !",
+    },
+    {
+        name: "Thomas L.",
+        city: "Nogent-sur-Marne",
+        stars: 5,
+        text: "Panne sur l'A4 au pont de Nogent en pleine heure de pointe, stress total. Ils m'ont guidé pour me mettre en sécurité et sont arrivés très vite. Remorquage jusqu'à mon garage.",
+    },
+    {
+        name: "Fatou D.",
+        city: "Bondy",
+        stars: 4,
+        text: "Crevaison sur la N3, pas de roue de secours. Remorquage rapide vers un pneumaticien ouvert. Un peu plus de 20 minutes d'attente mais très pro.",
+    },
+    {
+        name: "Julien M.",
+        city: "Montreuil",
+        stars: 5,
+        text: "Panne de carburant bête à 23h. Ils m'ont apporté de quoi rejoindre la station. Simple, rapide, pas de jugement.",
+    },
+    {
+        name: "Sandrine P.",
+        city: "Paris 12e",
+        stars: 5,
+        text: "Accrochage à Bercy, voiture non roulante. Enlèvement le soir même, tout expliqué calmement. Exactement ce qu'on attend d'un service d'urgence.",
+    },
+];
+
+export const REVIEWS: Review[] = BRAND.id === "sos" ? REVIEWS_SOS : REVIEWS_ADFR;
 
 export interface FaqItem {
     q: string;
@@ -150,7 +192,7 @@ export function faqZone(name: string): FaqItem[] {
     return [
         {
             q: `Intervenez-vous vraiment 24h/24 à ${name} ?`,
-            a: `Oui. À ${name} comme partout en Île-de-France, un dépanneur ADFR peut partir vous rejoindre de jour comme de nuit, le week-end et les jours fériés.`,
+            a: `Oui. À ${name} comme partout en Île-de-France, un dépanneur ${BRAND.name} peut partir vous rejoindre de jour comme de nuit, le week-end et les jours fériés.`,
         },
         {
             q: `En combien de temps un dépanneur arrive-t-il à ${name} ?`,

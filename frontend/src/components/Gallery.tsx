@@ -7,14 +7,14 @@ import { track, gtagConversion } from "@/lib/api";
 const PHOTOS = [
     {
         src: "/img/flotte-plateau.webp",
-        alt: "La dépanneuse plateau ADFR prête à partir en intervention dans une rue d'Île-de-France",
+        alt: "La dépanneuse plateau prête à partir en intervention dans une rue d'Île-de-France",
         caption: "Plateau prêt à partir",
         span: "md:col-span-7",
         frame: "h-56 md:h-full",
     },
     {
         src: "/img/flotte-van.webp",
-        alt: "Un combi Volkswagen chargé et arrimé sur le plateau de la dépanneuse ADFR",
+        alt: "Un combi Volkswagen chargé et arrimé sur le plateau de la dépanneuse",
         caption: "Arrimage sécurisé",
         span: "md:col-span-5 md:row-span-2",
         frame: "h-96 md:h-full",
@@ -32,7 +32,7 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export default function Gallery() {
     return (
-        <section id="flotte" className="relative py-20 md:py-28 bg-[#070E1C] border-y border-adfr-chrome/10">
+        <section id="flotte" className="relative py-20 md:py-28 bg-adfr-night2 border-y border-adfr-chrome/10">
             <div className="mx-auto max-w-7xl px-4 md:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 24 }}
@@ -81,7 +81,7 @@ export default function Gallery() {
                             href={SITE.phoneHref}
                             data-testid="gallery-call-button"
                             onClick={() => { track("call", "/galerie"); gtagConversion("call"); }}
-                            className="inline-flex w-fit items-center gap-2.5 bg-adfr-red hover:bg-[#c00511] text-white font-display font-extrabold uppercase tracking-wide rounded-full px-6 py-3.5 text-sm md:text-base shadow-[0_0_24px_rgba(227,6,19,0.35)] transition-colors active:scale-[0.97]"
+                            className="inline-flex w-fit items-center gap-2.5 bg-adfr-red hover:bg-adfr-redDark text-white font-display font-extrabold uppercase tracking-wide rounded-full px-6 py-3.5 text-sm md:text-base shadow-[0_0_24px_rgba(var(--c-red-c),0.35)] transition-colors active:scale-[0.97]"
                         >
                             <PhoneCall className="size-4 animate-ring" />
                             {SITE.phoneDisplay}

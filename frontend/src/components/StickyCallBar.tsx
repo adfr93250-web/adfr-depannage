@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 export default function StickyCallBar() {
     const { pathname } = useLocation();
     return (
-        <div className="fixed bottom-0 inset-x-0 z-50 md:hidden flex pb-[env(safe-area-inset-bottom)] shadow-[0_-8px_30px_rgba(227,6,19,0.45)]" data-testid="sticky-call-bar">
+        <div className="fixed bottom-0 inset-x-0 z-50 md:hidden flex pb-[env(safe-area-inset-bottom)] shadow-[0_-8px_30px_rgba(var(--c-red-c),0.45)]" data-testid="sticky-call-bar">
             <a
                 href={SITE.phoneHref}
                 data-testid="sticky-call-button"

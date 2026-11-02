@@ -61,7 +61,7 @@ export default function CallbackForm({ defaultLieu = "" }: CallbackFormProps) {
                         href={SITE.phoneHref}
                         data-testid="form-section-call-button"
                         onClick={() => { track("call", pathname); gtagConversion("call"); }}
-                        className="mt-8 inline-flex items-center gap-3 bg-adfr-red hover:bg-[#c00511] text-white font-display font-extrabold uppercase tracking-wide rounded-full px-7 py-4 shadow-[0_0_28px_rgba(227,6,19,0.35)] transition-colors active:scale-[0.97]"
+                        className="mt-8 inline-flex items-center gap-3 bg-adfr-red hover:bg-adfr-redDark text-white font-display font-extrabold uppercase tracking-wide rounded-full px-7 py-4 shadow-[0_0_28px_rgba(var(--c-red-c),0.35)] transition-colors active:scale-[0.97]"
                     >
                         Appeler le {SITE.phoneDisplay}
                     </a>
@@ -82,7 +82,7 @@ export default function CallbackForm({ defaultLieu = "" }: CallbackFormProps) {
                             <p className="mt-3 text-sm text-slate-300 leading-relaxed max-w-sm mx-auto">
                                 Un dépanneur vous rappelle dans quelques minutes. Si c'est vraiment urgent, l'appel direct reste le plus rapide.
                             </p>
-                            <a href={SITE.phoneHref} data-testid="success-call-button" onClick={() => { track("call", pathname); gtagConversion("call"); }} className="mt-6 inline-flex items-center gap-3 bg-adfr-red text-white font-display font-extrabold uppercase tracking-wide rounded-full px-6 py-3.5 transition-colors hover:bg-[#c00511]">
+                            <a href={SITE.phoneHref} data-testid="success-call-button" onClick={() => { track("call", pathname); gtagConversion("call"); }} className="mt-6 inline-flex items-center gap-3 bg-adfr-red text-white font-display font-extrabold uppercase tracking-wide rounded-full px-6 py-3.5 transition-colors hover:bg-adfr-redDark">
                                 {SITE.phoneDisplay}
                             </a>
                         </div>
@@ -109,7 +109,7 @@ export default function CallbackForm({ defaultLieu = "" }: CallbackFormProps) {
                                 </select>
                             </div>
                             {status === "error" && (
-                                <p className="text-sm text-[#FF6B75] font-semibold" data-testid="callback-form-error">
+                                <p className="text-sm text-adfr-redLight font-semibold" data-testid="callback-form-error">
                                     L'envoi a échoué. Appelez-nous directement au {SITE.phoneDisplay}.
                                 </p>
                             )}
@@ -117,7 +117,7 @@ export default function CallbackForm({ defaultLieu = "" }: CallbackFormProps) {
                                 type="submit"
                                 disabled={status === "loading"}
                                 data-testid="callback-form-submit"
-                                className="w-full inline-flex items-center justify-center gap-3 bg-adfr-electric hover:bg-[#1a43b5] disabled:opacity-70 text-white font-display font-extrabold uppercase tracking-wide rounded-xl py-4 transition-colors active:scale-[0.98]"
+                                className="w-full inline-flex items-center justify-center gap-3 bg-adfr-electric hover:bg-adfr-electricDark disabled:opacity-70 text-white font-display font-extrabold uppercase tracking-wide rounded-xl py-4 transition-colors active:scale-[0.98]"
                             >
                                 <Send className="size-4" />
                                 {status === "loading" ? "Envoi..." : "Être rappelé maintenant"}

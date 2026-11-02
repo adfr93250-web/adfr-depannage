@@ -5,6 +5,22 @@
 @layer base {
     :root {
         color-scheme: dark;
+        /* Palette ADFR (bleu nuit / rouge urgence) — surchargée par html[data-brand="sos"] */
+        --c-night: 5 11 20;
+        --c-night2: 7 14 28;
+        --c-deep: 10 30 76;
+        --c-deep2: 13 38 87;
+        --c-electric: 30 79 214;
+        --c-electric-dark: 26 67 181;
+        --c-electric-light: 157 185 245;
+        --c-red: 227 6 19;
+        --c-red-dark: 192 5 17;
+        --c-red-light: 255 107 117;
+        --c-chrome: 201 205 212;
+        --c-red-c: 227, 6, 19;
+        --c-electric-c: 30, 79, 214;
+        --font-display: 'Montserrat';
+        --font-sans: 'Inter';
         --background: 217 55% 5%;
         --foreground: 210 30% 96%;
         --card: 221 62% 17%;
@@ -26,6 +42,94 @@
         --ring: 347 95% 46%;
         --radius: 0.75rem;
     }
+    html[data-brand="sos"] {
+        /* Palette SOS Dépannage — thème "Flamme" : noir brûlé, accents orange-rouge, rouge pour l'URGENCE */
+        --c-night: 14 5 2;
+        --c-night2: 22 8 3;
+        --c-deep: 46 16 5;
+        --c-deep2: 62 22 7;
+        --c-electric: 255 72 0;
+        --c-electric-dark: 212 58 0;
+        --c-electric-light: 255 160 110;
+        --c-red: 235 12 12;
+        --c-red-dark: 180 8 8;
+        --c-red-light: 255 120 110;
+        --c-chrome: 184 184 190;
+        --c-red-c: 235, 12, 12;
+        --c-electric-c: 255, 72, 0;
+        --font-display: 'Barlow Condensed';
+        --font-sans: 'Barlow';
+        --background: 240 5% 4%;
+        --card: 240 7% 11%;
+        --popover: 240 7% 9%;
+        --primary: 3 88% 51%;
+        --secondary: 25 100% 50%;
+        --muted: 240 6% 18%;
+        --muted-foreground: 240 5% 65%;
+        --accent: 240 6% 18%;
+        --destructive: 3 88% 51%;
+        --border: 240 5% 35%;
+        --input: 240 5% 28%;
+        --ring: 3 88% 51%;
+    }
+    /* Variantes de thème SOS (REACT_APP_THEME) — toutes pensées "urgence" ; défaut = "flamme" (bloc ci-dessus) */
+    html[data-brand="sos"][data-theme="alerte"] {
+        --c-night: 18 2 2;
+        --c-night2: 28 4 4;
+        --c-deep: 56 6 6;
+        --c-deep2: 74 8 8;
+        --c-electric: 255 48 48;
+        --c-electric-dark: 200 20 20;
+        --c-electric-light: 255 140 140;
+        --c-electric-c: 255, 48, 48;
+        --c-red: 230 0 0;
+        --c-red-dark: 170 0 0;
+        --c-red-light: 255 110 110;
+        --c-red-c: 230, 0, 0;
+        --c-chrome: 210 180 180;
+    }
+    html[data-brand="sos"][data-theme="neon"] {
+        --c-night: 6 6 6;
+        --c-night2: 12 12 12;
+        --c-deep: 24 24 24;
+        --c-deep2: 34 34 34;
+        --c-electric: 255 230 0;
+        --c-electric-dark: 214 193 0;
+        --c-electric-light: 255 244 130;
+        --c-electric-c: 255, 230, 0;
+        --c-red: 255 0 40;
+        --c-red-dark: 200 0 30;
+        --c-red-light: 255 120 150;
+        --c-red-c: 255, 0, 40;
+    }
+    html[data-brand="sos"][data-theme="gyrophare"] {
+        --c-night: 10 10 11;
+        --c-night2: 17 17 19;
+        --c-deep: 26 26 30;
+        --c-deep2: 35 35 40;
+        --c-electric: 255 106 0;
+        --c-electric-dark: 212 86 0;
+        --c-electric-light: 255 178 112;
+        --c-electric-c: 255, 106, 0;
+        --c-red: 240 30 20;
+        --c-red-dark: 196 20 12;
+        --c-red-light: 255 120 110;
+        --c-red-c: 240, 30, 20;
+    }
+    /* SOS : angles nets façon panneau routier (le premier site reste tout en arrondis) */
+    html[data-brand="sos"] .rounded-2xl,
+    html[data-brand="sos"] .rounded-3xl,
+    html[data-brand="sos"] .rounded-\[2rem\],
+    html[data-brand="sos"] .rounded-xl {
+        border-radius: 4px;
+    }
+    html[data-brand="sos"] a.rounded-full,
+    html[data-brand="sos"] button.rounded-full {
+        border-radius: 3px;
+    }
+    html[data-brand="sos"] .font-display {
+        letter-spacing: 0.01em;
+    }
     html {
         scroll-behavior: auto;
     }
@@ -38,7 +142,7 @@
         scroll-margin-top: 88px;
     }
     ::selection {
-        background: #e30613;
+        background: rgb(var(--c-red));
         color: #fff;
     }
 }
@@ -111,10 +215,10 @@ html.lenis body {
     transition: fill 0.25s ease;
 }
 .zone-hex:hover polygon.dep-fill {
-    fill: #1e4fd6;
+    fill: rgb(var(--c-electric));
 }
 .zone-hex:hover polygon.paris-fill {
-    fill: #e30613;
+    fill: rgb(var(--c-red));
 }
 
 input,
@@ -139,4 +243,23 @@ html {
     .animate-ring {
         animation: none;
     }
+}
+
+/* Bande de danger orange/noir — signature visuelle SOS Dépannage */
+.hazard {
+    background: repeating-linear-gradient(135deg, rgb(var(--c-electric)) 0 18px, rgb(var(--c-night)) 18px 36px);
+}
+
+/* SOS : le bouton d'appel principal pulse comme un gyrophare */
+@keyframes sosPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(var(--c-red-c), 0.7), 0 0 60px rgba(var(--c-red-c), 0.45); }
+    60% { box-shadow: 0 0 0 18px rgba(var(--c-red-c), 0), 0 0 80px rgba(var(--c-red-c), 0.6); }
+}
+html[data-brand="sos"] [data-testid="hero-call-button"],
+html[data-brand="sos"] [data-testid="sticky-call-button"] {
+    animation: sosPulse 1.6s ease-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+    html[data-brand="sos"] [data-testid="hero-call-button"],
+    html[data-brand="sos"] [data-testid="sticky-call-button"] { animation: none; }
 }

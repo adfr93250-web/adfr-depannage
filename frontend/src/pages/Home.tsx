@@ -1,5 +1,6 @@
 import Seo, { localBusinessLd, faqPageLd, websiteLd } from "@/components/Seo";
 import Hero from "@/components/Hero";
+import HeroSos from "@/components/HeroSos";
 import TrustMarquee from "@/components/TrustMarquee";
 import Services from "@/components/Services";
 import ZonesMap from "@/components/ZonesMap";
@@ -10,25 +11,26 @@ import Faq from "@/components/Faq";
 import CallbackForm from "@/components/CallbackForm";
 import PositionSection from "@/components/PositionSection";
 import { FAQ_HOME, SITE } from "@/data/site";
+import { BRAND } from "@/data/brand";
 
 export default function Home() {
     return (
         <>
             <Seo
-                title="ADFR — Dépannage & Remorquage Île-de-France 24/7"
+                title={`${SITE.name} — Dépannage & Remorquage Île-de-France 24/7`}
                 description={`Dépannage et remorquage 24h/24, 7j/7, partout en Île-de-France. Intervention en 20 minutes. Appelez le ${SITE.phoneDisplay} — intervention rapide, paiement sur place.`}
                 path="/"
                 jsonLd={[localBusinessLd(), websiteLd(), faqPageLd(FAQ_HOME)]}
             />
-            <Hero />
+            {BRAND.id === "sos" ? <HeroSos /> : <Hero />}
             <TrustMarquee />
             <Services />
             <ZonesMap />
-            <Process />
-            <Gallery />
+            {BRAND.showProcess && <Process />}
+            {BRAND.showGallery && <Gallery />}
             <Reviews />
             <Faq items={FAQ_HOME} />
-            <CallbackForm />
+            {BRAND.showCallbackForm && <CallbackForm />}
             <PositionSection />
         </>
     );

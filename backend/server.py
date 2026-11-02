@@ -26,12 +26,22 @@ PANNE_TYPES = {
 }
 
 
+BRAND_NAMES = {"adfr": "ADFR", "sos": "SOS Dépannage"}
+BRAND_IDS = set(BRAND_NAMES)
+
+
 class CallbackCreate(BaseModel):
     nom: str
     telephone: str
     lieu: str
     type_panne: str
     zone: str | None = None
+    source: str = "adfr"
+
+    @field_validator("source")
+    @classmethod
+    def check_source(cls, v: str) -> str:
+        return v if v in BRAND_IDS else "adfr"
 
     @field_validator("nom")
     @classmethod
@@ -68,6 +78,12 @@ class CallbackCreate(BaseModel):
 class TrackCreate(BaseModel):
     event: str
     page: str
+    source: str = "adfr"
+
+    @field_validator("source")
+    @classmethod
+    def check_source(cls, v: str) -> str:
+        return v if v in BRAND_IDS else "adfr"
 
     @field_validator("event")
     @classmethod
@@ -269,6 +285,7 @@ def callback_out(doc: dict) -> dict:
         "lieu": doc.get("lieu", ""),
         "type_panne": doc.get("type_panne", ""),
         "zone": doc.get("zone"),
+        "source": doc.get("source", "adfr"),
         "handled": bool(doc.get("handled", False)),
         "handled_at": doc.get("handled_at"),
         "created_at": doc.get("created_at"),
@@ -288,12 +305,15 @@ async def list_callbacks(scope: str = "today", _: str = Depends(get_current_admi
 
 
 @api_router.get("/track/stats")
-async def track_stats(days: int = 14, _: str = Depends(get_current_admin)):
+async def track_stats(days: int = 14, source: str | None = None, _: str = Depends(get_current_admin)):
     days = max(1, min(days, 90))
     today_paris = datetime.now(PARIS_TZ).date()
     first_day = today_paris - timedelta(days=days - 1)
     start_iso = datetime.combine(first_day, datetime.min.time(), tzinfo=PARIS_TZ).astimezone(timezone.utc).isoformat()
-    events = await db.track_events.find({"created_at": {"$gte": start_iso}}, {"_id": 0, "event": 1, "created_at": 1}).to_list(50000)
+    query: dict = {"created_at": {"$gte": start_iso}}
+    if source in BRAND_IDS:
+        query["source"] = source if source != "adfr" else {"$in": ["adfr", None]}
+    events = await db.track_events.find(query, {"_id": 0, "event": 1, "created_at": 1}).to_list(50000)
 
     buckets = {(first_day + timedelta(days=i)).isoformat(): {"call": 0, "whatsapp": 0, "form": 0} for i in range(days)}
     for e in events:
@@ -478,7 +498,7 @@ def _new_callback_email_html(doc: dict) -> str:
         f"<table role='presentation' width='100%' style='background:#f5f6f8;padding:24px'><tr><td>"
         f"<table role='presentation' width='100%' style='max-width:640px;margin:0 auto;background:#ffffff;border-radius:12px'>"
         f"<tr><td style='padding:24px;background:#E30613;border-radius:12px 12px 0 0'>"
-        f"<h1 style='margin:0;color:#ffffff;font-family:Arial,sans-serif;font-size:20px'>ADFR — Nouvelle demande de rappel</h1>"
+        f"<h1 style='margin:0;color:#ffffff;font-family:Arial,sans-serif;font-size:20px'>{BRAND_NAMES.get(doc.get('source', 'adfr'), 'ADFR')} — Nouvelle demande de rappel</h1>"
         f"</td></tr>"
         f"<tr><td style='padding:24px;font-family:Arial,sans-serif'>"
         f"<p style='color:#111;margin:0 0 16px'>Un client vient de demander un rappel — appelez-le au plus vite :</p>"
@@ -503,7 +523,7 @@ async def send_new_callback_email(doc: dict) -> None:
         return
     await send_email(
         to=ALERT_EMAIL,
-        subject=f"ADFR — Nouvelle demande de rappel : {doc.get('nom', '')}",
+        subject=f"{BRAND_NAMES.get(doc.get('source', 'adfr'), 'ADFR')} — Nouvelle demande de rappel : {doc.get('nom', '')}",
         html=_new_callback_email_html(doc),
     )
 

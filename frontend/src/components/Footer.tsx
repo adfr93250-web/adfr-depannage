@@ -1,16 +1,17 @@
 import { Link } from "react-router-dom";
 import { PhoneCall, MessageCircle, Clock3 } from "lucide-react";
 import { SITE, whatsappUrl } from "@/data/site";
+import { BRAND } from "@/data/brand";
 import { DEPARTMENTS, CITIES, PARIS_ARR, zoneUrl } from "@/data/zones";
 import { track, gtagConversion } from "@/lib/api";
 
 export default function Footer() {
     const year = new Date().getFullYear();
     return (
-        <footer className="relative bg-[#060D1F] border-t border-adfr-chrome/15 pb-28 md:pb-10">
+        <footer className="relative bg-adfr-night2 border-t border-adfr-chrome/15 pb-28 md:pb-10">
             <div className="mx-auto max-w-7xl px-4 md:px-8 pt-14 md:pt-20 grid gap-12 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1.2fr_1fr]">
                 <div>
-                    <img src={SITE.logo} alt="ADFR — Auto Dépann France Remorquage" loading="lazy" className="h-14 w-auto rounded-lg bg-white px-2.5 py-1.5" />
+                    <img src={SITE.logo} alt={SITE.fullName} loading="lazy" className="h-14 w-auto rounded-lg bg-white px-2.5 py-1.5" />
                     <p className="mt-5 text-sm leading-relaxed text-slate-400 max-w-xs">
                         Dépannage et remorquage toutes marques, 24h/24 et 7j/7, partout en Île-de-France. Intervention rapide, paiement sur place.
                     </p>
@@ -19,7 +20,7 @@ export default function Footer() {
                             href={SITE.phoneHref}
                             data-testid="footer-call-button"
                             onClick={() => { track("call", "/footer"); gtagConversion("call"); }}
-                            className="inline-flex w-fit items-center gap-3 bg-adfr-red text-white font-display font-extrabold uppercase tracking-wide rounded-full px-6 py-3 shadow-[0_0_24px_rgba(227,6,19,0.3)] transition-colors hover:bg-[#c00511]"
+                            className="inline-flex w-fit items-center gap-3 bg-adfr-red text-white font-display font-extrabold uppercase tracking-wide rounded-full px-6 py-3 shadow-[0_0_24px_rgba(var(--c-red-c),0.3)] transition-colors hover:bg-adfr-redDark"
                         >
                             <PhoneCall className="size-4 animate-ring" />
                             {SITE.phoneDisplay}
@@ -92,7 +93,7 @@ export default function Footer() {
             </div>
             <div className="mx-auto max-w-7xl px-4 md:px-8 mt-12 pt-6 border-t border-adfr-chrome/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-2 text-xs text-slate-500">
                 <p>
-                    © {year} ADFR — Auto Dépann France Remorquage. Toute l'Île-de-France.
+                    © {year} {BRAND.legalLine}
                 </p>
                 <p>Dépannage · Remorquage · Batterie · Crevaison · Carburant · Fourrière</p>
             </div>

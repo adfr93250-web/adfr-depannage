@@ -11,6 +11,7 @@ interface CallbackRow {
     telephone: string;
     lieu: string;
     type_panne: string;
+    source?: string;
     handled: boolean;
     created_at: string;
 }
@@ -50,7 +51,7 @@ export default function AdminPage() {
     const [refreshKey, setRefreshKey] = useState(0);
 
     useEffect(() => {
-        document.title = "Suivi des demandes — ADFR";
+        document.title = "Suivi des demandes — Espace dépanneur";
         const robots = document.head.querySelector('meta[name="robots"]');
         if (robots) robots.setAttribute("content", "noindex, nofollow");
     }, []);
@@ -137,7 +138,7 @@ export default function AdminPage() {
     return (
         <section className="relative min-h-[80vh] pt-10 pb-24 px-4 md:px-8">
             <div className="mx-auto max-w-4xl">
-                <p className="text-xs font-bold uppercase tracking-[0.24em] text-adfr-red mb-2">Espace ADFR — interne</p>
+                <p className="text-xs font-bold uppercase tracking-[0.24em] text-adfr-red mb-2">Espace dépanneur — interne</p>
                 {checking ? (
                     <p className="text-slate-400" data-testid="admin-loading">Vérification de la session...</p>
                 ) : !authed ? (
@@ -154,8 +155,8 @@ export default function AdminPage() {
                                 <label htmlFor="ad-pass" className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Mot de passe</label>
                                 <input id="ad-pass" data-testid="admin-login-password" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} className="w-full bg-adfr-night/80 border border-adfr-chrome/25 rounded-xl px-4 py-3.5 text-white focus:border-adfr-electric focus:outline-none focus:ring-2 focus:ring-adfr-electric/40" />
                             </div>
-                            {loginError && <p className="text-sm text-[#FF6B75] font-semibold" data-testid="admin-login-error">{loginError}</p>}
-                            <button type="submit" data-testid="admin-login-submit" className="w-full bg-adfr-electric hover:bg-[#1a43b5] text-white font-display font-extrabold uppercase tracking-wide rounded-xl py-4 transition-colors">
+                            {loginError && <p className="text-sm text-adfr-redLight font-semibold" data-testid="admin-login-error">{loginError}</p>}
+                            <button type="submit" data-testid="admin-login-submit" className="w-full bg-adfr-electric hover:bg-adfr-electricDark text-white font-display font-extrabold uppercase tracking-wide rounded-xl py-4 transition-colors">
                                 Voir les demandes
                             </button>
                         </form>
@@ -184,7 +185,7 @@ export default function AdminPage() {
                                 <p className="text-xs text-slate-400 mt-1">Non traitées</p>
                             </div>
                             <div className={`rounded-2xl border p-4 ${urgent.length > 0 ? "border-adfr-red/60 bg-adfr-red/10" : "border-adfr-chrome/15 bg-adfr-deep2/40"}`}>
-                                <p className={`font-display text-3xl font-black ${urgent.length > 0 ? "text-[#FF6B75]" : "text-white"}`} data-testid="admin-stat-urgent">{urgent.length}</p>
+                                <p className={`font-display text-3xl font-black ${urgent.length > 0 ? "text-adfr-redLight" : "text-white"}`} data-testid="admin-stat-urgent">{urgent.length}</p>
                                 <p className="text-xs text-slate-400 mt-1">En retard (+{URGENT_MIN} min)</p>
                             </div>
                         </div>
@@ -210,16 +211,19 @@ export default function AdminPage() {
                                         <div>
                                             <div className="flex flex-wrap items-center gap-2.5">
                                                 <span className="font-display font-bold text-white">{r.nom}</span>
+                                                <span className={`rounded-md px-2 py-0.5 text-[10px] font-black uppercase tracking-widest border ${r.source === "sos" ? "bg-orange-500/20 text-orange-300 border-orange-500/40" : "bg-white/5 text-slate-400 border-white/10"}`} data-testid={`callback-source-${r.id}`}>
+                                                    {r.source === "sos" ? "SOS" : "ADFR"}
+                                                </span>
                                                 {r.handled ? (
                                                     <span className="inline-flex items-center gap-1 rounded-full bg-adfr-wa/15 border border-adfr-wa/40 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-adfr-wa" data-testid="callback-badge-done">
                                                         <CheckCircle2 className="size-3" /> Traité
                                                     </span>
                                                 ) : late ? (
-                                                    <span className="inline-flex items-center gap-1 rounded-full bg-adfr-red/20 border border-adfr-red/50 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#FF6B75]" data-testid="callback-badge-late">
+                                                    <span className="inline-flex items-center gap-1 rounded-full bg-adfr-red/20 border border-adfr-red/50 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-adfr-redLight" data-testid="callback-badge-late">
                                                         <Clock3 className="size-3" /> Non traité — {timeAgo(r.created_at)}
                                                     </span>
                                                 ) : (
-                                                    <span className="rounded-full bg-adfr-electric/15 border border-adfr-electric/40 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#9DB9F5]" data-testid="callback-badge-new">
+                                                    <span className="rounded-full bg-adfr-electric/15 border border-adfr-electric/40 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-adfr-electricLight" data-testid="callback-badge-new">
                                                         Nouveau — {timeAgo(r.created_at)}
                                                     </span>
                                                 )}
@@ -228,7 +232,7 @@ export default function AdminPage() {
                                             <p className="mt-1 text-xs text-slate-500">Reçu à {hourLabel(r.created_at)} ({timeAgo(r.created_at)})</p>
                                         </div>
                                         <div className="flex items-center gap-2 shrink-0">
-                                            <a href={`tel:${r.telephone.replace(/\s/g, "")}`} data-testid={`callback-call-${r.id}`} className="inline-flex items-center gap-2 rounded-full bg-adfr-red px-4 py-2.5 text-sm font-bold text-white transition-colors hover:bg-[#c00511]">
+                                            <a href={`tel:${r.telephone.replace(/\s/g, "")}`} data-testid={`callback-call-${r.id}`} className="inline-flex items-center gap-2 rounded-full bg-adfr-red px-4 py-2.5 text-sm font-bold text-white transition-colors hover:bg-adfr-redDark">
                                                 <PhoneCall className="size-4" /> {r.telephone}
                                             </a>
                                             <button onClick={() => toggleHandled(r)} data-testid={`callback-toggle-${r.id}`} className="rounded-full border border-adfr-chrome/30 px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-white hover:border-white transition-colors">

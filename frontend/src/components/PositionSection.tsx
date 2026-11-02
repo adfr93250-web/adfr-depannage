@@ -84,7 +84,7 @@ export default function PositionSection() {
 
                     {state.kind === "error" && (
                         <>
-                            <div className="rounded-2xl border border-[#FF6B75]/40 bg-adfr-deep2/60 p-5 text-sm font-semibold text-[#FF6B75]" data-testid="position-error">
+                            <div className="rounded-2xl border border-adfr-redLight/40 bg-adfr-deep2/60 p-5 text-sm font-semibold text-adfr-redLight" data-testid="position-error">
                                 {state.message}
                             </div>
                             <a href={SITE.phoneHref} onClick={() => { track("call", pathname); gtagConversion("call"); }} data-testid="position-call-button" className={`${BTN} border border-adfr-chrome/40 bg-white/5 hover:bg-white/10 text-white font-bold`}>
@@ -96,7 +96,7 @@ export default function PositionSection() {
                     {state.kind === "found" && (
                         <>
                             <div className="rounded-2xl border border-adfr-wa/40 bg-adfr-deep2/60 p-5 font-semibold text-white" data-testid="position-status">
-                                Position trouvée. Envoyez-la à ADFR :
+                                Position trouvée. Envoyez-la à {SITE.name} :
                             </div>
                             <a
                                 href={waHref}

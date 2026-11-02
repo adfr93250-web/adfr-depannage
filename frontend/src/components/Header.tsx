@@ -38,7 +38,7 @@ export default function Header() {
         >
             <div className="mx-auto max-w-7xl px-4 md:px-8 h-16 md:h-20 flex items-center justify-between gap-4">
                 <Link to="/" data-testid="header-logo-link" className="shrink-0">
-                    <img src={SITE.logo} alt="ADFR — Auto Dépann France Remorquage" className="h-11 md:h-14 w-auto rounded-lg bg-white px-2.5 py-1" />
+                    <img src={SITE.logo} alt={SITE.fullName} className="h-11 md:h-14 w-auto rounded-lg bg-white px-2.5 py-1" />
                 </Link>
                 <nav className="hidden lg:flex items-center gap-8">
                     {LINKS.map((l) => (
@@ -57,7 +57,7 @@ export default function Header() {
                     href={SITE.phoneHref}
                     data-testid="header-call-button"
                     onClick={() => { track("call", location.pathname); gtagConversion("call"); }}
-                    className="inline-flex items-center gap-2.5 bg-adfr-red hover:bg-[#c00511] text-white font-display font-extrabold uppercase tracking-wide rounded-full px-4 md:px-6 py-2.5 md:py-3 text-sm md:text-base shadow-[0_0_24px_rgba(227,6,19,0.35)] transition-colors active:scale-[0.97]"
+                    className="inline-flex items-center gap-2.5 bg-adfr-red hover:bg-adfr-redDark text-white font-display font-extrabold uppercase tracking-wide rounded-full px-4 md:px-6 py-2.5 md:py-3 text-sm md:text-base shadow-[0_0_24px_rgba(var(--c-red-c),0.35)] transition-colors active:scale-[0.97]"
                 >
                     <Phone className="size-4 md:size-5 animate-ring" />
                     <span className="hidden sm:inline">{SITE.phoneDisplay}</span>

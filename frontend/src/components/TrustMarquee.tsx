@@ -22,7 +22,7 @@ function Track() {
 
 export default function TrustMarquee() {
     return (
-        <section className="marquee relative overflow-hidden border-y border-adfr-chrome/15 bg-[#070E1C] py-5" data-testid="trust-marquee" aria-label="Nos engagements">
+        <section className="marquee relative overflow-hidden border-y border-adfr-chrome/15 bg-adfr-night2 py-5" data-testid="trust-marquee" aria-label="Nos engagements">
             <div className="flex w-max animate-marquee">
                 <Track />
                 <div aria-hidden="true" className="flex">

@@ -10,7 +10,7 @@ interface CtaProps {
 }
 
 export const CALL_BTN =
-    "inline-flex items-center justify-center gap-3 bg-adfr-red hover:bg-[#c00511] text-white font-display font-extrabold uppercase tracking-wide rounded-full shadow-[0_0_28px_rgba(227,6,19,0.35)] transition-colors active:scale-[0.97] px-6 py-4 text-base md:text-lg";
+    "inline-flex items-center justify-center gap-3 bg-adfr-red hover:bg-adfr-redDark text-white font-display font-extrabold uppercase tracking-wide rounded-full shadow-[0_0_28px_rgba(var(--c-red-c),0.35)] transition-colors active:scale-[0.97] px-6 py-4 text-base md:text-lg";
 
 export const WA_BTN =
     "inline-flex items-center justify-center gap-3 bg-adfr-wa hover:bg-[#1eb856] text-white font-display font-bold rounded-full shadow-[0_0_24px_rgba(37,211,102,0.3)] transition-colors active:scale-[0.97] px-6 py-4 text-base md:text-lg";
@@ -20,7 +20,7 @@ export function CallButton({ where, testId, className }: CtaProps) {
     return (
         <a href={SITE.phoneHref} data-testid={testId} className={`${CALL_BTN} ${className ?? ""}`} onClick={() => { track("call", where || pathname); gtagConversion("call"); }}>
             <PhoneCall className="size-5 animate-ring shrink-0" />
-            <span>{SITE.phoneDisplay}</span>
+            <span className="whitespace-nowrap">{SITE.phoneDisplay}</span>
         </a>
     );
 }
