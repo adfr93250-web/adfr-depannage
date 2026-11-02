@@ -59,7 +59,7 @@ const SOS: Brand = {
     name: "SOS Dépannage",
     fullName: "SOS Dépannage — Dépanneuse 24h/24 Île-de-France",
     legalLine: "SOS Dépannage — Dépanneuse et remorquage 24h/24 en Île-de-France.",
-    domain: "https://sos-depannage-idf.fr",
+    domain: "https://sos-depann.fr",
     ...phoneFromDigits("0184160923"),
     whatsappNumber: "33652664749",
     logo: "/img/logo-sos.png",

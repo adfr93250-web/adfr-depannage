@@ -24,7 +24,7 @@ for (const envFile of [".env", ".env.production", ".env.local"]) {
     }
 }
 const BRAND = process.env.REACT_APP_BRAND === "sos" ? "sos" : "adfr";
-const DOMAIN = (process.env.REACT_APP_SITE_URL || (BRAND === "sos" ? "https://sos-depannage-idf.fr" : "https://adfr-depannage.fr")).replace(/\/$/, "");
+const DOMAIN = (process.env.REACT_APP_SITE_URL || (BRAND === "sos" ? "https://sos-depann.fr" : "https://adfr-depannage.fr")).replace(/\/$/, "");
 const today = new Date().toISOString().slice(0, 10);
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${ROUTES.map((r) => `  <url>\n    <loc>${DOMAIN}${r}</loc>\n    <lastmod>${today}</lastmod>\n  </url>`).join("\n")}\n</urlset>\n`;
 fs.writeFileSync(path.join(BUILD, "sitemap.xml"), sitemap);
