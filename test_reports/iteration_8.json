@@ -1,0 +1,19 @@
+{
+  "summary": "Iteration 8 — Full backend + frontend testing on ADFR brand preview. 100% pass. Backend: 8/8 pytest (/api/track + source coercion, /api/track/stats auth guard, days clamp 1..90, source filter sos vs adfr vs all, /api/callback with source=sos appearing in /api/callbacks?scope=today). Frontend ADFR: title='ADFR — Dépannage & Remorquage Île-de-France 24/7', html[data-brand]='adfr', canonical=https://adfr-depannage.fr/, body bg rgb(5,11,20), hero-call-button bg rgb(227,6,19), phone 01 85 80 00 61 present, no 'SOS Dépannage' visible text. 8 new city routes (/depannage-fontenay-sous-bois, -rosny-sous-bois, -gagny, -bondy, -noisy-le-sec, -le-raincy, -nogent-sur-marne, -neuilly-sur-marne) all return 200 with H1 containing the city name. Rosny mentions 'Rosny', Le Raincy mentions 'Thiers', both with FAQ + form. Admin: login with prefilled email + password works, clicks-stats block visible with totals (call/whatsapp/form), clicks-range-7 produces 7 rows, clicks-source-sos reduces totals (13→2 call, 12→1 wa) ≤ ALL, clicks-source-all restores. Callback cards show callback-source-<id> badges (both ADFR and SOS visible, including the TEST_SOS User created via backend). admin-refresh works without errors. Home callback form submits successfully and shows 'C'est reçu !' confirmation.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": ["/app/backend/tests/test_adfr_sources.py", "/app/test_reports/pytest/adfr_sources.xml"],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "server.py is ~550 lines, borderline on size limit; still manageable but can be split (auth / email / api) if it grows further.",
+    "track_stats source filter correctly treats legacy events without source as 'adfr' (via $in [adfr, null]) — good.",
+    "No input validation on scope query param of /api/callbacks (any value other than 'today' returns all) — minor, acceptable since behind admin cookie."
+  ],
+  "updated_files": ["/app/backend/tests/test_adfr_sources.py"],
+  "success_rate": {"backend": "100% (8/8)", "frontend": "100%"},
+  "seed_data_creation": "Backend tests created a few TEST_SOS User / TEST_HACK User callbacks and some track events (call/whatsapp with source=sos & coerced 'hack') in the preview DB — safe to keep as per request.",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Preview is REACT_APP_BRAND=adfr by default. SOS brand not tested here. Admin credentials in /app/memory/test_credentials.md. BRAND_NAMES dict in server.py bundle may contain the string 'SOS Dépannage' in JS source, but it is NOT in visible page text on ADFR brand.",
+  "rca of the issue": "N/A — no issue."
+}

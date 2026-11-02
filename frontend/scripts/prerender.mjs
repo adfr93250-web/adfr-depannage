@@ -29,7 +29,7 @@ const today = new Date().toISOString().slice(0, 10);
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${ROUTES.map((r) => `  <url>\n    <loc>${DOMAIN}${r}</loc>\n    <lastmod>${today}</lastmod>\n  </url>`).join("\n")}\n</urlset>\n`;
 fs.writeFileSync(path.join(BUILD, "sitemap.xml"), sitemap);
 const PHONE_DIGITS = (process.env.REACT_APP_PHONE || "").replace(/\D/g, "");
-const PHONE_NAT = (PHONE_DIGITS.startsWith("33") ? `0${PHONE_DIGITS.slice(2)}` : PHONE_DIGITS) || (BRAND === "sos" ? "0652664749" : "0185800061");
+const PHONE_NAT = (PHONE_DIGITS.startsWith("33") ? `0${PHONE_DIGITS.slice(2)}` : PHONE_DIGITS) || (BRAND === "sos" ? "0184160923" : "0185800061");
 const PHONE_DISPLAY = PHONE_NAT.replace(/(\d{2})(?=\d)/g, "$1 ").trim();
 const PHONE_INTL = `+33${PHONE_NAT.replace(/^0/, "")}`;
 const WA = (process.env.REACT_APP_WHATSAPP || "").replace(/\D/g, "");
