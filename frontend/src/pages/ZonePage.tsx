@@ -47,7 +47,7 @@ function LocalHero({ zone }: { zone: Zone }) {
                 </motion.div>
 
                 <h1 className="mt-6 max-w-4xl font-display text-4xl sm:text-5xl lg:text-6xl font-black uppercase leading-[0.98] tracking-tight text-white" data-testid="zone-h1">
-                    Dépannage &amp; remorquage <span className="text-adfr-red">{isDept ? zone.deptIn : `à ${zone.name}`}</span> — en 20 minutes, 24h/24.
+                    Dépannage &amp; remorquage <span className="text-adfr-red">{isDept ? zone.deptIn : `à ${zone.name}`}</span> — {BRAND.delay.long}, 24h/24.
                 </h1>
 
                 <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE, delay: 0.25 }} className="mt-6 max-w-2xl text-base md:text-lg leading-relaxed text-slate-300">
@@ -96,7 +96,7 @@ function LocalContent({ zone }: { zone: Zone }) {
                     </p>
                     {extra && (
                         <p className="mt-3 text-slate-300 leading-relaxed" data-testid="zone-unique-text">
-                            {extra.texte}
+                            {brandText(extra.texte)}
                         </p>
                     )}
                     <p className="mt-3 text-slate-400 leading-relaxed text-sm">
@@ -181,11 +181,11 @@ export default function ZonePage() {
 
     const isDept = zone.type === "dept";
     const extra = LOCAL_CONTENT[zone.slug];
-    const faqs = extra ? [...faqZone(zone.name), extra.faq4] : faqZone(zone.name);
+    const faqs = extra ? [...faqZone(zone.name), { q: brandText(extra.faq4.q), a: brandText(extra.faq4.a) }] : faqZone(zone.name);
     const title = isDept
         ? `Dépannage ${zone.deptIn} 24/7 — ${SITE.name}`
         : `Dépannage à ${zone.name} 24/7 — ${SITE.name}`;
-    const description = `Panne ${isDept ? zone.deptIn : `à ${zone.name}`} ? ${SITE.name} intervient 24h/24, 7j/7, en moyenne en 20 minutes. ${zone.cp ? `${zone.cp} — ` : ""}Appelez le ${SITE.phoneDisplay} : intervention rapide, paiement sur place.`;
+    const description = `Panne ${isDept ? zone.deptIn : `à ${zone.name}`} ? ${SITE.name} intervient 24h/24, 7j/7, en moyenne ${BRAND.delay.long}. ${zone.cp ? `${zone.cp} — ` : ""}Appelez le ${SITE.phoneDisplay} : intervention rapide, paiement sur place.`;
 
     return (
         <>

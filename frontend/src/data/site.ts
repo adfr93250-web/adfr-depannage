@@ -8,7 +8,7 @@ export const SITE = {
     phoneHref: BRAND.phoneHref,
     phoneIntl: BRAND.phoneIntl,
     whatsappNumber: BRAND.whatsappNumber,
-    whatsappBase: "Bonjour 👋, j'ai besoin d'un dépannage et je souhaiterais obtenir une intervention.\n\nPouvez vous me contacter pour que je vous explique le problème ?",
+    whatsappBase: "Bonjour 👋, j'ai besoin d'un dépannage et je souhaiterais obtenir une intervention.\n\nPouvez-vous me contacter pour que je vous explique le problème ?",
     domain: BRAND.domain,
     area: "Île-de-France",
     truck: BRAND.truck,
@@ -77,7 +77,7 @@ const REVIEWS_ADFR: Review[] = [
         name: "Karim B.",
         city: "Vitry-sur-Seine",
         stars: 5,
-        text: "Crevaison sur l'A86 à 23h. Dépanneur arrivé en 20 minutes, remorquage jusqu'à mon garage. Rapide et efficace.",
+        text: "Crevaison sur l'A86 à 23h. Dépanneur arrivé en moins de 30 minutes, remorquage jusqu'à mon garage. Rapide et efficace.",
     },
     {
         name: "Sophie M.",
@@ -157,7 +157,7 @@ export interface FaqItem {
     a: string;
 }
 
-export const FAQ_HOME: FaqItem[] = [
+const FAQ_HOME_SOS: FaqItem[] = [
     {
         q: "Combien coûte un dépannage ou un remorquage ?",
         a: "Chaque intervention est différente : le prix dépend du type de panne et de la distance. Vous ne payez qu'à la fin de l'intervention, sur place, par carte bancaire ou en espèces.",
@@ -188,6 +188,18 @@ export const FAQ_HOME: FaqItem[] = [
     },
 ];
 
+const FAQ_HOME_ADFR: FaqItem[] = [
+    { q: "Combien coûte un dépannage ou un remorquage ?", a: "Le prix dépend de la distance et du type d'intervention. Il vous est annoncé au téléphone avant le départ, sans engagement." },
+    { q: "Ma batterie est à plat : pouvez-vous redémarrer ma voiture sur place ?", a: "Oui, nous démarrons votre véhicule sur place et pouvons remplacer la batterie si nécessaire." },
+    { q: "Je suis en panne de carburant : pouvez-vous dépanner sur place ?", a: "Oui, nous vous livrons du carburant sur place." },
+    { q: "En combien de temps arrivez-vous ?", a: "En moins de 30 minutes en moyenne à Paris et en petite couronne, selon la circulation." },
+    { q: "Quelles zones couvrez-vous ?", a: "Paris et toute l'Île-de-France : 75, 77, 78, 91, 92, 93, 94, 95." },
+    { q: "Comment se passe le paiement ?", a: "Paiement sur place à la fin de l'intervention, par carte bancaire ou en espèces." },
+    { q: "Que faire en cas d'accident ?", a: `Mettez-vous en sécurité derrière la glissière avec gilet et triangle, puis appelez-nous au ${SITE.phoneDisplay}. Nous enlevons le véhicule et le remorquons vers le garage de votre choix.` },
+];
+
+export const FAQ_HOME: FaqItem[] = BRAND.id === "adfr" ? FAQ_HOME_ADFR : FAQ_HOME_SOS;
+
 export function faqZone(name: string): FaqItem[] {
     return [
         {
@@ -196,7 +208,7 @@ export function faqZone(name: string): FaqItem[] {
         },
         {
             q: `En combien de temps un dépanneur arrive-t-il à ${name} ?`,
-            a: `En moyenne en 20 à 30 minutes à ${name} et dans les communes voisines. Le délai exact vous est confirmé au téléphone selon votre position et le trafic.`,
+            a: BRAND.id === "adfr" ? `En moins de 30 minutes en moyenne à ${name} et dans les communes voisines, selon la circulation.` : `En moyenne en 20 à 30 minutes à ${name} et dans les communes voisines. Le délai exact vous est confirmé au téléphone selon votre position et le trafic.`,
         },
         {
             q: `Puis-je payer sur place à ${name} ?`,

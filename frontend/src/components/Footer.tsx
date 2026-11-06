@@ -86,8 +86,13 @@ export default function Footer() {
                             24h/24 — 7j/7, week-ends et jours fériés
                         </li>
                         <li>Paiement sur place, carte bancaire ou espèces</li>
-                        <li>Intervention en moyenne en 20 minutes en IDF</li>
-                        <li className="text-xs text-slate-500 pt-2">Mentions légales : SIRET et coordonnées complètes à compléter (documents en cours).</li>
+                        <li>Intervention en moyenne {BRAND.delay.long} en IDF</li>
+                        {BRAND.id === "adfr" && (
+                            <li className="text-xs text-slate-500 pt-2 leading-relaxed" data-testid="legal-mentions">
+                                <span className="font-bold text-slate-400">Mentions légales</span> — Éditeur : ADFR AUTO DEPANN FRANCE REMORQUAGE, SAS. Siège : 30 boulevard Carnot, 93250 Villemomble. RCS Bobigny 131 872 509. SIRET 131 872 509 00016. Téléphone : 01 85 80 00 61. Email : <a href="mailto:adfr93250@gmail.com" className="underline-offset-2 hover:underline">adfr93250@gmail.com</a>.
+                                <br />Hébergeur : Emergent Labs Inc. (plateforme Emergent — emergent.sh), adresse postale communiquée sur demande à support@emergent.sh.
+                            </li>
+                        )}
                     </ul>
                 </div>
             </div>

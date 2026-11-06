@@ -3,13 +3,13 @@ import { PhoneCall } from "lucide-react";
 import { SITE } from "@/data/site";
 import { track, gtagConversion } from "@/lib/api";
 
-// PHOTOS RÉELLES ADFR (plateau + combi arrimé) + 1 photo d'exemple batterie à remplacer
+// PHOTOS RÉELLES (plateau + combi arrimé)
 const PHOTOS = [
     {
         src: "/img/flotte-plateau.webp",
         alt: "La dépanneuse plateau prête à partir en intervention dans une rue d'Île-de-France",
         caption: "Plateau prêt à partir",
-        span: "md:col-span-7",
+        span: "md:col-span-7 md:row-span-2",
         frame: "h-56 md:h-full",
     },
     {
@@ -18,13 +18,6 @@ const PHOTOS = [
         caption: "Arrimage sécurisé",
         span: "md:col-span-5 md:row-span-2",
         frame: "h-96 md:h-full",
-    },
-    {
-        src: "https://images.unsplash.com/photo-1693718641851-fd3ac0b7af4e?q=80&w=1200&auto=format&fit=crop",
-        alt: "Démarrage d'une voiture avec câbles de batterie",
-        caption: "Batterie & démarrage",
-        span: "md:col-span-7",
-        frame: "h-56 md:h-full",
     },
 ];
 

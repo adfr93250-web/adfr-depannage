@@ -77,7 +77,7 @@ export default function ZonesMap() {
                     <p className="text-xs font-bold uppercase tracking-[0.24em] text-adfr-red mb-3">Zones d'intervention</p>
                     <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Toute l'Île-de-France. Un seul numéro.</h2>
                     <p className="mt-4 text-slate-400 leading-relaxed">
-                        Huit départements, des centaines de communes : où que votre panne tombe, un dépanneur {SITE.name} part immédiatement. Cliquez sur votre département ou votre ville.
+                        Paris et toute l'Île-de-France : où que votre panne tombe, un dépanneur {SITE.name} part immédiatement. Cliquez sur votre département ou votre ville.
                     </p>
                     <ul className="mt-8 grid sm:grid-cols-2 gap-3">
                         {DEPARTMENTS.map((d) => (

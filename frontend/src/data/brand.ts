@@ -17,6 +17,8 @@ export interface Brand {
     truckSrcSet?: string;
     heroLines: string[];
     heroText: string;
+    /** Délai annoncé : ADFR "en moins de 30 minutes", SOS "en 20 minutes" */
+    delay: { long: string; short: string };
     showGallery: boolean;
     /** Formulaire de rappel + section "comment ça marche" : SOS Dépannage = appel direct uniquement */
     showCallbackForm: boolean;
@@ -47,8 +49,9 @@ const ADFR: Brand = {
     ogImage: "/img/og-cover.jpg",
     truck: "/img/depanneuse.webp",
     truckSrcSet: "/img/depanneuse-800.webp 800w, /img/depanneuse.webp 1600w",
-    heroLines: ["Une panne ?", "On arrive", "en 20 minutes."],
-    heroText: "Intervention en 20 minutes partout en Île-de-France. Dépannage sur place ou remorquage toutes marques, de jour comme de nuit, week-ends et jours fériés.",
+    heroLines: ["Une panne ?", "On arrive", "en moins de 30 minutes."],
+    heroText: "Intervention en moins de 30 minutes partout en Île-de-France. Dépannage sur place ou remorquage toutes marques, de jour comme de nuit, week-ends et jours fériés.",
+    delay: { long: "en moins de 30 minutes", short: "moins de 30 min" },
     showGallery: true,
     showCallbackForm: true,
     showProcess: true,
@@ -68,6 +71,7 @@ const SOS: Brand = {
     truck: "/img/depanneuse-sos.jpg",
     heroLines: ["En panne ?", "Appelez.", "On arrive en 20 min."],
     heroText: "Voiture en panne, batterie à plat, accident : un dépanneur part immédiatement et vous rejoint en 20 minutes en moyenne, 24h/24, partout en Île-de-France.",
+    delay: { long: "en 20 minutes", short: "20 min" },
     showGallery: false,
     showCallbackForm: false,
     showProcess: false,
@@ -91,7 +95,11 @@ function resolveBrand(): Brand {
 
 export const BRAND: Brand = resolveBrand();
 
-/** Remplace la marque ADFR dans les textes rédigés pour la marque active. */
+/** Adapte les textes rédigés (zones) à la marque active : nom de marque et délai annoncé. */
 export function brandText(text: string): string {
-    return BRAND.id === "adfr" ? text : text.replace(/\bADFR\b/g, BRAND.name);
+    if (BRAND.id !== "adfr") return text.replace(/\bADFR\b/g, BRAND.name);
+    return text
+        .replace(/intervention moyenne en 20 minutes/g, "intervention en moins de 30 minutes en moyenne")
+        .replace(/en 20 minutes/g, "en moins de 30 minutes")
+        .replace(/20 min\b/g, "moins de 30 min");
 }

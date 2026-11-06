@@ -224,3 +224,13 @@ Brief client en 10 points, execute et verifie (testing agent iteration_6: 100%):
 - Backend : champ source ("adfr"|"sos") sur callbacks et track_events (envoye par lib/api.ts) ; callback_out renvoie source ; email alerte prefixe par la marque ; GET /api/track/stats?source=adfr|sos filtre ; admin : badge ADFR/SOS par demande + filtre Tous/ADFR/SOS dans ClicksStats.
 - Prerender (scripts/prerender.mjs) : lit .env pour REACT_APP_* ; genere build/sitemap.xml + reecrit robots.txt/llms.txt pour le domaine de la marque ; brandify() remplace les restes ADFR du index.html statique (JSON-LD, noscript, tel) pour SOS. Verifie : build SOS 61/61, titres/canonical/sitemap SOS, 0 "ADFR" dans build/index.html.
 - Deploiement SOS (a faire par le client, voir support) : dupliquer le projet -> nouveau job, secrets REACT_APP_BRAND=sos (+ REACT_APP_SITE_URL=https://sos-depann.fr (deja valeur par defaut dans brand.ts)), REACT_APP_BACKEND_URL = https://adfr-depannage.fr pour partager backend/admin (CORS a ouvrir au nouveau domaine) OU meme MONGO_URL/DB_NAME ; attacher le domaine ; nouvelle campagne Ads vers ce domaine. Preview actuel = ADFR (REACT_APP_BRAND retire de .env).
+
+## Modifs contenu ADFR 2026-11-06 (22) - NON DEPLOYEES (client veut valider avant)
+- Delai : "en 20 minutes" -> "en moins de 30 minutes" partout cote ADFR via BRAND.delay {long, short} (brand.ts) et brandText() qui reecrit les intros zones/zoneContent a l'affichage (SOS garde 20 min). H1 hero, Home description, ZonePage h2 + description (meta/OG/Twitter via Seo), Footer, TrustMarquee, Hero pills/badge "< 30 min", avis ADFR, index.html statique (meta + noscript ; prerender brandify remet "20 minutes" pour SOS).
+- FAQ : Faq.tsx rendu complet en <dl> (reponses dans le DOM, plus d'accordeon). FAQ_HOME_ADFR = 7 Q/R fournies par le client ; FAQ_HOME_SOS = ancienne liste. faqZone delai ADFR "En moins de 30 minutes en moyenne a {ville}... selon la circulation".
+- Mentions legales (Footer, ADFR uniquement) : ADFR AUTO DEPANN FRANCE REMORQUAGE SAS, 30 bd Carnot 93250 Villemomble, RCS Bobigny 131 872 509, SIRET 131 872 509 00016, tel, email adfr93250@gmail.com. Hebergeur : "Emergent Labs Inc. (plateforme Emergent - emergent.sh), adresse postale communiquee sur demande a support@emergent.sh" (source : support Emergent ; adresse postale non publiee -> a completer).
+- TrustMarquee : bandeau statique en une seule occurrence (plus de piste dupliquee aria-hidden pour le defilement).
+- ZonesMap : "Huit departements, des centaines de communes" -> "Paris et toute l'Ile-de-France".
+- whatsappBase : "Pouvez-vous".
+- Gallery : photo Unsplash retiree, 2 vraies photos (plateau col-7 row-2 + combi col-5 row-2).
+- Non modifie : flyers (public/flyer*.html/png) mentionnent encore "20 minutes".

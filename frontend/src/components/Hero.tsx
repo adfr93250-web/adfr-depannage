@@ -119,7 +119,7 @@ export default function Hero() {
                         className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-xs font-semibold text-slate-400"
                     >
                         <li className="flex items-center gap-2">
-                            <Clock3 className="size-4 text-adfr-red" /> En moyenne en 20 min
+                            <Clock3 className="size-4 text-adfr-red" /> En moyenne {BRAND.delay.short}
                         </li>
                         <li className="flex items-center gap-2">
                             <ShieldCheck className="size-4 text-adfr-red" /> 7j/7, week-ends et fériés
@@ -153,7 +153,7 @@ export default function Hero() {
                             24/7 — 7j/7
                         </div>
                         <div className="absolute bottom-4 right-4 rounded-2xl border border-adfr-chrome/30 bg-adfr-night/70 px-4 py-3 text-right backdrop-blur-md" data-testid="hero-badge-delay">
-                            <p className="font-display text-2xl font-black text-chrome leading-none">≈ 20 min</p>
+                            <p className="font-display text-2xl font-black text-chrome leading-none">{BRAND.id === "adfr" ? "< 30 min" : "≈ 20 min"}</p>
                             <p className="mt-1 text-[10px] uppercase tracking-widest text-slate-400">Délai moyen IDF</p>
                         </div>
                     </motion.div>

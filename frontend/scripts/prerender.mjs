@@ -42,6 +42,7 @@ function brandify(txt) {
     return txt
         .replace(/ADFR — Auto Dépann France Remorquage/g, "SOS Dépannage — Dépanneuse 24h/24 Île-de-France")
         .replace(/\bADFR\b/g, "SOS Dépannage")
+        .replace(/en moins de 30 minutes/g, "en 20 minutes")
         .replace(/\/img\/og-cover\.jpg/g, "/img/og-cover-sos.jpg")
         .replace(/\+33185800061/g, PHONE_INTL)
         .replace(/01 85 80 00 61/g, PHONE_DISPLAY)
