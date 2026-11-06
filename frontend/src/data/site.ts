@@ -77,7 +77,7 @@ const REVIEWS_ADFR: Review[] = [
         name: "Karim B.",
         city: "Vitry-sur-Seine",
         stars: 5,
-        text: "Crevaison sur l'A86 à 23h. Dépanneur arrivé en moins de 30 minutes, remorquage jusqu'à mon garage. Rapide et efficace.",
+        text: "Crevaison à 23h en sortant du parking, pas de roue de secours. Dépanneur arrivé en moins de 30 minutes, remorquage jusqu'à mon garage. Rapide et efficace.",
     },
     {
         name: "Sophie M.",
@@ -89,7 +89,7 @@ const REVIEWS_ADFR: Review[] = [
         name: "Jean-Luc D.",
         city: "Paris 12e",
         stars: 5,
-        text: "Panne sur le périphérique en pleine heure de pointe. Prise en charge impeccable, voiture remorquée jusqu'au garage du début à la fin.",
+        text: "Panne porte de Bagnolet en pleine heure de pointe. Prise en charge impeccable, voiture remorquée jusqu'au garage du début à la fin.",
     },
     {
         name: "Amina T.",
@@ -107,7 +107,7 @@ const REVIEWS_ADFR: Review[] = [
         name: "Nadia K.",
         city: "Nanterre",
         stars: 5,
-        text: "Service 24/7 vérifié : appel à 3h du matin après une panne sur l'A14, dépanneur là à 3h20. On n'est jamais mieux servi qu'en pleine nuit.",
+        text: "Service 24/7 vérifié : appel à 3h du matin, voiture qui ne démarre plus devant chez moi à Nanterre, dépanneur là à 3h25. On n'est jamais mieux servi qu'en pleine nuit.",
     },
 ];
 
@@ -128,7 +128,7 @@ const REVIEWS_SOS: Review[] = [
         name: "Thomas L.",
         city: "Nogent-sur-Marne",
         stars: 5,
-        text: "Panne sur l'A4 au pont de Nogent en pleine heure de pointe, stress total. Ils m'ont guidé pour me mettre en sécurité et sont arrivés très vite. Remorquage jusqu'à mon garage.",
+        text: "Voiture qui cale en plein carrefour à Nogent en pleine heure de pointe, stress total. Ils m'ont guidé pour me mettre en sécurité et sont arrivés très vite. Remorquage jusqu'à mon garage.",
     },
     {
         name: "Fatou D.",

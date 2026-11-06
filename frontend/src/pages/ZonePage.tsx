@@ -90,9 +90,10 @@ function LocalContent({ zone }: { zone: Zone }) {
                     </h2>
                     <p className="mt-4 text-slate-300 leading-relaxed">
                         {isDept
-                            ? `En ${zone.deptName.replace(/^(les|le|la) /i, "")} comme partout en Île-de-France, nos équipes roulent chaque jour sur ${zone.axes}.`
-                            : `Nos équipes roulent chaque jour sur ${zone.axes}, au plus près de ${zone.spots[0].toLowerCase()} et des quartiers voisins.`}{" "}
+                            ? `En ${zone.deptName.replace(/^(les|le|la) /i, "")} comme partout en Île-de-France, nos équipes connaissent ${zone.axes} et leurs sorties.`
+                            : `Nos équipes connaissent ${zone.axes}, au plus près de ${zone.spots[0].toLowerCase()} et des quartiers voisins.`}{" "}
                         Batterie, crevaison, carburant, accident ou remorquage : dans la grande majorité des cas, tout se règle sur place et vous repartez.
+                        Nous intervenons en ville, sur routes et nationales ; sur autoroute, le dépannage est réservé aux sociétés agréées (borne d'appel d'urgence ou 112) et nous prenons le relais dès la sortie.
                     </p>
                     {extra && (
                         <p className="mt-3 text-slate-300 leading-relaxed" data-testid="zone-unique-text">

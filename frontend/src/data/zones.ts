@@ -18,7 +18,7 @@ export const DEPARTMENTS: Zone[] = [
     {
         slug: "75", type: "dept", name: "Paris", cp: "75001 – 75020", dept: "75", deptName: "Paris", deptIn: "à Paris",
         lat: 48.8566, lng: 2.3522,
-        intro: "De la Bastille au Trocadéro, du boulevard périphérique aux bois de Vincennes et de Boulogne : ADFR couvre tout Paris et ses 20 arrondissements, 24h/24 et 7j/7, avec une intervention moyenne en 20 minutes.",
+        intro: "De la Bastille au Trocadéro, des portes de Paris aux bois de Vincennes et de Boulogne : ADFR couvre tout Paris et ses 20 arrondissements, 24h/24 et 7j/7, avec une intervention moyenne en 20 minutes.",
         spots: ["Le Louvre", "Le Périphérique", "Les Bois de Vincennes et de Boulogne"],
         axes: "le boulevard périphérique et les autoroutes d'entrée d'agglomération (A1, A3, A6, A13)",
         neighbors: ["92", "93", "94", "77", "78", "95"],
@@ -173,7 +173,7 @@ export const CITIES: Zone[] = [
     {
         slug: "rosny-sous-bois", type: "city", name: "Rosny-sous-Bois", cp: "93110", dept: "93", deptName: "Seine-Saint-Denis", deptIn: "en Seine-Saint-Denis",
         lat: 48.8736, lng: 2.4846,
-        intro: "Batterie morte au parking de Rosny 2 ou panne à l'échangeur A86/A3 ? ADFR dépanne Rosny-sous-Bois 24h/24 et 7j/7, avec une intervention moyenne en 20 minutes.",
+        intro: "Batterie morte au parking de Rosny 2 ou panne à la sortie de l'échangeur A86/A3 ? ADFR dépanne Rosny-sous-Bois 24h/24 et 7j/7, avec une intervention moyenne en 20 minutes.",
         spots: ["Le centre commercial Rosny 2", "La gare Rosny-Bois-Perrier", "Le plateau d'Avron"],
         axes: "l'A86, l'A3 et l'A103 (échangeur de Rosny)",
         neighbors: ["93", "villemomble", "montreuil", "fontenay-sous-bois", "noisy-le-sec"],
@@ -189,7 +189,7 @@ export const CITIES: Zone[] = [
     {
         slug: "bondy", type: "city", name: "Bondy", cp: "93140", dept: "93", deptName: "Seine-Saint-Denis", deptIn: "en Seine-Saint-Denis",
         lat: 48.9022, lng: 2.4828,
-        intro: "Panne sur la N3 ou à l'échangeur de Bondy, batterie à plat près de la gare ? ADFR intervient à Bondy 24h/24 et 7j/7, en moyenne en 20 minutes.",
+        intro: "Panne sur la N3 ou à la sortie de l'échangeur de Bondy, batterie à plat près de la gare ? ADFR intervient à Bondy 24h/24 et 7j/7, en moyenne en 20 minutes.",
         spots: ["La gare de Bondy", "Le canal de l'Ourcq", "L'hôtel de ville et le centre"],
         axes: "l'A3, l'A86 (échangeur de Bondy) et la N3",
         neighbors: ["93", "noisy-le-sec", "le-raincy", "villemomble", "drancy"],
@@ -213,7 +213,7 @@ export const CITIES: Zone[] = [
     {
         slug: "nogent-sur-marne", type: "city", name: "Nogent-sur-Marne", cp: "94130", dept: "94", deptName: "Val-de-Marne", deptIn: "dans le Val-de-Marne",
         lat: 48.8372, lng: 2.4828,
-        intro: "Panne sur l'A4 au pont de Nogent, batterie morte sur les bords de Marne ? ADFR dépanne Nogent-sur-Marne 24h/24 et 7j/7, avec une intervention moyenne en 20 minutes.",
+        intro: "Panne à la sortie du pont de Nogent, batterie morte sur les bords de Marne ? ADFR dépanne Nogent-sur-Marne 24h/24 et 7j/7, avec une intervention moyenne en 20 minutes.",
         spots: ["La gare Nogent-Le Perreux", "Les bords de Marne et le pavillon Baltard", "Le port de plaisance"],
         axes: "l'A4, l'A86 et le pont de Nogent",
         neighbors: ["94", "fontenay-sous-bois", "vincennes", "champigny-sur-marne", "saint-maur-des-fosses"],

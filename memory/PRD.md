@@ -234,3 +234,7 @@ Brief client en 10 points, execute et verifie (testing agent iteration_6: 100%):
 - whatsappBase : "Pouvez-vous".
 - Gallery : photo Unsplash retiree, 2 vraies photos (plateau col-7 row-2 + combi col-5 row-2).
 - Non modifie : flyers (public/flyer*.html/png) mentionnent encore "20 minutes".
+
+## Correctif contenu 2026-11-06 (23) - Pas d'intervention sur autoroute (regle metier client) - NON DEPLOYE
+- Client : "on n'intervient pas sur l'autoroute" (reserve aux depanneurs agrees). Corrige : 4 avis (A86, peripherique, A14, A4 -> situations urbaines), intros zones (Rosny, Nogent, Bondy, Paris), textes/FAQ locales (Bagnolet, Rosny, Bondy, Nogent : reponse = non sur autoroute, borne/112, relais des la sortie), ZonePage : "nos equipes connaissent {axes} et leurs sorties" + phrase generique "sur autoroute, depannage reserve aux societes agreees... relais des la sortie".
+- A rappeler au client : retirer les mots-cles Ads "depanneuse A86/A4/A3", "panne autoroute/peripherique" et ajouter "autoroute" en negatif.

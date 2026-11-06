@@ -5,7 +5,7 @@ export interface LocalInfo {
 
 export const LOCAL_CONTENT: Record<string, LocalInfo> = {
     "75": {
-        texte: "À Paris, la moitié des interventions se joue sur le périphérique et aux portes : batterie morte après une nuit au bord du boulevard, crevaison à la sortie d'un parking souterrain, panne en pleine heure de pointe sur les grands boulevards. Nos dépanneurs connaissent les quais fermés, les plans de circulation et les arrondissements par cœur.",
+        texte: "À Paris, une bonne partie des interventions se joue aux portes et aux sorties du périphérique : batterie morte après une nuit au bord du boulevard, crevaison à la sortie d'un parking souterrain, panne en pleine heure de pointe sur les grands boulevards. Nos dépanneurs connaissent les quais fermés, les plans de circulation et les arrondissements par cœur.",
         faq4: { q: "Intervenez-vous dans tous les arrondissements de Paris ?", a: "Oui, du 1er au 20e arrondissement, y compris les deux bois. Chaque dépanneur connaît son secteur et les chemins les plus rapides, même la nuit." },
     },
     "77": {
@@ -138,7 +138,7 @@ export const LOCAL_CONTENT: Record<string, LocalInfo> = {
     },
     "bagnolet": {
         texte: "À Bagnolet, l'échangeur de l'A3 domine tout : le matin, le trafic s'étire sur la D38 et vers les Limites. En panne près du Mercadier ou batterie à plat rue de Noisy, nos dépanneurs connaissent les sorties et les petites rues qui sauvent.",
-        faq4: { q: "Vous intervenez près de l'échangeur de l'A3 ?", a: "Oui, côté ville comme sur les accès de l'autoroute voisine : précisez votre position exacte au téléphone, on arrive." },
+        faq4: { q: "Vous intervenez près de l'échangeur de l'A3 ?", a: "Oui, côté ville et dès la sortie de l'échangeur. Sur l'autoroute elle-même, le dépannage est réservé aux sociétés agréées : utilisez une borne d'appel d'urgence ou le 112, puis appelez-nous dès que vous êtes sorti." },
     },
     "cergy": {
         texte: "À Cergy, la ville nouvelle se parcourt par ses boulevards et ses grands parkings : batterie morte aux Trois-Fontaines ou panne vers le port, nos dépanneurs connaissent les accès, les niveaux de sous-sol et les sorties d'A15.",
@@ -217,7 +217,7 @@ export const LOCAL_CONTENT: Record<string, LocalInfo> = {
         faq4: { q: "Vous arrivez vite à Val de Fontenay aux heures de pointe ?", a: "Oui. Notre base de Saint-Mandé est à moins de 10 minutes, et nos dépanneurs connaissent les accès par Vincennes et par Montreuil pour contourner les bouchons de l'A86." },
     },
     "rosny-sous-bois": {
-        texte: "Rosny-sous-Bois, c'est le grand nœud de l'Est parisien : l'A86 croise l'A3 et l'A103, et le parking de Rosny 2 se remplit dès le samedi matin. Panne sur l'échangeur, batterie à plat au niveau -2 du centre commercial ou crevaison sur le plateau d'Avron : on part de Villemomble, la ville d'à côté, et on arrive en quelques minutes.",
+        texte: "Rosny-sous-Bois, c'est le grand nœud de l'Est parisien : l'A86 croise l'A3 et l'A103, et le parking de Rosny 2 se remplit dès le samedi matin. Panne à la sortie de l'échangeur, batterie à plat au niveau -2 du centre commercial ou crevaison sur le plateau d'Avron : on part de Villemomble, la ville d'à côté, et on arrive en quelques minutes.",
         faq4: { q: "Vous pouvez intervenir dans le parking de Rosny 2 ?", a: "Oui, à tous les niveaux. Précisez votre zone et votre rangée au téléphone, notre dépanneur monte directement jusqu'à vous." },
     },
     "gagny": {
@@ -225,8 +225,8 @@ export const LOCAL_CONTENT: Record<string, LocalInfo> = {
         faq4: { q: "Vous couvrez aussi les quartiers du Chénay et des Abbesses ?", a: "Oui, toute la commune de Gagny, du centre aux quartiers résidentiels en hauteur. Donnez-nous votre rue, on arrive en 20 minutes en moyenne." },
     },
     "bondy": {
-        texte: "Bondy, c'est l'échangeur A3/A86 et la N3 : des milliers de véhicules par heure et des pannes en pleine voie qui ne peuvent pas attendre. Batterie morte vers la gare, crevaison sur la N3 côté canal de l'Ourcq ou véhicule accidenté sur la bretelle : nos dépanneurs connaissent les accès de secours et les sorties pour vous mettre en sécurité vite.",
-        faq4: { q: "Je suis en panne sur l'A3 ou l'A86 à hauteur de Bondy, vous venez ?", a: "Oui. Mettez-vous en sécurité derrière la glissière, indiquez-nous le sens et la sortie la plus proche : on intervient sur les bretelles et les voies rapides du secteur." },
+        texte: "Bondy, c'est l'échangeur A3/A86 et la N3 : des milliers de véhicules par heure et des pannes qui ne peuvent pas attendre. Batterie morte vers la gare, crevaison sur la N3 côté canal de l'Ourcq ou véhicule accidenté à la sortie de l'échangeur : nos dépanneurs connaissent les accès et les contre-allées pour vous rejoindre vite.",
+        faq4: { q: "Je suis en panne sur l'A3 ou l'A86 à hauteur de Bondy, vous venez ?", a: "Sur l'autoroute, non : le dépannage y est réservé aux sociétés agréées (borne d'appel d'urgence ou 112). En revanche, dès la sortie de l'échangeur, sur la N3 et dans toute la ville, on intervient en moins de 30 minutes." },
     },
     "noisy-le-sec": {
         texte: "À Noisy-le-Sec, la gare, le canal de l'Ourcq et l'A3 délimitent la ville. Batterie morte au parking de la gare, panne vers le Londeau ou crevaison sur la N3 : nos dépanneurs connaissent les ponts du canal et les accès vers Romainville et Bondy, même la nuit quand les grands axes se vident.",
@@ -237,8 +237,8 @@ export const LOCAL_CONTENT: Record<string, LocalInfo> = {
         faq4: { q: "Vous êtes vraiment à côté du Raincy ?", a: "Oui, nos dépanneurs partent de Villemomble, la commune voisine. C'est l'une de nos zones les plus rapides : souvent moins de 15 minutes." },
     },
     "nogent-sur-marne": {
-        texte: "Nogent-sur-Marne, c'est le pont de Nogent et l'A4 : l'un des points les plus chargés de l'Est francilien, où une panne bloque tout. Batterie morte au parking de la gare Nogent-Le Perreux, crevaison sur les bords de Marne ou panne sur la bretelle A4/A86 : nos dépanneurs connaissent les accès par Fontenay et par le Perreux pour éviter le pont saturé.",
-        faq4: { q: "Je suis en panne sur l'A4 au niveau du pont de Nogent, c'est possible ?", a: "Oui. Indiquez-nous le sens (Paris ou province) et la sortie la plus proche : nos dépanneuses interviennent sur l'A4, l'A86 et le pont de Nogent." },
+        texte: "Nogent-sur-Marne, c'est le pont de Nogent et l'A4 : l'un des secteurs les plus chargés de l'Est francilien, où une panne bloque tout. Batterie morte au parking de la gare Nogent-Le Perreux, crevaison sur les bords de Marne ou panne à la sortie du pont : nos dépanneurs connaissent les accès par Fontenay et par le Perreux pour éviter les bouchons.",
+        faq4: { q: "Je suis en panne sur l'A4 au niveau du pont de Nogent, c'est possible ?", a: "Sur l'A4 elle-même, non : l'autoroute est réservée aux dépanneurs agréés (borne d'appel d'urgence ou 112). Dès la sortie, à Nogent, au Perreux ou à Fontenay, nous prenons le relais en moins de 30 minutes." },
     },
     "neuilly-sur-marne": {
         texte: "À Neuilly-sur-Marne, l'avenue de Paris (N34) traverse toute la ville et relie Chelles à Paris : feux, bouchons et pannes en file. Batterie morte vers Maison-Blanche, crevaison sur les bords de Marne ou véhicule immobilisé près du pont vers Noisy-le-Grand : nos dépanneurs connaissent chaque contre-allée de la N34.",
