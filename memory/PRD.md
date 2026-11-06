@@ -238,3 +238,6 @@ Brief client en 10 points, execute et verifie (testing agent iteration_6: 100%):
 ## Correctif contenu 2026-11-06 (23) - Pas d'intervention sur autoroute (regle metier client) - NON DEPLOYE
 - Client : "on n'intervient pas sur l'autoroute" (reserve aux depanneurs agrees). Corrige : 4 avis (A86, peripherique, A14, A4 -> situations urbaines), intros zones (Rosny, Nogent, Bondy, Paris), textes/FAQ locales (Bagnolet, Rosny, Bondy, Nogent : reponse = non sur autoroute, borne/112, relais des la sortie), ZonePage : "nos equipes connaissent {axes} et leurs sorties" + phrase generique "sur autoroute, depannage reserve aux societes agreees... relais des la sortie".
 - A rappeler au client : retirer les mots-cles Ads "depanneuse A86/A4/A3", "panne autoroute/peripherique" et ajouter "autoroute" en negatif.
+
+## Modif 2026-11-06 (24) - ADFR : plus de "Sortie de fourriere" - NON DEPLOYE
+- site.ts : SERVICES = SERVICES_ALL filtre pour ADFR (6 cartes, numerotation auto 01-06) ; SOS garde les 7. CallbackForm PANNE_TYPES sans fourriere ; backend PANNE_TYPES sans fourriere (plus accepte). Footer : "... Carburant · Accident" pour ADFR (SOS : "· Fourriere"). llms.txt : ligne retiree. Aucune mention dans zones/zoneContent/FAQ/Seo (verifie grep + rendu home, /depannage-93, villemomble, paris-12).

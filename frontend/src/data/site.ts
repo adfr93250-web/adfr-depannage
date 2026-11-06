@@ -27,7 +27,7 @@ export interface ServiceItem {
     desc: string;
 }
 
-export const SERVICES: ServiceItem[] = [
+const SERVICES_ALL: ServiceItem[] = [
     {
         icon: Truck,
         title: "Remorquage",
@@ -64,6 +64,9 @@ export const SERVICES: ServiceItem[] = [
         desc: "Votre voiture a été emmenée en fourrière ? On vous aide à la récupérer et à la remettre en état de circuler.",
     },
 ];
+
+/** ADFR ne propose plus la sortie de fourrière ; la carte reste sur SOS Dépannage. */
+export const SERVICES: ServiceItem[] = BRAND.id === "adfr" ? SERVICES_ALL.filter((s) => s.title !== "Sortie de fourrière") : SERVICES_ALL;
 
 export interface Review {
     name: string;

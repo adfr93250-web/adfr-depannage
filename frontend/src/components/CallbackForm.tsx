@@ -5,7 +5,7 @@ import { submitCallback, track, gtagConversion } from "@/lib/api";
 import { SITE } from "@/data/site";
 import { useLocation } from "react-router-dom";
 
-const PANNE_TYPES = ["Remorquage", "Batterie", "Crevaison", "Panne de carburant", "Véhicule accidenté", "Sortie de fourrière", "Autre panne"];
+const PANNE_TYPES = ["Remorquage", "Batterie", "Crevaison", "Panne de carburant", "Véhicule accidenté", "Autre panne"];
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 

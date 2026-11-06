@@ -22,7 +22,7 @@ api_router = APIRouter(prefix="/api")
 
 PANNE_TYPES = {
     "Remorquage", "Batterie", "Crevaison", "Panne de carburant",
-    "Véhicule accidenté", "Sortie de fourrière", "Autre panne",
+    "Véhicule accidenté", "Autre panne",
 }
 
 
