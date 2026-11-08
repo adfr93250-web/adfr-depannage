@@ -39,6 +39,7 @@ const SERVICES_ALL: ServiceItem[] = [
         icon: Wrench,
         title: "Dépannage sur place",
         desc: "La plupart des pannes se règlent sur place : démarrage, réparation rapide, vous repartez sans passer par le garage.",
+        image: BRAND.id === "adfr" ? { src: "/img/service-depannage.webp", alt: "Dépanneur ADFR remplaçant une batterie sur place" } : undefined,
     },
     {
         icon: BatteryCharging,
