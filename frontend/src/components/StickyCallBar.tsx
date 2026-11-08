@@ -1,5 +1,6 @@
 import { MapPin, PhoneCall } from "lucide-react";
 import { SITE } from "@/data/site";
+import { BRAND } from "@/data/brand";
 import { track, gtagConversion } from "@/lib/api";
 import { scrollToId } from "@/lib/lenis";
 import { useLocation } from "react-router-dom";
@@ -16,7 +17,7 @@ export default function StickyCallBar() {
             >
                 <PhoneCall className="size-6 animate-ring shrink-0 text-white" />
                 <span className="flex flex-col leading-tight text-white">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] opacity-90">Urgence dépannage — 24/7</span>
+                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] opacity-90">Urgence dépannage — {BRAND.hours.tag}</span>
                     <span className="font-display font-black text-xl tracking-wide">{SITE.phoneDisplay}</span>
                 </span>
             </a>

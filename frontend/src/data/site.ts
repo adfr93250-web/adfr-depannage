@@ -218,7 +218,7 @@ export function faqZone(name: string): FaqItem[] {
     return [
         {
             q: `Intervenez-vous vraiment 24h/24 à ${name} ?`,
-            a: `Oui. À ${name} comme partout en Île-de-France, un dépanneur ${BRAND.name} peut partir vous rejoindre de jour comme de nuit, le week-end et les jours fériés.`,
+            a: `Oui. À ${name} comme partout en Île-de-France, un dépanneur ${BRAND.name} peut partir vous rejoindre de jour comme de nuit, ${BRAND.id === "adfr" ? "du dimanche au vendredi, jours fériés inclus" : "le week-end et les jours fériés"}.`,
         },
         {
             q: `En combien de temps un dépanneur arrive-t-il à ${name} ?`,

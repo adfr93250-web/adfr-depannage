@@ -17,8 +17,8 @@ export default function Home() {
     return (
         <>
             <Seo
-                title={`${SITE.name} — Dépannage & Remorquage Île-de-France 24/7`}
-                description={`Dépannage et remorquage 24h/24, 7j/7, partout en Île-de-France. Intervention ${BRAND.delay.long}. Appelez le ${SITE.phoneDisplay} — intervention rapide, paiement sur place.`}
+                title={`${SITE.name} — Dépannage & Remorquage Île-de-France ${BRAND.hours.tag}`}
+                description={`Dépannage et remorquage ${BRAND.hours.long}, partout en Île-de-France. Intervention ${BRAND.delay.long}. Appelez le ${SITE.phoneDisplay} — intervention rapide, paiement sur place.`}
                 path="/"
                 jsonLd={[localBusinessLd(), websiteLd(), faqPageLd(FAQ_HOME)]}
             />

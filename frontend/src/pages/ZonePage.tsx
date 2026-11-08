@@ -42,7 +42,7 @@ function LocalHero({ zone }: { zone: Zone }) {
                         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-adfr-red opacity-75" />
                         <span className="relative inline-flex size-2 rounded-full bg-adfr-red" />
                     </span>
-                    Dépannage 24/7 — {zone.deptName}
+                    Dépannage {BRAND.hours.tag} — {zone.deptName}
                     {zone.cp ? ` · ${zone.cp}` : ""}
                 </motion.div>
 
@@ -184,9 +184,9 @@ export default function ZonePage() {
     const extra = LOCAL_CONTENT[zone.slug];
     const faqs = extra ? [...faqZone(zone.name), { q: brandText(extra.faq4.q), a: brandText(extra.faq4.a) }] : faqZone(zone.name);
     const title = isDept
-        ? `Dépannage ${zone.deptIn} 24/7 — ${SITE.name}`
-        : `Dépannage à ${zone.name} 24/7 — ${SITE.name}`;
-    const description = `Panne ${isDept ? zone.deptIn : `à ${zone.name}`} ? ${SITE.name} intervient 24h/24, 7j/7, en moyenne ${BRAND.delay.long}. ${zone.cp ? `${zone.cp} — ` : ""}Appelez le ${SITE.phoneDisplay} : intervention rapide, paiement sur place.`;
+        ? `Dépannage ${zone.deptIn} ${BRAND.hours.tag} — ${SITE.name}`
+        : `Dépannage à ${zone.name} ${BRAND.hours.tag} — ${SITE.name}`;
+    const description = `Panne ${isDept ? zone.deptIn : `à ${zone.name}`} ? ${SITE.name} intervient ${BRAND.hours.long}, en moyenne ${BRAND.delay.long}. ${zone.cp ? `${zone.cp} — ` : ""}Appelez le ${SITE.phoneDisplay} : intervention rapide, paiement sur place.`;
 
     return (
         <>

@@ -13,7 +13,7 @@ export default function Footer() {
                 <div>
                     <img src={SITE.logo} alt={SITE.fullName} loading="lazy" className="h-14 w-auto rounded-lg bg-white px-2.5 py-1.5" />
                     <p className="mt-5 text-sm leading-relaxed text-slate-400 max-w-xs">
-                        Dépannage et remorquage toutes marques, 24h/24 et 7j/7, partout en Île-de-France. Intervention rapide, paiement sur place.
+                        Dépannage et remorquage toutes marques, {BRAND.hours.long}, partout en Île-de-France. Intervention rapide, paiement sur place.
                     </p>
                     <div className="mt-6 flex flex-col gap-3">
                         <a
@@ -83,13 +83,13 @@ export default function Footer() {
                     <ul className="space-y-3 text-sm text-slate-300">
                         <li className="flex items-start gap-2.5">
                             <Clock3 className="mt-0.5 size-4 text-adfr-red shrink-0" />
-                            24h/24 — 7j/7, week-ends et jours fériés
+                            {BRAND.hours.long}, {BRAND.hours.days}
                         </li>
                         <li>Paiement sur place, carte bancaire ou espèces</li>
                         <li>Intervention en moyenne {BRAND.delay.long} en IDF</li>
                         {BRAND.id === "adfr" && (
                             <li className="text-xs text-slate-500 pt-2 leading-relaxed" data-testid="legal-mentions">
-                                <span className="font-bold text-slate-400">Mentions légales</span> — Éditeur : ADFR AUTO DEPANN FRANCE REMORQUAGE, SAS. Siège : 30 boulevard Carnot, 93250 Villemomble. RCS Bobigny 131 872 509. SIRET 131 872 509 00016. Téléphone : 01 85 80 00 61. Email : <a href="mailto:adfr93250@gmail.com" className="underline-offset-2 hover:underline">adfr93250@gmail.com</a>.
+                                <span className="font-bold text-slate-400">Mentions légales</span> — Éditeur : ADFR AUTO DEPANN FRANCE REMORQUAGE, SAS au capital de 1 000 €. Siège : 30 boulevard Carnot, 93250 Villemomble. RCS Bobigny 131 872 509. SIRET 131 872 509 00016. N° TVA intracommunautaire : FR32131872509. Téléphone : 01 85 80 00 61. Email : <a href="mailto:adfr93250@gmail.com" className="underline-offset-2 hover:underline">adfr93250@gmail.com</a>.
                                 <br />Hébergeur : IONOS SARL — 7 place de la Gare, BP 70109, 57201 Sarreguemines Cedex, France — Tél. 0970 808 911.
                             </li>
                         )}

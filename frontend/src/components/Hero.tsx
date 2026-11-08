@@ -50,7 +50,7 @@ export default function Hero() {
                             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-adfr-red opacity-75" />
                             <span className="relative inline-flex size-2 rounded-full bg-adfr-red" />
                         </span>
-                        Dépannage 24/7 — Île-de-France
+                        Dépannage 24h/24 — Île-de-France
                     </motion.div>
 
                     <h1 className="relative mt-6 font-display text-5xl sm:text-6xl lg:text-7xl font-black uppercase leading-[0.95] tracking-tight text-white">
@@ -124,7 +124,7 @@ export default function Hero() {
                             <Clock3 className="size-4 text-adfr-red" /> En moyenne {BRAND.delay.short}
                         </li>
                         <li className="flex items-center gap-2">
-                            <ShieldCheck className="size-4 text-adfr-red" /> 7j/7, week-ends et fériés
+                            <ShieldCheck className="size-4 text-adfr-red" /> Dimanche au vendredi, jours fériés inclus
                         </li>
                         <li className="flex items-center gap-2">
                             <BadgeCheck className="size-4 text-adfr-red" /> Paiement sur place
@@ -134,7 +134,7 @@ export default function Hero() {
 
                 <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: EASE, delay: 0.6 }} className="relative hidden lg:flex h-[540px] items-end justify-end gap-4">
                     <div className="rounded-full bg-adfr-red px-4 py-2 font-display text-xs font-black uppercase tracking-widest text-white shadow-lg" data-testid="hero-badge-247">
-                        24/7 — 7j/7
+                        24h/24 — dim. au ven.
                     </div>
                     <div className="rounded-2xl border border-adfr-chrome/30 bg-adfr-night/70 px-4 py-3 text-right backdrop-blur-md" data-testid="hero-badge-delay">
                         <p className="font-display text-2xl font-black text-chrome leading-none">{BRAND.id === "adfr" ? "< 30 min" : "≈ 20 min"}</p>

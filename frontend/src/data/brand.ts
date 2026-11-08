@@ -21,6 +21,8 @@ export interface Brand {
     heroText: string;
     /** Délai annoncé : ADFR "en moins de 30 minutes", SOS "en 20 minutes" */
     delay: { long: string; short: string };
+    /** Horaires annoncés. ADFR ne travaille pas le samedi. */
+    hours: { long: string; tag: string; days: string };
     showGallery: boolean;
     /** Formulaire de rappel + section "comment ça marche" : SOS Dépannage = appel direct uniquement */
     showCallbackForm: boolean;
@@ -53,8 +55,9 @@ const ADFR: Brand = {
     truckSrcSet: "/img/hero-adfr-800.webp 800w, /img/hero-adfr-1200.webp 1200w, /img/hero-adfr.webp 1600w",
     truckLqip: "data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAAAwBACdASogABAAPrVWoUsnJSMhsAgA4BaJYwCdAGYM6U81mAU62ceB9kgA/vG7+ykWk7OD2afYWO4ao/1c/0yFYrVxWD3r2XGAJiDJiD3SUbmaeHbCKq5QBdJPkBL1+d1g6TMxqE4SAkedUN+bj4Ygi+42tkEa5IQSEmZvRE8JmFDHSmpArAAA",
     heroLines: ["Une panne ?", "On arrive", "en moins de 30 minutes."],
-    heroText: "Intervention en moins de 30 minutes partout en Île-de-France. Dépannage sur place ou remorquage toutes marques, de jour comme de nuit, week-ends et jours fériés.",
+    heroText: "Intervention en moins de 30 minutes partout en Île-de-France. Dépannage sur place ou remorquage toutes marques, de jour comme de nuit, du dimanche au vendredi, jours fériés inclus.",
     delay: { long: "en moins de 30 minutes", short: "moins de 30 min" },
+    hours: { long: "24h/24, du dimanche au vendredi", tag: "24h/24", days: "jours fériés inclus" },
     showGallery: true,
     showCallbackForm: true,
     showProcess: true,
@@ -75,6 +78,7 @@ const SOS: Brand = {
     heroLines: ["En panne ?", "Appelez.", "On arrive en 20 min."],
     heroText: "Voiture en panne, batterie à plat, accident : un dépanneur part immédiatement et vous rejoint en 20 minutes en moyenne, 24h/24, partout en Île-de-France.",
     delay: { long: "en 20 minutes", short: "20 min" },
+    hours: { long: "24h/24 et 7j/7", tag: "24/7", days: "week-ends et jours fériés" },
     showGallery: false,
     showCallbackForm: false,
     showProcess: false,
@@ -98,11 +102,15 @@ function resolveBrand(): Brand {
 
 export const BRAND: Brand = resolveBrand();
 
-/** Adapte les textes rédigés (zones) à la marque active : nom de marque et délai annoncé. */
+/** Adapte les textes rédigés (zones) à la marque active : nom de marque, délai et horaires annoncés. */
 export function brandText(text: string): string {
     if (BRAND.id !== "adfr") return text.replace(/\bADFR\b/g, BRAND.name);
     return text
         .replace(/intervention moyenne en 20 minutes/g, "intervention en moins de 30 minutes en moyenne")
         .replace(/en 20 minutes/g, "en moins de 30 minutes")
-        .replace(/20 min\b/g, "moins de 30 min");
+        .replace(/20 min\b/g, "moins de 30 min")
+        .replace(/24h\/24 et 7j\/7|24h\/24, 7j\/7/g, BRAND.hours.long)
+        .replace(/le week-end et les jours fériés/g, "le dimanche et les jours fériés")
+        .replace(/week-ends et jours fériés/g, "dimanches et jours fériés")
+        .replace(/\b7j\/7\b/g, "du dimanche au vendredi");
 }

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { SITE } from "@/data/site";
+import { BRAND } from "@/data/brand";
 
 interface SeoProps {
     title: string;
@@ -65,7 +66,7 @@ export function localBusinessLd(zone?: { name: string }) {
         address: { "@type": "PostalAddress", addressRegion: "Île-de-France", addressCountry: "FR" },
         openingHoursSpecification: {
             "@type": "OpeningHoursSpecification",
-            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", ...(BRAND.id === "adfr" ? [] : ["Saturday"]), "Sunday"],
             opens: "00:00",
             closes: "23:59",
         },

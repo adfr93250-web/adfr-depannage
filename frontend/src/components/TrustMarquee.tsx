@@ -1,11 +1,11 @@
 import { BRAND } from "@/data/brand";
 const ITEMS = [
-    "24/7 — 7j/7",
+    BRAND.hours.long,
     `Intervention ${BRAND.delay.long}`,
     "Dépannage sur place ou remorquage",
     "Paiement sur place",
     "Toute l'Île-de-France",
-    "Week-ends et jours fériés",
+    BRAND.hours.days.charAt(0).toUpperCase() + BRAND.hours.days.slice(1),
 ];
 
 export default function TrustMarquee() {
