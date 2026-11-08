@@ -8,6 +8,7 @@ Service de dépannage et de remorquage automobile 24h/24 et 7j/7, partout en Îl
 - Batterie (booster, test et remplacement)
 - Crevaison (roue de secours ou remorquage)
 - Panne de carburant (livraison d'essence ou diesel)
+- Désembourbage (treuillage, véhicule enlisé)
 - Véhicule accidenté (enlèvement, documents assurance)
 
 ## Pages

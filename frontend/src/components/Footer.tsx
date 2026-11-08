@@ -100,7 +100,7 @@ export default function Footer() {
                 <p>
                     © {year} {BRAND.legalLine}
                 </p>
-                <p>Dépannage · Remorquage · Batterie · Crevaison · Carburant{BRAND.id === "sos" ? " · Fourrière" : ""}</p>
+                <p>Dépannage · Remorquage · Batterie · Crevaison · Carburant{BRAND.id === "sos" ? " · Fourrière" : " · Désembourbage"}</p>
             </div>
         </footer>
     );

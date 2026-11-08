@@ -5,7 +5,10 @@ import { SITE } from "@/data/site";
 import { track, gtagConversion } from "@/lib/api";
 import { useLocation } from "react-router-dom";
 
-const SPANS = ["md:col-span-7", "md:col-span-5", "md:col-span-4", "md:col-span-4", "md:col-span-4", "md:col-span-6", "md:col-span-6"];
+// 6 services (ADFR) : 3 rangées de 2 cartes ; 7 services (SOS) : 2 / 3 / 2
+const SPANS = SERVICES.length === 6
+    ? ["md:col-span-7", "md:col-span-5", "md:col-span-5", "md:col-span-7", "md:col-span-6", "md:col-span-6"]
+    : ["md:col-span-7", "md:col-span-5", "md:col-span-4", "md:col-span-4", "md:col-span-4", "md:col-span-6", "md:col-span-6"];
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 interface ServicesProps {

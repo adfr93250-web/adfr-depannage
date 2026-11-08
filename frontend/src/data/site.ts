@@ -1,4 +1,4 @@
-import { Truck, Wrench, BatteryCharging, CircleDot, Fuel, Siren, KeyRound, type LucideIcon } from "lucide-react";
+import { Truck, Wrench, BatteryCharging, CircleDot, Fuel, Siren, KeyRound, Tractor, type LucideIcon } from "lucide-react";
 import { BRAND } from "@/data/brand";
 
 export const SITE = {
@@ -57,6 +57,12 @@ const SERVICES_ALL: ServiceItem[] = [
         icon: Fuel,
         title: "Panne de carburant",
         desc: "Essence ou diesel, on vous livre le carburant nécessaire pour rejoindre la pompe sans stress.",
+    },
+    {
+        icon: Tractor,
+        title: "Désembourbage",
+        desc: "Véhicule enlisé dans la boue, le sable ou la neige ? Treuillage et sangles de traction pour vous sortir de là sans dégât.",
+        image: BRAND.id === "adfr" ? { src: "/img/service-desembourbage.webp", alt: "Désembourbage d'un 4x4 enlisé par un dépanneur ADFR" } : undefined,
     },
     {
         icon: Siren,
