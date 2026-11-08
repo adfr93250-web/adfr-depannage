@@ -18,7 +18,7 @@ export default function Hero() {
     return (
         <section ref={ref} className="relative overflow-hidden">
             {/* Photo pleine largeur : cabine + logo à droite ; recadrage mobile sur la cabine (object-position 82 %) */}
-            <motion.div style={{ y: yImg }} className="absolute inset-x-0 top-0 h-[46svh] min-h-[300px] lg:inset-0 lg:h-auto" data-testid="hero-photo-frame" aria-hidden="true">
+            <motion.div style={{ y: yImg, backgroundImage: BRAND.truckLqip ? `url(${BRAND.truckLqip})` : undefined }} className="absolute inset-x-0 top-0 h-[46svh] min-h-[300px] lg:inset-0 lg:h-auto bg-cover bg-right lg:bg-center" data-testid="hero-photo-frame" aria-hidden="true">
                 <img
                     src={SITE.truck}
                     srcSet={BRAND.truckSrcSet}
@@ -26,7 +26,7 @@ export default function Hero() {
                     alt=""
                     className="h-full w-full object-cover object-right lg:object-center scale-[1.04]"
                     fetchPriority="high"
-                    decoding="async"
+                    decoding="sync"
                 />
                 {/* Dégradé sombre à gauche pour la lisibilité du titre et du bouton d'appel */}
                 {/* Mobile : photo en bandeau haut (cabine + logo cadrés), fondu vers le fond sous le titre */}

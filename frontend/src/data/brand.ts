@@ -15,6 +15,8 @@ export interface Brand {
     ogImage: string;
     truck: string;
     truckSrcSet?: string;
+    /** Mini aperçu flou (data URI) affiché instantanément sous la photo du hero */
+    truckLqip?: string;
     heroLines: string[];
     heroText: string;
     /** Délai annoncé : ADFR "en moins de 30 minutes", SOS "en 20 minutes" */
@@ -48,7 +50,8 @@ const ADFR: Brand = {
     favicon: "/img/favicon-247.png",
     ogImage: "/img/og-cover.jpg",
     truck: "/img/hero-adfr.webp",
-    truckSrcSet: "/img/hero-adfr-800.webp 800w, /img/hero-adfr.webp 1600w",
+    truckSrcSet: "/img/hero-adfr-800.webp 800w, /img/hero-adfr-1200.webp 1200w, /img/hero-adfr.webp 1600w",
+    truckLqip: "data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAAAwBACdASogABAAPrVWoUsnJSMhsAgA4BaJYwCdAGYM6U81mAU62ceB9kgA/vG7+ykWk7OD2afYWO4ao/1c/0yFYrVxWD3r2XGAJiDJiD3SUbmaeHbCKq5QBdJPkBL1+d1g6TMxqE4SAkedUN+bj4Ygi+42tkEa5IQSEmZvRE8JmFDHSmpArAAA",
     heroLines: ["Une panne ?", "On arrive", "en moins de 30 minutes."],
     heroText: "Intervention en moins de 30 minutes partout en Île-de-France. Dépannage sur place ou remorquage toutes marques, de jour comme de nuit, week-ends et jours fériés.",
     delay: { long: "en moins de 30 minutes", short: "moins de 30 min" },
