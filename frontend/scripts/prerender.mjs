@@ -83,6 +83,11 @@ const server = http.createServer((req, res) => {
     res.end(fs.readFileSync(file));
 });
 
+if (!fs.existsSync(CHROME)) {
+    console.warn(`Chrome introuvable (${CHROME}) : pré-rendu ignoré, le site fonctionne en mode application.`);
+    process.exit(0);
+}
+
 await new Promise((r) => server.listen(PORT, r));
 
 const browser = await puppeteer.launch({

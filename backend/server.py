@@ -365,10 +365,14 @@ from html.parser import HTMLParser
 from urllib.parse import urlparse
 from fastapi import Depends, Request, Response
 
-# --- Email (Resend via integration gérée Emergent) ---
+# --- Email : Resend en direct (RESEND_API_KEY) ou, à défaut, l'intégration Emergent (EMERGENT_EMAIL_KEY) ---
 EMAIL_BASE_URL = "https://integrations.emergentagent.com"
-EMAIL_KEY = os.environ["EMERGENT_EMAIL_KEY"]
-EMAIL_FROM_NAME = os.environ["EMAIL_FROM_NAME"]
+EMAIL_KEY = os.environ.get("EMERGENT_EMAIL_KEY", "")
+RESEND_API_KEY = os.environ.get("RESEND_API_KEY", "")
+# Sans domaine vérifié chez Resend, seule l'adresse onboarding@resend.dev est autorisée
+# (et uniquement vers l'email du compte Resend).
+EMAIL_FROM = os.environ.get("EMAIL_FROM", "onboarding@resend.dev")
+EMAIL_FROM_NAME = os.environ.get("EMAIL_FROM_NAME", "ADFR")
 EMAIL_REPLY_TO = os.environ.get("EMAIL_REPLY_TO")
 ALERT_EMAIL = os.environ.get("ALERT_EMAIL", "")
 SITE_PUBLIC_URL = os.environ.get("SITE_PUBLIC_URL", "").rstrip("/")
@@ -448,6 +452,11 @@ def _assert_safe_email(subject: str, html: str) -> None:
 
 async def send_email(*, to: str, subject: str, html: str, reply_to: str | None = None) -> str | None:
     _assert_safe_email(subject, html)
+    if RESEND_API_KEY:
+        return await _send_email_resend(to=to, subject=subject, html=html, reply_to=reply_to)
+    if not EMAIL_KEY:
+        logger.warning("Email non envoyé : ni RESEND_API_KEY ni EMERGENT_EMAIL_KEY configurée")
+        return None
     payload = {"to": [to], "subject": subject, "html": html, "from_name": EMAIL_FROM_NAME}
     if reply_to or EMAIL_REPLY_TO:
         payload["contact_email"] = reply_to or EMAIL_REPLY_TO
@@ -472,6 +481,27 @@ async def send_email(*, to: str, subject: str, html: str, reply_to: str | None =
         return None
     except Exception as e:
         logger.error(f"Email send error: {str(e)}")
+        return None
+
+
+async def _send_email_resend(*, to: str, subject: str, html: str, reply_to: str | None = None) -> str | None:
+    payload = {"from": f"{EMAIL_FROM_NAME} <{EMAIL_FROM}>", "to": [to], "subject": subject, "html": html}
+    if reply_to or EMAIL_REPLY_TO:
+        payload["reply_to"] = reply_to or EMAIL_REPLY_TO
+    try:
+        async with httpx.AsyncClient(timeout=30) as client:
+            resp = await client.post(
+                "https://api.resend.com/emails",
+                headers={"Authorization": f"Bearer {RESEND_API_KEY}"},
+                json=payload,
+            )
+        resp.raise_for_status()
+        return resp.json().get("id")
+    except httpx.HTTPStatusError as e:
+        logger.error(f"Resend : échec d'envoi {e.response.status_code} {e.response.text}")
+        return None
+    except Exception as e:
+        logger.error(f"Resend : erreur d'envoi {str(e)}")
         return None
 
 
