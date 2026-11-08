@@ -241,3 +241,9 @@ Brief client en 10 points, execute et verifie (testing agent iteration_6: 100%):
 
 ## Modif 2026-11-06 (24) - ADFR : plus de "Sortie de fourriere" - NON DEPLOYE
 - site.ts : SERVICES = SERVICES_ALL filtre pour ADFR (6 cartes, numerotation auto 01-06) ; SOS garde les 7. CallbackForm PANNE_TYPES sans fourriere ; backend PANNE_TYPES sans fourriere (plus accepte). Footer : "... Carburant · Accident" pour ADFR (SOS : "· Fourriere"). llms.txt : ligne retiree. Aucune mention dans zones/zoneContent/FAQ/Seo (verifie grep + rendu home, /depannage-93, villemomble, paris-12).
+
+## Photos ADFR 2026-11-08 (25) - NON DEPLOYE (client valide le rendu avant)
+- 5 photos client en WebP < 300 Ko dans public/img : hero-adfr.webp (1600) + hero-adfr-800.webp (photo 2, cote, coucher de soleil), service-batterie.webp (photo 1 booster), service-remorquage.webp (photo 5 gilet jaune), intervention-pluie.webp (photo 4, plaque floutee PIL GaussianBlur), service-crevaison.webp (nouvelle photo BMW crevee). Photo 3 (plateau incline) jamais recue.
+- Hero.tsx ADFR : photo pleine largeur en fond (fetchpriority high, srcset), desktop = degrade sombre a gauche + badges 24/7 et <30 min en bas a droite ; mobile = bandeau photo haut 46svh object-right (cabine + logo visibles), titre en dessous (pt-34svh). Tilt 3D retire. index.html preload -> hero-adfr. Anciennes depanneuse.webp/-800 supprimees ; carte-visite.html utilise hero-adfr.webp (cartes re-exportees).
+- Services : ServiceItem.image optionnel (ADFR seulement) ; cartes Remorquage, Batterie, Crevaison avec photo (loading lazy, rounded-xl, ombre). ADFR = 5 services (retrait "Vehicule accidente" et fourriere) ; SOS garde 7. Footer ADFR : "... Carburant".
+- Gallery "Sur le terrain" : 3 photos (plateau, combi, pluie), grille 2 col mobile / 3 col desktop, CTA pleine largeur.

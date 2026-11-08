@@ -1,4 +1,4 @@
-import { useRef, type MouseEvent } from "react";
+import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
 import { ShieldCheck, BadgeCheck, Clock3 } from "lucide-react";
 import { SITE } from "@/data/site";
@@ -10,32 +10,34 @@ const LINES = BRAND.heroLines;
 
 export default function Hero() {
     const ref = useRef<HTMLElement>(null);
-    const frameRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
     const yImg = useTransform(scrollYProgress, [0, 1], [0, 70]);
 
-    const mx = useMotionValue(0);
-    const my = useMotionValue(0);
-    const rX = useSpring(useTransform(my, [-0.5, 0.5], [7, -7]), { stiffness: 140, damping: 18 });
-    const rY = useSpring(useTransform(mx, [-0.5, 0.5], [-9, 9]), { stiffness: 140, damping: 18 });
 
-    const onMove = (e: MouseEvent) => {
-        const r = frameRef.current?.getBoundingClientRect();
-        if (!r) return;
-        mx.set((e.clientX - r.left) / r.width - 0.5);
-        my.set((e.clientY - r.top) / r.height - 0.5);
-    };
-    const onLeave = () => {
-        mx.set(0);
-        my.set(0);
-    };
 
     return (
         <section ref={ref} className="relative overflow-hidden">
-            <div className="pointer-events-none absolute -top-40 right-[-10%] size-[600px] rounded-full bg-adfr-electric/20 blur-[140px]" />
-            <div className="pointer-events-none absolute bottom-[-20%] left-[-10%] size-[500px] rounded-full bg-adfr-red/10 blur-[140px]" />
+            {/* Photo pleine largeur : cabine + logo à droite ; recadrage mobile sur la cabine (object-position 82 %) */}
+            <motion.div style={{ y: yImg }} className="absolute inset-x-0 top-0 h-[46svh] min-h-[300px] lg:inset-0 lg:h-auto" data-testid="hero-photo-frame" aria-hidden="true">
+                <img
+                    src={SITE.truck}
+                    srcSet={BRAND.truckSrcSet}
+                    sizes="100vw"
+                    alt=""
+                    className="h-full w-full object-cover object-right lg:object-center scale-[1.04]"
+                    fetchPriority="high"
+                    decoding="async"
+                />
+                {/* Dégradé sombre à gauche pour la lisibilité du titre et du bouton d'appel */}
+                {/* Mobile : photo en bandeau haut (cabine + logo cadrés), fondu vers le fond sous le titre */}
+                <div className="absolute inset-0 bg-gradient-to-b from-adfr-night/35 via-adfr-night/10 to-adfr-night lg:hidden" />
+                {/* Desktop : dégradé sombre à gauche pour la lisibilité du titre et du bouton d'appel */}
+                <div className="absolute inset-0 hidden lg:block bg-gradient-to-r from-adfr-night via-adfr-night/70 to-transparent" />
+                <div className="absolute inset-0 hidden lg:block bg-gradient-to-t from-adfr-night via-transparent to-adfr-night/40" />
+            </motion.div>
+            <img src={SITE.truck} alt="Dépanneuse ADFR dépannage remorquage Paris" className="sr-only" width="1600" height="800" loading="eager" />
 
-            <div className="relative mx-auto max-w-7xl px-4 md:px-8 pt-10 md:pt-16 pb-16 md:pb-24 grid lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-center min-h-[calc(100svh-64px)] md:min-h-[calc(100svh-80px)]">
+            <div className="relative mx-auto max-w-7xl px-4 md:px-8 pt-[34svh] lg:pt-16 pb-16 md:pb-24 grid lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-center min-h-[calc(100svh-64px)] md:min-h-[calc(100svh-80px)]">
                 <div>
                     <motion.div
                         initial={{ opacity: 0, y: 12, filter: "blur(6px)" }}
@@ -130,33 +132,14 @@ export default function Hero() {
                     </motion.ul>
                 </div>
 
-                <motion.div style={{ y: yImg }} initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.9, ease: EASE, delay: 0.3 }} className="relative">
-                    <div className="absolute -inset-8 bg-[radial-gradient(circle_at_60%_40%,rgba(var(--c-electric-c),0.25),transparent_65%)]" />
-                    <motion.div
-                        ref={frameRef}
-                        onMouseMove={onMove}
-                        onMouseLeave={onLeave}
-                        style={{ rotateX: rX, rotateY: rY, transformPerspective: 900 }}
-                        data-testid="hero-photo-frame"
-                        className="relative overflow-hidden rounded-[2rem] border border-adfr-chrome/25 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.8)]"
-                    >
-                        <img
-                            src={SITE.truck}
-                            srcSet={BRAND.truckSrcSet}
-                            sizes="(max-width: 1024px) 100vw, 45vw"
-                            alt={`La dépanneuse ${SITE.name} en intervention dans les rues d'Île-de-France`}
-                            className="h-[420px] md:h-[540px] w-full object-cover"
-                            fetchPriority="high"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-adfr-night/85 via-transparent to-adfr-night/20" />
-                        <div className="absolute top-4 left-4 rounded-full bg-adfr-red px-4 py-2 font-display text-xs font-black uppercase tracking-widest text-white shadow-lg" data-testid="hero-badge-247">
-                            24/7 — 7j/7
-                        </div>
-                        <div className="absolute bottom-4 right-4 rounded-2xl border border-adfr-chrome/30 bg-adfr-night/70 px-4 py-3 text-right backdrop-blur-md" data-testid="hero-badge-delay">
-                            <p className="font-display text-2xl font-black text-chrome leading-none">{BRAND.id === "adfr" ? "< 30 min" : "≈ 20 min"}</p>
-                            <p className="mt-1 text-[10px] uppercase tracking-widest text-slate-400">Délai moyen IDF</p>
-                        </div>
-                    </motion.div>
+                <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: EASE, delay: 0.6 }} className="relative hidden lg:flex h-[540px] items-end justify-end gap-4">
+                    <div className="rounded-full bg-adfr-red px-4 py-2 font-display text-xs font-black uppercase tracking-widest text-white shadow-lg" data-testid="hero-badge-247">
+                        24/7 — 7j/7
+                    </div>
+                    <div className="rounded-2xl border border-adfr-chrome/30 bg-adfr-night/70 px-4 py-3 text-right backdrop-blur-md" data-testid="hero-badge-delay">
+                        <p className="font-display text-2xl font-black text-chrome leading-none">{BRAND.id === "adfr" ? "< 30 min" : "≈ 20 min"}</p>
+                        <p className="mt-1 text-[10px] uppercase tracking-widest text-slate-400">Délai moyen IDF</p>
+                    </div>
                 </motion.div>
             </div>
         </section>

@@ -25,6 +25,7 @@ export interface ServiceItem {
     icon: LucideIcon;
     title: string;
     desc: string;
+    image?: { src: string; alt: string };
 }
 
 const SERVICES_ALL: ServiceItem[] = [
@@ -32,6 +33,7 @@ const SERVICES_ALL: ServiceItem[] = [
         icon: Truck,
         title: "Remorquage",
         desc: "Votre véhicule est immobilisé ? Nous le remorquons vers le garage de votre choix, partout en Île-de-France, de jour comme de nuit.",
+        image: BRAND.id === "adfr" ? { src: "/img/service-remorquage.webp", alt: "Chargement d'un véhicule sur plateau ADFR" } : undefined,
     },
     {
         icon: Wrench,
@@ -42,11 +44,13 @@ const SERVICES_ALL: ServiceItem[] = [
         icon: BatteryCharging,
         title: "Batterie",
         desc: "Batterie à plat ? Démarrage avec booster, test de charge et remplacement si besoin, directement chez vous.",
+        image: BRAND.id === "adfr" ? { src: "/img/service-batterie.webp", alt: "Dépannage batterie voiture sur place ADFR" } : undefined,
     },
     {
         icon: CircleDot,
         title: "Crevaison",
         desc: "Roue de secours posée sur place ou remorquage rapide vers le pneumaticien le plus proche.",
+        image: BRAND.id === "adfr" ? { src: "/img/service-crevaison.webp", alt: "Remorquage d'une voiture crevée sur dépanneuse plateau ADFR" } : undefined,
     },
     {
         icon: Fuel,
@@ -65,8 +69,8 @@ const SERVICES_ALL: ServiceItem[] = [
     },
 ];
 
-/** ADFR ne propose plus la sortie de fourrière ; la carte reste sur SOS Dépannage. */
-export const SERVICES: ServiceItem[] = BRAND.id === "adfr" ? SERVICES_ALL.filter((s) => s.title !== "Sortie de fourrière") : SERVICES_ALL;
+/** ADFR : 5 services (sans sortie de fourrière ni véhicule accidenté) ; SOS Dépannage garde les 7. */
+export const SERVICES: ServiceItem[] = BRAND.id === "adfr" ? SERVICES_ALL.filter((s) => s.title !== "Sortie de fourrière" && s.title !== "Véhicule accidenté") : SERVICES_ALL;
 
 export interface Review {
     name: string;

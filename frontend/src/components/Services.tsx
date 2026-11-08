@@ -51,6 +51,16 @@ export default function Services({ eyebrow = "Nos services", title = "Du dépann
                                 </span>
                                 <span className="font-display font-black text-4xl text-adfr-chrome/15 select-none">{String(i + 1).padStart(2, "0")}</span>
                             </div>
+                            {s.image && (
+                                <img
+                                    src={s.image.src}
+                                    alt={s.image.alt}
+                                    loading="lazy"
+                                    decoding="async"
+                                    className="mt-5 h-44 md:h-52 w-full rounded-xl object-cover shadow-[0_18px_40px_-18px_rgba(0,0,0,0.8)] border border-adfr-chrome/15"
+                                    data-testid={`service-image-${s.title.toLowerCase().replace(/[^a-z]+/g, "-")}`}
+                                />
+                            )}
                             <h3 className="mt-5 font-display text-lg font-bold text-white">{s.title}</h3>
                             <p className="mt-2 text-sm leading-relaxed text-slate-400">{s.desc}</p>
                             <a

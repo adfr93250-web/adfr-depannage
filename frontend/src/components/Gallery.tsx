@@ -7,17 +7,18 @@ import { track, gtagConversion } from "@/lib/api";
 const PHOTOS = [
     {
         src: "/img/flotte-plateau.webp",
-        alt: "La dépanneuse plateau prête à partir en intervention dans une rue d'Île-de-France",
+        alt: "La dépanneuse plateau prête à partir pour une intervention en Île-de-France",
         caption: "Plateau prêt à partir",
-        span: "md:col-span-7 md:row-span-2",
-        frame: "h-56 md:h-full",
     },
     {
         src: "/img/flotte-van.webp",
-        alt: "Un combi Volkswagen chargé et arrimé sur le plateau de la dépanneuse",
-        caption: "Arrimage sécurisé",
-        span: "md:col-span-5 md:row-span-2",
-        frame: "h-96 md:h-full",
+        alt: "Combi Volkswagen arrimé sur le plateau de la dépanneuse",
+        caption: "Véhicule arrimé, départ vers le garage",
+    },
+    {
+        src: "/img/intervention-pluie.webp",
+        alt: "Intervention de dépannage sous la pluie en Île-de-France",
+        caption: "Intervention sous la pluie",
     },
 ];
 
@@ -43,7 +44,7 @@ export default function Gallery() {
                     whileInView="show"
                     viewport={{ once: true, amount: 0.1 }}
                     variants={{ show: { transition: { staggerChildren: 0.09 } } }}
-                    className="grid grid-cols-1 md:grid-cols-12 md:auto-rows-[272px] gap-4"
+                    className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4"
                     data-testid="gallery"
                 >
                     {PHOTOS.map((p) => (
@@ -51,9 +52,9 @@ export default function Gallery() {
                             key={p.src}
                             variants={{ hidden: { opacity: 0, y: 26 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } } }}
                             data-testid={`gallery-photo-${p.caption.toLowerCase().replace(/[^a-z]+/g, "-")}`}
-                            className={`group relative overflow-hidden rounded-2xl border border-adfr-chrome/15 ${p.span} ${p.frame}`}
+                            className="group relative overflow-hidden rounded-2xl border border-adfr-chrome/15 shadow-[0_18px_40px_-18px_rgba(0,0,0,0.8)] h-44 sm:h-56 md:h-72 last-of-type:col-span-2 md:last-of-type:col-span-1"
                         >
-                            <img src={p.src} alt={p.alt} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <img src={p.src} alt={p.alt} loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
                             <div className="absolute inset-0 bg-gradient-to-t from-adfr-night/60 via-transparent to-transparent" />
                             <figcaption className="absolute bottom-3 left-3 rounded-full bg-adfr-night/70 px-3.5 py-1.5 text-xs font-bold text-white backdrop-blur-md">
                                 {p.caption}
@@ -63,7 +64,7 @@ export default function Gallery() {
 
                     <motion.div
                         variants={{ hidden: { opacity: 0, y: 26 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } } }}
-                        className="md:col-span-12 h-56 md:h-auto md:py-8 rounded-2xl border border-adfr-red/40 bg-gradient-to-br from-adfr-deep2 to-adfr-deep px-6 md:px-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+                        className="col-span-2 md:col-span-3 h-56 md:h-auto md:py-8 rounded-2xl border border-adfr-red/40 bg-gradient-to-br from-adfr-deep2 to-adfr-deep px-6 md:px-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
                         data-testid="gallery-cta"
                     >
                         <div>
