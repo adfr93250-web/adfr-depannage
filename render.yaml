@@ -17,7 +17,7 @@ services:
       - key: DB_NAME
         value: adfr
       - key: CORS_ORIGINS
-        value: https://adfr-depannage.fr,https://www.adfr-depannage.fr
+        value: https://adfr-depannage.fr,https://www.adfr-depannage.fr,https://sos-depann.fr,https://www.sos-depann.fr
       - key: JWT_SECRET
         generateValue: true
       - key: ADMIN_EMAIL
