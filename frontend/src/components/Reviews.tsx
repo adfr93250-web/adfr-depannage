@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { Star } from "lucide-react";
-import { REVIEWS } from "@/data/site";
+import { Star, ExternalLink } from "lucide-react";
+import { REVIEWS, GOOGLE_REVIEWS_URL } from "@/data/site";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -16,7 +16,7 @@ export default function Reviews() {
                     className="mb-12 md:mb-16 max-w-3xl"
                 >
                     <p className="text-xs font-bold uppercase tracking-[0.24em] text-adfr-red mb-3">Avis clients</p>
-                    <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Ils sont tombés en panne. Ils s'en souviennent.</h2>
+                    <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Ce que disent nos clients</h2>
                 </motion.div>
 
                 <motion.div
@@ -38,7 +38,11 @@ export default function Reviews() {
                                     <Star key={i} className={`size-4 ${i < r.stars ? "fill-[#FFC531] text-[#FFC531]" : "text-slate-600"}`} />
                                 ))}
                             </div>
-                            <blockquote className="mt-4 text-sm leading-relaxed text-slate-200 flex-1">&ldquo;{r.text}&rdquo;</blockquote>
+                            {r.text ? (
+                                <blockquote className="mt-4 text-sm leading-relaxed text-slate-200 flex-1">&ldquo;{r.text}&rdquo;</blockquote>
+                            ) : (
+                                <div className="flex-1" />
+                            )}
                             <figcaption className="mt-5 pt-4 border-t border-adfr-chrome/10">
                                 <span className="text-sm font-bold text-white">{r.name}</span>
                                 <span className="ml-2 text-xs text-slate-500">{r.city}</span>
@@ -46,6 +50,21 @@ export default function Reviews() {
                         </motion.figure>
                     ))}
                 </motion.div>
+
+                {GOOGLE_REVIEWS_URL && (
+                    <div className="mt-10 text-center">
+                        <a
+                            href={GOOGLE_REVIEWS_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            data-testid="google-reviews-link"
+                            className="inline-flex items-center gap-2 rounded-full border border-adfr-chrome/30 px-6 py-3 text-sm font-bold text-white hover:bg-white/5 transition-colors"
+                        >
+                            Voir tous nos avis sur Google
+                            <ExternalLink className="size-4" />
+                        </a>
+                    </div>
+                )}
             </div>
         </section>
     );

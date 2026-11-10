@@ -86,44 +86,30 @@ export interface Review {
     text: string;
 }
 
+// Vrais avis Google de la fiche ADFR (recopiés mot pour mot, nov. 2026).
 const REVIEWS_ADFR: Review[] = [
     {
-        name: "Karim B.",
-        city: "Vitry-sur-Seine",
+        name: "Esty C.",
+        city: "Avis Google · novembre 2026",
         stars: 5,
-        text: "Crevaison à 23h en sortant du parking, pas de roue de secours. Dépanneur arrivé en moins de 30 minutes, remorquage jusqu'à mon garage. Rapide et efficace.",
+        text: "Un service au top du début à la fin ! Intervention rapide, professionnelle et efficace. Le dépanneur a été très sympathique, à l\u2019écoute et réactif. Il a pris le temps de bien faire les choses et a remplacé ma batterie rapidement. Je suis entièrement satisfait de la prestation, aussi bien pour la qualité du service que pour le sérieux, le professionnalisme de l\u2019équipe et le prix. Je recommande cette société de dépannage les yeux fermés ! Encore merci pour votre intervention et votre efficacité",
     },
     {
-        name: "Sophie M.",
-        city: "Boulogne-Billancourt",
-        stars: 5,
-        text: "Batterie morte un lundi matin. Appel à 7h15, voiture démarrée à 7h40 pendant que je prenais mon café. Rapide, souriant, sérieux.",
-    },
-    {
-        name: "Jean-Luc D.",
-        city: "Paris 12e",
-        stars: 5,
-        text: "Panne porte de Bagnolet en pleine heure de pointe. Prise en charge impeccable, voiture remorquée jusqu'au garage du début à la fin.",
-    },
-    {
-        name: "Amina T.",
-        city: "Créteil",
+        name: "Franck M.",
+        city: "Avis Google · novembre 2026",
         stars: 4,
-        text: "Panne de carburant sur la route du travail. Carburant livré sur place en 25 minutes. J'ai pu rejoindre la station sans problème. Un peu d'attente au téléphone, mais un service solide.",
+        text: "Je recommande vivement ADFR ! J\u2019ai fait appel à leurs services pour un dépannage de mon véhicule suite à un problème d\u2019embrayage et je suis très satisfait. Ils sont intervenu très rapidement, équipe professionnelle, ponctuelle et très sympathique. Le dépanneur a été efficace et a pris soin de mon véhicule du début à la fin. Tarif correct et service de qualité. C\u2019est rassurant de pouvoir compter sur une entreprise aussi sérieuse en cas de problème. Merci encore pour votre réactivité ! Je recommande à 100 % Merci à Thierry qui a été très pro",
     },
     {
-        name: "Marc P.",
-        city: "Saint-Denis",
+        name: "Sylvain L.",
+        city: "Avis Google · novembre 2026",
         stars: 5,
-        text: "Accident près du Stade de France, voiture non roulante. Remorquage le soir même, tout expliqué simplement.",
-    },
-    {
-        name: "Nadia K.",
-        city: "Nanterre",
-        stars: 5,
-        text: "Service 24/7 vérifié : appel à 3h du matin, voiture qui ne démarre plus devant chez moi à Nanterre, dépanneur là à 3h25. On n'est jamais mieux servi qu'en pleine nuit.",
+        text: "",
     },
 ];
+
+/** Lien vers la fiche Google (avis) — uniquement pour ADFR. */
+export const GOOGLE_REVIEWS_URL: string | null = BRAND.id === "adfr" ? "https://maps.app.goo.gl/CWL43ZqWWHRJwpJ99" : null;
 
 const REVIEWS_SOS: Review[] = [
     {
