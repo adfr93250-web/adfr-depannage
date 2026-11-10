@@ -57,6 +57,7 @@ const SERVICES_ALL: ServiceItem[] = [
         icon: Fuel,
         title: "Panne de carburant",
         desc: "Essence ou diesel, on vous livre le carburant nécessaire pour rejoindre la pompe sans stress.",
+        image: BRAND.id === "adfr" ? { src: "/img/service-carburant.webp", alt: "Dépanneur ADFR vidangeant un réservoir après une erreur de carburant" } : undefined,
     },
     {
         icon: Tractor,
