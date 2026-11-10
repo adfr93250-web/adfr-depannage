@@ -94,6 +94,7 @@ const REVIEWS_ADFR: Review[] = [
         city: "Avis Google · novembre 2026",
         stars: 5,
         text: "Un service au top du début à la fin ! Intervention rapide, professionnelle et efficace. Le dépanneur a été très sympathique, à l\u2019écoute et réactif. Il a pris le temps de bien faire les choses et a remplacé ma batterie rapidement. Je suis entièrement satisfait de la prestation, aussi bien pour la qualité du service que pour le sérieux, le professionnalisme de l\u2019équipe et le prix. Je recommande cette société de dépannage les yeux fermés ! Encore merci pour votre intervention et votre efficacité",
+        photo: { src: "/img/avis/esty-porsche.webp", alt: "Porsche 911 Turbo d\u2019Esty après l\u2019intervention ADFR (changement de batterie)" },
     },
     {
         name: "Franck M.",
