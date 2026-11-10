@@ -43,6 +43,14 @@ export default function Reviews() {
                             ) : (
                                 <div className="flex-1" />
                             )}
+                            {r.photo && (
+                                <img
+                                    src={r.photo.src}
+                                    alt={r.photo.alt}
+                                    loading="lazy"
+                                    className="mt-4 h-56 w-full rounded-xl object-cover"
+                                />
+                            )}
                             <figcaption className="mt-5 pt-4 border-t border-adfr-chrome/10">
                                 <span className="text-sm font-bold text-white">{r.name}</span>
                                 <span className="ml-2 text-xs text-slate-500">{r.city}</span>

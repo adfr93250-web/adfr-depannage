@@ -84,6 +84,7 @@ export interface Review {
     city: string;
     stars: number;
     text: string;
+    photo?: { src: string; alt: string };
 }
 
 // Vrais avis Google de la fiche ADFR (recopiés mot pour mot, nov. 2026).
@@ -99,12 +100,14 @@ const REVIEWS_ADFR: Review[] = [
         city: "Avis Google · novembre 2026",
         stars: 4,
         text: "Je recommande vivement ADFR ! J\u2019ai fait appel à leurs services pour un dépannage de mon véhicule suite à un problème d\u2019embrayage et je suis très satisfait. Ils sont intervenu très rapidement, équipe professionnelle, ponctuelle et très sympathique. Le dépanneur a été efficace et a pris soin de mon véhicule du début à la fin. Tarif correct et service de qualité. C\u2019est rassurant de pouvoir compter sur une entreprise aussi sérieuse en cas de problème. Merci encore pour votre réactivité ! Je recommande à 100 % Merci à Thierry qui a été très pro",
+        photo: { src: "/img/avis/franck-remorquage-nuit.webp", alt: "Dépanneuse plateau ADFR prête à charger un véhicule de nuit" },
     },
     {
         name: "Sylvain L.",
         city: "Avis Google · novembre 2026",
         stars: 5,
         text: "",
+        photo: { src: "/img/avis/sylvain-depanneuse-route.webp", alt: "Dépanneuse ADFR en intervention sur route, vue depuis le véhicule du client" },
     },
 ];
 
