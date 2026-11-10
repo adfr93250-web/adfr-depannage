@@ -106,7 +106,7 @@ const REVIEWS_ADFR: Review[] = [
         name: "Sylvain L.",
         city: "Avis Google · novembre 2026",
         stars: 5,
-        text: "",
+        text: "Le service étais au top très réactif et très compétitif en terme de tarif",
         photo: { src: "/img/avis/sylvain-depanneuse-route.webp", alt: "Dépanneuse ADFR en intervention sur route, vue depuis le véhicule du client" },
     },
 ];
