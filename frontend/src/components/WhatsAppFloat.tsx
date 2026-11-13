@@ -12,7 +12,7 @@ export default function WhatsAppFloat() {
             rel="noopener noreferrer"
             aria-label="Écrire sur WhatsApp"
             data-testid="whatsapp-float-button"
-            onClick={() => { track("whatsapp", pathname); gtagConversion("whatsapp"); }}
+            onClick={() => { track("whatsapp", pathname, "Bulle WhatsApp"); gtagConversion("whatsapp"); }}
             className="fixed right-4 bottom-[calc(92px+env(safe-area-inset-bottom))] md:bottom-6 z-40 group"
         >
             <span className="absolute inset-0 rounded-full bg-adfr-wa opacity-30 animate-ping" />

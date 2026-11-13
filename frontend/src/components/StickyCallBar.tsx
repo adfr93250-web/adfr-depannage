@@ -12,7 +12,7 @@ export default function StickyCallBar() {
             <a
                 href={SITE.phoneHref}
                 data-testid="sticky-call-button"
-                onClick={() => { track("call", pathname); gtagConversion("call"); }}
+                onClick={() => { track("call", pathname, "Barre du bas"); gtagConversion("call"); }}
                 className="flex-[2] flex items-center justify-center gap-3 py-3.5 px-4 bg-adfr-red"
             >
                 <PhoneCall className="size-6 animate-ring shrink-0 text-white" />

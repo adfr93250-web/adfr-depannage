@@ -28,6 +28,7 @@ PANNE_TYPES = {
 
 BRAND_NAMES = {"adfr": "ADFR", "sos": "SOS Dépannage"}
 BRAND_IDS = set(BRAND_NAMES)
+TRACK_ORIGINS = ("ads", "google", "direct", "other")
 
 
 class CallbackCreate(BaseModel):
@@ -79,6 +80,25 @@ class TrackCreate(BaseModel):
     event: str
     page: str
     source: str = "adfr"
+    button: str = ""
+    origin: str = ""
+    device: str = ""
+    internal: bool = False
+
+    @field_validator("button")
+    @classmethod
+    def check_button(cls, v: str) -> str:
+        return (v or "").strip()[:40]
+
+    @field_validator("origin")
+    @classmethod
+    def check_origin(cls, v: str) -> str:
+        return v if v in TRACK_ORIGINS else ""
+
+    @field_validator("device")
+    @classmethod
+    def check_device(cls, v: str) -> str:
+        return v if v in {"mobile", "desktop"} else ""
 
     @field_validator("source")
     @classmethod
@@ -313,20 +333,58 @@ async def track_stats(days: int = 14, source: str | None = None, _: str = Depend
     query: dict = {"created_at": {"$gte": start_iso}}
     if source in BRAND_IDS:
         query["source"] = source if source != "adfr" else {"$in": ["adfr", None]}
-    events = await db.track_events.find(query, {"_id": 0, "event": 1, "created_at": 1}).to_list(50000)
+    events = await db.track_events.find(
+        query, {"_id": 0, "event": 1, "created_at": 1, "origin": 1, "internal": 1}
+    ).to_list(50000)
 
     buckets = {(first_day + timedelta(days=i)).isoformat(): {"call": 0, "whatsapp": 0, "form": 0} for i in range(days)}
+    origins = {k: 0 for k in (*TRACK_ORIGINS, "unknown")}
+    hours = [0] * 24
+    tests = 0
     for e in events:
         try:
-            day = datetime.fromisoformat(e["created_at"]).astimezone(PARIS_TZ).date().isoformat()
+            local = datetime.fromisoformat(e["created_at"]).astimezone(PARIS_TZ)
         except (KeyError, ValueError):
             continue
-        if day in buckets and e.get("event") in buckets[day]:
-            buckets[day][e["event"]] += 1
+        day = local.date().isoformat()
+        if day not in buckets or e.get("event") not in buckets[day]:
+            continue
+        if e.get("internal"):
+            tests += 1
+            continue
+        buckets[day][e["event"]] += 1
+        origin = e.get("origin")
+        origins[origin if origin in TRACK_ORIGINS else "unknown"] += 1
+        hours[local.hour] += 1
 
     rows = [{"date": d, **c, "total": sum(c.values())} for d, c in sorted(buckets.items(), reverse=True)]
     totals = {k: sum(r[k] for r in rows) for k in ("call", "whatsapp", "form", "total")}
-    return {"days": days, "rows": rows, "totals": totals}
+    return {"days": days, "rows": rows, "totals": totals, "origins": origins, "hours": hours, "tests": tests}
+
+
+@api_router.get("/track/events")
+async def track_events_list(limit: int = 100, source: str | None = None, _: str = Depends(get_current_admin)):
+    """Détail des derniers clics (heure, bouton, provenance, appareil) pour l'espace admin."""
+    limit = max(1, min(limit, 300))
+    query: dict = {}
+    if source in BRAND_IDS:
+        query["source"] = source if source != "adfr" else {"$in": ["adfr", None]}
+    docs = await db.track_events.find(query, {"_id": 0}).sort("created_at", -1).to_list(limit)
+    return {
+        "events": [
+            {
+                "created_at": d.get("created_at"),
+                "event": d.get("event"),
+                "page": d.get("page", ""),
+                "source": d.get("source") or "adfr",
+                "button": d.get("button", ""),
+                "origin": d.get("origin", ""),
+                "device": d.get("device", ""),
+                "internal": bool(d.get("internal")),
+            }
+            for d in docs
+        ]
+    }
 
 
 @api_router.patch("/callbacks/{callback_id}")

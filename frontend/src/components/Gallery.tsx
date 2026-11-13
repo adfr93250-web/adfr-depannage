@@ -74,7 +74,7 @@ export default function Gallery() {
                         <a
                             href={SITE.phoneHref}
                             data-testid="gallery-call-button"
-                            onClick={() => { track("call", "/galerie"); gtagConversion("call"); }}
+                            onClick={() => { track("call", "/galerie", "Galerie"); gtagConversion("call"); }}
                             className="inline-flex w-fit items-center gap-2.5 bg-adfr-red hover:bg-adfr-redDark text-white font-display font-extrabold uppercase tracking-wide rounded-full px-6 py-3.5 text-sm md:text-base shadow-[0_0_24px_rgba(var(--c-red-c),0.35)] transition-colors active:scale-[0.97]"
                         >
                             <PhoneCall className="size-4 animate-ring" />

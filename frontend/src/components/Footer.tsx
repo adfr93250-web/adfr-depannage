@@ -19,7 +19,7 @@ export default function Footer() {
                         <a
                             href={SITE.phoneHref}
                             data-testid="footer-call-button"
-                            onClick={() => { track("call", "/footer"); gtagConversion("call"); }}
+                            onClick={() => { track("call", "/footer", "Pied de page"); gtagConversion("call"); }}
                             className="inline-flex w-fit items-center gap-3 bg-adfr-red text-white font-display font-extrabold uppercase tracking-wide rounded-full px-6 py-3 shadow-[0_0_24px_rgba(var(--c-red-c),0.3)] transition-colors hover:bg-adfr-redDark"
                         >
                             <PhoneCall className="size-4 animate-ring" />
@@ -30,7 +30,7 @@ export default function Footer() {
                             target="_blank"
                             rel="noopener noreferrer"
                             data-testid="footer-whatsapp-button"
-                            onClick={() => { track("whatsapp", "/footer"); gtagConversion("whatsapp"); }}
+                            onClick={() => { track("whatsapp", "/footer", "Pied de page"); gtagConversion("whatsapp"); }}
                             className="inline-flex w-fit items-center gap-3 text-sm font-bold text-adfr-wa hover:text-white transition-colors"
                         >
                             <MessageCircle className="size-4" /> WhatsApp : +33 6 52 66 47 49

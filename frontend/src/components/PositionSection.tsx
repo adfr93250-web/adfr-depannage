@@ -87,7 +87,7 @@ export default function PositionSection() {
                             <div className="rounded-2xl border border-adfr-redLight/40 bg-adfr-deep2/60 p-5 text-sm font-semibold text-adfr-redLight" data-testid="position-error">
                                 {state.message}
                             </div>
-                            <a href={SITE.phoneHref} onClick={() => { track("call", pathname); gtagConversion("call"); }} data-testid="position-call-button" className={`${BTN} border border-adfr-chrome/40 bg-white/5 hover:bg-white/10 text-white font-bold`}>
+                            <a href={SITE.phoneHref} onClick={() => { track("call", pathname, "Bloc position"); gtagConversion("call"); }} data-testid="position-call-button" className={`${BTN} border border-adfr-chrome/40 bg-white/5 hover:bg-white/10 text-white font-bold`}>
                                 <PhoneCall className="size-5 shrink-0 animate-ring" /> Ou appeler maintenant
                             </a>
                         </>
@@ -102,13 +102,13 @@ export default function PositionSection() {
                                 href={waHref}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                onClick={() => { track("whatsapp", pathname); gtagConversion("whatsapp"); }}
+                                onClick={() => { track("whatsapp", pathname, "Bloc position"); gtagConversion("whatsapp"); }}
                                 data-testid="position-whatsapp-button"
                                 className={`${BTN} bg-adfr-wa hover:bg-[#1eb856] text-white font-bold`}
                             >
                                 <MessageCircle className="size-5 shrink-0" /> Envoyer par WhatsApp
                             </a>
-                            <a href={SITE.phoneHref} onClick={() => { track("call", pathname); gtagConversion("call"); }} data-testid="position-call-button" className={`${BTN} border border-adfr-chrome/40 bg-white/5 hover:bg-white/10 text-white font-bold`}>
+                            <a href={SITE.phoneHref} onClick={() => { track("call", pathname, "Bloc position"); gtagConversion("call"); }} data-testid="position-call-button" className={`${BTN} border border-adfr-chrome/40 bg-white/5 hover:bg-white/10 text-white font-bold`}>
                                 <PhoneCall className="size-5 shrink-0 animate-ring" /> Ou appeler maintenant
                             </a>
                         </>

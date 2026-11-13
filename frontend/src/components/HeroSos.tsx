@@ -38,7 +38,7 @@ export default function HeroSos() {
                 <motion.a
                     href={SITE.phoneHref}
                     data-testid="hero-call-button"
-                    onClick={() => { track("call", pathname); gtagConversion("call"); }}
+                    onClick={() => { track("call", pathname, "Haut de page"); gtagConversion("call"); }}
                     initial={{ opacity: 0, y: 24 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, ease: EASE, delay: 0.7 }}

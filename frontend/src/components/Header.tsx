@@ -56,7 +56,7 @@ export default function Header() {
                 <a
                     href={SITE.phoneHref}
                     data-testid="header-call-button"
-                    onClick={() => { track("call", location.pathname); gtagConversion("call"); }}
+                    onClick={() => { track("call", location.pathname, "En-tête"); gtagConversion("call"); }}
                     className="inline-flex items-center gap-2.5 bg-adfr-red hover:bg-adfr-redDark text-white font-display font-extrabold uppercase tracking-wide rounded-full px-4 md:px-6 py-2.5 md:py-3 text-sm md:text-base shadow-[0_0_24px_rgba(var(--c-red-c),0.35)] transition-colors active:scale-[0.97]"
                 >
                     <Phone className="size-4 md:size-5 animate-ring" />

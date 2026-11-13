@@ -18,7 +18,7 @@ export const WA_BTN =
 export function CallButton({ where, testId, className }: CtaProps) {
     const { pathname } = useLocation();
     return (
-        <a href={SITE.phoneHref} data-testid={testId} className={`${CALL_BTN} ${className ?? ""}`} onClick={() => { track("call", where || pathname); gtagConversion("call"); }}>
+        <a href={SITE.phoneHref} data-testid={testId} className={`${CALL_BTN} ${className ?? ""}`} onClick={() => { track("call", where || pathname, "Bouton principal"); gtagConversion("call"); }}>
             <PhoneCall className="size-5 animate-ring shrink-0" />
             <span className="whitespace-nowrap">{SITE.phoneDisplay}</span>
         </a>
@@ -28,7 +28,7 @@ export function CallButton({ where, testId, className }: CtaProps) {
 export function CallLabelButton({ where, label, testId, className }: CtaProps & { label: string }) {
     const { pathname } = useLocation();
     return (
-        <a href={SITE.phoneHref} data-testid={testId} className={`${CALL_BTN} ${className ?? ""}`} onClick={() => { track("call", where || pathname); gtagConversion("call"); }}>
+        <a href={SITE.phoneHref} data-testid={testId} className={`${CALL_BTN} ${className ?? ""}`} onClick={() => { track("call", where || pathname, "Bouton principal"); gtagConversion("call"); }}>
             <PhoneCall className="size-5 animate-ring shrink-0" />
             <span>{label}</span>
         </a>
@@ -44,7 +44,7 @@ export function WhatsAppButton({ where, place, testId, className }: CtaProps & {
             rel="noopener noreferrer"
             data-testid={testId}
             className={`${WA_BTN} ${className ?? ""}`}
-            onClick={() => { track("whatsapp", where || pathname); gtagConversion("whatsapp"); }}
+            onClick={() => { track("whatsapp", where || pathname, "Bouton principal"); gtagConversion("whatsapp"); }}
         >
             <MessageCircle className="size-5 shrink-0" />
             <span>WhatsApp — envoyer ma panne</span>

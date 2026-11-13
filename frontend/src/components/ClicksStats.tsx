@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { MessageCircle, PhoneCall, Send } from "lucide-react";
 
 import { API } from "@/lib/apiBase";
+import { INTERNAL_KEY } from "@/lib/api";
 
 interface DayRow {
     date: string;
@@ -15,6 +16,45 @@ interface StatsPayload {
     days: number;
     rows: DayRow[];
     totals: { call: number; whatsapp: number; form: number; total: number };
+    origins?: Record<string, number>;
+    hours?: number[];
+    tests?: number;
+}
+
+interface ClickEvent {
+    created_at: string;
+    event: "call" | "whatsapp" | "form";
+    page: string;
+    source: string;
+    button: string;
+    origin: string;
+    device: string;
+    internal: boolean;
+}
+
+const EVENT_LABEL: Record<string, string> = { call: "Appel", whatsapp: "WhatsApp", form: "Formulaire" };
+const EVENT_COLOR: Record<string, string> = { call: "text-adfr-redLight", whatsapp: "text-adfr-wa", form: "text-adfr-electricLight" };
+const ORIGIN_LABEL: Record<string, string> = {
+    ads: "Annonce Google",
+    google: "Google gratuit",
+    direct: "Accès direct",
+    other: "Autre site",
+    unknown: "Non mesuré",
+};
+const ORIGIN_ORDER = ["ads", "google", "direct", "other", "unknown"];
+
+function timeLabel(iso: string): string {
+    const d = new Date(iso);
+    const day = dayLabel(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`);
+    return `${day} ${d.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" })}`;
+}
+
+function readInternal(): boolean {
+    try {
+        return window.localStorage.getItem(INTERNAL_KEY) === "1";
+    } catch {
+        return false;
+    }
 }
 
 function dayLabel(iso: string): string {
@@ -31,6 +71,31 @@ export const ClicksStats = ({ refreshKey }: { refreshKey: number }) => {
     const [days, setDays] = useState<7 | 14 | 30>(14);
     const [source, setSource] = useState<"all" | "adfr" | "sos">("all");
     const [data, setData] = useState<StatsPayload | null>(null);
+    const [events, setEvents] = useState<ClickEvent[]>([]);
+    const [showAll, setShowAll] = useState(false);
+    const [internal, setInternal] = useState(readInternal);
+
+    // Les appareils de l'équipe sont marqués "test" dès la première connexion à l'espace admin
+    useEffect(() => {
+        try {
+            if (window.localStorage.getItem(INTERNAL_KEY) === null) {
+                window.localStorage.setItem(INTERNAL_KEY, "1");
+                setInternal(true);
+            }
+        } catch {
+            // stockage indisponible (navigation privée stricte) : on ne marque rien
+        }
+    }, []);
+
+    const toggleInternal = () => {
+        const next = !internal;
+        try {
+            window.localStorage.setItem(INTERNAL_KEY, next ? "1" : "0");
+        } catch {
+            return;
+        }
+        setInternal(next);
+    };
 
     useEffect(() => {
         let cancelled = false;
@@ -38,10 +103,21 @@ export const ClicksStats = ({ refreshKey }: { refreshKey: number }) => {
         fetch(`${API}/track/stats?days=${days}${q}`, { credentials: "include" })
             .then((r) => (r.ok ? r.json() : null))
             .then((d) => { if (!cancelled) setData(d); });
+        const q2 = source === "all" ? "" : `&source=${source}`;
+        fetch(`${API}/track/events?limit=100${q2}`, { credentials: "include" })
+            .then((r) => (r.ok ? r.json() : null))
+            .then((d) => { if (!cancelled) setEvents(d?.events ?? []); })
+            .catch(() => {});
         return () => { cancelled = true; };
     }, [days, source, refreshKey]);
 
     const max = Math.max(1, ...(data?.rows.map((r) => r.total) ?? [1]));
+    const origins = data?.origins;
+    const originTotal = origins ? Math.max(1, ORIGIN_ORDER.reduce((n, k) => n + (origins[k] ?? 0), 0)) : 1;
+    const hours = data?.hours ?? [];
+    const hourMax = Math.max(1, ...hours);
+    const busyHours = hours.map((n, h) => ({ h, n })).filter((x) => x.n > 0);
+    const shownEvents = showAll ? events : events.slice(0, 15);
 
     return (
         <section className="mt-8 rounded-3xl border border-adfr-chrome/15 bg-adfr-deep2/40 p-5 md:p-6" data-testid="clicks-stats">
@@ -117,6 +193,92 @@ export const ClicksStats = ({ refreshKey }: { refreshKey: number }) => {
                         ))}
                     </tbody>
                 </table>
+            </div>
+
+            <p className="mt-3 text-xs text-slate-500" data-testid="clicks-tests-note">
+                {data?.tests ? `${data.tests} clic${data.tests > 1 ? "s" : ""} de test (appareils de l'équipe) non compté${data.tests > 1 ? "s" : ""} dans ces totaux.` : "Les clics faits depuis les appareils de l'équipe ne sont pas comptés dans ces totaux."}
+            </p>
+
+            {origins && (
+                <div className="mt-6" data-testid="clicks-origins">
+                    <h3 className="font-display text-sm font-extrabold text-white">D'où viennent les clics</h3>
+                    <p className="text-xs text-slate-400 mt-1">Sur la période choisie. « Non mesuré » = clics enregistrés avant l'ajout de cette mesure.</p>
+                    <div className="mt-3 space-y-2">
+                        {ORIGIN_ORDER.filter((k) => (origins[k] ?? 0) > 0).map((k) => (
+                            <div key={k} className="flex items-center gap-3 text-sm" data-testid={`clicks-origin-${k}`}>
+                                <span className="w-32 shrink-0 text-slate-300">{ORIGIN_LABEL[k]}</span>
+                                <span className="flex h-2 flex-1 overflow-hidden rounded-full bg-adfr-night/60">
+                                    <span className={k === "ads" ? "bg-adfr-red" : k === "unknown" ? "bg-slate-600" : "bg-adfr-electric"} style={{ width: `${((origins[k] ?? 0) / originTotal) * 100}%` }} />
+                                </span>
+                                <span className="w-8 text-right font-bold text-white">{origins[k]}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            {busyHours.length > 0 && (
+                <div className="mt-6" data-testid="clicks-hours">
+                    <h3 className="font-display text-sm font-extrabold text-white">Heures où l'on clique le plus</h3>
+                    <p className="text-xs text-slate-400 mt-1">Total des clics par heure sur la période choisie.</p>
+                    <div className="mt-3 space-y-1.5">
+                        {busyHours.map(({ h, n }) => (
+                            <div key={h} className="flex items-center gap-3 text-sm">
+                                <span className="w-32 shrink-0 text-slate-300">{String(h).padStart(2, "0")}h – {String((h + 1) % 24).padStart(2, "0")}h</span>
+                                <span className="flex h-2 flex-1 overflow-hidden rounded-full bg-adfr-night/60">
+                                    <span className="bg-adfr-red" style={{ width: `${(n / hourMax) * 100}%` }} />
+                                </span>
+                                <span className="w-8 text-right font-bold text-white">{n}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            <div className="mt-6" data-testid="clicks-events">
+                <h3 className="font-display text-sm font-extrabold text-white">Détail des derniers clics</h3>
+                <p className="text-xs text-slate-400 mt-1">Heure, bouton utilisé, provenance et appareil. À comparer avec les appels réellement reçus.</p>
+                {events.length === 0 ? (
+                    <p className="mt-3 text-sm text-slate-500">Aucun clic enregistré pour l'instant.</p>
+                ) : (
+                    <ul className="mt-3 divide-y divide-adfr-chrome/10">
+                        {shownEvents.map((e, i) => (
+                            <li key={`${e.created_at}-${i}`} className={`py-2.5 ${e.internal ? "opacity-50" : ""}`} data-testid="clicks-event-row">
+                                <div className="flex items-baseline justify-between gap-3">
+                                    <span className={`font-bold ${EVENT_COLOR[e.event] ?? "text-white"}`}>{EVENT_LABEL[e.event] ?? e.event}</span>
+                                    <span className="text-xs text-slate-400 whitespace-nowrap">{timeLabel(e.created_at)}</span>
+                                </div>
+                                <p className="mt-0.5 text-xs text-slate-400">
+                                    {[
+                                        e.button || null,
+                                        e.page ? `page ${e.page}` : null,
+                                        e.origin ? ORIGIN_LABEL[e.origin] : null,
+                                        e.device === "mobile" ? "Téléphone" : e.device === "desktop" ? "Ordinateur" : null,
+                                        source === "all" && e.source === "sos" ? "SOS" : null,
+                                        e.internal ? "TEST (équipe)" : null,
+                                    ].filter(Boolean).join(" · ") || "Détail non mesuré (ancien clic)"}
+                                </p>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+                {events.length > 15 && (
+                    <button onClick={() => setShowAll((v) => !v)} data-testid="clicks-events-more" className="mt-3 rounded-full border border-adfr-chrome/25 px-4 py-2 text-xs font-bold text-slate-300 hover:text-white">
+                        {showAll ? "Voir moins" : `Voir les ${events.length} derniers clics`}
+                    </button>
+                )}
+            </div>
+
+            <div className="mt-6 rounded-2xl border border-adfr-chrome/15 bg-adfr-night/40 p-4" data-testid="clicks-internal">
+                <p className="text-sm font-bold text-white">{internal ? "Cet appareil est marqué « équipe »" : "Cet appareil compte comme un visiteur"}</p>
+                <p className="mt-1 text-xs text-slate-400">
+                    {internal
+                        ? "Vos essais de boutons depuis cet appareil sont notés comme tests et ne faussent plus les chiffres."
+                        : "Vos clics depuis cet appareil sont comptés comme ceux d'un client."}
+                </p>
+                <button onClick={toggleInternal} data-testid="clicks-internal-toggle" className="mt-3 rounded-full border border-adfr-chrome/25 px-4 py-2 text-xs font-bold text-slate-300 hover:text-white">
+                    {internal ? "Compter cet appareil comme un visiteur" : "Marquer cet appareil comme équipe"}
+                </button>
             </div>
         </section>
     );
