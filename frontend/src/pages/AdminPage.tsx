@@ -2,7 +2,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { CheckCircle2, Clock3, Lock, LogOut, PhoneCall, RefreshCw } from "lucide-react";
 import { ClicksStats } from "@/components/ClicksStats";
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+import { API } from "@/lib/apiBase";
 const URGENT_MIN = 30;
 
 interface CallbackRow {

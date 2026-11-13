@@ -1,6 +1,6 @@
 import { BRAND } from "@/data/brand";
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+import { API } from "@/lib/apiBase";
 
 export interface CallbackData {
     nom: string;

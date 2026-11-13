@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { MessageCircle, PhoneCall, Send } from "lucide-react";
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+import { API } from "@/lib/apiBase";
 
 interface DayRow {
     date: string;
