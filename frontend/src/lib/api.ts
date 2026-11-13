@@ -69,3 +69,21 @@ export function gtagConversion(kind: "call" | "whatsapp" | "form") {
         // le suivi ne doit jamais bloquer un appel
     }
 }
+
+/**
+ * Suivi des vrais appels Google Ads (numéro de transfert Google).
+ * Pour les visiteurs venus d'une annonce, Google remplace le numéro affiché par un
+ * numéro de suivi qui redirige vers la ligne ADFR et compte l'appel réellement passé.
+ * Inactif tant que REACT_APP_GOOGLE_ADS_PHONE_CONVERSION n'est pas renseignée.
+ */
+export function initPhoneTracking() {
+    try {
+        const raw = process.env.REACT_APP_GOOGLE_ADS_PHONE_CONVERSION;
+        if (!raw || typeof window.gtag !== "function") return;
+        window.gtag("config", raw.includes("/") ? raw : `AW-18543287149/${raw}`, {
+            phone_conversion_number: BRAND.phoneDisplay,
+        });
+    } catch {
+        // le suivi ne doit jamais bloquer un appel
+    }
+}

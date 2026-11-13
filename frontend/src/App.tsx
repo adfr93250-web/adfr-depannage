@@ -10,6 +10,7 @@ import ZonePage from "@/pages/ZonePage";
 import AdminPage from "@/pages/AdminPage";
 import NotFound from "@/pages/NotFound";
 import { SITE } from "@/data/site";
+import { initPhoneTracking } from "@/lib/api";
 
 class ErrorBoundary extends Component<{ children: ReactNode }, { error: boolean }> {
     state = { error: false };
@@ -48,6 +49,11 @@ function ScrollManager() {
         }
         getLenis()?.scrollTo(0, { immediate: true });
         window.scrollTo(0, 0);
+    }, [pathname]);
+    // Suivi d'appels Google Ads : relancé à chaque page pour couvrir les numéros nouvellement affichés
+    useEffect(() => {
+        const t = setTimeout(initPhoneTracking, 300);
+        return () => clearTimeout(t);
     }, [pathname]);
     return null;
 }
