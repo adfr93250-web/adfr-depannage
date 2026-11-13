@@ -1,6 +1,12 @@
 import { BRAND } from "@/data/brand";
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+const RAW_BACKEND = process.env.REACT_APP_BACKEND_URL || "";
+/**
+ * En production, le site appelle le serveur via /api sur son propre domaine (réécriture Vercel
+ * vers Render, voir vercel.json). Les cookies de connexion sont ainsi « first-party » : sinon
+ * l'iPhone les bloque et l'espace admin déconnecte aussitôt après la connexion.
+ */
+export const API = RAW_BACKEND.includes("onrender.com") ? "/api" : `${RAW_BACKEND}/api`;
 
 export interface CallbackData {
     nom: string;
