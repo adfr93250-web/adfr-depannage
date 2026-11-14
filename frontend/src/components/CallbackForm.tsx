@@ -4,7 +4,6 @@ import { CheckCircle2, Send } from "lucide-react";
 import { submitCallback, track, gtagConversion } from "@/lib/api";
 import { SITE } from "@/data/site";
 import { useLocation } from "react-router-dom";
-import { useGeo } from "@/lib/urgence";
 
 const PANNE_TYPES = ["Remorquage", "Batterie", "Crevaison", "Panne de carburant", "Véhicule accidenté", "Désembourbage", "Autre panne"];
 
@@ -24,20 +23,13 @@ export default function CallbackForm({ defaultLieu = "" }: CallbackFormProps) {
     const [typePanne, setTypePanne] = useState(PANNE_TYPES[0]);
     const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
     const { pathname } = useLocation();
-    const [more, setMore] = useState(false);
-    const [sentAt, setSentAt] = useState("");
-    const geo = useGeo();
 
     const onSubmit = async (e: FormEvent) => {
         e.preventDefault();
         if (status === "loading") return;
         setStatus("loading");
         try {
-            // Nom et lieu sont facultatifs : le serveur exige au moins 2 caractères, d'où « Non précisé ».
-            // La position, si elle a été partagée, remplace le lieu.
-            const where = lieu.trim() || (geo.kind === "found" ? `https://maps.google.com/?q=${geo.lat},${geo.lng}` : "Non précisé");
-            await submitCallback({ nom: nom.trim().length >= 2 ? nom : "Non précisé", telephone, lieu: where, type_panne: typePanne, zone: defaultLieu || undefined });
-            setSentAt(new Date().toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" }));
+            await submitCallback({ nom, telephone, lieu, type_panne: typePanne, zone: defaultLieu || undefined });
             track("form", pathname, "Bloc formulaire");
             gtagConversion("form");
             setStatus("done");
@@ -58,7 +50,7 @@ export default function CallbackForm({ defaultLieu = "" }: CallbackFormProps) {
                     <p className="text-xs font-bold uppercase tracking-[0.24em] text-adfr-red mb-3">Rappel express</p>
                     <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Vous préférez être rappelé ?</h2>
                     <p className="mt-4 text-slate-400 leading-relaxed max-w-lg">
-                        Deux champs suffisent : votre numéro et le type de panne. Un dépanneur vous rappelle dans quelques minutes. Mais le plus rapide reste l'appel direct :
+                        Remplissez ces quatre champs et un dépanneur vous rappelle dans quelques minutes. Mais le plus rapide reste l'appel direct :
                     </p>
                     <ul className="mt-6 space-y-3 text-sm text-slate-300">
                         <li className="flex items-center gap-2.5"><CheckCircle2 className="size-4 text-adfr-wa shrink-0" /> Intervention rapide 24h/24, du dimanche au vendredi</li>
@@ -87,7 +79,6 @@ export default function CallbackForm({ defaultLieu = "" }: CallbackFormProps) {
                         <div className="text-center py-10" data-testid="callback-form-success">
                             <CheckCircle2 className="size-14 text-adfr-wa mx-auto" />
                             <h3 className="mt-5 font-display text-2xl font-extrabold text-white">C'est reçu !</h3>
-                            <p className="mt-2 font-display text-base font-bold text-adfr-wa" data-testid="callback-time">Demande reçue à {sentAt}</p>
                             <p className="mt-3 text-sm text-slate-300 leading-relaxed max-w-sm mx-auto">
                                 Un dépanneur vous rappelle dans quelques minutes. Si c'est vraiment urgent, l'appel direct reste le plus rapide.
                             </p>
@@ -98,8 +89,16 @@ export default function CallbackForm({ defaultLieu = "" }: CallbackFormProps) {
                     ) : (
                         <form onSubmit={onSubmit} className="space-y-4" data-testid="callback-form">
                             <div>
+                                <label htmlFor="cb-nom" className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Votre nom</label>
+                                <input id="cb-nom" data-testid="callback-input-nom" required minLength={2} maxLength={80} value={nom} onChange={(e) => setNom(e.target.value)} placeholder="Jean Dupont" className={INPUT_CLS} />
+                            </div>
+                            <div>
                                 <label htmlFor="cb-tel" className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Votre téléphone</label>
-                                <input id="cb-tel" data-testid="callback-input-telephone" required type="tel" inputMode="tel" autoComplete="tel" value={telephone} onChange={(e) => setTelephone(e.target.value)} placeholder="06 12 34 56 78" className={INPUT_CLS} />
+                                <input id="cb-tel" data-testid="callback-input-telephone" required type="tel" inputMode="tel" value={telephone} onChange={(e) => setTelephone(e.target.value)} placeholder="06 12 34 56 78" className={INPUT_CLS} />
+                            </div>
+                            <div>
+                                <label htmlFor="cb-lieu" className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Où êtes-vous ?</label>
+                                <input id="cb-lieu" data-testid="callback-input-lieu" required value={lieu} onChange={(e) => setLieu(e.target.value)} placeholder="Ex. Argenteuil, près de la gare" className={INPUT_CLS} />
                             </div>
                             <div>
                                 <label htmlFor="cb-type" className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Type de panne</label>
@@ -109,22 +108,6 @@ export default function CallbackForm({ defaultLieu = "" }: CallbackFormProps) {
                                     ))}
                                 </select>
                             </div>
-                            {more ? (
-                                <>
-                                    <div>
-                                        <label htmlFor="cb-lieu" className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Où êtes-vous ? (facultatif)</label>
-                                        <input id="cb-lieu" data-testid="callback-input-lieu" maxLength={160} value={lieu} onChange={(e) => setLieu(e.target.value)} placeholder="Ex. Argenteuil, près de la gare" className={INPUT_CLS} />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="cb-nom" className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Votre nom (facultatif)</label>
-                                        <input id="cb-nom" data-testid="callback-input-nom" maxLength={80} autoComplete="name" value={nom} onChange={(e) => setNom(e.target.value)} placeholder="Jean Dupont" className={INPUT_CLS} />
-                                    </div>
-                                </>
-                            ) : (
-                                <button type="button" onClick={() => setMore(true)} data-testid="callback-more" className="text-xs font-bold text-adfr-electricLight underline underline-offset-4">
-                                    {geo.kind === "found" ? "Position déjà connue — préciser le lieu ou mon nom" : "Préciser le lieu ou mon nom (facultatif)"}
-                                </button>
-                            )}
                             {status === "error" && (
                                 <p className="text-sm text-adfr-redLight font-semibold" data-testid="callback-form-error">
                                     L'envoi a échoué. Appelez-nous directement au {SITE.phoneDisplay}.

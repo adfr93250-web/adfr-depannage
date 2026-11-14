@@ -5,7 +5,6 @@ import Seo, { localBusinessLd, faqPageLd } from "@/components/Seo";
 import Services from "@/components/Services";
 import Faq from "@/components/Faq";
 import PositionSection from "@/components/PositionSection";
-import Urgence from "@/components/Urgence";
 import CallbackForm from "@/components/CallbackForm";
 import { CallButton, WhatsAppButton } from "@/components/CTAButtons";
 import NotFound from "@/pages/NotFound";
@@ -193,7 +192,6 @@ export default function ZonePage() {
         <>
             <Seo title={title} description={description} path={`/depannage-${zone.slug}`} jsonLd={[localBusinessLd(zone), faqPageLd(faqs)]} />
             <LocalHero zone={zone} />
-            {BRAND.id === "adfr" && <Urgence />}
             <LocalContent zone={zone} />
             <Services
                 eyebrow="Nos services"

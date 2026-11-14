@@ -263,24 +263,3 @@ html[data-brand="sos"] [data-testid="sticky-call-button"] {
     html[data-brand="sos"] [data-testid="hero-call-button"],
     html[data-brand="sos"] [data-testid="sticky-call-button"] { animation: none; }
 }
-
-/* Mode très contrasté (ADFR) : fond noir, texte blanc, caractères plus grands — lecture en plein soleil ou sous la pluie */
-html.hc {
-    font-size: 112.5%;
-    --c-night: 0 0 0;
-    --c-night2: 0 0 0;
-    --c-deep: 0 0 0;
-    --c-deep2: 10 10 10;
-}
-html.hc .text-slate-200,
-html.hc .text-slate-300,
-html.hc .text-slate-400,
-html.hc .text-slate-500 {
-    color: #fff !important;
-}
-html.hc [class*="border-adfr-chrome"] {
-    border-color: rgba(255, 255, 255, 0.7) !important;
-}
-html.hc body::after {
-    display: none;
-}

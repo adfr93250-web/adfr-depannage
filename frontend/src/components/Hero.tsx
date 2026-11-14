@@ -1,13 +1,9 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
-import { ShieldCheck, BadgeCheck, Clock3, CreditCard, Banknote, Star, MessageSquareOff } from "lucide-react";
+import { ShieldCheck, BadgeCheck, Clock3 } from "lucide-react";
 import { SITE } from "@/data/site";
 import { BRAND } from "@/data/brand";
 import { CallButton, WhatsAppButton } from "@/components/CTAButtons";
-import { StatusPill } from "@/components/Urgence";
-import { useLang } from "@/lib/urgence";
-import { GOOGLE_REVIEWS_URL } from "@/data/site";
-import { scrollToId } from "@/lib/lenis";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const LINES = BRAND.heroLines;
@@ -16,8 +12,6 @@ export default function Hero() {
     const ref = useRef<HTMLElement>(null);
     const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
     const yImg = useTransform(scrollYProgress, [0, 1], [0, 70]);
-    const { lang, t } = useLang();
-    const lines = lang === "en" ? ["Broken down?", "We're coming", "in under 30 minutes."] : LINES;
 
 
 
@@ -50,12 +44,17 @@ export default function Hero() {
                         animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                         transition={{ duration: 0.55, ease: EASE }}
                         data-testid="hero-eyebrow"
+                        className="inline-flex items-center gap-2.5 rounded-full border border-adfr-chrome/25 bg-adfr-deep/60 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.22em] text-slate-300"
                     >
-                        <StatusPill />
+                        <span className="relative flex size-2">
+                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-adfr-red opacity-75" />
+                            <span className="relative inline-flex size-2 rounded-full bg-adfr-red" />
+                        </span>
+                        Dépannage 24h/24 — Île-de-France
                     </motion.div>
 
-                    <h1 className={`relative mt-6 font-display font-black uppercase leading-[0.95] tracking-tight text-white ${lang === "en" ? "text-4xl sm:text-5xl lg:text-6xl" : "text-5xl sm:text-6xl lg:text-7xl"}`}>
-                        {lines.map((line, i) => (
+                    <h1 className="relative mt-6 font-display text-5xl sm:text-6xl lg:text-7xl font-black uppercase leading-[0.95] tracking-tight text-white">
+                        {LINES.map((line, i) => (
                             <span key={line} className="block overflow-hidden pb-1">
                                 <motion.span
                                     className={`block ${i === 2 ? "text-adfr-red" : ""}`}
@@ -102,7 +101,7 @@ export default function Hero() {
                         transition={{ duration: 0.7, ease: EASE, delay: 0.75 }}
                         className="mt-6 max-w-xl text-base md:text-lg leading-relaxed text-slate-300"
                     >
-                        {t(BRAND.heroText, "On site in under 30 minutes anywhere in the Paris region. Roadside repair or towing for all makes, day and night, Sunday to Friday, public holidays included.")}
+                        {BRAND.heroText}
                     </motion.p>
 
                     <motion.div
@@ -115,37 +114,20 @@ export default function Hero() {
                         <WhatsAppButton testId="hero-whatsapp-button" className="w-full sm:w-auto" />
                     </motion.div>
 
-                    {/* Les deux freins à l'appel, levés sous le bouton : le prix et le paiement */}
-                    <p className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs font-semibold text-slate-200" data-testid="hero-reassurance">
-                        <span className="inline-flex items-center gap-1.5"><BadgeCheck className="size-4 text-adfr-wa" /> {t("Prix annoncé avant le départ", "Price given before we leave")}</span>
-                        <span className="inline-flex items-center gap-1.5"><CreditCard className="size-4 text-adfr-electricLight" /> {t("Carte", "Card")}</span>
-                        <span className="inline-flex items-center gap-1.5"><Banknote className="size-4 text-adfr-wa" /> {t("Espèces", "Cash")}</span>
-                        {GOOGLE_REVIEWS_URL && (
-                            <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener noreferrer" data-testid="hero-google" className="inline-flex items-center gap-1.5 underline-offset-4 hover:underline">
-                                <Star className="size-4 fill-[#FFC531] text-[#FFC531]" /> {t("Avis clients sur Google", "Customer reviews on Google")}
-                            </a>
-                        )}
-                    </p>
-
                     <motion.ul
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, ease: EASE, delay: 1.1 }}
-                        className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-xs font-semibold text-slate-400"
+                        className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-xs font-semibold text-slate-400"
                     >
                         <li className="flex items-center gap-2">
-                            <Clock3 className="size-4 text-adfr-red" /> {t(`En moyenne ${BRAND.delay.short}`, "Under 30 min on average")}
+                            <Clock3 className="size-4 text-adfr-red" /> En moyenne {BRAND.delay.short}
                         </li>
                         <li className="flex items-center gap-2">
-                            <ShieldCheck className="size-4 text-adfr-red" /> {t("Dimanche au vendredi, jours fériés inclus", "Sunday to Friday, holidays included")}
+                            <ShieldCheck className="size-4 text-adfr-red" /> Dimanche au vendredi, jours fériés inclus
                         </li>
                         <li className="flex items-center gap-2">
-                            <BadgeCheck className="size-4 text-adfr-red" /> {t("Paiement sur place", "Paid on site")}
-                        </li>
-                        <li>
-                            <button type="button" onClick={() => scrollToId("urgence")} data-testid="hero-no-call" className="inline-flex items-center gap-2 font-bold text-white underline underline-offset-4">
-                                <MessageSquareOff className="size-4 text-adfr-red" /> {t("Je ne peux pas parler : tout par message", "I can't talk: do it all by message")}
-                            </button>
+                            <BadgeCheck className="size-4 text-adfr-red" /> Paiement sur place
                         </li>
                     </motion.ul>
                 </div>

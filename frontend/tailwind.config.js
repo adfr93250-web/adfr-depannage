@@ -23,7 +23,8 @@ module.exports = {
           redDark: 'rgb(var(--c-red-dark) / <alpha-value>)',
           redLight: 'rgb(var(--c-red-light) / <alpha-value>)',
           chrome: 'rgb(var(--c-chrome) / <alpha-value>)',
-          wa: '#25D366'
+          wa: '#25D366',
+          amber: '#FFB020'
         },
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
@@ -66,6 +67,7 @@ module.exports = {
           '5': 'hsl(var(--chart-5))'
         }
       },
+      transitionTimingFunction: { expo: 'cubic-bezier(0.16, 1, 0.3, 1)' },
       fontFamily: {
         display: ['var(--font-display)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif']
