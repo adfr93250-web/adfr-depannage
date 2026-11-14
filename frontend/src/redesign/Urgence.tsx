@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { BatteryCharging, CircleDot, Fuel, Siren, Truck, Wrench, MapPin, Loader2, MessageCircle, PhoneCall, CreditCard, Banknote, Contact, WifiOff, ShieldAlert, Shirt, Lightbulb } from "lucide-react";
+import { BatteryCharging, CircleDot, Fuel, Siren, Tractor, Wrench, MapPin, Loader2, MessageCircle, PhoneCall, CreditCard, Banknote, Contact, WifiOff, ShieldAlert, Shirt, Lightbulb } from "lucide-react";
 import { SITE } from "@/redesign/data";
 import { track } from "@/redesign/api";
 import { availability, GEO_ERRORS, locate, useGeo, useLang, waLink } from "@/lib/urgence";
@@ -10,7 +10,7 @@ const PANNES = [
     { icon: CircleDot, fr: "Crevaison", en: "Flat tyre" },
     { icon: Fuel, fr: "Carburant", en: "Fuel" },
     { icon: Siren, fr: "Accident", en: "Accident" },
-    { icon: Truck, fr: "Remorquage", en: "Towing" },
+    { icon: Tractor, fr: "Désembourbage", en: "Stuck in mud" },
     { icon: Wrench, fr: "Autre panne", en: "Other" },
 ];
 
@@ -70,9 +70,9 @@ export default function Urgence() {
                 <ul className="mt-6 grid grid-cols-3 gap-2.5 md:grid-cols-6 md:gap-4">
                     {PANNES.map((p) => (
                         <li key={p.fr}>
-                            <a href={waLink({ panne: lang === "en" ? p.en : p.fr, geo, lang })} target="_blank" rel="noopener noreferrer" data-testid={`panne-${p.fr.toLowerCase().replace(/[^a-z]+/g, "-")}`} onClick={() => track("whatsapp", pathname, `Panne : ${p.fr}`)} className="pick flex h-full flex-col items-center justify-center gap-2 rounded-2xl border border-adfr-chrome/20 bg-adfr-deep2/50 px-2 py-4 text-center md:py-6">
+                            <a href={waLink({ panne: lang === "en" ? p.en : p.fr, geo, lang })} target="_blank" rel="noopener noreferrer" data-testid={`panne-${p.fr.toLowerCase().replace(/[^a-z]+/g, "-")}`} onClick={() => track("whatsapp", pathname, `Panne : ${p.fr}`)} className="pick flex h-full flex-col items-center justify-center gap-2 rounded-2xl border border-adfr-chrome/20 bg-adfr-deep2/50 px-1 py-4 text-center md:px-2 md:py-6">
                                 <p.icon className="size-7 text-adfr-redLight md:size-8" aria-hidden="true" />
-                                <span className="font-display text-xs font-extrabold text-white md:text-sm">{lang === "en" ? p.en : p.fr}</span>
+                                <span className="font-display text-xs font-extrabold tracking-tight text-white md:text-sm">{lang === "en" ? p.en : p.fr}</span>
                             </a>
                         </li>
                     ))}
