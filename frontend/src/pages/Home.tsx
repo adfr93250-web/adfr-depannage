@@ -10,6 +10,7 @@ import Reviews from "@/components/Reviews";
 import Faq from "@/components/Faq";
 import CallbackForm from "@/components/CallbackForm";
 import PositionSection from "@/components/PositionSection";
+import Urgence from "@/components/Urgence";
 import { FAQ_HOME, SITE } from "@/data/site";
 import { BRAND } from "@/data/brand";
 
@@ -23,6 +24,7 @@ export default function Home() {
                 jsonLd={[localBusinessLd(), websiteLd(), faqPageLd(FAQ_HOME)]}
             />
             {BRAND.id === "sos" ? <HeroSos /> : <Hero />}
+            {BRAND.id === "adfr" && <Urgence />}
             <TrustMarquee />
             <Services />
             <ZonesMap />

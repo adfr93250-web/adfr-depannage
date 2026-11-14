@@ -10,6 +10,8 @@ import ZonePage from "@/pages/ZonePage";
 import AdminPage from "@/pages/AdminPage";
 import NotFound from "@/pages/NotFound";
 import { SITE } from "@/data/site";
+import { BRAND } from "@/data/brand";
+import { SafetySheet } from "@/components/Urgence";
 
 class ErrorBoundary extends Component<{ children: ReactNode }, { error: boolean }> {
     state = { error: false };
@@ -55,6 +57,8 @@ function ScrollManager() {
 export default function App() {
     useEffect(() => {
         initLenis();
+        // Sans réseau, une page demandée est remplacée par la page ultra-légère avec le numéro
+        if (process.env.NODE_ENV === "production" && BRAND.id === "adfr" && "serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js").catch(() => {});
         return () => destroyLenis();
     }, []);
     return (
@@ -73,6 +77,7 @@ export default function App() {
                 <Footer />
                 <StickyCallBar />
                 <WhatsAppFloat />
+                {BRAND.id === "adfr" && <SafetySheet />}
             </BrowserRouter>
         </ErrorBoundary>
     );

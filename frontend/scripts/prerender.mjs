@@ -48,7 +48,7 @@ function brandify(txt) {
         .replace(/01 85 80 00 61/g, PHONE_DISPLAY)
         .replace(/\+33 6 52 66 47 49/g, WA_DISPLAY);
 }
-for (const f of ["robots.txt", "llms.txt"]) {
+for (const f of ["robots.txt", "llms.txt", "urgence.html", "adfr.vcf"]) {
     const fp = path.join(BUILD, f);
     if (fs.existsSync(fp)) fs.writeFileSync(fp, brandify(fs.readFileSync(fp, "utf8")));
 }

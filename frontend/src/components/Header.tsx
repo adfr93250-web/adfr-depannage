@@ -1,6 +1,8 @@
 import { useEffect, useState, type MouseEvent } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Phone } from "lucide-react";
+import { Phone, Contrast } from "lucide-react";
+import { BRAND } from "@/data/brand";
+import { setContrast, setLang, useContrast, useLang } from "@/lib/urgence";
 import { SITE } from "@/data/site";
 import { scrollToId } from "@/lib/lenis";
 import { track, gtagConversion } from "@/lib/api";
@@ -11,6 +13,22 @@ const LINKS = [
     { id: "avis", label: "Avis" },
     { id: "faq", label: "FAQ" },
 ];
+
+/** Réglages rapides (ADFR) : langue FR/EN et mode très contrasté. */
+function QuickSettings() {
+    const { lang } = useLang();
+    const hc = useContrast();
+    return (
+        <div className="flex items-center gap-1.5">
+            <button type="button" onClick={() => setLang(lang === "fr" ? "en" : "fr")} data-testid="lang-toggle" aria-label={lang === "fr" ? "Switch to English" : "Passer en français"} className="grid h-9 min-w-9 place-items-center rounded-full border border-adfr-chrome/25 bg-adfr-deep/60 px-2 font-display text-[11px] font-black text-white">
+                {lang === "fr" ? "EN" : "FR"}
+            </button>
+            <button type="button" onClick={() => setContrast(!hc)} data-testid="contrast-toggle" aria-pressed={hc} aria-label="Mode très contrasté" className={`grid size-9 place-items-center rounded-full border ${hc ? "border-white bg-white text-black" : "border-adfr-chrome/25 bg-adfr-deep/60 text-white"}`}>
+                <Contrast className="size-4" />
+            </button>
+        </div>
+    );
+}
 
 export default function Header() {
     const [scrolled, setScrolled] = useState(false);
@@ -53,6 +71,8 @@ export default function Header() {
                         </a>
                     ))}
                 </nav>
+                <div className="flex items-center gap-2">
+                {BRAND.id === "adfr" && <QuickSettings />}
                 <a
                     href={SITE.phoneHref}
                     data-testid="header-call-button"
@@ -63,6 +83,7 @@ export default function Header() {
                     <span className="hidden sm:inline">{SITE.phoneDisplay}</span>
                     <span className="sm:hidden">Appeler</span>
                 </a>
+                </div>
             </div>
         </header>
     );

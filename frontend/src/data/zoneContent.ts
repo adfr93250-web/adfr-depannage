@@ -5,35 +5,35 @@ export interface LocalInfo {
 
 export const LOCAL_CONTENT: Record<string, LocalInfo> = {
     "75": {
-        texte: "À Paris, une bonne partie des interventions se joue aux portes et aux sorties du périphérique : batterie morte après une nuit au bord du boulevard, crevaison à la sortie d'un parking souterrain, panne en pleine heure de pointe sur les grands boulevards. Nos dépanneurs connaissent les quais fermés, les plans de circulation et les arrondissements par cœur.",
+        texte: "À Paris, une bonne partie des interventions se joue aux portes de Paris et sur les quais : batterie morte après une nuit au bord du boulevard, crevaison à la sortie d'un parking souterrain, panne en pleine heure de pointe sur les grands boulevards. Nos dépanneurs connaissent les quais fermés, les plans de circulation et les arrondissements par cœur.",
         faq4: { q: "Intervenez-vous dans tous les arrondissements de Paris ?", a: "Oui, du 1er au 20e arrondissement, y compris les deux bois. Chaque dépanneur connaît son secteur et les chemins les plus rapides, même la nuit." },
     },
     "77": {
-        texte: "La Seine-et-Marne, c'est un département où l'on roule longtemps : l'A4 vers Marne-la-Vallée, l'A5 vers Melun, la Francilienne à Chelles. Une panne loin de chez soi, sur route nationale ou en zone rurale, c'est notre quotidien — nos équipes savent aussi quel garage reste ouvert tard.",
+        texte: "La Seine-et-Marne, c'est un département où l'on roule longtemps : la N4 vers Marne-la-Vallée, la N6 vers Melun, la N34 à Chelles. Une panne loin de chez soi, sur route nationale ou en zone rurale, c'est notre quotidien — nos équipes savent aussi quel garage reste ouvert tard.",
         faq4: { q: "Vous venez même en zone rurale, loin des grandes villes ?", a: "Oui. Entre Melun, Meaux, Chelles et les petits villages, nos dépanneurs parcourent le département chaque jour. Précisez votre lieu-dit au téléphone, on vous retrouve." },
     },
     "78": {
-        texte: "Dans les Yvelines, on roule beaucoup : l'A13 vers Poissy, la N12 vers Saint-Quentin-en-Yvelines, et de longues nationales autour de Versailles. Batteries fatiguées par les trajets domicile-travail, crevaisons sur routes rapides : nos dépanneurs connaissent les bouchons de la D10 et les raccourcis entre communes.",
+        texte: "Dans les Yvelines, on roule beaucoup : la N13 vers Saint-Germain-en-Laye, la N12 vers Saint-Quentin-en-Yvelines, et de longues nationales autour de Versailles. Batteries fatiguées par les trajets domicile-travail, crevaisons sur les nationales : nos dépanneurs connaissent les bouchons de la D10 et les raccourcis entre communes.",
         faq4: { q: "Intervenez-vous du côté de Saint-Quentin-en-Yvelines ?", a: "Oui, de Versailles à Trappes et Montigny-le-Bretonneux, nos équipes couvrent tout l'ouest francilien, 24h/24 et 7j/7." },
     },
     "91": {
-        texte: "L'Essonne, c'est le grand sud : l'A6 qui file vers Lyon, l'A10 vers Orléans, et des banlieues étendues de Massy à Évry-Courcouronnes. En panne sur la Francilienne un dimanche soir ou batterie morte au parking du centre commercial, on connaît les accès et les stations les plus proches.",
+        texte: "L'Essonne, c'est le grand sud : la N7 qui file vers le sud, la N20 vers Orléans, et des banlieues étendues de Massy à Évry-Courcouronnes. En panne sur une nationale un dimanche soir ou batterie morte au parking du centre commercial, on connaît les accès et les stations les plus proches.",
         faq4: { q: "Vous intervenez du côté d'Évry et de Courcouronnes ?", a: "Oui, tout le secteur d'Évry-Courcouronnes, Corbeil-Essonnes et les communes autour sont dans notre zone, 24h/24 et 7j/7." },
     },
     "92": {
-        texte: "Les Hauts-de-Seine, c'est le département le plus dense : les quais de Seine côté Boulogne, les tours de La Défense et leur parking géant, les rues étroites d'Asnières et de Colombes. Nos dépanneurs connaissent les sorties d'A14, les accès livraison des immeubles de bureaux et les heures où le trafic se débloque.",
+        texte: "Les Hauts-de-Seine, c'est le département le plus dense : les quais de Seine côté Boulogne, les tours de La Défense et leur parking géant, les rues étroites d'Asnières et de Colombes. Nos dépanneurs connaissent les quais, les accès livraison des immeubles de bureaux et les heures où le trafic se débloque.",
         faq4: { q: "Vous pouvez venir jusqu'à La Défense ?", a: "Oui, y compris dans les parkings souterrains des tours et sur les quais. Précisez votre niveau et votre place, on vous retrouve directement." },
     },
     "93": {
-        texte: "La Seine-Saint-Denis roule dur : l'A1 vers Roissy, l'A3 et son échangeur de Bagnolet, l'A86 au sud. Batteries qui lâchent le matin à Saint-Denis, crevaisons à Montreuil après les chantiers, remorquages de véhicules accidentés à Drancy : nos équipes tournent 24h/24 dans le 93.",
+        texte: "La Seine-Saint-Denis roule dur : la N2 vers Le Bourget, la N3 le long du canal de l'Ourcq, les grandes avenues de Montreuil. Batteries qui lâchent le matin à Saint-Denis, crevaisons à Montreuil après les chantiers, remorquages de véhicules accidentés à Drancy : nos équipes tournent 24h/24 dans le 93.",
         faq4: { q: "Vous couvrez tout le département du 93 ?", a: "Oui, de Saint-Denis à Saint-Maur, en passant par Montreuil, Bagnolet, Villemomble et Drancy. Un seul numéro, jour et nuit." },
     },
     "94": {
-        texte: "Le Val-de-Marne, c'est la croisée des grands axes : l'A4 qui traverse, l'A86 au sud, les bords de Marne plein est. Batterie morte à Créteil le matin, crevaison à Vitry-sur-Seine, remorquage d'un véhicule accidenté à Saint-Maur : nos dépanneurs connaissent chaque sortie d'autoroute et chaque pont de la Marne.",
+        texte: "Le Val-de-Marne, c'est la croisée des grands axes : la N6 qui traverse, la N19 au sud, les bords de Marne plein est. Batterie morte à Créteil le matin, crevaison à Vitry-sur-Seine, remorquage d'un véhicule accidenté à Saint-Maur : nos dépanneurs connaissent chaque carrefour et chaque pont de la Marne.",
         faq4: { q: "Intervenez-vous près des bords de Marne ?", a: "Oui, de Saint-Maur à Joinville, en passant par Champigny : les quais et les routes de berge ne posent aucun problème à nos équipes." },
     },
     "95": {
-        texte: "Le Val-d'Oise, c'est le grand nord francilien : l'A15 vers Cergy, la Francilienne vers Sarcelles, et de longues nationales entre les communes. En panne au bord de la D14 un dimanche matin ou batterie morte au parking de la gare d'Argenteuil, on connaît les accès et les garages ouverts le week-end.",
+        texte: "Le Val-d'Oise, c'est le grand nord francilien : la D14 vers Cergy, la D301 vers Sarcelles, et de longues nationales entre les communes. En panne au bord de la D14 un dimanche matin ou batterie morte au parking de la gare d'Argenteuil, on connaît les accès et les garages ouverts le week-end.",
         faq4: { q: "Vous venez jusqu'à Cergy et Pontoise ?", a: "Oui, tout le Val-d'Oise est couvert : Cergy, Pontoise, Argenteuil, Sarcelles et les communes autour, 24h/24 et 7j/7." },
     },
     "paris-1": {
@@ -81,7 +81,7 @@ export const LOCAL_CONTENT: Record<string, LocalInfo> = {
         faq4: { q: "Vous intervenez tard la nuit dans le 11e ?", a: "Oui, 24h/24 : les rues animées du secteur ne changent rien pour nos équipes de nuit." },
     },
     "paris-12": {
-        texte: "Le 12e, c'est la gare de Lyon, Bercy et le bois de Vincennes : des échangeurs complexes, les quais de la Rapée et de longues allées d'arbres. Panne en sortant de Bercy ou batterie morte côté Daumesnil, on connaît les raccourcis.",
+        texte: "Le 12e, c'est la gare de Lyon, Bercy et le bois de Vincennes : des carrefours complexes, les quais de la Rapée et de longues allées d'arbres. Panne en sortant de Bercy ou batterie morte côté Daumesnil, on connaît les raccourcis.",
         faq4: { q: "Vous couvrez le bois de Vincennes côté Paris ?", a: "Oui, y compris les voies du bois et les abords du lac : appelez, on vous retrouve où que vous soyez." },
     },
     "paris-13": {
@@ -97,7 +97,7 @@ export const LOCAL_CONTENT: Record<string, LocalInfo> = {
         faq4: { q: "Vous venez jusqu'à Beaugrenelle et ses parkings ?", a: "Oui, y compris les sous-sols du centre commercial : précisez le niveau, on vous retrouve là où vous êtes." },
     },
     "paris-16": {
-        texte: "Le 16e, c'est le Trocadéro, Passy et le bois de Boulogne : des rues feutrées, des bouchons du matin, et des voies rapides en bord de Seine. Panne sur l'allée des Cygnes ou batterie plate avenue Victor-Hugo, on connaît chaque entrée.",
+        texte: "Le 16e, c'est le Trocadéro, Passy et le bois de Boulogne : des rues feutrées, des bouchons du matin, et de grandes avenues en bord de Seine. Panne sur l'allée des Cygnes ou batterie plate avenue Victor-Hugo, on connaît chaque entrée.",
         faq4: { q: "Vous intervenez dans le bois de Boulogne ?", a: "Oui, y compris sur les voies qui le traversent. Précisez le lieu-dit ou la porte la plus proche, on arrive direct." },
     },
     "paris-17": {
@@ -109,7 +109,7 @@ export const LOCAL_CONTENT: Record<string, LocalInfo> = {
         faq4: { q: "Montmartre est en pente, vous arrivez quand même ?", a: "Oui. On vous retrouve au point le plus proche accessible, et la majorité des pannes se règlent sur place, sans remorquage." },
     },
     "paris-19": {
-        texte: "Le 19e, c'est la Villette, les Buttes-Chaumont et les quais de la Marne : des parcs, des canaux et des voies rapides. Batterie morte au parking de la Cité des Sciences ou panne près du périphérique, on connaît les sorties.",
+        texte: "Le 19e, c'est la Villette, les Buttes-Chaumont et les quais de la Marne : des parcs, des canaux et de grandes avenues. Batterie morte au parking de la Cité des Sciences ou panne près de la porte de la Villette, on connaît le secteur.",
         faq4: { q: "Vous intervenez du côté de la Villette ?", a: "Oui, parc et alentours compris : appelez, donnez le portail le plus proche, on arrive." },
     },
     "paris-20": {
@@ -121,7 +121,7 @@ export const LOCAL_CONTENT: Record<string, LocalInfo> = {
         faq4: { q: "Vous intervenez près du Bois de Boulogne côté Boulogne ?", a: "Oui, toutes les rues limitrophes du bois et les accès du parc sont dans notre secteur immédiat." },
     },
     "saint-denis": {
-        texte: "À Saint-Denis, les matchs au Stade de France bouchent tout le secteur : nos dépanneurs connaissent les plans de circulation des soirs de match et les sorties d'A1. Batterie morte près de la Basilique ou remorquage sur les quais du canal, c'est le quotidien.",
+        texte: "À Saint-Denis, les matchs au Stade de France bouchent tout le secteur : nos dépanneurs connaissent les plans de circulation des soirs de match et les rues qui restent ouvertes. Batterie morte près de la Basilique ou remorquage sur les quais du canal, c'est le quotidien.",
         faq4: { q: "Vous intervenez pendant les matchs du Stade de France ?", a: "Oui, même ces soirs-là : on adapte l'itinéraire et on vous retrouve, quel que soit le trafic autour du stade." },
     },
     "argenteuil": {
@@ -137,15 +137,15 @@ export const LOCAL_CONTENT: Record<string, LocalInfo> = {
         faq4: { q: "Vous couvrez Aulnay-sous-Bois Nord comme Sud ?", a: "Oui, des Sablons à la Cité de l'Europe : toute la ville, 24h/24 et 7j/7." },
     },
     "bagnolet": {
-        texte: "À Bagnolet, l'échangeur de l'A3 domine tout : le matin, le trafic s'étire sur la D38 et vers les Limites. En panne près du Mercadier ou batterie à plat rue de Noisy, nos dépanneurs connaissent les sorties et les petites rues qui sauvent.",
-        faq4: { q: "Vous intervenez près de l'échangeur de l'A3 ?", a: "Oui, côté ville et dès la sortie de l'échangeur. Sur l'autoroute elle-même, le dépannage est réservé aux sociétés agréées : utilisez une borne d'appel d'urgence ou le 112, puis appelez-nous dès que vous êtes sorti." },
+        texte: "À Bagnolet, tout se joue aux portes de Paris : le matin, le trafic s'étire sur la D38 et vers les Limites. En panne près du Mercadier ou batterie à plat rue de Noisy, nos dépanneurs connaissent les sorties et les petites rues qui sauvent.",
+        faq4: { q: "Vous intervenez près de la porte de Bagnolet ?", a: "Oui, dans toute la ville et jusqu'aux portes de Paris, de jour comme de nuit." },
     },
     "cergy": {
-        texte: "À Cergy, la ville nouvelle se parcourt par ses boulevards et ses grands parkings : batterie morte aux Trois-Fontaines ou panne vers le port, nos dépanneurs connaissent les accès, les niveaux de sous-sol et les sorties d'A15.",
+        texte: "À Cergy, la ville nouvelle se parcourt par ses boulevards et ses grands parkings : batterie morte aux Trois-Fontaines ou panne vers le port, nos dépanneurs connaissent les accès, les niveaux de sous-sol et les grands boulevards.",
         faq4: { q: "Vous intervenez dans toute la ville nouvelle de Cergy ?", a: "Oui, tous les quartiers de Cergy et les communes autour, 24h/24 et 7j/7." },
     },
     "champigny-sur-marne": {
-        texte: "À Champigny-sur-Marne, la Marne borde la ville et l'A4 passe juste au-dessus : crevaison après un nid de poule des quais ou batterie morte au parking du RER, nos dépanneurs connaissent les ponts et les rues de berge.",
+        texte: "À Champigny-sur-Marne, la Marne borde la ville et les ponts rythment la circulation : crevaison après un nid de poule des quais ou batterie morte au parking du RER, nos dépanneurs connaissent les ponts et les rues de berge.",
         faq4: { q: "Vous venez près des bords de Marne à Champigny ?", a: "Oui, du côté du village parisien comme vers les Moulins : on vous retrouve où que vous soyez." },
     },
     "colombes": {
@@ -157,11 +157,11 @@ export const LOCAL_CONTENT: Record<string, LocalInfo> = {
         faq4: { q: "Vous intervenez dans les tours de La Défense côté Courbevoie ?", a: "Oui : donnez la tour, le niveau et la place de parking, nos dépanneurs montent directement." },
     },
     "creteil": {
-        texte: "À Créteil, le lac et la préfecture dessinent la ville : l'A86 au sud, la D1 au nord, et de grands parkings. Batterie morte au marché du Crêté-de-Fontenay ou panne vers Créteil-Soleil, on connaît les accès par cœur.",
+        texte: "À Créteil, le lac et la préfecture dessinent la ville : la D1 au nord, de grandes avenues et de grands parkings. Batterie morte au marché du Crêté-de-Fontenay ou panne vers Créteil-Soleil, on connaît les accès par cœur.",
         faq4: { q: "Vous intervenez autour du lac de Créteil ?", a: "Oui, tout le quartier du lac et les résidences autour : appelez, on arrive en 20 minutes." },
     },
     "drancy": {
-        texte: "À Drancy, la ville s'étire entre la N302 et les grands ensembles : batterie morte près de la gare de Drancy ou panne avenue Libération, nos dépanneurs connaissent les rues internes et les sorties d'A86 voisines.",
+        texte: "À Drancy, la ville s'étire entre la N302 et les grands ensembles : batterie morte près de la gare de Drancy ou panne avenue Libération, nos dépanneurs connaissent les rues internes et les grandes avenues voisines.",
         faq4: { q: "Vous couvrez tout Drancy ?", a: "Oui, du quartier des Oiseaux à la gare de Drancy : 24h/24, 7j/7, un seul numéro." },
     },
     "issy-les-moulineaux": {
@@ -173,19 +173,19 @@ export const LOCAL_CONTENT: Record<string, LocalInfo> = {
         faq4: { q: "Vous arrivez dans les petites rues de Levallois ?", a: "Oui : nos dépanneuses sont adaptées aux rues étroites, et on vous guide par téléphone si besoin." },
     },
     "montreuil": {
-        texte: "À Montreuil, les Murs à Pêches et la Grande-Prairie respirent le calme, mais l'A3 et la D38 bouillonnent : batterie morte près de la Mairie de Montreuil ou panne vers Croix-de-Chavaux, on connaît le secteur et ses horaires.",
+        texte: "À Montreuil, les Murs à Pêches et la Grande-Prairie respirent le calme, mais la D38 et les grands axes bouillonnent : batterie morte près de la Mairie de Montreuil ou panne vers Croix-de-Chavaux, on connaît le secteur et ses horaires.",
         faq4: { q: "Vous intervenez près des Murs à Pêches ?", a: "Oui, tout le secteur est couvert : les ruelles étroites ne nous font pas peur." },
     },
     "nanterre": {
-        texte: "À Nanterre, l'université, La Défense voisine et l'A86 font tourner le trafic : batterie morte au parking du RER Nanterre-Université ou panne vers la Folie, nos dépanneurs connaissent les accès et les sorties.",
+        texte: "À Nanterre, l'université, La Défense voisine et la N13 font tourner le trafic : batterie morte au parking du RER Nanterre-Université ou panne vers la Folie, nos dépanneurs connaissent les accès et les sorties.",
         faq4: { q: "Vous couvrez le secteur de l'université de Nanterre ?", a: "Oui, campus et quartiers autour : 24h/24, 7j/7, intervention en 20 minutes." },
     },
     "noisy-le-grand": {
-        texte: "À Noisy-le-Grand, les Arènes de Picasso et le Mont d'Est structurent la ville : grands parkings, espaces piétons et l'A4 à côté. Batterie morte au sous-sol des Arènes ou panne vers Bry-sur-Marne, on connaît les niveaux et les sorties.",
+        texte: "À Noisy-le-Grand, les Arènes de Picasso et le Mont d'Est structurent la ville : grands parkings, espaces piétons et grands boulevards. Batterie morte au sous-sol des Arènes ou panne vers Bry-sur-Marne, on connaît les niveaux et les sorties.",
         faq4: { q: "Vous intervenez au Mont d'Est et aux Arènes ?", a: "Oui, y compris dans les parkings profonds : donnez le niveau, nos dépanneurs arrivent à côté de vous." },
     },
     "rueil-malmaison": {
-        texte: "À Rueil-Malmaison, le château attire les visiteurs et l'A86 passe au-dessus : batterie morte vers le centre ou panne côté Seine, nos dépanneurs connaissent les bouchons de la N13 et les ponts du secteur.",
+        texte: "À Rueil-Malmaison, le château attire les visiteurs et la N13 traverse la ville : batterie morte vers le centre ou panne côté Seine, nos dépanneurs connaissent les bouchons de la N13 et les ponts du secteur.",
         faq4: { q: "Vous intervenez près du château de Malmaison ?", a: "Oui, tout l'ouest de la ville et les routes vers la Seine sont couverts, jour et nuit." },
     },
     "saint-maur-des-fosses": {
@@ -209,15 +209,15 @@ export const LOCAL_CONTENT: Record<string, LocalInfo> = {
         faq4: { q: "Vous intervenez jusqu'au lac des Minimes ?", a: "Oui, tout le bois côté Vincennes est couvert : précisez le chemin ou le parking, on arrive en 20 minutes." },
     },
     "vitry-sur-seine": {
-        texte: "À Vitry-sur-Seine, les quais de Seine et l'A86 structurent la ville : batterie morte vers la porte de Choisy ou panne sur la D5, nos dépanneurs connaissent les accès du port et les rues internes des grands ensembles.",
+        texte: "À Vitry-sur-Seine, les quais de Seine et la D5 structurent la ville : batterie morte vers la porte de Choisy ou panne sur la D5, nos dépanneurs connaissent les accès du port et les rues internes des grands ensembles.",
         faq4: { q: "Vous couvrez les quais et le port de Vitry ?", a: "Oui, des Carrières aux quais : appelez, on vous retrouve où que vous soyez." },
     },
     "fontenay-sous-bois": {
-        texte: "À Fontenay-sous-Bois, tout se joue autour de Val de Fontenay : les tours de bureaux, le RER A et E, et l'A86 qui passe juste dessous. Batterie morte au parking du centre commercial, panne à la sortie de l'A86 ou crevaison sur le Plateau, nos dépanneurs sont basés à quelques minutes, côté Saint-Mandé, et connaissent chaque bretelle.",
-        faq4: { q: "Vous arrivez vite à Val de Fontenay aux heures de pointe ?", a: "Oui. Notre base de Saint-Mandé est à moins de 10 minutes, et nos dépanneurs connaissent les accès par Vincennes et par Montreuil pour contourner les bouchons de l'A86." },
+        texte: "À Fontenay-sous-Bois, tout se joue autour de Val de Fontenay : les tours de bureaux, le RER A et E, et de grandes avenues tout autour. Batterie morte au parking du centre commercial, panne sur une avenue ou crevaison sur le Plateau, nos dépanneurs sont basés à quelques minutes, côté Saint-Mandé, et connaissent chaque rue.",
+        faq4: { q: "Vous arrivez vite à Val de Fontenay aux heures de pointe ?", a: "Oui. Notre base de Saint-Mandé est à moins de 10 minutes, et nos dépanneurs connaissent les accès par Vincennes et par Montreuil pour contourner les bouchons." },
     },
     "rosny-sous-bois": {
-        texte: "Rosny-sous-Bois, c'est le grand nœud de l'Est parisien : l'A86 croise l'A3 et l'A103, et le parking de Rosny 2 se remplit dès le samedi matin. Panne à la sortie de l'échangeur, batterie à plat au niveau -2 du centre commercial ou crevaison sur le plateau d'Avron : on part de Villemomble, la ville d'à côté, et on arrive en quelques minutes.",
+        texte: "Rosny-sous-Bois, c'est le grand nœud de l'Est parisien : les grands axes s'y croisent, et le parking de Rosny 2 se remplit dès le samedi matin. Panne sur une avenue, batterie à plat au niveau -2 du centre commercial ou crevaison sur le plateau d'Avron : on part de Villemomble, la ville d'à côté, et on arrive en quelques minutes.",
         faq4: { q: "Vous pouvez intervenir dans le parking de Rosny 2 ?", a: "Oui, à tous les niveaux. Précisez votre zone et votre rangée au téléphone, notre dépanneur monte directement jusqu'à vous." },
     },
     "gagny": {
@@ -225,11 +225,11 @@ export const LOCAL_CONTENT: Record<string, LocalInfo> = {
         faq4: { q: "Vous couvrez aussi les quartiers du Chénay et des Abbesses ?", a: "Oui, toute la commune de Gagny, du centre aux quartiers résidentiels en hauteur. Donnez-nous votre rue, on arrive en 20 minutes en moyenne." },
     },
     "bondy": {
-        texte: "Bondy, c'est l'échangeur A3/A86 et la N3 : des milliers de véhicules par heure et des pannes qui ne peuvent pas attendre. Batterie morte vers la gare, crevaison sur la N3 côté canal de l'Ourcq ou véhicule accidenté à la sortie de l'échangeur : nos dépanneurs connaissent les accès et les contre-allées pour vous rejoindre vite.",
-        faq4: { q: "Je suis en panne sur l'A3 ou l'A86 à hauteur de Bondy, vous venez ?", a: "Sur l'autoroute, non : le dépannage y est réservé aux sociétés agréées (borne d'appel d'urgence ou 112). En revanche, dès la sortie de l'échangeur, sur la N3 et dans toute la ville, on intervient en moins de 30 minutes." },
+        texte: "Bondy, c'est la N3 et le canal de l'Ourcq : des milliers de véhicules par heure et des pannes qui ne peuvent pas attendre. Batterie morte vers la gare, crevaison sur la N3 côté canal de l'Ourcq ou véhicule accidenté dans une rue de la ville : nos dépanneurs connaissent les accès et les contre-allées pour vous rejoindre vite.",
+        faq4: { q: "Vous intervenez sur la N3 à Bondy ?", a: "Oui, sur la N3 et dans toute la ville, on intervient en moins de 30 minutes." },
     },
     "noisy-le-sec": {
-        texte: "À Noisy-le-Sec, la gare, le canal de l'Ourcq et l'A3 délimitent la ville. Batterie morte au parking de la gare, panne vers le Londeau ou crevaison sur la N3 : nos dépanneurs connaissent les ponts du canal et les accès vers Romainville et Bondy, même la nuit quand les grands axes se vident.",
+        texte: "À Noisy-le-Sec, la gare, le canal de l'Ourcq et la N3 délimitent la ville. Batterie morte au parking de la gare, panne vers le Londeau ou crevaison sur la N3 : nos dépanneurs connaissent les ponts du canal et les accès vers Romainville et Bondy, même la nuit quand les grands axes se vident.",
         faq4: { q: "Vous intervenez du côté du Londeau et de la gare ?", a: "Oui, toute la commune est couverte, du centre aux quartiers près de Rosny. Appelez, on vous retrouve en 20 minutes en moyenne." },
     },
     "le-raincy": {
@@ -237,8 +237,8 @@ export const LOCAL_CONTENT: Record<string, LocalInfo> = {
         faq4: { q: "Vous êtes vraiment à côté du Raincy ?", a: "Oui, nos dépanneurs partent de Villemomble, la commune voisine. C'est l'une de nos zones les plus rapides : souvent moins de 15 minutes." },
     },
     "nogent-sur-marne": {
-        texte: "Nogent-sur-Marne, c'est le pont de Nogent et l'A4 : l'un des secteurs les plus chargés de l'Est francilien, où une panne bloque tout. Batterie morte au parking de la gare Nogent-Le Perreux, crevaison sur les bords de Marne ou panne à la sortie du pont : nos dépanneurs connaissent les accès par Fontenay et par le Perreux pour éviter les bouchons.",
-        faq4: { q: "Je suis en panne sur l'A4 au niveau du pont de Nogent, c'est possible ?", a: "Sur l'A4 elle-même, non : l'autoroute est réservée aux dépanneurs agréés (borne d'appel d'urgence ou 112). Dès la sortie, à Nogent, au Perreux ou à Fontenay, nous prenons le relais en moins de 30 minutes." },
+        texte: "Nogent-sur-Marne, c'est le pont de Nogent et les bords de Marne : l'un des secteurs les plus chargés de l'Est francilien, où une panne bloque tout. Batterie morte au parking de la gare Nogent-Le Perreux, crevaison sur les bords de Marne ou panne à la sortie du pont : nos dépanneurs connaissent les accès par Fontenay et par le Perreux pour éviter les bouchons.",
+        faq4: { q: "Vous intervenez près du pont de Nogent ?", a: "Oui, à Nogent, au Perreux ou à Fontenay, nous intervenons en moins de 30 minutes." },
     },
     "neuilly-sur-marne": {
         texte: "À Neuilly-sur-Marne, l'avenue de Paris (N34) traverse toute la ville et relie Chelles à Paris : feux, bouchons et pannes en file. Batterie morte vers Maison-Blanche, crevaison sur les bords de Marne ou véhicule immobilisé près du pont vers Noisy-le-Grand : nos dépanneurs connaissent chaque contre-allée de la N34.",

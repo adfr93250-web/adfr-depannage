@@ -38,6 +38,12 @@ function isInternal(): boolean {
 }
 
 export function track(event: "call" | "whatsapp" | "form", page: string, button = "") {
+    // Signal local (jamais envoyé) : affiche les consignes de sécurité juste après un appel
+    try {
+        window.dispatchEvent(new CustomEvent("adfr:action", { detail: event }));
+    } catch {
+        // sans effet
+    }
     try {
         const device = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) ? "mobile" : "desktop";
         fetch(`${API}/track`, {

@@ -200,7 +200,7 @@ const FAQ_HOME_ADFR: FaqItem[] = [
     { q: "En combien de temps arrivez-vous ?", a: "En moins de 30 minutes en moyenne à Paris et en petite couronne, selon la circulation." },
     { q: "Quelles zones couvrez-vous ?", a: "Paris et toute l'Île-de-France : 75, 77, 78, 91, 92, 93, 94, 95." },
     { q: "Comment se passe le paiement ?", a: "Paiement sur place à la fin de l'intervention, par carte bancaire ou en espèces." },
-    { q: "Que faire en cas d'accident ?", a: `Mettez-vous en sécurité derrière la glissière avec gilet et triangle, puis appelez-nous au ${SITE.phoneDisplay}. Nous enlevons le véhicule et le remorquons vers le garage de votre choix.` },
+    { q: "Que faire en cas d'accident ?", a: `Mettez-vous en sécurité à l'écart de la circulation, avec gilet et triangle, puis appelez-nous au ${SITE.phoneDisplay}. Nous enlevons le véhicule et le remorquons vers le garage de votre choix.` },
 ];
 
 export const FAQ_HOME: FaqItem[] = BRAND.id === "adfr" ? FAQ_HOME_ADFR : FAQ_HOME_SOS;
@@ -225,7 +225,7 @@ export function faqZone(name: string): FaqItem[] {
 export function interventions(name: string): string[] {
     return [
         `Batterie à plat le matin, devant chez vous ou sur votre parking à ${name}`,
-        "Crevaison sur un axe rapide ou au bord de la route",
+        "Crevaison en ville ou au bord de la route",
         "Panne de carburant loin d'une station-service",
         "Voiture en panne dans un parking souterrain ou dans un trafic dense",
         "Véhicule accidenté à évacuer vers un garage",

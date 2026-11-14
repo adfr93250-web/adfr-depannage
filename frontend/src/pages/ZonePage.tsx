@@ -5,6 +5,7 @@ import Seo, { localBusinessLd, faqPageLd } from "@/components/Seo";
 import Services from "@/components/Services";
 import Faq from "@/components/Faq";
 import PositionSection from "@/components/PositionSection";
+import Urgence from "@/components/Urgence";
 import CallbackForm from "@/components/CallbackForm";
 import { CallButton, WhatsAppButton } from "@/components/CTAButtons";
 import NotFound from "@/pages/NotFound";
@@ -90,10 +91,10 @@ function LocalContent({ zone }: { zone: Zone }) {
                     </h2>
                     <p className="mt-4 text-slate-300 leading-relaxed">
                         {isDept
-                            ? `En ${zone.deptName.replace(/^(les|le|la) /i, "")} comme partout en Île-de-France, nos équipes connaissent ${zone.axes} et leurs sorties.`
+                            ? `En ${zone.deptName.replace(/^(les|le|la) /i, "")} comme partout en Île-de-France, nos équipes connaissent ${zone.axes}.`
                             : `Nos équipes connaissent ${zone.axes}, au plus près de ${zone.spots[0].toLowerCase()} et des quartiers voisins.`}{" "}
                         Batterie, crevaison, carburant, accident ou remorquage : dans la grande majorité des cas, tout se règle sur place et vous repartez.
-                        Nous intervenons en ville, sur routes et nationales ; sur autoroute, le dépannage est réservé aux sociétés agréées (borne d'appel d'urgence ou 112) et nous prenons le relais dès la sortie.
+                        Nous intervenons en ville, sur les routes départementales et nationales.
                     </p>
                     {extra && (
                         <p className="mt-3 text-slate-300 leading-relaxed" data-testid="zone-unique-text">
@@ -192,6 +193,7 @@ export default function ZonePage() {
         <>
             <Seo title={title} description={description} path={`/depannage-${zone.slug}`} jsonLd={[localBusinessLd(zone), faqPageLd(faqs)]} />
             <LocalHero zone={zone} />
+            {BRAND.id === "adfr" && <Urgence />}
             <LocalContent zone={zone} />
             <Services
                 eyebrow="Nos services"
