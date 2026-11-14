@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useLang } from "@/lib/urgence";
 
 /**
- * Mesure d'audience Google Analytics (GA4), uniquement après accord du visiteur.
+ * Mesure d'audience Google Analytics (GA4), active dès l'arrivée du visiteur (aucun bandeau affiché).
  * La balise Google Ads d'index.html n'est pas touchée : ce fichier ne fait qu'ajouter Analytics.
- * Le choix est gardé sur l'appareil ; le lien « Gérer les cookies » du pied de page rouvre le bandeau.
+ * Le lien « Gérer les cookies » du pied de page ouvre le panneau pour refuser ; le choix est gardé sur l'appareil.
  */
 const GA_ID = "G-CYNG867555";
 const KEY = "adfr_cookies";
@@ -66,9 +66,8 @@ export function CookieBanner() {
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
-        const choice = readChoice();
-        if (choice === "yes") startAnalytics();
-        else if (choice === null) setOpen(true);
+        // Choix du gérant : Analytics démarre dès l'arrivée, sans bandeau. Seul un refus explicite l'arrête.
+        if (readChoice() !== "no") startAnalytics();
         const reopen = () => setOpen(true);
         window.addEventListener(OPEN_EVENT, reopen);
         return () => window.removeEventListener(OPEN_EVENT, reopen);
