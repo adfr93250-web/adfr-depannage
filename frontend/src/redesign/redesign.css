@@ -200,6 +200,7 @@ html.light {
     --border: 214 25% 78%;
     --input: 214 25% 78%;
 }
+html.theme-switch *, html.theme-switch *::before, html.theme-switch *::after { transition: none !important; }
 html.light body { color: #1e293b; }
 html.light .sheet { background: rgb(var(--c-night)); }
 html.light .sheet.bg-adfr-night2 { background: rgb(var(--c-night2)); }

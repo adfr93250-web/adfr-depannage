@@ -61,7 +61,11 @@ const themeStore = createStore<Theme>(read("adfr_theme") === "light" ? "light" :
 function applyTheme(theme: Theme) {
     if (typeof document === "undefined") return;
     const light = theme === "light";
-    document.documentElement.classList.toggle("light", light);
+    const root = document.documentElement;
+    // Pendant la bascule, on coupe les fondus : sinon certains textes changent plus lentement que le fond
+    root.classList.add("theme-switch");
+    root.classList.toggle("light", light);
+    window.setTimeout(() => root.classList.remove("theme-switch"), 120);
     document.querySelector('meta[name="theme-color"]')?.setAttribute("content", light ? "#F4F6FA" : "#050B14");
     document.querySelector('meta[name="color-scheme"]')?.setAttribute("content", light ? "light" : "dark");
 }
