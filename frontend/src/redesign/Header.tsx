@@ -128,6 +128,13 @@ export default function Header() {
                 </div>
             </div>
 
+            {/* Sur téléphone : langue et thème visibles en haut de page, sans ouvrir le menu (ils s'effacent au défilement) */}
+            {!open && (
+                <div className={`wrap flex justify-end transition-opacity duration-300 sm:hidden ${scrolled ? "pointer-events-none opacity-0" : ""}`} data-testid="quick-settings-mobile">
+                    <QuickSettings />
+                </div>
+            )}
+
             {open && (<div id="mobile-menu" className="fixed inset-0 -z-10 flex flex-col justify-between overflow-y-auto bg-adfr-night/95 px-6 pb-28 pt-28 backdrop-blur-2xl lg:hidden" data-testid="mobile-menu">
                 <nav aria-label="Menu" className="flex flex-col gap-1">
                     {LINKS.map((l, i) => (
