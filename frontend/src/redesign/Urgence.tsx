@@ -29,7 +29,7 @@ export function StatusPill({ className = "" }: { className?: string }) {
         <p className={`glass inline-flex items-center gap-2.5 rounded-full px-4 py-2 text-[10px] font-bold uppercase tracking-[0.16em] text-slate-100 sm:text-[11px] ${className}`} data-testid="status-pill" role="status">
             <span className={`size-2.5 shrink-0 rounded-full ${a?.open ? "bg-adfr-wa shadow-[0_0_10px_#25d366]" : "bg-adfr-red"}`} />
             <span>
-                {/* Le samedi : libellé neutre, sans message de fermeture */}
+                {/* Disponible 7j/7 */}
                 {a?.open ? t("Dépanneur disponible maintenant", "Driver available now") : t("Dépannage 24h/24 — Île-de-France", "Breakdown service 24/7 — Paris region")}
                 {a?.open && <span className="tabular-nums text-slate-400"> · {a.time}</span>}
             </span>
@@ -103,11 +103,10 @@ export default function Urgence() {
                 <div className="mt-4 grid gap-3 md:grid-cols-2 md:gap-4">
                     <SafetyList className="min-w-0 rounded-2xl border border-adfr-chrome/20 bg-adfr-deep2/40 p-4 md:p-5" />
                     <div className="min-w-0 rounded-2xl border border-adfr-chrome/20 bg-adfr-deep2/40 p-4 md:p-5">
-                        <p className="font-display text-sm font-extrabold text-white">{t("Prix annoncé au téléphone avant le départ, sans engagement.", "Price given on the phone before we leave, no commitment.")}</p>
+                        <p className="font-display text-sm font-extrabold text-white">{t("Paiement sur place, à la fin de l'intervention.", "Pay on site, once the job is done.")}</p>
                         <p className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-300" data-testid="payment-icons">
                             <span className="inline-flex items-center gap-1.5"><CreditCard className="size-4 text-adfr-electricLight" aria-hidden="true" /> {t("Carte bancaire", "Card")}</span>
                             <span className="inline-flex items-center gap-1.5"><Banknote className="size-4 text-adfr-wa" aria-hidden="true" /> {t("Espèces", "Cash")}</span>
-                            <span>{t("Paiement sur place, à la fin.", "Paid on site, at the end.")}</span>
                         </p>
                         <a href="/adfr.vcf" download="ADFR-depannage.vcf" data-testid="add-contact" className="btn btn-ghost mt-4 w-full px-5 py-3.5 text-sm !normal-case !tracking-normal">
                             <Contact className="size-5 text-adfr-electricLight" aria-hidden="true" /> {t("Ajouter ADFR à mes contacts", "Save ADFR to my contacts")}

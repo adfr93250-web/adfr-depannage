@@ -194,7 +194,7 @@ const FAQ_HOME_SOS: FaqItem[] = [
 ];
 
 const FAQ_HOME_ADFR: FaqItem[] = [
-    { q: "Combien coûte un dépannage ou un remorquage ?", a: "Le prix dépend de la distance et du type d'intervention. Il vous est annoncé au téléphone avant le départ, sans engagement." },
+    { q: "Combien coûte un dépannage ou un remorquage ?", a: "Le prix dépend de la distance et du type d'intervention." },
     { q: "Ma batterie est à plat : pouvez-vous redémarrer ma voiture sur place ?", a: "Oui, nous démarrons votre véhicule sur place et pouvons remplacer la batterie si nécessaire." },
     { q: "Je suis en panne de carburant : pouvez-vous dépanner sur place ?", a: "Oui, nous vous livrons du carburant sur place." },
     { q: "En combien de temps arrivez-vous ?", a: "En moins de 30 minutes en moyenne à Paris et en petite couronne, selon la circulation." },
@@ -209,7 +209,7 @@ export function faqZone(name: string): FaqItem[] {
     return [
         {
             q: `Intervenez-vous vraiment 24h/24 à ${name} ?`,
-            a: `Oui. À ${name} comme partout en Île-de-France, un dépanneur ${BRAND.name} peut partir vous rejoindre de jour comme de nuit, ${BRAND.id === "adfr" ? "du dimanche au vendredi, jours fériés inclus" : "le week-end et les jours fériés"}.`,
+            a: `Oui. À ${name} comme partout en Île-de-France, un dépanneur ${BRAND.name} peut partir vous rejoindre de jour comme de nuit, ${BRAND.id === "adfr" ? "7j/7, jours fériés inclus" : "le week-end et les jours fériés"}.`,
         },
         {
             q: `En combien de temps un dépanneur arrive-t-il à ${name} ?`,

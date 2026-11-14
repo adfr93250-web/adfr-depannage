@@ -47,7 +47,7 @@ export default function Footer() {
                             <MessageCircle className="size-5 text-adfr-wa" aria-hidden="true" /> WhatsApp : {SITE.whatsappDisplay}
                         </a>
                         <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-slate-300 sm:ml-4">
-                            <Clock3 className="size-4 text-adfr-red" aria-hidden="true" /> {t(`${SITE.hours.long}, ${SITE.hours.days}`, "24/7, Sunday to Friday, public holidays included")}
+                            <Clock3 className="size-4 text-adfr-red" aria-hidden="true" /> {t(`${SITE.hours.long}, ${SITE.hours.days}`, "24/7, public holidays included")}
                         </p>
                     </div>
                 </div>
@@ -57,7 +57,7 @@ export default function Footer() {
                 <Reveal className="wrap grid gap-12 pt-10 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1.25fr_1.1fr]" stagger={0.08}>
                     <div>
                         <img src={SITE.logo} alt={SITE.fullName} loading="lazy" width={1042} height={435} className="h-16 w-auto rounded-xl bg-white px-3 py-1.5" />
-                        <p className="mt-5 max-w-xs text-sm leading-relaxed text-slate-400">{t(`Dépannage et remorquage toutes marques, ${SITE.hours.long}, partout en Île-de-France. Intervention rapide, paiement sur place.`, "Roadside repair and towing for all makes, 24/7 from Sunday to Friday, anywhere in the Paris region. Fast call-outs, pay on site.")}</p>
+                        <p className="mt-5 max-w-xs text-sm leading-relaxed text-slate-400">{t(`Dépannage et remorquage toutes marques, ${SITE.hours.long}, partout en Île-de-France. Intervention rapide, paiement sur place.`, "Roadside repair and towing for all makes, 24/7, anywhere in the Paris region. Fast call-outs, pay on site.")}</p>
                         <button type="button" onClick={toTop} className="group mt-7 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-slate-300 hover:text-white" data-testid="back-to-top">
                             <span className="grid size-11 place-items-center rounded-full border border-adfr-chrome/25 transition-all duration-500 ease-expo group-hover:-translate-y-1 group-hover:border-adfr-red group-hover:bg-adfr-red">
                                 <ArrowUp className="size-4" aria-hidden="true" />
@@ -109,7 +109,7 @@ export default function Footer() {
                         <ul className="space-y-3 text-sm text-slate-300">
                             <li className="flex items-start gap-2.5">
                                 <Clock3 className="mt-0.5 size-4 shrink-0 text-adfr-red" aria-hidden="true" />
-                                {t(`${SITE.hours.long}, ${SITE.hours.days}`, "24/7, Sunday to Friday, public holidays included")}
+                                {t(`${SITE.hours.long}, ${SITE.hours.days}`, "24/7, public holidays included")}
                             </li>
                             <li>{t("Paiement sur place, carte bancaire ou espèces", "Pay on site, by card or in cash")}</li>
                             <li>{t(`Intervention en moyenne ${SITE.delay.long} en IDF`, "On site in under 30 minutes on average in the Paris region")}</li>

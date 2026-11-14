@@ -124,7 +124,7 @@ export default function Hero() {
                             <Clock3 className="size-4 text-adfr-red" /> En moyenne {BRAND.delay.short}
                         </li>
                         <li className="flex items-center gap-2">
-                            <ShieldCheck className="size-4 text-adfr-red" /> Dimanche au vendredi, jours fériés inclus
+                            <ShieldCheck className="size-4 text-adfr-red" /> 7j/7, jours fériés inclus
                         </li>
                         <li className="flex items-center gap-2">
                             <BadgeCheck className="size-4 text-adfr-red" /> Paiement sur place
@@ -134,7 +134,7 @@ export default function Hero() {
 
                 <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: EASE, delay: 0.6 }} className="relative hidden lg:flex h-[540px] items-end justify-end gap-4">
                     <div className="rounded-full bg-adfr-red px-4 py-2 font-display text-xs font-black uppercase tracking-widest text-white shadow-lg" data-testid="hero-badge-247">
-                        24h/24 — dim. au ven.
+                        24h/24 — 7j/7
                     </div>
                     <div className="rounded-2xl border border-adfr-chrome/30 bg-adfr-night/70 px-4 py-3 text-right backdrop-blur-md" data-testid="hero-badge-delay">
                         <p className="font-display text-2xl font-black text-chrome leading-none">{BRAND.id === "adfr" ? "< 30 min" : "≈ 20 min"}</p>

@@ -31,7 +31,7 @@ export const TRUST_ITEMS = [BRAND.hours.long, `Intervention ${BRAND.delay.long}`
 
 export const PROCESS_STEPS = [
     { num: "01", title: "Vous appelez", desc: "Un coup de fil ou un message WhatsApp : dites-nous où vous êtes et ce qui s'est passé. On vous dit tout de suite quand un dépanneur peut partir." },
-    { num: "02", title: "Le dépanneur part", desc: "Le dépanneur le plus proche de votre position part immédiatement, jour et nuit, du dimanche au vendredi, jours fériés inclus." },
+    { num: "02", title: "Le dépanneur part", desc: "Le dépanneur le plus proche de votre position part immédiatement, jour et nuit, 7j/7, jours fériés inclus." },
     { num: "03", title: "Prise en charge", desc: "Dépannage sur place ou remorquage vers le garage de votre choix. Vous payez sur place, à la fin." },
 ];
 

@@ -146,7 +146,7 @@ export default function Header() {
                 </nav>
                 <div className="mm-foot space-y-3">
                     <QuickSettings />
-                    <p className="text-xs font-bold uppercase tracking-[0.24em] text-slate-400">{t(`${SITE.hours.long}, ${SITE.hours.days}`, "24/7, Sunday to Friday, public holidays included")}</p>
+                    <p className="text-xs font-bold uppercase tracking-[0.24em] text-slate-400">{t(`${SITE.hours.long}, ${SITE.hours.days}`, "24/7, public holidays included")}</p>
                     <a href={SITE.phoneHref} onClick={() => track("call", location.pathname, "Menu mobile")} className="btn btn-call w-full px-6 py-4 text-lg">
                         <Phone className="size-5 animate-ring" aria-hidden="true" /> {SITE.phoneDisplay}
                     </a>

@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import { ShieldCheck, BadgeCheck, Clock3, CreditCard, Banknote, Star, MapPin, Loader2, MessageSquareOff } from "lucide-react";
+import { ShieldCheck, Clock3, CreditCard, Banknote, Star, MapPin, Loader2, MessageSquareOff } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import { SITE } from "@/redesign/data";
 import { gsap, REDUCED, scrollToId } from "@/redesign/motion";
@@ -71,7 +71,7 @@ export default function Hero() {
                     {/* Sur téléphone, la pastille est masquée pour alléger le premier écran */}
                     <StatusPill className="max-lg:hidden" />
                     <div className="hero-fade hidden rounded-full bg-adfr-red lg:block px-4 py-2 font-display text-xs font-black uppercase tracking-widest text-white shadow-[0_0_30px_rgba(227,6,19,0.5)]" data-testid="hero-badge-247">
-                        {t("24h/24 — dim. au ven.", "24/7 — Sun. to Fri.")}
+                        {t("24h/24 — 7j/7", "24/7")}
                     </div>
                     <div className="hero-fade glass hidden items-center gap-3 lg:flex rounded-full px-5 py-2" data-testid="hero-badge-delay">
                         <p className="display text-chrome text-2xl">
@@ -88,7 +88,7 @@ export default function Hero() {
                     </h1>
                     <div className="hero-rule mt-4 h-1.5 w-40 origin-left rounded-full bg-adfr-red shadow-[0_0_30px_rgba(227,6,19,0.8)] sm:w-64" aria-hidden="true" />
 
-                    <p className="hero-fade mt-6 hidden max-w-xl text-[0.95rem] leading-relaxed text-slate-300 sm:block md:text-lg">{t(SITE.heroText, "On site in under 30 minutes anywhere in the Paris region. Roadside repair or towing for all makes, day and night, Sunday to Friday, public holidays included.")}</p>
+                    <p className="hero-fade mt-6 hidden max-w-xl text-[0.95rem] leading-relaxed text-slate-300 sm:block md:text-lg">{t(SITE.heroText, "On site in under 30 minutes anywhere in the Paris region. Roadside repair or towing for all makes, day and night, 7 days a week, public holidays included.")}</p>
 
                     <div className="hero-fade mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap">
                         <CallButton testId="hero-call-button" className="w-full sm:w-auto" />
@@ -98,9 +98,8 @@ export default function Hero() {
                             {t("Envoyer ma position", "Send my position")}
                         </button>
                     </div>
-                    {/* Les deux freins à l'appel, levés sous le bouton : le prix et le paiement */}
+                    {/* Sous le bouton : les moyens de paiement et les avis */}
                     <p className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs font-semibold text-slate-200" data-testid="hero-reassurance">
-                        <span className="inline-flex items-center gap-1.5"><BadgeCheck className="size-4 text-adfr-wa" aria-hidden="true" /> {t("Prix annoncé avant le départ", "Price given before we leave")}</span>
                         <span className="inline-flex items-center gap-1.5"><CreditCard className="size-4 text-adfr-electricLight" aria-hidden="true" /> {t("Carte", "Card")}</span>
                         <span className="inline-flex items-center gap-1.5"><Banknote className="size-4 text-adfr-wa" aria-hidden="true" /> {t("Espèces", "Cash")}</span>
                         <a href={SITE.googleReviewsUrl} target="_blank" rel="noopener noreferrer" data-testid="hero-google" className="inline-flex items-center gap-1.5 underline-offset-4 hover:underline">
@@ -110,7 +109,7 @@ export default function Hero() {
 
                     <ul className="hero-fade mt-3 flex flex-wrap gap-x-6 gap-y-2 text-xs font-semibold text-slate-300">
                         <li className="flex items-center gap-2"><Clock3 className="size-4 text-adfr-red" aria-hidden="true" /> {t(`En moyenne ${SITE.delay.short}`, "Under 30 min on average")}</li>
-                        <li className="flex items-center gap-2"><ShieldCheck className="size-4 text-adfr-red" aria-hidden="true" /> {t("Dimanche au vendredi, jours fériés inclus", "Sunday to Friday, holidays included")}</li>
+                        <li className="flex items-center gap-2"><ShieldCheck className="size-4 text-adfr-red" aria-hidden="true" /> {t("7j/7, jours fériés inclus", "7 days a week, holidays included")}</li>
                         <li>
                             <button type="button" onClick={() => scrollToId("urgence")} data-testid="hero-no-call" className="inline-flex items-center gap-2 font-bold text-white underline underline-offset-4">
                                 <MessageSquareOff className="size-4 text-adfr-red" aria-hidden="true" /> {t("Je ne peux pas parler : tout par message", "I can't talk: do it all by message")}

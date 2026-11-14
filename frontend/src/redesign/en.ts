@@ -32,7 +32,7 @@ export const EN: Record<string, string> = {
     "Véhicule accidenté": "Accident",
     "Autre panne": "Other problem",
     // Engagements
-    "24h/24, du dimanche au vendredi": "24/7, Sunday to Friday",
+    "24h/24 et 7j/7": "24 hours a day, 7 days a week",
     "Intervention en moins de 30 minutes": "On site in under 30 minutes",
     "Dépannage sur place ou remorquage": "Roadside repair or towing",
     "Paiement sur place": "Pay on site",
@@ -42,7 +42,7 @@ export const EN: Record<string, string> = {
     "Vous appelez": "You call",
     "Un coup de fil ou un message WhatsApp : dites-nous où vous êtes et ce qui s'est passé. On vous dit tout de suite quand un dépanneur peut partir.": "A phone call or a WhatsApp message: tell us where you are and what happened. We tell you straight away when a driver can leave.",
     "Le dépanneur part": "The driver sets off",
-    "Le dépanneur le plus proche de votre position part immédiatement, jour et nuit, du dimanche au vendredi, jours fériés inclus.": "The driver closest to you leaves immediately, day and night, Sunday to Friday, public holidays included.",
+    "Le dépanneur le plus proche de votre position part immédiatement, jour et nuit, 7j/7, jours fériés inclus.": "The driver closest to you leaves immediately, day and night, 7 days a week, public holidays included.",
     "Prise en charge": "We take care of it",
     "Dépannage sur place ou remorquage vers le garage de votre choix. Vous payez sur place, à la fin.": "Roadside repair or a tow to the garage of your choice. You pay on site, at the end.",
     // Galerie
@@ -62,7 +62,7 @@ export const EN: Record<string, string> = {
     // FAQ
     "Vos questions, nos réponses directes.": "Your questions, our straight answers.",
     "Combien coûte un dépannage ou un remorquage ?": "How much does a repair or a tow cost?",
-    "Le prix dépend de la distance et du type d'intervention. Il vous est annoncé au téléphone avant le départ, sans engagement.": "The price depends on the distance and the type of job. We tell you on the phone before we leave, with no commitment.",
+    "Le prix dépend de la distance et du type d'intervention.": "The price depends on the distance and the type of job.",
     "Ma batterie est à plat : pouvez-vous redémarrer ma voiture sur place ?": "My battery is flat: can you restart my car on the spot?",
     "Oui, nous démarrons votre véhicule sur place et pouvons remplacer la batterie si nécessaire.": "Yes, we start your vehicle on the spot and can replace the battery if needed.",
     "Je suis en panne de carburant : pouvez-vous dépanner sur place ?": "I have run out of fuel: can you help on the spot?",
@@ -77,7 +77,7 @@ export const EN: Record<string, string> = {
     "Mettez-vous en sécurité à l'écart de la circulation, avec gilet et triangle, puis appelez-nous au 01 85 80 00 61. Nous enlevons le véhicule et le remorquons vers le garage de votre choix.": "Get to safety away from traffic, with your hi-vis vest and warning triangle, then call us on +33 1 85 80 00 61. We remove the vehicle and tow it to the garage of your choice.",
     // Chiffres
     "Délai moyen en Île-de-France": "Average time in the Paris region",
-    "Du dimanche au vendredi": "Sunday to Friday",
+    "7 jours sur 7": "7 days a week",
     "Départements couverts": "Departments covered",
     // Position
     "Géolocalisation refusée. Activez-la dans votre navigateur, ou appelez-nous et décrivez-nous où vous êtes : on arrive quand même.": "Location refused. Enable it in your browser, or call us and tell us where you are: we will still come.",
@@ -88,7 +88,7 @@ export const EN: Record<string, string> = {
 /** Textes des pages de zones en anglais (gabarits : les textes locaux rédigés n'existent qu'en français). */
 export const zoneEn = {
     place: (z: Zone) => (z.type === "dept" ? `in ${z.name}` : `in ${z.name}`),
-    intro: (z: Zone) => `Broken down ${z.type === "dept" ? `in ${z.name}` : `in ${z.name}, near ${z.spots[0]}`}? ADFR drivers reach you in under 30 minutes on average, 24/7 from Sunday to Friday, public holidays included.`,
+    intro: (z: Zone) => `Broken down ${z.type === "dept" ? `in ${z.name}` : `in ${z.name}, near ${z.spots[0]}`}? ADFR drivers reach you in under 30 minutes on average, 24 hours a day, 7 days a week, public holidays included.`,
     local: (z: Zone) =>
         `Our drivers know ${z.name} and its main roads. Battery, flat tyre, fuel, accident or towing: in most cases everything is sorted on the spot and you drive away. We work in town and on national and local roads.`,
     interventions: (name: string) => [
@@ -100,7 +100,7 @@ export const zoneEn = {
         "Car immobilised by a mechanical or electrical fault",
     ],
     faq: (name: string) => [
-        { q: `Do you really work 24/7 in ${name}?`, a: `Yes. In ${name}, as everywhere in the Paris region, an ADFR driver can set off day or night, from Sunday to Friday, public holidays included.` },
+        { q: `Do you really work 24/7 in ${name}?`, a: `Yes. In ${name}, as everywhere in the Paris region, an ADFR driver can set off day or night, 7 days a week, public holidays included.` },
         { q: `How quickly does a driver arrive in ${name}?`, a: `In under 30 minutes on average in ${name} and the neighbouring towns, depending on traffic.` },
         { q: `Can I pay on site in ${name}?`, a: "Yes. You pay after the job, on site, by card or in cash." },
     ],

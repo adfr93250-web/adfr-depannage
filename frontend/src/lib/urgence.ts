@@ -77,11 +77,11 @@ export function setTheme(theme: Theme) {
 }
 export const useTheme = () => useStore(themeStore);
 
-// ---------- Disponibilité : 24h/24 du dimanche au vendredi (pas le samedi), heure de Paris
+// ---------- Disponibilité : 24h/24 et 7j/7, heure de Paris
 export function availability(now = new Date()) {
     const parts = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Paris", weekday: "short", hour: "2-digit", minute: "2-digit", hour12: false }).formatToParts(now);
     const get = (t: string) => parts.find((p) => p.type === t)?.value ?? "";
-    return { open: get("weekday") !== "Sat", time: `${get("hour")}:${get("minute")}` };
+    return { open: true, time: `${get("hour")}:${get("minute")}` };
 }
 
 // ---------- Position

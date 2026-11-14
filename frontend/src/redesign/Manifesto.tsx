@@ -4,7 +4,7 @@ import { useT } from "@/redesign/i18n";
 
 const STATS = [
     { value: 30, prefix: "< ", suffix: " min", label: "Délai moyen en Île-de-France" },
-    { value: 24, prefix: "", suffix: "h/24", label: "Du dimanche au vendredi" },
+    { value: 24, prefix: "", suffix: "h/24", label: "7 jours sur 7" },
     { value: 8, prefix: "", suffix: "", label: "Départements couverts" },
 ];
 
@@ -20,7 +20,7 @@ export default function Manifesto() {
                 </div>
                 <Reveal className="wrap relative py-16 md:py-24">
                     <p className="eyebrow">ADFR — Auto Dépann France Remorquage</p>
-                    <p className="mt-5 max-w-4xl font-display text-[1.45rem] font-extrabold leading-[1.18] tracking-tight text-white sm:text-3xl md:text-[2.6rem] md:leading-[1.12]">{t(SITE.heroText, "On site in under 30 minutes anywhere in the Paris region. Roadside repair or towing for all makes, day and night, Sunday to Friday, public holidays included.")}</p>
+                    <p className="mt-5 max-w-4xl font-display text-[1.45rem] font-extrabold leading-[1.18] tracking-tight text-white sm:text-3xl md:text-[2.6rem] md:leading-[1.12]">{t(SITE.heroText, "On site in under 30 minutes anywhere in the Paris region. Roadside repair or towing for all makes, day and night, 7 days a week, public holidays included.")}</p>
                     <dl className="mt-8 grid max-w-3xl grid-cols-3 gap-3 md:mt-12 md:gap-6">
                         {STATS.map((s) => (
                             <div key={s.label} className="border-l border-adfr-red pl-3 md:pl-5">

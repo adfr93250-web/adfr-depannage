@@ -50,7 +50,7 @@ export default function CallbackForm({ defaultLieu = "" }: { defaultLieu?: strin
                         {t("Deux champs suffisent : votre numéro et le type de panne. Un dépanneur vous rappelle dans quelques minutes. Mais le plus rapide reste l'appel direct :", "Two fields are enough: your number and the type of problem. A driver calls you back within minutes. But calling us directly is still the fastest:")}
                     </Reveal>
                     <Reveal as="ul" className="mt-7 space-y-3 text-sm text-slate-300" stagger={0.08} delay={0.15}>
-                        <li className="flex items-center gap-3"><CheckCircle2 className="size-4 shrink-0 text-adfr-wa" aria-hidden="true" /> {t("Intervention rapide 24h/24, du dimanche au vendredi", "Fast call-outs 24/7, Sunday to Friday")}</li>
+                        <li className="flex items-center gap-3"><CheckCircle2 className="size-4 shrink-0 text-adfr-wa" aria-hidden="true" /> {t("Intervention rapide 24h/24 et 7j/7", "Fast call-outs 24/7")}</li>
                         <li className="flex items-center gap-3"><CheckCircle2 className="size-4 shrink-0 text-adfr-wa" aria-hidden="true" /> {t("Dépannage sur place ou remorquage", "Roadside repair or towing")}</li>
                         <li className="flex items-center gap-3"><CheckCircle2 className="size-4 shrink-0 text-adfr-wa" aria-hidden="true" /> {t("Paiement sur place, CB ou espèces", "Pay on site, card or cash")}</li>
                     </Reveal>
