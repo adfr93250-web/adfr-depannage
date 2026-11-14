@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Phone, MessageCircle, Contrast } from "lucide-react";
+import { Phone, MessageCircle, Sun, Moon } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import { SITE, whatsappUrl } from "@/redesign/data";
 import { gsap, scrollToId, lockScroll, REDUCED } from "@/redesign/motion";
 import { track } from "@/redesign/api";
-import { setContrast, setLang, useContrast, useLang } from "@/lib/urgence";
+import { setLang, setTheme, useLang, useTheme } from "@/lib/urgence";
 import { Magnetic } from "@/redesign/fx";
 
 const LINKS = [
@@ -15,10 +15,11 @@ const LINKS = [
     { id: "faq", label: "FAQ", en: "FAQ" },
 ];
 
-/** Réglages rapides : langue (FR/EN) et mode très contrasté. */
+/** Réglages rapides : langue (FR/EN) et thème clair / sombre. */
 function QuickSettings({ className = "" }: { className?: string }) {
     const { lang } = useLang();
-    const hc = useContrast();
+    const light = useTheme() === "light";
+    const themeLabel = lang === "fr" ? (light ? "Passer en mode sombre" : "Passer en mode clair") : light ? "Switch to dark mode" : "Switch to light mode";
     return (
         <div className={`flex items-center gap-1.5 ${className}`}>
             <button type="button" onClick={() => {
@@ -27,8 +28,8 @@ function QuickSettings({ className = "" }: { className?: string }) {
                 }} data-testid="lang-toggle" aria-label={lang === "fr" ? "Switch to English" : "Passer en français"} className="glass grid h-10 min-w-10 place-items-center rounded-full px-2.5 font-display text-xs font-black text-white">
                 {lang === "fr" ? "EN" : "FR"}
             </button>
-            <button type="button" onClick={() => setContrast(!hc)} data-testid="contrast-toggle" aria-pressed={hc} aria-label={lang === "fr" ? "Mode très contrasté" : "High-contrast mode"} className={`grid size-10 place-items-center rounded-full ${hc ? "bg-white text-black" : "glass text-white"}`}>
-                <Contrast className="size-4" aria-hidden="true" />
+            <button type="button" onClick={() => setTheme(light ? "dark" : "light")} data-testid="theme-toggle" aria-label={themeLabel} title={themeLabel} className="glass grid size-10 place-items-center rounded-full text-white">
+                {light ? <Moon className="size-4" aria-hidden="true" /> : <Sun className="size-4" aria-hidden="true" />}
             </button>
         </div>
     );

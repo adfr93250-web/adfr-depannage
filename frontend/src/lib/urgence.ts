@@ -55,15 +55,23 @@ export function useLang() {
     return { lang, t: (fr: string, en: string) => (lang === "en" ? en : fr) };
 }
 
-// ---------- Mode très contrasté (lecture en plein soleil ou sous la pluie)
-const hcStore = createStore<boolean>(read("adfr_hc") === "1");
-if (typeof document !== "undefined") document.documentElement.classList.toggle("hc", hcStore.get());
-export function setContrast(on: boolean) {
-    write("adfr_hc", on ? "1" : "0");
-    document.documentElement.classList.toggle("hc", on);
-    hcStore.set(on);
+// ---------- Thème clair / sombre (le sombre reste le thème par défaut)
+export type Theme = "dark" | "light";
+const themeStore = createStore<Theme>(read("adfr_theme") === "light" ? "light" : "dark");
+function applyTheme(theme: Theme) {
+    if (typeof document === "undefined") return;
+    const light = theme === "light";
+    document.documentElement.classList.toggle("light", light);
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", light ? "#F4F6FA" : "#050B14");
+    document.querySelector('meta[name="color-scheme"]')?.setAttribute("content", light ? "light" : "dark");
 }
-export const useContrast = () => useStore(hcStore);
+applyTheme(themeStore.get());
+export function setTheme(theme: Theme) {
+    write("adfr_theme", theme);
+    applyTheme(theme);
+    themeStore.set(theme);
+}
+export const useTheme = () => useStore(themeStore);
 
 // ---------- Disponibilité : 24h/24 du dimanche au vendredi (pas le samedi), heure de Paris
 export function availability(now = new Date()) {
