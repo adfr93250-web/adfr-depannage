@@ -68,7 +68,8 @@ export default function Hero() {
             <div className="wrap relative grid items-end gap-10 pb-28 pt-32 md:pb-16 lg:pb-20">
                 <div className="hero-copy max-w-[58rem]">
                     <div className="flex flex-wrap items-center gap-3">
-                    <StatusPill />
+                    {/* Sur téléphone, la pastille est masquée pour alléger le premier écran */}
+                    <StatusPill className="max-lg:hidden" />
                     <div className="hero-fade hidden rounded-full bg-adfr-red lg:block px-4 py-2 font-display text-xs font-black uppercase tracking-widest text-white shadow-[0_0_30px_rgba(227,6,19,0.5)]" data-testid="hero-badge-247">
                         {t("24h/24 — dim. au ven.", "24/7 — Sun. to Fri.")}
                     </div>
