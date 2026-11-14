@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { BatteryCharging, CircleDot, Fuel, Siren, Tractor, Wrench, MapPin, Loader2, MessageCircle, PhoneCall, CreditCard, Banknote, Contact, WifiOff, ShieldAlert, Shirt, Lightbulb } from "lucide-react";
+import { BatteryCharging, CircleDot, Fuel, Siren, Truck, Wrench, MapPin, Loader2, MessageCircle, PhoneCall, CreditCard, Banknote, Contact, WifiOff, ShieldAlert, Shirt, Lightbulb } from "lucide-react";
 import { SITE } from "@/redesign/data";
 import { track } from "@/redesign/api";
 import { availability, GEO_ERRORS, locate, useGeo, useLang, waLink } from "@/lib/urgence";
@@ -10,7 +10,7 @@ const PANNES = [
     { icon: CircleDot, fr: "Crevaison", en: "Flat tyre" },
     { icon: Fuel, fr: "Carburant", en: "Fuel" },
     { icon: Siren, fr: "Accident", en: "Accident" },
-    { icon: Tractor, fr: "Enlisé", en: "Stuck" },
+    { icon: Truck, fr: "Remorquage", en: "Towing" },
     { icon: Wrench, fr: "Autre panne", en: "Other" },
 ];
 
