@@ -77,6 +77,15 @@ export default function Header() {
         else setTimeout(() => scrollToId(id), open ? 60 : 0);
     };
 
+    // Logo : ferme le menu ; si on est déjà sur l'accueil, remonte en haut de page au lieu de ne rien faire
+    const goHome = (e: MouseEvent) => {
+        setOpen(false);
+        if (location.pathname === "/") {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: REDUCED ? "auto" : "smooth" });
+        }
+    };
+
     const moveInd = (e: MouseEvent<HTMLAnchorElement>) => {
         const a = e.currentTarget;
         gsap.to(ind.current, { x: a.offsetLeft, width: a.offsetWidth, opacity: 1, duration: 0.5, ease: "expo.out" });
@@ -86,7 +95,7 @@ export default function Header() {
         <header ref={ref} className="fixed inset-x-0 top-0 z-[70]">
             <div className={`transition-[padding] duration-500 ${scrolled ? "py-2.5" : "py-4 md:py-5"}`}>
                 <div className="wrap flex items-center justify-between gap-3">
-                    <Link to="/" data-testid="header-logo-link" aria-label={`${SITE.fullName} — accueil`} className="shrink-0 rounded-xl bg-white px-2.5 py-1 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.7)] transition-transform duration-500 ease-expo hover:scale-[1.04]">
+                    <Link to="/" onClick={goHome} data-testid="header-logo-link" aria-label={`${SITE.fullName} — accueil`} className="shrink-0 rounded-xl bg-white px-2.5 py-1 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.7)] transition-transform duration-500 ease-expo hover:scale-[1.04]">
                         <img src={SITE.logo} alt={SITE.fullName} width={1042} height={435} className={`w-auto transition-[height] duration-500 ${scrolled ? "h-9 md:h-10" : "h-10 md:h-12"}`} />
                     </Link>
 
