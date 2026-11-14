@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { ShieldCheck, BadgeCheck, Clock3, CreditCard, Banknote, Star, MapPin, Loader2, MessageSquareOff } from "lucide-react";
 import { useGSAP } from "@gsap/react";
@@ -21,6 +21,21 @@ export default function Hero() {
     const { pathname } = useLocation();
     const heroLines = lang === "en" ? ["Broken down?", "We're coming", "in under 30 minutes."] : SITE.heroLines;
 
+    // Hauteur d'écran figée au chargement : sur téléphone, la barre du navigateur qui se replie
+    // au défilement ne doit ni agrandir ni recadrer la photo. On ne recalcule que si la largeur change (rotation).
+    useLayoutEffect(() => {
+        let width = window.innerWidth;
+        const set = () => document.documentElement.style.setProperty("--hero-vh", `${window.innerHeight / 100}px`);
+        const onResize = () => {
+            if (window.innerWidth === width) return;
+            width = window.innerWidth;
+            set();
+        };
+        set();
+        window.addEventListener("resize", onResize);
+        return () => window.removeEventListener("resize", onResize);
+    }, []);
+
     useGSAP(
         () => {
             if (REDUCED) return;
@@ -33,9 +48,9 @@ export default function Hero() {
     );
 
     return (
-        <section ref={ref} className="sheet relative flex min-h-[100svh] flex-col justify-end overflow-hidden" data-testid="hero">
+        <section ref={ref} className="sheet hero-sheet relative flex flex-col justify-end overflow-hidden" data-testid="hero">
             {/* Vraie photo de la dépanneuse ADFR : plein écran sur ordinateur, bandeau haut sur mobile (cabine + logo cadrés) */}
-            <div className="hero-photo absolute inset-x-0 top-0 h-[52svh] min-h-[320px] overflow-hidden lg:inset-0 lg:h-auto" data-testid="hero-photo-frame">
+            <div className="hero-photo absolute inset-x-0 top-0 min-h-[320px] overflow-hidden lg:inset-0" data-testid="hero-photo-frame">
                 <div className="hero-zoom h-full w-full">
                     <div className="hero-drift relative -m-[3%] h-[106%] w-[106%]">
                         {/* Décor reconstitué sans le camion + camion détouré, issus de la même photo : ils se superposent exactement */}

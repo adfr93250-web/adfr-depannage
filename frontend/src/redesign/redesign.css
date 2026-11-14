@@ -66,6 +66,9 @@ body { overflow-x: hidden; }
 .burger[aria-expanded="true"] > span > span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
 
 /* ---------- Hero ---------- */
+/* Hauteurs calées sur --hero-vh (fixée au chargement par Hero.tsx) : pas de saut quand la barre du navigateur se replie */
+.hero-sheet { min-height: calc(var(--hero-vh, 1svh) * 100); }
+@media (max-width: 1023px) { .hero-photo { height: calc(var(--hero-vh, 1svh) * 52); } }
 .hero-title { font-size: clamp(2.7rem, 11.4vw, 4.6rem); }
 @media (min-width: 640px) { .hero-title { font-size: clamp(4rem, 6.3vw, 7.4rem); } }
 .hero-title .char { display: inline-block; will-change: transform; }
