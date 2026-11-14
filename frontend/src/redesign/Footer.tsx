@@ -6,6 +6,7 @@ import { REDUCED } from "@/redesign/motion";
 import { track } from "@/redesign/api";
 import { Magnetic, Reveal } from "@/redesign/fx";
 import { useT } from "@/redesign/i18n";
+import { openCookieBanner } from "@/redesign/Cookies";
 
 /**
  * Pied de page : une vraie photo d'intervention en parallaxe derrière le numéro de téléphone
@@ -129,6 +130,9 @@ export default function Footer() {
                         © {year} {t(SITE.legalLine, "ADFR — Auto Dépann France Remorquage. All of the Paris region.")}
                     </p>
                     <p>{t("Dépannage · Remorquage · Batterie · Crevaison · Carburant · Désembourbage", "Roadside repair · Towing · Battery · Flat tyre · Fuel · Recovery")}</p>
+                    <button type="button" onClick={openCookieBanner} data-testid="footer-cookies-button" className="underline underline-offset-2 hover:text-white">
+                        {t("Gérer les cookies", "Manage cookies")}
+                    </button>
                 </div>
             </div>
         </footer>

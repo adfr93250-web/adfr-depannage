@@ -6,6 +6,7 @@ import Header from "@/redesign/Header";
 import Footer from "@/redesign/Footer";
 import { StickyCallBar, WhatsAppFloat } from "@/redesign/Floating";
 import { SafetySheet } from "@/redesign/Urgence";
+import { CookieBanner } from "@/redesign/Cookies";
 import Home from "@/redesign/Home";
 import ZonePage from "@/redesign/ZonePage";
 import AdminPage from "@/pages/AdminPage";
@@ -88,6 +89,7 @@ export default function Shell() {
                 <StickyCallBar />
                 <WhatsAppFloat />
                 <SafetySheet />
+                <CookieBanner />
             </BrowserRouter>
         </ErrorBoundary>
     );
