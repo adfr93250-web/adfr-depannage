@@ -27,10 +27,11 @@ export function StatusPill({ className = "" }: { className?: string }) {
     }, []);
     return (
         <p className={`glass inline-flex items-center gap-2.5 rounded-full px-4 py-2 text-[10px] font-bold uppercase tracking-[0.16em] text-slate-100 sm:text-[11px] ${className}`} data-testid="status-pill" role="status">
-            <span className={`size-2.5 shrink-0 rounded-full ${!a ? "bg-adfr-red" : a.open ? "bg-adfr-wa shadow-[0_0_10px_#25d366]" : "bg-adfr-amber"}`} />
+            <span className={`size-2.5 shrink-0 rounded-full ${a?.open ? "bg-adfr-wa shadow-[0_0_10px_#25d366]" : "bg-adfr-red"}`} />
             <span>
-                {!a ? "Dépannage 24h/24 — Île-de-France" : a.open ? t("Dépanneur disponible maintenant", "Driver available now") : t("Fermé le samedi — retour dimanche", "Closed Saturday — back Sunday")}
-                {a && <span className="tabular-nums text-slate-400"> · {a.time}</span>}
+                {/* Le samedi : libellé neutre, sans message de fermeture */}
+                {a?.open ? t("Dépanneur disponible maintenant", "Driver available now") : "Dépannage 24h/24 — Île-de-France"}
+                {a?.open && <span className="tabular-nums text-slate-400"> · {a.time}</span>}
             </span>
         </p>
     );
