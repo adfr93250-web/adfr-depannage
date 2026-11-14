@@ -21,10 +21,13 @@ function QuickSettings({ className = "" }: { className?: string }) {
     const hc = useContrast();
     return (
         <div className={`flex items-center gap-1.5 ${className}`}>
-            <button type="button" onClick={() => setLang(lang === "fr" ? "en" : "fr")} data-testid="lang-toggle" aria-label={lang === "fr" ? "Switch to English" : "Passer en français"} className="glass grid h-10 min-w-10 place-items-center rounded-full px-2.5 font-display text-xs font-black text-white">
+            <button type="button" onClick={() => {
+                    setLang(lang === "fr" ? "en" : "fr");
+                    window.location.reload();
+                }} data-testid="lang-toggle" aria-label={lang === "fr" ? "Switch to English" : "Passer en français"} className="glass grid h-10 min-w-10 place-items-center rounded-full px-2.5 font-display text-xs font-black text-white">
                 {lang === "fr" ? "EN" : "FR"}
             </button>
-            <button type="button" onClick={() => setContrast(!hc)} data-testid="contrast-toggle" aria-pressed={hc} aria-label="Mode très contrasté" className={`grid size-10 place-items-center rounded-full ${hc ? "bg-white text-black" : "glass text-white"}`}>
+            <button type="button" onClick={() => setContrast(!hc)} data-testid="contrast-toggle" aria-pressed={hc} aria-label={lang === "fr" ? "Mode très contrasté" : "High-contrast mode"} className={`grid size-10 place-items-center rounded-full ${hc ? "bg-white text-black" : "glass text-white"}`}>
                 <Contrast className="size-4" aria-hidden="true" />
             </button>
         </div>
@@ -126,7 +129,7 @@ export default function Header() {
                 </nav>
                 <div className="mm-foot space-y-3">
                     <QuickSettings />
-                    <p className="text-xs font-bold uppercase tracking-[0.24em] text-slate-400">{SITE.hours.long}, {SITE.hours.days}</p>
+                    <p className="text-xs font-bold uppercase tracking-[0.24em] text-slate-400">{t(`${SITE.hours.long}, ${SITE.hours.days}`, "24/7, Sunday to Friday, public holidays included")}</p>
                     <a href={SITE.phoneHref} onClick={() => track("call", location.pathname, "Menu mobile")} className="btn btn-call w-full px-6 py-4 text-lg">
                         <Phone className="size-5 animate-ring" aria-hidden="true" /> {SITE.phoneDisplay}
                     </a>

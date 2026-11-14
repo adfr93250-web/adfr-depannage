@@ -4,6 +4,7 @@ import { Loader2, MapPin, MessageCircle, PhoneCall } from "lucide-react";
 import { SITE } from "@/redesign/data";
 import { track } from "@/redesign/api";
 import { SplitLines, Reveal } from "@/redesign/fx";
+import { useT } from "@/redesign/i18n";
 
 type GeoState = { kind: "idle" } | { kind: "loading" } | { kind: "found"; lat: number; lng: number } | { kind: "error"; message: string };
 
@@ -16,6 +17,7 @@ const ERROR_MESSAGES: Record<number, string> = {
 export default function PositionSection() {
     const [state, setState] = useState<GeoState>({ kind: "idle" });
     const { pathname } = useLocation();
+    const { t, tr } = useT();
 
     const locate = () => {
         if (!("geolocation" in navigator)) return setState({ kind: "error", message: ERROR_MESSAGES[2] });
@@ -31,7 +33,7 @@ export default function PositionSection() {
     const waHref = state.kind === "found" ? `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(`${SITE.whatsappBase}\n\nMa position exacte : ${mapsLink}`)}` : "";
     const callBtn = (
         <a href={SITE.phoneHref} onClick={() => track("call", pathname, "Bloc position")} data-testid="position-call-button" className="btn btn-ghost w-full px-6 py-4 text-base !normal-case !tracking-normal">
-            <PhoneCall className="size-5 shrink-0 animate-ring" aria-hidden="true" /> Ou appeler maintenant
+            <PhoneCall className="size-5 shrink-0 animate-ring" aria-hidden="true" /> {t("Ou appeler maintenant", "Or call now")}
         </a>
     );
 
@@ -45,31 +47,31 @@ export default function PositionSection() {
             </div>
             <div className="relative mx-auto max-w-3xl px-5 text-center md:px-8">
                 <p className="eyebrow justify-center">Position</p>
-                <SplitLines className="h-section mt-5 text-white">Envoyez votre position, on arrive plus vite.</SplitLines>
+                <SplitLines className="h-section mt-5 text-white">{t("Envoyez votre position, on arrive plus vite.", "Send your position, we arrive faster.")}</SplitLines>
                 <Reveal as="p" className="mx-auto mt-6 max-w-xl text-slate-300" delay={0.1}>
-                    Autorisez la géolocalisation pour nous transmettre votre emplacement exact. Nos dépanneurs interviennent plus vite quand ils savent précisément où vous êtes.
+                    {t("Autorisez la géolocalisation pour nous transmettre votre emplacement exact. Nos dépanneurs interviennent plus vite quand ils savent précisément où vous êtes.", "Allow geolocation to send us your exact location. Our drivers get to you faster when they know precisely where you are.")}
                 </Reveal>
 
                 <Reveal className="mx-auto mt-10 max-w-md space-y-4" delay={0.2} aria-live="polite">
                     {state.kind === "idle" && (
                         <>
                             <button type="button" onClick={locate} data-testid="position-find-button" className="btn btn-electric w-full px-6 py-5 text-base md:text-lg">
-                                <MapPin className="size-5 shrink-0" aria-hidden="true" /> Partager ma position
+                                <MapPin className="size-5 shrink-0" aria-hidden="true" /> {t("Partager ma position", "Share my position")}
                             </button>
                             <p className="text-xs text-slate-500" data-testid="position-privacy-note">
-                                Rien n'est envoyé sans votre accord : vous validez le message dans WhatsApp avant l'envoi.
+                                {t("Rien n'est envoyé sans votre accord : vous validez le message dans WhatsApp avant l'envoi.", "Nothing is sent without your consent: you confirm the message in WhatsApp before sending.")}
                             </p>
                         </>
                     )}
                     {state.kind === "loading" && (
                         <button type="button" disabled data-testid="position-loading" className="btn btn-electric w-full cursor-wait px-6 py-5 text-base opacity-70">
-                            <Loader2 className="size-5 shrink-0 animate-spin" aria-hidden="true" /> Recherche de votre position…
+                            <Loader2 className="size-5 shrink-0 animate-spin" aria-hidden="true" /> {t("Recherche de votre position…", "Finding your position…")}
                         </button>
                     )}
                     {state.kind === "error" && (
                         <>
                             <div className="glass rounded-2xl !border-adfr-redLight/40 p-5 text-sm font-semibold text-adfr-redLight" data-testid="position-error" role="alert">
-                                {state.message}
+                                {tr(state.message)}
                             </div>
                             {callBtn}
                         </>
@@ -77,10 +79,10 @@ export default function PositionSection() {
                     {state.kind === "found" && (
                         <>
                             <div className="glass rounded-2xl !border-adfr-wa/40 p-5 font-semibold text-white" data-testid="position-status">
-                                Position trouvée. Envoyez-la à {SITE.name} :
+                                {t("Position trouvée. Envoyez-la à", "Position found. Send it to")} {SITE.name} :
                             </div>
                             <a href={waHref} target="_blank" rel="noopener noreferrer" onClick={() => track("whatsapp", pathname, "Bloc position")} data-testid="position-whatsapp-button" className="btn w-full bg-adfr-wa px-6 py-4 text-base !normal-case !tracking-normal text-white">
-                                <MessageCircle className="size-5 shrink-0" aria-hidden="true" /> Envoyer par WhatsApp
+                                <MessageCircle className="size-5 shrink-0" aria-hidden="true" /> {t("Envoyer par WhatsApp", "Send on WhatsApp")}
                             </a>
                             {callBtn}
                         </>

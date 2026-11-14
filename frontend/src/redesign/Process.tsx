@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import { PROCESS_STEPS } from "@/redesign/data";
 import { gsap, REDUCED } from "@/redesign/motion";
 import { SplitLines } from "@/redesign/fx";
+import { useT } from "@/redesign/i18n";
 
 const ICONS = [PhoneCall, Truck, ShieldCheck];
 const PATH = "M -20 150 C 140 150, 170 60, 320 60 S 480 190, 640 190 S 800 60, 960 60 S 1090 130, 1220 130";
@@ -15,6 +16,7 @@ const NODES = [0.14, 0.5, 0.86];
  */
 export default function Process() {
     const ref = useRef<HTMLElement>(null);
+    const { t, tr } = useT();
 
     useGSAP(
         () => {
@@ -52,9 +54,9 @@ export default function Process() {
     return (
         <section ref={ref} id="process" className="sheet overflow-hidden py-24 md:py-36">
             <div className="wrap">
-                <p className="eyebrow">Comment ça marche</p>
+                <p className="eyebrow">{t("Comment ça marche", "How it works")}</p>
                 <SplitLines className="h-section mt-5 max-w-4xl text-white">
-                    Trois étapes, et vous <span className="italic text-chrome">roulez à nouveau.</span>
+                    {t("Trois étapes, et vous", "Three steps, and you are")} <span className="italic text-chrome">{t("roulez à nouveau.", "back on the road.")}</span>
                 </SplitLines>
 
                 <div className="process-body relative mt-14 md:mt-20">
@@ -95,8 +97,8 @@ export default function Process() {
                                             <span className="step__num display text-6xl md:text-8xl">{s.num}</span>
                                             <Icon className="hidden size-8 text-adfr-red md:block" aria-hidden="true" />
                                         </div>
-                                        <h3 className="mt-3 font-display text-xl font-extrabold text-white md:mt-5 md:text-2xl">{s.title}</h3>
-                                        <p className="mt-2 max-w-sm text-sm leading-relaxed text-slate-400">{s.desc}</p>
+                                        <h3 className="mt-3 font-display text-xl font-extrabold text-white md:mt-5 md:text-2xl">{tr(s.title)}</h3>
+                                        <p className="mt-2 max-w-sm text-sm leading-relaxed text-slate-400">{tr(s.desc)}</p>
                                     </div>
                                 </li>
                             );

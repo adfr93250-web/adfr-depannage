@@ -30,7 +30,7 @@ export function StatusPill({ className = "" }: { className?: string }) {
             <span className={`size-2.5 shrink-0 rounded-full ${a?.open ? "bg-adfr-wa shadow-[0_0_10px_#25d366]" : "bg-adfr-red"}`} />
             <span>
                 {/* Le samedi : libellé neutre, sans message de fermeture */}
-                {a?.open ? t("Dépanneur disponible maintenant", "Driver available now") : "Dépannage 24h/24 — Île-de-France"}
+                {a?.open ? t("Dépanneur disponible maintenant", "Driver available now") : t("Dépannage 24h/24 — Île-de-France", "Breakdown service 24/7 — Paris region")}
                 {a?.open && <span className="tabular-nums text-slate-400"> · {a.time}</span>}
             </span>
         </p>

@@ -16,7 +16,7 @@ export function StickyCallBar() {
             <a href={SITE.phoneHref} data-testid="sticky-call-button" onClick={() => track("call", pathname, "Barre du bas")} className="flex flex-[2] items-center justify-center gap-3 bg-adfr-red px-4 py-3.5">
                 <PhoneCall className="size-6 shrink-0 animate-ring text-white" aria-hidden="true" />
                 <span className="flex flex-col leading-tight text-white">
-                    <span className="whitespace-nowrap text-[9px] font-bold uppercase tracking-[0.14em] opacity-90">{t("Urgence dépannage", "Breakdown emergency")} — {SITE.hours.tag}</span>
+                    <span className="whitespace-nowrap text-[9px] font-bold uppercase tracking-[0.14em] opacity-90">{t("Urgence dépannage", "Breakdown emergency")} — {t(SITE.hours.tag, "24/7")}</span>
                     <span className="font-display text-xl font-black tracking-wide">{SITE.phoneDisplay}</span>
                 </span>
             </a>

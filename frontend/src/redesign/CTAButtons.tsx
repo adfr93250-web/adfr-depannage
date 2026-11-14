@@ -3,6 +3,7 @@ import { PhoneCall, MessageCircle } from "lucide-react";
 import { SITE, whatsappUrl } from "@/redesign/data";
 import { track } from "@/redesign/api";
 import { Magnetic } from "@/redesign/fx";
+import { useLang } from "@/lib/urgence";
 
 interface CtaProps {
     testId: string;
@@ -27,11 +28,12 @@ export function CallButton({ testId, className = "", where = "Bouton principal",
 
 export function WhatsAppButton({ testId, className = "", where = "Bouton principal", place, size = "lg", label }: CtaProps & { place?: string; label?: string }) {
     const { pathname } = useLocation();
+    const { t } = useLang();
     return (
         <Magnetic className={className} strength={0.25}>
             <a href={whatsappUrl(place)} target="_blank" rel="noopener noreferrer" data-testid={testId} onClick={() => track("whatsapp", pathname, where)} className={`btn btn-wa w-full ${SIZE[size]} !normal-case !tracking-normal !font-bold`}>
                 <MessageCircle className="size-5 shrink-0 text-adfr-wa" aria-hidden="true" />
-                <span>{label ?? "WhatsApp — envoyer ma panne"}</span>
+                <span>{label ?? t("WhatsApp — envoyer ma panne", "WhatsApp — send my problem")}</span>
             </a>
         </Magnetic>
     );

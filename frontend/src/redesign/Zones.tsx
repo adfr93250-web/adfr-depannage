@@ -5,7 +5,9 @@ import { useGSAP } from "@gsap/react";
 import { DEPARTMENTS, PARIS_ARR, CITIES, zoneUrl, citiesOfDept } from "@/data/zones";
 import { SITE, brandText } from "@/redesign/data";
 import { gsap, FINE, REDUCED } from "@/redesign/motion";
+import { zoneEn } from "@/redesign/en";
 import { SplitLines, Reveal } from "@/redesign/fx";
+import { useT } from "@/redesign/i18n";
 
 // Mêmes positions que la carte stylisée du site original (repère 640 × 560)
 const HEX: Record<string, { x: number; y: number; r: number }> = {
@@ -30,6 +32,7 @@ export default function Zones() {
     const [active, setActive] = useState("75");
     const dept = DEPARTMENTS.find((d) => d.slug === active)!;
     const towns = citiesOfDept(active);
+    const { lang, t } = useT();
 
     useGSAP(
         () => {
@@ -67,18 +70,18 @@ export default function Zones() {
             <div className="pointer-events-none absolute -left-40 top-20 size-[36rem] rounded-full bg-adfr-electric/15 blur-[150px]" aria-hidden="true" />
             <div className="wrap relative">
                 <div className="max-w-4xl">
-                    <p className="eyebrow">Zones d'intervention</p>
+                    <p className="eyebrow">{t("Zones d'intervention", "Areas we cover")}</p>
                     <SplitLines className="h-section mt-5 text-white">
-                        Toute l'Île-de-France. <span className="italic text-adfr-red">Un seul numéro.</span>
+                        {t("Toute l'Île-de-France.", "All of the Paris region.")} <span className="italic text-adfr-red">{t("Un seul numéro.", "One number.")}</span>
                     </SplitLines>
                     <Reveal as="p" className="mt-6 max-w-2xl leading-relaxed text-slate-400" delay={0.1}>
-                        Paris et toute l'Île-de-France : où que votre panne tombe, un dépanneur {SITE.name} part immédiatement. Cliquez sur votre département ou votre ville.
+                        {t(`Paris et toute l'Île-de-France : où que votre panne tombe, un dépanneur ${SITE.name} part immédiatement. Cliquez sur votre département ou votre ville.`, `Paris and the whole Paris region: wherever you break down, an ${SITE.name} driver leaves immediately. Tap your department or your town.`)}
                     </Reveal>
                 </div>
 
                 <div className="mt-10 grid items-center gap-10 lg:mt-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
                     <div className="hexstage relative mx-auto w-full max-w-[52rem] py-2 [perspective:1400px] lg:py-4" data-testid="zones-map">
-                        <div className="hexmap" role="group" aria-label={`Carte des zones d'intervention ${SITE.name} en Île-de-France`}>
+                        <div className="hexmap" role="group" aria-label={t(`Carte des zones d'intervention ${SITE.name} en Île-de-France`, `Map of the areas covered by ${SITE.name} in the Paris region`)}>
                             <span className="hexmap__ring" style={{ width: "27%", aspectRatio: "1" }} />
                             <span className="hexmap__ring" style={{ width: "74%", aspectRatio: "1" }} />
                             <span className="hexmap__ring" style={{ width: "118%", aspectRatio: "1" }} />
@@ -111,23 +114,23 @@ export default function Zones() {
                                 );
                             })}
                         </div>
-                        <p className="mt-2 text-center text-[10px] font-bold uppercase tracking-[0.24em] text-slate-500 lg:mt-0">Carte stylisée — sélectionnez un département</p>
+                        <p className="mt-2 text-center text-[10px] font-bold uppercase tracking-[0.24em] text-slate-500 lg:mt-0">{t("Carte stylisée — sélectionnez un département", "Stylised map — select a department")}</p>
                     </div>
 
                     <div className="zone-panel glass rounded-[2rem] p-6 md:p-9" data-testid="zone-panel" aria-live="polite">
                         <div className="flex items-end justify-between gap-4 overflow-hidden">
                             <p className="zone-panel__num display text-chrome text-7xl md:text-8xl">{dept.slug}</p>
                             <p className="pb-2 text-right text-[10px] font-bold uppercase tracking-[0.24em] text-slate-400">
-                                Département
+                                {t("Département", "Department")}
                                 <br />
-                                <span className="text-adfr-redLight">Intervention {SITE.delay.short}</span>
+                                <span className="text-adfr-redLight">{t(`Intervention ${SITE.delay.short}`, "On site in under 30 min")}</span>
                             </p>
                         </div>
                         <h3 className="mt-3 font-display text-2xl font-extrabold tracking-tight text-white md:text-3xl">{dept.name}</h3>
-                        <p className="mt-3 text-sm leading-relaxed text-slate-300">{brandText(dept.intro)}</p>
+                        <p className="mt-3 text-sm leading-relaxed text-slate-300">{lang === "en" ? zoneEn.intro(dept) : brandText(dept.intro)}</p>
                         <p className="mt-4 flex items-start gap-2.5 text-xs leading-relaxed text-slate-400">
                             <Route className="mt-0.5 size-4 shrink-0 text-adfr-red" aria-hidden="true" />
-                            <span>Nos équipes connaissent {dept.axes}.</span>
+                            <span>{lang === "en" ? "Our drivers know the main roads of the area." : `Nos équipes connaissent ${dept.axes}.`}</span>
                         </p>
                         <ul className="mt-4 flex flex-wrap gap-2">
                             {dept.spots.map((s) => (
@@ -137,7 +140,7 @@ export default function Zones() {
                             ))}
                         </ul>
                         <Link to={zoneUrl(dept)} data-testid={`zone-list-${dept.slug}`} data-cursor="Voir" className="btn btn-electric mt-6 w-full px-6 py-4 text-sm">
-                            Dépannage {dept.deptIn} <ArrowUpRight className="size-4" aria-hidden="true" />
+                            {t(`Dépannage ${dept.deptIn}`, `Breakdown service — ${dept.name}`)} <ArrowUpRight className="size-4" aria-hidden="true" />
                         </Link>
                         {towns.length > 0 && (
                             <div className="mt-5 flex max-h-28 flex-wrap gap-1.5 overflow-y-auto pr-1" data-lenis-prevent>
@@ -152,7 +155,7 @@ export default function Zones() {
                 </div>
 
                 <Reveal className="mt-14 border-t border-adfr-chrome/10 pt-8">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-slate-500">Départements & villes d'intervention</p>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-slate-500">{t("Départements & villes d'intervention", "Departments & towns we cover")}</p>
                     <ul className="mt-4 flex flex-wrap gap-2">
                         {DEPARTMENTS.map((d) => (
                             <li key={d.slug}>
@@ -169,7 +172,7 @@ export default function Zones() {
                             </Link>
                         ))}
                         <Link to="/depannage-75" className="chip !border-adfr-red/50 !bg-adfr-red/10 !font-bold !text-adfr-redLight">
-                            + Paris {PARIS_ARR.length} arrondissements
+                            + Paris {PARIS_ARR.length} {t("arrondissements", "districts")}
                         </Link>
                     </div>
                 </Reveal>

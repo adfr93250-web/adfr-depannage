@@ -5,6 +5,7 @@ import { DEPARTMENTS, CITIES, PARIS_ARR, zoneUrl } from "@/data/zones";
 import { REDUCED } from "@/redesign/motion";
 import { track } from "@/redesign/api";
 import { Magnetic, Reveal } from "@/redesign/fx";
+import { useT } from "@/redesign/i18n";
 
 /**
  * Pied de page : une vraie photo d'intervention en parallaxe derrière le numéro de téléphone
@@ -12,6 +13,7 @@ import { Magnetic, Reveal } from "@/redesign/fx";
  */
 export default function Footer() {
     const year = new Date().getFullYear();
+    const { t } = useT();
 
     const toTop = () => {
         window.scrollTo({ top: 0, behavior: REDUCED ? "auto" : "smooth" });
@@ -26,9 +28,9 @@ export default function Footer() {
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-adfr-night/85 to-transparent" aria-hidden="true" />
                 <div className="wrap relative">
                     <p className="foot-fade eyebrow">
-                        <span className="pulse-dot" /> Une panne maintenant ?
+                        <span className="pulse-dot" /> {t("Une panne maintenant ?", "Broken down right now?")}
                     </p>
-                    <p className="foot-fade mt-5 max-w-2xl font-display text-2xl font-extrabold tracking-tight text-white md:text-4xl">Le dépanneur le plus proche part immédiatement, jour et nuit.</p>
+                    <p className="foot-fade mt-5 max-w-2xl font-display text-2xl font-extrabold tracking-tight text-white md:text-4xl">{t("Le dépanneur le plus proche part immédiatement, jour et nuit.", "The nearest driver leaves immediately, day and night.")}</p>
                     <a href={SITE.phoneHref} data-testid="footer-call-button" data-cursor="Appeler" onClick={() => track("call", "/footer", "Pied de page")} className="group mt-8 block w-fit overflow-hidden" aria-label={`Appeler le ${SITE.phoneDisplay}`}>
                         <span className="foot-number display block whitespace-nowrap text-[13.2vw] leading-[0.9] text-white transition-colors duration-500 group-hover:text-adfr-red lg:text-[11.5vw]" aria-hidden="true">
                             {SITE.phoneDisplay}
@@ -37,14 +39,14 @@ export default function Footer() {
                     <div className="foot-fade mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
                         <Magnetic>
                             <a href={SITE.phoneHref} data-cursor="Appeler" onClick={() => track("call", "/footer", "Pied de page")} className="btn btn-call w-full px-8 py-5 text-lg sm:w-auto">
-                                <PhoneCall className="size-5 animate-ring" aria-hidden="true" /> Appeler maintenant
+                                <PhoneCall className="size-5 animate-ring" aria-hidden="true" /> {t("Appeler maintenant", "Call now")}
                             </a>
                         </Magnetic>
                         <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" data-testid="footer-whatsapp-button" onClick={() => track("whatsapp", "/footer", "Pied de page")} className="btn btn-wa px-7 py-5 text-base !normal-case !tracking-normal">
                             <MessageCircle className="size-5 text-adfr-wa" aria-hidden="true" /> WhatsApp : {SITE.whatsappDisplay}
                         </a>
                         <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-slate-300 sm:ml-4">
-                            <Clock3 className="size-4 text-adfr-red" aria-hidden="true" /> {SITE.hours.long}, {SITE.hours.days}
+                            <Clock3 className="size-4 text-adfr-red" aria-hidden="true" /> {t(`${SITE.hours.long}, ${SITE.hours.days}`, "24/7, Sunday to Friday, public holidays included")}
                         </p>
                     </div>
                 </div>
@@ -54,17 +56,17 @@ export default function Footer() {
                 <Reveal className="wrap grid gap-12 pt-10 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1.25fr_1.1fr]" stagger={0.08}>
                     <div>
                         <img src={SITE.logo} alt={SITE.fullName} loading="lazy" width={1042} height={435} className="h-16 w-auto rounded-xl bg-white px-3 py-1.5" />
-                        <p className="mt-5 max-w-xs text-sm leading-relaxed text-slate-400">Dépannage et remorquage toutes marques, {SITE.hours.long}, partout en Île-de-France. Intervention rapide, paiement sur place.</p>
+                        <p className="mt-5 max-w-xs text-sm leading-relaxed text-slate-400">{t(`Dépannage et remorquage toutes marques, ${SITE.hours.long}, partout en Île-de-France. Intervention rapide, paiement sur place.`, "Roadside repair and towing for all makes, 24/7 from Sunday to Friday, anywhere in the Paris region. Fast call-outs, pay on site.")}</p>
                         <button type="button" onClick={toTop} className="group mt-7 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-slate-300 hover:text-white" data-testid="back-to-top">
                             <span className="grid size-11 place-items-center rounded-full border border-adfr-chrome/25 transition-all duration-500 ease-expo group-hover:-translate-y-1 group-hover:border-adfr-red group-hover:bg-adfr-red">
                                 <ArrowUp className="size-4" aria-hidden="true" />
                             </span>
-                            Haut de page
+                            {t("Haut de page", "Back to top")}
                         </button>
                     </div>
 
                     <div>
-                        <p className="mb-5 font-display text-xs font-extrabold uppercase tracking-widest text-slate-400">Départements</p>
+                        <p className="mb-5 font-display text-xs font-extrabold uppercase tracking-widest text-slate-400">{t("Départements", "Departments")}</p>
                         <ul className="space-y-2.5">
                             {DEPARTMENTS.map((d) => (
                                 <li key={d.slug}>
@@ -78,7 +80,7 @@ export default function Footer() {
                     </div>
 
                     <div>
-                        <p className="mb-5 font-display text-xs font-extrabold uppercase tracking-widest text-slate-400">Villes d'intervention</p>
+                        <p className="mb-5 font-display text-xs font-extrabold uppercase tracking-widest text-slate-400">{t("Villes d'intervention", "Towns we cover")}</p>
                         <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
                             {CITIES.map((c) => (
                                 <li key={c.slug}>
@@ -89,7 +91,7 @@ export default function Footer() {
                             ))}
                         </ul>
                         <p className="mt-4 text-xs leading-relaxed text-slate-500">
-                            Paris et ses 20 arrondissements :{" "}
+                            {t("Paris et ses 20 arrondissements :", "Paris and its 20 districts:")}{" "}
                             {PARIS_ARR.map((p, i) => (
                                 <span key={p.slug}>
                                     <Link to={zoneUrl(p)} data-testid={`footer-paris-${p.slug}`} className="text-slate-400 transition-colors hover:text-white">
@@ -106,12 +108,12 @@ export default function Footer() {
                         <ul className="space-y-3 text-sm text-slate-300">
                             <li className="flex items-start gap-2.5">
                                 <Clock3 className="mt-0.5 size-4 shrink-0 text-adfr-red" aria-hidden="true" />
-                                {SITE.hours.long}, {SITE.hours.days}
+                                {t(`${SITE.hours.long}, ${SITE.hours.days}`, "24/7, Sunday to Friday, public holidays included")}
                             </li>
-                            <li>Paiement sur place, carte bancaire ou espèces</li>
-                            <li>Intervention en moyenne {SITE.delay.long} en IDF</li>
+                            <li>{t("Paiement sur place, carte bancaire ou espèces", "Pay on site, by card or in cash")}</li>
+                            <li>{t(`Intervention en moyenne ${SITE.delay.long} en IDF`, "On site in under 30 minutes on average in the Paris region")}</li>
                             <li className="pt-2 text-xs leading-relaxed text-slate-500" data-testid="legal-mentions">
-                                <span className="font-bold text-slate-400">Mentions légales</span> — Éditeur : ADFR AUTO DEPANN FRANCE REMORQUAGE, SAS au capital de 1 000 €. Siège : 30 boulevard Carnot, 93250 Villemomble. RCS Bobigny 131 872 509. SIRET 131 872 509 00016. N° TVA intracommunautaire : FR32131872509. Téléphone : 01 85 80 00 61. Email :{" "}
+                                <span className="font-bold text-slate-400">{t("Mentions légales", "Legal notice (in French)")}</span> — Éditeur : ADFR AUTO DEPANN FRANCE REMORQUAGE, SAS au capital de 1 000 €. Siège : 30 boulevard Carnot, 93250 Villemomble. RCS Bobigny 131 872 509. SIRET 131 872 509 00016. N° TVA intracommunautaire : FR32131872509. Téléphone : 01 85 80 00 61. Email :{" "}
                                 <a href="mailto:adfr93250@gmail.com" className="underline-offset-2 hover:underline">
                                     adfr93250@gmail.com
                                 </a>
@@ -124,9 +126,9 @@ export default function Footer() {
                 </Reveal>
                 <div className="wrap mt-12 flex flex-col items-start justify-between gap-2 border-t border-adfr-chrome/10 pt-6 text-xs text-slate-500 md:flex-row md:items-center">
                     <p>
-                        © {year} {SITE.legalLine}
+                        © {year} {t(SITE.legalLine, "ADFR — Auto Dépann France Remorquage. All of the Paris region.")}
                     </p>
-                    <p>Dépannage · Remorquage · Batterie · Crevaison · Carburant · Désembourbage</p>
+                    <p>{t("Dépannage · Remorquage · Batterie · Crevaison · Carburant · Désembourbage", "Roadside repair · Towing · Battery · Flat tyre · Fuel · Recovery")}</p>
                 </div>
             </div>
         </footer>

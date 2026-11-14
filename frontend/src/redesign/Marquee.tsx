@@ -1,13 +1,15 @@
 import { TRUST_ITEMS } from "@/redesign/data";
+import { useT } from "@/redesign/i18n";
 
 function Row({ outline }: { outline?: boolean }) {
+    const { tr } = useT();
     return (
         <>
             {[0, 1].map((k) => (
                 <ul key={k} className="flex shrink-0" aria-hidden={k === 1}>
                     {TRUST_ITEMS.map((item) => (
                         <li key={item} className={`marquee__item display ${outline ? "text-outline" : "text-chrome"}`}>
-                            {item}
+                            {tr(item)}
                             <span className="diamond" aria-hidden="true" />
                         </li>
                     ))}
