@@ -3,10 +3,13 @@ VERSION:3.0
 N:;ADFR Dépannage;;;
 FN:ADFR Dépannage
 ORG:ADFR — Auto Dépann France Remorquage
-TEL;TYPE=WORK,VOICE:+33185800061
-TEL;TYPE=CELL:+33652664749
+item1.TEL:+33185800061
+item1.X-ABLabel:Urgence dépannage
+item2.TEL:+33652664749
+item2.X-ABLabel:WhatsApp
 EMAIL:adfr93250@gmail.com
-ADR;TYPE=WORK:;;30 boulevard Carnot;Villemomble;;93250;France
+item3.ADR:;;30 boulevard Carnot;Villemomble;;93250;France
+item3.X-ABLabel:Siège
 URL:https://adfr-depannage.fr
 NOTE:Dépannage et remorquage 24h/24 du dimanche au vendredi\, toute l'Île-de-France.
 END:VCARD
