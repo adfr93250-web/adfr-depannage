@@ -55,7 +55,7 @@ export default function Services({ eyebrow = "Nos services", title = "Du dépann
                 </header>
                 <Reveal className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6" stagger={0.04} y={16}>
                     {SERVICES.map((s, i) => (
-                        <div key={s.title}>
+                        <div key={s.title} className={SERVICES.length === 7 && i === 0 ? "sm:col-span-2" : undefined}>
                             <Card s={s} i={i} />
                         </div>
                     ))}
