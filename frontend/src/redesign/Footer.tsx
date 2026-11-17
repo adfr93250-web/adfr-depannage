@@ -129,7 +129,7 @@ export default function Footer() {
                     <p>
                         © {year} {t(SITE.legalLine, "ADFR — Auto Dépann France Remorquage. All of the Paris region.")}
                     </p>
-                    <p>{t("Dépannage · Remorquage · Batterie · Crevaison · Carburant · Désembourbage", "Roadside repair · Towing · Battery · Flat tyre · Fuel · Recovery")}</p>
+                    <p>{t("Dépannage · Remorquage · Moto & scooter · Batterie · Crevaison · Carburant · Désembourbage", "Roadside repair · Towing · Motorbike & scooter · Battery · Flat tyre · Fuel · Recovery")}</p>
                     <button type="button" onClick={openCookieBanner} data-testid="footer-cookies-button" className="underline underline-offset-2 hover:text-white">
                         {t("Gérer les cookies", "Manage cookies")}
                     </button>

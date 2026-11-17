@@ -41,4 +41,4 @@ export const GALLERY = [
     { src: "/img/intervention-pluie.webp", alt: "Intervention de dépannage sous la pluie en Île-de-France", caption: "Intervention sous la pluie" },
 ];
 
-export const PANNE_TYPES = ["Remorquage", "Batterie", "Crevaison", "Panne de carburant", "Véhicule accidenté", "Désembourbage", "Autre panne"];
+export const PANNE_TYPES = ["Remorquage", "Moto / scooter", "Batterie", "Crevaison", "Panne de carburant", "Véhicule accidenté", "Désembourbage", "Autre panne"];

@@ -1,4 +1,4 @@
-import { Truck, Wrench, BatteryCharging, CircleDot, Fuel, Siren, KeyRound, Tractor, type LucideIcon } from "lucide-react";
+import { Bike, Truck, Wrench, BatteryCharging, CircleDot, Fuel, Siren, KeyRound, Tractor, type LucideIcon } from "lucide-react";
 import { BRAND } from "@/data/brand";
 
 export const SITE = {
@@ -35,6 +35,16 @@ const SERVICES_ALL: ServiceItem[] = [
         desc: "Votre véhicule est immobilisé ? Nous le remorquons vers le garage de votre choix, partout en Île-de-France, de jour comme de nuit.",
         image: BRAND.id === "adfr" ? { src: "/img/service-remorquage.webp", alt: "Chargement d'un véhicule sur plateau ADFR" } : undefined,
     },
+    ...(BRAND.id === "adfr"
+        ? [
+              {
+                  icon: Bike,
+                  title: "Moto & scooter",
+                  desc: "Moto ou scooter en panne, accidenté ou qui ne démarre plus ? On le charge sur le plateau, bien sanglé, et on l'emmène où vous voulez.",
+                  image: { src: "/img/image.jpg", alt: "Moto sanglée sur le plateau de la dépanneuse ADFR, de nuit" },
+              },
+          ]
+        : []),
     {
         icon: Wrench,
         title: "Dépannage sur place",
@@ -200,6 +210,7 @@ const FAQ_HOME_ADFR: FaqItem[] = [
     { q: "En combien de temps arrivez-vous ?", a: "En moins de 30 minutes en moyenne à Paris et en petite couronne, selon la circulation." },
     { q: "Quelles zones couvrez-vous ?", a: "Paris et toute l'Île-de-France : 75, 77, 78, 91, 92, 93, 94, 95." },
     { q: "Comment se passe le paiement ?", a: "Paiement sur place à la fin de l'intervention, par carte bancaire ou en espèces." },
+    { q: "Dépannez-vous aussi les motos et les scooters ?", a: "Oui. Nous remorquons motos et scooters sur notre plateau, avec des sangles adaptées, vers le garage ou l'adresse de votre choix, à Paris et en Île-de-France." },
     { q: "Que faire en cas d'accident ?", a: `Mettez-vous en sécurité à l'écart de la circulation, avec gilet et triangle, puis appelez-nous au ${SITE.phoneDisplay}. Nous enlevons le véhicule et le remorquons vers le garage de votre choix.` },
 ];
 
