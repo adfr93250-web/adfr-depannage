@@ -11,7 +11,9 @@ const PORT = 4173;
 const zonesSrc = fs.readFileSync(path.join(ROOT, "src", "data", "zones.ts"), "utf8");
 const writtenSlugs = [...zonesSrc.matchAll(/slug: "([^"]+)"/g)].map((m) => m[1]).filter((s) => !/^paris-\d+$/.test(s));
 const parisSlugs = Array.from({ length: 20 }, (_, i) => `paris-${i + 1}`);
-const ROUTES = ["/", ...[...writtenSlugs, ...parisSlugs].map((s) => `/depannage-${s}`)];
+const landingsSrc = fs.readFileSync(path.join(ROOT, "src", "data", "landings.ts"), "utf8");
+const landingPaths = [...landingsSrc.matchAll(/path: "(\/[^"]+)"/g)].map((m) => m[1]);
+const ROUTES = ["/", ...[...writtenSlugs, ...parisSlugs].map((s) => `/depannage-${s}`), ...landingPaths];
 
 // Marque active (ADFR par défaut, SOS Dépannage si REACT_APP_BRAND=sos) → sitemap + robots générés pour le bon domaine.
 // Les variables viennent de l'environnement ou, à défaut, des fichiers .env lus par CRA (même source que le build).
