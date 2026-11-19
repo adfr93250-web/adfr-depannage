@@ -9,6 +9,8 @@ import { SafetySheet } from "@/redesign/Urgence";
 import { CookieBanner } from "@/redesign/Cookies";
 import Home from "@/redesign/Home";
 import ZonePage from "@/redesign/ZonePage";
+import AdLanding from "@/redesign/AdLanding";
+import { LANDINGS } from "@/data/landings";
 import AdminPage from "@/pages/AdminPage";
 import NotFound from "@/pages/NotFound";
 import { SITE } from "@/redesign/data";
@@ -80,6 +82,9 @@ export default function Shell() {
                 <main id="contenu" className="relative z-[1]">
                     <Routes>
                         <Route path="/" element={<Home />} />
+                        {LANDINGS.map((l) => (
+                            <Route key={l.path} path={l.path} element={<AdLanding />} />
+                        ))}
                         <Route path="/admin" element={<Legacy><AdminPage /></Legacy>} />
                         <Route path="/:slug" element={<ZonePage />} />
                         <Route path="*" element={<Legacy><NotFound /></Legacy>} />
