@@ -423,9 +423,7 @@ from html.parser import HTMLParser
 from urllib.parse import urlparse
 from fastapi import Depends, Request, Response
 
-# --- Email : Resend en direct (RESEND_API_KEY) ou, à défaut, l'intégration Emergent (EMERGENT_EMAIL_KEY) ---
-EMAIL_BASE_URL = "https://integrations.emergentagent.com"
-EMAIL_KEY = os.environ.get("EMERGENT_EMAIL_KEY", "")
+# --- Email : envoi via Resend (RESEND_API_KEY) ---
 RESEND_API_KEY = os.environ.get("RESEND_API_KEY", "")
 # Sans domaine vérifié chez Resend, seule l'adresse onboarding@resend.dev est autorisée
 # (et uniquement vers l'email du compte Resend).
@@ -512,34 +510,8 @@ async def send_email(*, to: str, subject: str, html: str, reply_to: str | None =
     _assert_safe_email(subject, html)
     if RESEND_API_KEY:
         return await _send_email_resend(to=to, subject=subject, html=html, reply_to=reply_to)
-    if not EMAIL_KEY:
-        logger.warning("Email non envoyé : ni RESEND_API_KEY ni EMERGENT_EMAIL_KEY configurée")
-        return None
-    payload = {"to": [to], "subject": subject, "html": html, "from_name": EMAIL_FROM_NAME}
-    if reply_to or EMAIL_REPLY_TO:
-        payload["contact_email"] = reply_to or EMAIL_REPLY_TO
-    try:
-        async with httpx.AsyncClient(timeout=30) as client:
-            resp = await client.post(
-                f"{EMAIL_BASE_URL}/api/v1/email/send",
-                headers={"X-Email-Key": EMAIL_KEY},
-                json=payload,
-            )
-        resp.raise_for_status()
-        return resp.json().get("id")
-    except httpx.HTTPStatusError as e:
-        try:
-            code = e.response.json().get("code", "")
-        except ValueError:
-            code = ""
-        if code in ("insufficient_credits", "integration_disabled", "daily_limit_reached"):
-            logger.warning(f"Email paused: {code} ({e.response.status_code}): {e.response.json().get('message', '')}")
-            return None
-        logger.error(f"Email send failed: {e.response.status_code} {e.response.text}")
-        return None
-    except Exception as e:
-        logger.error(f"Email send error: {str(e)}")
-        return None
+    logger.warning("Email non envoyé : RESEND_API_KEY non configurée")
+    return None
 
 
 async def _send_email_resend(*, to: str, subject: str, html: str, reply_to: str | None = None) -> str | None:
